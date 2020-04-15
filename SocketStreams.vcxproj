@@ -24,6 +24,12 @@
     <ClInclude Include="Network.h" />
     <ClInclude Include="IOSocketBuffer.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CheckAtCompileTime.cpp" />
+    <ClCompile Include="IOSocketBuffer.cpp" />
+    <ClCompile Include="IOSocketStream.cpp" />
+    <ClCompile Include="Network.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{8BB9F3BD-68F4-403A-ACC6-F85C75F5D14F}</ProjectGuid>
@@ -32,7 +38,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -45,7 +51,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
