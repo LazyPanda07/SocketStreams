@@ -61,11 +61,17 @@ namespace streams
 
 		virtual std::basic_iostream<CharT>& operator >> (dataContainer& data);
 
+		virtual std::basic_iostream<CharT>& operator << (const std::basic_string<CharT>& data);
+
+		virtual std::basic_iostream<CharT>& operator >> (std::basic_string<CharT>& data);
+
+		virtual std::basic_iostream<CharT>& operator << (const std::basic_string_view<CharT>& data);
+
 		virtual ~IOSocketStream();
 	};
 
 	template<typename CharT, typename container>
-	IOSocketStream<CharT, container>::IOSocketStream(SOCKET clientSocket) : buffer(new ioBuffer(clientSocket)), std::basic_iostream<CharT>(&buffer)
+	IOSocketStream<CharT, container>::IOSocketStream(SOCKET clientSocket) : buffer(new ioBuffer(clientSocket)), std::basic_iostream<CharT>(buffer)
 	{
 
 	}
@@ -113,6 +119,34 @@ namespace streams
 		}
 
 		buffer->sgetn(data.data(), data.size());
+
+		return *this;
+	}
+
+	template<typename CharT, typename container>
+	std::basic_iostream<CharT>& IOSocketStream<CharT, container>::operator << (const std::basic_string<CharT>& data)
+	{
+		buffer->sputn(data.data(), data.size());
+
+		return *this;
+	}
+
+	template<typename CharT, typename container>
+	std::basic_iostream<CharT>& IOSocketStream<CharT, container>::operator >> (std::basic_string<CharT>& data)
+	{
+		buffer->setInputType();
+		buffer->pubsync();
+		data.resize(buffer->getLastPacketSize());
+
+		buffer->sgetn(data.data(), data.size());
+
+		return *this;
+	}
+
+	template<typename CharT, typename container>
+	std::basic_iostream<CharT>& IOSocketStream<CharT, container>::operator << (const std::basic_string_view<CharT>& data)
+	{
+		buffer->sputn(data.data(), data.size());
 
 		return *this;
 	}

@@ -16,6 +16,7 @@ namespace web
 	class Network
 	{
 	public:
+		using parent = typename Network<CharT, container>;
 		using dataContainer = typename container;
 
 	public:
@@ -38,9 +39,16 @@ namespace web
 		virtual __int32 sendData(const dataContainer& data);
 
 		//return total number of bytes
+		virtual __int32 sendData(const std::basic_string<CharT>& data);
+
+		//return total number of bytes
 		virtual __int32 receiveData(dataContainer& data);
 
-		static void resizeFunction(dataContainer& data, size_t newSize);
+		//return total number of bytes
+		virtual __int32 receiveData(std::basic_string<CharT>& data);
+
+		template<typename Resizable>
+		static void resizeFunction(Resizable& data, size_t newSize);
 
 		virtual void setReceiveMode(ReceiveMode mode = ReceiveMode::allowResize) final;
 
@@ -50,7 +58,8 @@ namespace web
 	};
 
 	template<typename CharT, typename container>
-	void Network<CharT, container>::resizeFunction(dataContainer& data, size_t newSize)
+	template<typename Resizable>
+	void Network<CharT, container>::resizeFunction(Resizable& data, size_t newSize)
 	{
 		data.resize(newSize);
 	}
@@ -102,6 +111,21 @@ namespace web
 	}
 
 	template<typename CharT, typename container>
+	__int32 Network<CharT, container>::sendData(const std::basic_string<CharT>& data)
+	{
+		const __int32 size = data.size();
+		char status;
+
+		send(clientSocket, reinterpret_cast<const char*>(&size), sizeof(__int32), NULL);
+		recv(clientSocket, &status, sizeof(char), NULL);
+
+		__int32 bytes = send(clientSocket, data.data(), size, NULL);
+		recv(clientSocket, &status, sizeof(char), NULL);
+
+		return bytes;
+	}
+
+	template<typename CharT, typename container>
 	__int32 Network<CharT, container>::receiveData(dataContainer& data)
 	{
 		static_assert(utility::checkData<dataContainer>::value, "Your dataContainer hasn't data method");
@@ -118,6 +142,26 @@ namespace web
 			{
 				this->resizeFunction(data, size);
 			}
+		}
+
+		__int32 bytes = recv(clientSocket, data.data(), size, NULL);
+		send(clientSocket, &status, sizeof(char), NULL);
+
+		return bytes;
+	}
+
+	template<typename CharT, typename container>
+	__int32 Network<CharT, container>::receiveData(std::basic_string<CharT>& data)
+	{
+		__int32 size;
+		const char status = 1;
+
+		recv(clientSocket, reinterpret_cast<char*>(&size), sizeof(__int32), NULL);
+		send(clientSocket, &status, sizeof(char), NULL);
+
+		if (mode == ReceiveMode::allowResize)
+		{
+			this->resizeFunction(data, size);
 		}
 
 		__int32 bytes = recv(clientSocket, data.data(), size, NULL);
