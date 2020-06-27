@@ -18,12 +18,14 @@ namespace web
 	template<typename CharT, typename ContainerT = std::vector<CharT>>
 	class Network
 	{
-	private:
+	protected:
 		template<typename DataT>
 		int_fast32_t sendBytes(const DataT* const data, int_fast32_t count);
 
 		template<typename DataT>
 		int_fast32_t receiveBytes(DataT* const data, int_fast32_t count);
+
+		virtual void log(const char* message) = 0;
 
 	public:
 		using parent = typename Network<CharT, ContainerT>;
@@ -39,9 +41,6 @@ namespace web
 	protected:
 		SOCKET clientSocket;
 		ReceiveMode mode;
-
-	protected:
-		virtual void log(const char* message) = 0;
 
 	public:
 		template<typename FirstStringT, typename SecondStringT>
