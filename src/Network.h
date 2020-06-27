@@ -82,7 +82,7 @@ namespace web
 		{
 			lastSend = send(clientSocket, reinterpret_cast<const char*>(data) + totalSend, count - totalSend, NULL);
 
-			if (lastSend <= 0)
+			if (lastSend == SOCKET_ERROR)
 			{
 				throw WebException();
 			}
@@ -105,9 +105,13 @@ namespace web
 		{
 			lastReceive = recv(clientSocket, reinterpret_cast<char*>(data) + totalReceive, count - totalReceive, NULL);
 
-			if (lastReceive <= 0)
+			if (lastReceive == SOCKET_ERROR)
 			{
 				throw WebException();
+			}
+			else if (!lastReceive)
+			{
+				return totalReceive;
 			}
 
 			totalReceive += lastReceive;
