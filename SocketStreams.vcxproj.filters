@@ -15,30 +15,36 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Network.h">
+    <ClInclude Include="src\WebException.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="IOSocketBuffer.h">
+    <ClInclude Include="src\Network.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="IOSocketStream.h">
+    <ClInclude Include="src\IOSocketStream.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="CheckAtCompileTime.h">
+    <ClInclude Include="src\IOSocketBuffer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CheckAtCompileTime.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CheckAtCompileTime.cpp">
+    <ClCompile Include="src\WebException.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="IOSocketBuffer.cpp">
+    <ClCompile Include="src\Network.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="IOSocketStream.cpp">
+    <ClCompile Include="src\IOSocketStream.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Network.cpp">
+    <ClCompile Include="src\IOSocketBuffer.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CheckAtCompileTime.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
