@@ -36,33 +36,33 @@ namespace streams
 
 		IOSocketStream(ioBuffer* IOSocketBufferSubclass);
 
-		std::basic_iostream<CharT>& operator << (short value) override;
-		std::basic_iostream<CharT>& operator << (int value) override;
-		std::basic_iostream<CharT>& operator << (long value) override;
-		std::basic_iostream<CharT>& operator << (long long value) override;
+		std::basic_iostream<CharT>& operator << (short value);
+		std::basic_iostream<CharT>& operator << (int value);
+		std::basic_iostream<CharT>& operator << (long value);
+		std::basic_iostream<CharT>& operator << (long long value);
 
-		std::basic_iostream<CharT>& operator << (unsigned short value) override;
-		std::basic_iostream<CharT>& operator << (unsigned int value) override;
-		std::basic_iostream<CharT>& operator << (unsigned long value) override;
-		std::basic_iostream<CharT>& operator << (unsigned long long value) override;
+		std::basic_iostream<CharT>& operator << (unsigned short value);
+		std::basic_iostream<CharT>& operator << (unsigned int value);
+		std::basic_iostream<CharT>& operator << (unsigned long value);
+		std::basic_iostream<CharT>& operator << (unsigned long long value);
 
-		std::basic_iostream<CharT>& operator << (float value) override;
-		std::basic_iostream<CharT>& operator << (double value) override;
-		std::basic_iostream<CharT>& operator << (long double value) override;
+		std::basic_iostream<CharT>& operator << (float value);
+		std::basic_iostream<CharT>& operator << (double value);
+		std::basic_iostream<CharT>& operator << (long double value);
 
-		std::basic_iostream<CharT>& operator >> (short& value) override;
-		std::basic_iostream<CharT>& operator >> (int& value) override;
-		std::basic_iostream<CharT>& operator >> (long& value) override;
-		std::basic_iostream<CharT>& operator >> (long long& value) override;
+		std::basic_iostream<CharT>& operator >> (short& value);
+		std::basic_iostream<CharT>& operator >> (int& value);
+		std::basic_iostream<CharT>& operator >> (long& value);
+		std::basic_iostream<CharT>& operator >> (long long& value);
 
-		std::basic_iostream<CharT>& operator >> (unsigned short& value) override;
-		std::basic_iostream<CharT>& operator >> (unsigned int& value) override;
-		std::basic_iostream<CharT>& operator >> (unsigned long& value) override;
-		std::basic_iostream<CharT>& operator >> (unsigned long long& value) override;
+		std::basic_iostream<CharT>& operator >> (unsigned short& value);
+		std::basic_iostream<CharT>& operator >> (unsigned int& value);
+		std::basic_iostream<CharT>& operator >> (unsigned long& value);
+		std::basic_iostream<CharT>& operator >> (unsigned long long& value);
 
-		std::basic_iostream<CharT>& operator >> (float& value) override;
-		std::basic_iostream<CharT>& operator >> (double& value) override;
-		std::basic_iostream<CharT>& operator >> (long double& value) override;
+		std::basic_iostream<CharT>& operator >> (float& value);
+		std::basic_iostream<CharT>& operator >> (double& value);
+		std::basic_iostream<CharT>& operator >> (long double& value);
 
 		virtual std::basic_iostream<CharT>& operator << (const dataContainer& data);
 
