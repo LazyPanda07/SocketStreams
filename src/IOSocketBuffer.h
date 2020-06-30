@@ -129,7 +129,7 @@ namespace buffers
 	{
 		type = IOType::output;
 
-		if (network->getResizeMode() == NetworkOperations::ReceiveMode::allowResize && !pptr())
+		if (network->getResizeMode() == NetworkOperations::ReceiveMode::allowResize && outBuffer.size() < count)
 		{
 			if constexpr (utility::checkResize<dataContainer>::value)
 			{

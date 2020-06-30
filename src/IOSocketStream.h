@@ -533,7 +533,7 @@ namespace streams
 	template<typename CharT, typename ContainerT>
 	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (const std::basic_string_view<CharT>& data)
 	{
-		if (buffer->sputn(data.data(), data.size()))
+		if (buffer->sputn(data.data(), data.size()) == -1)
 		{
 			throw web::WebException();
 		}
