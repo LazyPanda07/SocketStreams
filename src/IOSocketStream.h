@@ -83,11 +83,11 @@ namespace streams
 	{
 		try
 		{
-			return buffer->network->sendBytes(&value, sizeof(value));
+			return buffer->getNetwork()->sendBytes(&value, sizeof(value));
 		}
 		catch (web::WebException& e)
 		{
-			buffer->network->log(e.what());
+			buffer->getNetwork()->log(e.what());
 
 			throw std::move(e);
 		}

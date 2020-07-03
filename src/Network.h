@@ -18,15 +18,6 @@ namespace web
 	template<typename CharT, typename ContainerT = std::vector<CharT>>
 	class Network
 	{
-	protected:
-		template<typename DataT>
-		int_fast32_t sendBytes(const DataT* const data, int_fast32_t count);
-
-		template<typename DataT>
-		int_fast32_t receiveBytes(DataT* const data, int_fast32_t count);
-
-		virtual void log(const char* message) = 0;
-
 	public:
 		using parent = typename Network<CharT, ContainerT>;
 		using dataContainer = typename ContainerT;
@@ -67,58 +58,16 @@ namespace web
 
 		virtual ReceiveMode getResizeMode() final;
 
+		template<typename DataT>
+		int_fast32_t sendBytes(const DataT* const data, int_fast32_t count);
+
+		template<typename DataT>
+		int_fast32_t receiveBytes(DataT* const data, int_fast32_t count);
+
+		virtual void log(const char* message) = 0;
+
 		virtual ~Network() = default;
 	};
-
-	template<typename CharT, typename ContainerT>
-	template<typename DataT>
-	int_fast32_t Network<CharT, ContainerT>::sendBytes(const DataT* const data, int_fast32_t count)
-	{
-		int_fast32_t  lastSend = 0;
-		int_fast32_t totalSend = 0;
-
-		do
-		{
-			lastSend = send(clientSocket, reinterpret_cast<const char*>(data) + totalSend, count - totalSend, NULL);
-
-			if (lastSend == SOCKET_ERROR)
-			{
-				throw WebException();
-			}
-
-			totalSend += lastSend;
-
-		} while (totalSend < count);
-
-		return totalSend;
-	}
-
-	template<typename CharT, typename ContainerT>
-	template<typename DataT>
-	int_fast32_t Network<CharT, ContainerT>::receiveBytes(DataT* const data, int_fast32_t count)
-	{
-		int_fast32_t lastReceive = 0;
-		int_fast32_t totalReceive = 0;
-
-		do
-		{
-			lastReceive = recv(clientSocket, reinterpret_cast<char*>(data) + totalReceive, count - totalReceive, NULL);
-
-			if (lastReceive == SOCKET_ERROR)
-			{
-				throw WebException();
-			}
-			else if (!lastReceive)
-			{
-				return totalReceive;
-			}
-
-			totalReceive += lastReceive;
-
-		} while (totalReceive < count);
-
-		return totalReceive;
-	}
 
 	template<typename CharT, typename ContainerT>
 	template<typename Resizable>
@@ -296,5 +245,55 @@ namespace web
 	typename Network<CharT, ContainerT>::ReceiveMode Network<CharT, ContainerT>::getResizeMode()
 	{
 		return mode;
+	}
+
+	template<typename CharT, typename ContainerT>
+	template<typename DataT>
+	int_fast32_t Network<CharT, ContainerT>::sendBytes(const DataT* const data, int_fast32_t count)
+	{
+		int_fast32_t  lastSend = 0;
+		int_fast32_t totalSend = 0;
+
+		do
+		{
+			lastSend = send(clientSocket, reinterpret_cast<const char*>(data) + totalSend, count - totalSend, NULL);
+
+			if (lastSend == SOCKET_ERROR)
+			{
+				throw WebException();
+			}
+
+			totalSend += lastSend;
+
+		} while (totalSend < count);
+
+		return totalSend;
+	}
+
+	template<typename CharT, typename ContainerT>
+	template<typename DataT>
+	int_fast32_t Network<CharT, ContainerT>::receiveBytes(DataT* const data, int_fast32_t count)
+	{
+		int_fast32_t lastReceive = 0;
+		int_fast32_t totalReceive = 0;
+
+		do
+		{
+			lastReceive = recv(clientSocket, reinterpret_cast<char*>(data) + totalReceive, count - totalReceive, NULL);
+
+			if (lastReceive == SOCKET_ERROR)
+			{
+				throw WebException();
+			}
+			else if (!lastReceive)
+			{
+				return totalReceive;
+			}
+
+			totalReceive += lastReceive;
+
+		} while (totalReceive < count);
+
+		return totalReceive;
 	}
 }

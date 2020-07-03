@@ -75,6 +75,8 @@ namespace buffers
 
 		virtual void setOutputType() final;
 
+		virtual NetworkOperations* getNetwork() final;
+
 		virtual int_fast32_t getLastPacketSize();
 
 		virtual ~IOSocketBuffer();
@@ -301,6 +303,12 @@ namespace buffers
 	void IOSocketBuffer<CharT, ContainerT>::setOutputType()
 	{
 		type = IOType::output;
+	}
+
+	template<typename CharT, typename ContainerT>
+	typename IOSocketBuffer<CharT, ContainerT>::NetworkOperations* IOSocketBuffer<CharT, ContainerT>::getNetwork()
+	{
+		return network;
 	}
 
 	template<typename CharT, typename ContainerT>
