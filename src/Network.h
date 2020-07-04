@@ -40,16 +40,16 @@ namespace web
 		Network(SOCKET clientSocket, ReceiveMode mode = ReceiveMode::allowResize);
 
 		//return total number of bytes
-		virtual int_fast32_t sendData(const dataContainer& data);
+		virtual int sendData(const dataContainer& data);
 
 		//return total number of bytes
-		virtual int_fast32_t sendData(const std::basic_string_view<CharT>& data);
+		virtual int sendData(const std::basic_string_view<CharT>& data);
 
 		//return total number of bytes
-		virtual int_fast32_t receiveData(dataContainer& data);
+		virtual int receiveData(dataContainer& data);
 
 		//return total number of bytes
-		virtual int_fast32_t receiveData(std::basic_string<CharT>& data);
+		virtual int receiveData(std::basic_string<CharT>& data);
 
 		template<typename Resizable>
 		static void resizeFunction(Resizable& data, size_t newSize);
@@ -59,10 +59,10 @@ namespace web
 		virtual ReceiveMode getResizeMode() final;
 
 		template<typename DataT>
-		int_fast32_t sendBytes(const DataT* const data, int_fast32_t count);
+		int sendBytes(const DataT* const data, int count);
 
 		template<typename DataT>
-		int_fast32_t receiveBytes(DataT* const data, int_fast32_t count);
+		int receiveBytes(DataT* const data, int count);
 
 		virtual void log(const char* message) = 0;
 
@@ -142,14 +142,14 @@ namespace web
 	}
 
 	template<typename CharT, typename ContainerT>
-	int_fast32_t Network<CharT, ContainerT>::sendData(const dataContainer& data)
+	int Network<CharT, ContainerT>::sendData(const dataContainer& data)
 	{
 		static_assert(utility::checkSize<dataContainer>::value, "Your dataContainer hasn't size method");
 		static_assert(utility::checkData<dataContainer>::value, "Your dataContainer hasn't data method");
 
 		try
 		{
-			const int_fast32_t size = data.size();
+			const int size = data.size();
 
 			this->sendBytes(&size, sizeof(size));
 
@@ -164,11 +164,11 @@ namespace web
 	}
 
 	template<typename CharT, typename ContainerT>
-	int_fast32_t Network<CharT, ContainerT>::sendData(const std::basic_string_view<CharT>& data)
+	int Network<CharT, ContainerT>::sendData(const std::basic_string_view<CharT>& data)
 	{
 		try
 		{
-			const int_fast32_t size = data.size();
+			const int size = data.size();
 
 			this->sendBytes(&size, sizeof(size));
 
@@ -183,13 +183,13 @@ namespace web
 	}
 
 	template<typename CharT, typename ContainerT>
-	int_fast32_t Network<CharT, ContainerT>::receiveData(dataContainer& data)
+	int Network<CharT, ContainerT>::receiveData(dataContainer& data)
 	{
 		static_assert(utility::checkData<dataContainer>::value, "Your dataContainer hasn't data method");
 
 		try
 		{
-			int_fast32_t size;
+			int size;
 
 			this->receiveBytes(&size, sizeof(size));
 
@@ -212,11 +212,11 @@ namespace web
 	}
 
 	template<typename CharT, typename ContainerT>
-	int_fast32_t Network<CharT, ContainerT>::receiveData(std::basic_string<CharT>& data)
+	int Network<CharT, ContainerT>::receiveData(std::basic_string<CharT>& data)
 	{
 		try
 		{
-			int_fast32_t size;
+			int size;
 
 			this->receiveBytes(&size, sizeof(size));
 
@@ -249,10 +249,10 @@ namespace web
 
 	template<typename CharT, typename ContainerT>
 	template<typename DataT>
-	int_fast32_t Network<CharT, ContainerT>::sendBytes(const DataT* const data, int_fast32_t count)
+	int Network<CharT, ContainerT>::sendBytes(const DataT* const data, int count)
 	{
-		int_fast32_t  lastSend = 0;
-		int_fast32_t totalSend = 0;
+		int  lastSend = 0;
+		int totalSend = 0;
 
 		do
 		{
@@ -272,10 +272,10 @@ namespace web
 
 	template<typename CharT, typename ContainerT>
 	template<typename DataT>
-	int_fast32_t Network<CharT, ContainerT>::receiveBytes(DataT* const data, int_fast32_t count)
+	int Network<CharT, ContainerT>::receiveBytes(DataT* const data, int count)
 	{
-		int_fast32_t lastReceive = 0;
-		int_fast32_t totalReceive = 0;
+		int lastReceive = 0;
+		int totalReceive = 0;
 
 		do
 		{

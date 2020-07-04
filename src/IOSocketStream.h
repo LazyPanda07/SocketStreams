@@ -18,10 +18,10 @@ namespace streams
 
 	protected:
 		template<typename T>
-		int_fast32_t sendFundamental(T value);
+		int sendFundamental(T value);
 
 		template<typename T>
-		int_fast32_t receiveFundamental(T& value);
+		int receiveFundamental(T& value);
 
 	public:
 		IOSocketStream(SOCKET clientSocket);
@@ -79,7 +79,7 @@ namespace streams
 
 	template<typename CharT, typename ContainerT>
 	template<typename T>
-	int_fast32_t IOSocketStream<CharT, ContainerT>::sendFundamental(T value)
+	int IOSocketStream<CharT, ContainerT>::sendFundamental(T value)
 	{
 		try
 		{
@@ -95,7 +95,7 @@ namespace streams
 
 	template<typename CharT, typename ContainerT>
 	template<typename T>
-	int_fast32_t IOSocketStream<CharT, ContainerT>::receiveFundamental(T& value)
+	int IOSocketStream<CharT, ContainerT>::receiveFundamental(T& value)
 	{
 		try
 		{

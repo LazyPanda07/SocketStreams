@@ -32,7 +32,7 @@ namespace buffers
 		dataContainer outBuffer;
 		dataContainer inBuffer;
 		NetworkOperations* network;
-		int_fast32_t lastPacketSize;
+		int lastPacketSize;
 
 	protected:
 		void setPointers();
@@ -77,7 +77,7 @@ namespace buffers
 
 		virtual NetworkOperations* getNetwork() final;
 
-		virtual int_fast32_t getLastPacketSize();
+		virtual int getLastPacketSize();
 
 		virtual ~IOSocketBuffer();
 	};
@@ -312,7 +312,7 @@ namespace buffers
 	}
 
 	template<typename CharT, typename ContainerT>
-	int_fast32_t IOSocketBuffer<CharT, ContainerT>::getLastPacketSize()
+	int IOSocketBuffer<CharT, ContainerT>::getLastPacketSize()
 	{
 		return lastPacketSize;
 	}
