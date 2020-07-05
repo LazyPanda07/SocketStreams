@@ -36,6 +36,7 @@ namespace streams
 
 		IOSocketStream(ioBuffer* IOSocketBufferSubclass);
 
+		std::basic_iostream<CharT>& operator << (bool value);
 		std::basic_iostream<CharT>& operator << (short value);
 		std::basic_iostream<CharT>& operator << (int value);
 		std::basic_iostream<CharT>& operator << (long value);
@@ -50,6 +51,7 @@ namespace streams
 		std::basic_iostream<CharT>& operator << (double value);
 		std::basic_iostream<CharT>& operator << (long double value);
 
+		std::basic_iostream<CharT>& operator >> (bool& value);
 		std::basic_iostream<CharT>& operator >> (short& value);
 		std::basic_iostream<CharT>& operator >> (int& value);
 		std::basic_iostream<CharT>& operator >> (long& value);
@@ -99,11 +101,11 @@ namespace streams
 	{
 		try
 		{
-			return buffer->network->receiveBytes(&value, sizeof(value));
+			return buffer->getNetwork()->receiveBytes(&value, sizeof(value));
 		}
 		catch (web::WebException& e)
 		{
-			buffer->network->log(e.what());
+			buffer->getNetwork()->log(e.what());
 
 			throw std::move(e);
 		}
@@ -139,6 +141,21 @@ namespace streams
 	IOSocketStream<CharT, ContainerT>::IOSocketStream(IOSocketStream<CharT, ContainerT>::ioBuffer* IOSocketBufferSubclass) : buffer(IOSocketBufferSubclass), std::basic_iostream<CharT>(buffer)
 	{
 
+	}
+
+	template<typename CharT, typename ContainerT>
+	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (bool value)
+	{
+		try
+		{
+			this->sendFundamental(value);
+		}
+		catch (web::WebException& e)
+		{
+			throw std::move(e);
+		}
+
+		return *this;
 	}
 
 	template<typename CharT, typename ContainerT>
@@ -300,6 +317,21 @@ namespace streams
 		{
 			throw std::move(e);
 		};
+
+		return *this;
+	}
+
+	template<typename CharT, typename ContainerT>
+	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator >> (bool& value)
+	{
+		try
+		{
+			this->receiveFundamental(value);
+		}
+		catch (web::WebException& e)
+		{
+			throw std::move(e);
+		}
 
 		return *this;
 	}
@@ -516,10 +548,12 @@ namespace streams
 	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator >> (std::basic_string<CharT>& data)
 	{
 		buffer->setInputType();
+
 		if (buffer->pubsync() == -1)
 		{
 			throw web::WebException();
 		}
+
 		data.resize(buffer->getLastPacketSize());
 
 		if (buffer->sgetn(data.data(), data.size()) == -1)
