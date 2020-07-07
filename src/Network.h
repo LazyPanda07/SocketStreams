@@ -66,7 +66,7 @@ namespace web
 
 		virtual void log(const char* message) = 0;
 
-		virtual ~Network() = default;
+		virtual ~Network();
 	};
 
 	template<typename CharT, typename ContainerT>
@@ -295,5 +295,11 @@ namespace web
 		} while (totalReceive < count);
 
 		return totalReceive;
+	}
+
+	template<typename CharT,typename ContainerT>
+	Network<CharT, ContainerT>::~Network()
+	{
+		closesocket(clientSocket);
 	}
 }
