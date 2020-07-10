@@ -146,7 +146,7 @@ namespace buffers
 			{
 				if (this->overflow(s[i]) == -1)
 				{
-					return i + 1;
+					return static_cast<std::streamsize>(i) + 1;
 				}
 			}
 			else
