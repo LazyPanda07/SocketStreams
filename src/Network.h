@@ -78,7 +78,9 @@ namespace web
 
 	template<typename CharT, typename ContainerT>
 	template<typename FirstStringT, typename SecondStringT>
-	Network<CharT, ContainerT>::Network(const FirstStringT& ip, const SecondStringT& port, ReceiveMode mode) : mode(mode)
+	Network<CharT, ContainerT>::Network(const FirstStringT& ip, const SecondStringT& port, ReceiveMode mode) :
+		mode(mode),
+		clientSocket(INVALID_SOCKET)
 	{
 		WSADATA wsaData;
 
