@@ -283,13 +283,9 @@ namespace web
 		{
 			lastReceive = recv(clientSocket, reinterpret_cast<char*>(data) + totalReceive, count - totalReceive, NULL);
 
-			if (lastReceive == SOCKET_ERROR)
+			if (lastReceive == SOCKET_ERROR || !lastReceive)
 			{
 				throw WebException();
-			}
-			else if (!lastReceive)
-			{
-				return totalReceive;
 			}
 
 			totalReceive += lastReceive;
