@@ -100,7 +100,7 @@ namespace buffers
 			return traits_type::eof();
 		}
 
-		return ch;
+		return 0;
 	}
 
 	template<typename CharT, typename ContainerT>
