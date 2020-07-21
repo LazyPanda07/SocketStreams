@@ -36,6 +36,10 @@ namespace streams
 
 		IOSocketStream(ioBuffer* IOSocketBufferSubclass);
 
+		IOSocketStream(IOSocketStream<CharT, ContainerT>&& other) noexcept;
+
+		IOSocketStream<CharT, ContainerT>& operator = (IOSocketStream<CharT, ContainerT>&& other) noexcept;
+
 		std::basic_iostream<CharT>& operator << (bool value);
 		std::basic_iostream<CharT>& operator << (short value);
 		std::basic_iostream<CharT>& operator << (int value);
@@ -141,6 +145,23 @@ namespace streams
 	IOSocketStream<CharT, ContainerT>::IOSocketStream(IOSocketStream<CharT, ContainerT>::ioBuffer* IOSocketBufferSubclass) : buffer(IOSocketBufferSubclass), std::basic_iostream<CharT>(buffer)
 	{
 
+	}
+
+	template<typename CharT, typename ContainerT>
+	IOSocketStream<CharT, ContainerT>::IOSocketStream(IOSocketStream<CharT, ContainerT>&& other) noexcept :
+		std::basic_iostream<CharT>(nullptr)
+	{
+		*this = std::move(other);
+	}
+
+	template<typename CharT, typename ContainerT>
+	IOSocketStream<CharT, ContainerT>& IOSocketStream<CharT, ContainerT>::operator = (IOSocketStream<CharT, ContainerT>&& other) noexcept
+	{
+		delete buffer;
+		buffer = other.buffer;
+		other.buffer = nullptr;
+
+		return *this;
 	}
 
 	template<typename CharT, typename ContainerT>
