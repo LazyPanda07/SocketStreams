@@ -64,7 +64,7 @@ namespace web
 		template<typename DataT>
 		int receiveBytes(DataT* const data, int count);
 
-		virtual void log(const char* message) = 0;
+		virtual void log(std::string&& message) noexcept = 0;
 
 		virtual ~Network();
 	};
@@ -295,7 +295,7 @@ namespace web
 		return totalReceive;
 	}
 
-	template<typename CharT,typename ContainerT>
+	template<typename CharT, typename ContainerT>
 	Network<CharT, ContainerT>::~Network()
 	{
 		closesocket(clientSocket);
