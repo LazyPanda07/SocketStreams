@@ -86,12 +86,7 @@ namespace web
 
 		if (WSAStartup(MAKEWORD(2, 2), &wsaData))
 		{
-			std::cout << "Error in WSAStartup ";
-#ifdef _DEBUG
-			std::cout << " on line " << __LINE__ << " in file " << __FILE__ << " ";
-#endif // _DEBUG
-			std::cout << "WSAGetLastError: " << WSAGetLastError() << std::endl;
-			return;
+			throw WebException();
 		}
 
 
@@ -104,34 +99,21 @@ namespace web
 
 		if (getaddrinfo(ip.data(), port.data(), &hints, &info))
 		{
-			std::cout << "Error in getaddrinfo ";
-#ifdef _DEBUG
-			std::cout << " on line " << __LINE__ << " in file " << __FILE__ << " ";
-#endif // _DEBUG
-			std::cout << "WSAGetLastError: " << WSAGetLastError() << std::endl;
-			return;
+			throw WebException();
 		}
 
 		clientSocket = socket(info->ai_family, info->ai_socktype, info->ai_protocol);
 
 		if (clientSocket == INVALID_SOCKET)
 		{
-			std::cout << "Error in socket function ";
-#ifdef _DEBUG
-			std::cout << " on line " << __LINE__ << " in file " << __FILE__ << " ";
-#endif // _DEBUG
-			std::cout << "WSAGetLastError: " << WSAGetLastError() << std::endl;
-			return;
+			freeaddrinfo(info);
+			throw WebException();
 		}
 
 		if (connect(clientSocket, info->ai_addr, info->ai_addrlen))
 		{
-			std::cout << "Error in connect ";
-#ifdef _DEBUG
-			std::cout << " on line " << __LINE__ << " in file " << __FILE__ << " ";
-#endif // _DEBUG
-			std::cout << "WSAGetLastError: " << WSAGetLastError() << std::endl;
-			return;
+			freeaddrinfo(info);
+			throw WebException();
 		}
 
 		freeaddrinfo(info);
