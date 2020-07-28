@@ -235,12 +235,12 @@ namespace buffers
 				lastPacketSize = network->sendData(outBuffer);
 			}
 
+			pbump(-size);
+
 			if (lastPacketSize == -1)
 			{
 				return -1;
 			}
-
-			pbump(-size);
 		}
 
 		break;
