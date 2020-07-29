@@ -1,12 +1,12 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
+#include <string>
+#include <any>
 
 #include <WinSock2.h>
 #include <WS2tcpip.h>
-
-#include <vector>
-#include <string>
 
 #include "CheckAtCompileTime.h"
 #include "WebException.h"
@@ -64,7 +64,7 @@ namespace web
 		template<typename DataT>
 		int receiveBytes(DataT* const data, int count);
 
-		virtual void log(std::string&& message) noexcept = 0;
+		virtual void log(std::string&& message, std::any&& data = "") noexcept = 0;
 
 		virtual ~Network();
 	};
