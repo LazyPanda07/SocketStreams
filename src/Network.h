@@ -236,22 +236,22 @@ namespace web
 	int Network<CharT, ContainerT>::sendBytes(const DataT* const data, int count)
 	{
 		int  lastSend = 0;
-		int totalSend = 0;
+		int totalSent = 0;
 
 		do
 		{
-			lastSend = send(clientSocket, reinterpret_cast<const char*>(data) + totalSend, count - totalSend, NULL);
+			lastSend = send(clientSocket, reinterpret_cast<const char*>(data) + totalSent, count - totalSent, NULL);
 
 			if (lastSend == SOCKET_ERROR)
 			{
 				throw WebException();
 			}
 
-			totalSend += lastSend;
+			totalSent += lastSend;
 
-		} while (totalSend < count);
+		} while (totalSent < count);
 
-		return totalSend;
+		return totalSent;
 	}
 
 	template<typename CharT, typename ContainerT>
