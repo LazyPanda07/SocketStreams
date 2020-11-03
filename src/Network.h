@@ -63,7 +63,8 @@ namespace web
 		template<typename DataT>
 		int receiveBytes(DataT* const data, int count);
 
-		virtual void log(std::string&& message, std::any&& data = "") noexcept = 0;
+		//default implementation uses clog
+		virtual void log(const std::string& message, std::any&& data = "");
 
 		virtual ~Network();
 	};
@@ -274,6 +275,12 @@ namespace web
 		} while (totalReceive < count);
 
 		return totalReceive;
+	}
+
+	template<typename ContainerT>
+	void Network<ContainerT>::log(const std::string& message, std::any&& data)
+	{
+		std::clog << message;
 	}
 
 	template<typename ContainerT>
