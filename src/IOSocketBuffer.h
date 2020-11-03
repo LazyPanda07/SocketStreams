@@ -2,7 +2,7 @@
 
 #include <streambuf>
 
-#include "Network.h"
+#include "BaseNetwork.h"
 
 namespace buffers
 {
@@ -29,7 +29,7 @@ namespace buffers
 	protected:
 		ContainerT outBuffer;
 		ContainerT inBuffer;
-		web::Network<ContainerT>* network;
+		web::BaseNetwork<ContainerT>* network;
 		int lastPacketSize;
 
 	protected:
@@ -65,15 +65,15 @@ namespace buffers
 		template<typename FirstStringT, typename SecondStringT>
 		IOSocketBuffer(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize);
 
-		IOSocketBuffer(web::Network<ContainerT>* networkSubclass);
+		IOSocketBuffer(web::BaseNetwork<ContainerT>* networkSubclass);
 
-		IOSocketBuffer(web::Network<ContainerT>* networkSubclass, size_t bufferSize);
+		IOSocketBuffer(web::BaseNetwork<ContainerT>* networkSubclass, size_t bufferSize);
 
 		virtual void setInputType() final;
 
 		virtual void setOutputType() final;
 
-		virtual web::Network<ContainerT>* getNetwork() final;
+		virtual web::BaseNetwork<ContainerT>* getNetwork() final;
 
 		virtual int getLastPacketSize();
 
@@ -129,11 +129,11 @@ namespace buffers
 	{
 		type = IOType::output;
 
-		if (network->getResizeMode() == web::Network<ContainerT>::ReceiveMode::allowResize && outBuffer.size() < count)
+		if (network->getResizeMode() == web::BaseNetwork<ContainerT>::ReceiveMode::allowResize && outBuffer.size() < count)
 		{
 			if constexpr (utility::checkResize<ContainerT>::value)
 			{
-				web::Network<ContainerT>::resizeFunction(outBuffer, count);
+				web::BaseNetwork<ContainerT>::resizeFunction(outBuffer, count);
 				this->setPointers();
 			}
 		}
@@ -254,39 +254,39 @@ namespace buffers
 	}
 
 	template<typename ContainerT>
-	IOSocketBuffer<ContainerT>::IOSocketBuffer(SOCKET clientSocket) : network(new web::Network<ContainerT>(clientSocket))
+	IOSocketBuffer<ContainerT>::IOSocketBuffer(SOCKET clientSocket) : network(new web::BaseNetwork<ContainerT>(clientSocket))
 	{
 		this->setPointers();
 	}
 
 	template<typename ContainerT>
-	IOSocketBuffer<ContainerT>::IOSocketBuffer(SOCKET clientSocket, size_t bufferSize) : network(new web::Network<ContainerT>(clientSocket, web::Network<ContainerT>::ReceiveMode::prohibitResize)), outBuffer(bufferSize), inBuffer(bufferSize)
-	{
-		this->setPointers();
-	}
-
-	template<typename ContainerT>
-	template<typename FirstStringT, typename SecondStringT>
-	IOSocketBuffer<ContainerT>::IOSocketBuffer(const FirstStringT& ip, const SecondStringT& port) : network(new web::Network<ContainerT>(ip, port))
+	IOSocketBuffer<ContainerT>::IOSocketBuffer(SOCKET clientSocket, size_t bufferSize) : network(new web::BaseNetwork<ContainerT>(clientSocket, web::BaseNetwork<ContainerT>::ReceiveMode::prohibitResize)), outBuffer(bufferSize), inBuffer(bufferSize)
 	{
 		this->setPointers();
 	}
 
 	template<typename ContainerT>
 	template<typename FirstStringT, typename SecondStringT>
-	IOSocketBuffer<ContainerT>::IOSocketBuffer(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) : network(new web::Network<ContainerT>(ip, port, web::Network<ContainerT>::ReceiveMode::prohibitResize)), outBuffer(bufferSize), inBuffer(bufferSize)
+	IOSocketBuffer<ContainerT>::IOSocketBuffer(const FirstStringT& ip, const SecondStringT& port) : network(new web::BaseNetwork<ContainerT>(ip, port))
 	{
 		this->setPointers();
 	}
 
 	template<typename ContainerT>
-	IOSocketBuffer<ContainerT>::IOSocketBuffer(web::Network<ContainerT>* networkSubclass) : network(networkSubclass)
+	template<typename FirstStringT, typename SecondStringT>
+	IOSocketBuffer<ContainerT>::IOSocketBuffer(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) : network(new web::BaseNetwork<ContainerT>(ip, port, web::BaseNetwork<ContainerT>::ReceiveMode::prohibitResize)), outBuffer(bufferSize), inBuffer(bufferSize)
 	{
 		this->setPointers();
 	}
 
 	template<typename ContainerT>
-	IOSocketBuffer<ContainerT>::IOSocketBuffer(web::Network<ContainerT>* networkSubclass, size_t bufferSize) : network(networkSubclass), outBuffer(bufferSize), inBuffer(bufferSize)
+	IOSocketBuffer<ContainerT>::IOSocketBuffer(web::BaseNetwork<ContainerT>* networkSubclass) : network(networkSubclass)
+	{
+		this->setPointers();
+	}
+
+	template<typename ContainerT>
+	IOSocketBuffer<ContainerT>::IOSocketBuffer(web::BaseNetwork<ContainerT>* networkSubclass, size_t bufferSize) : network(networkSubclass), outBuffer(bufferSize), inBuffer(bufferSize)
 	{
 		this->setPointers();
 	}
@@ -304,7 +304,7 @@ namespace buffers
 	}
 
 	template<typename ContainerT>
-	web::Network<ContainerT>* IOSocketBuffer<ContainerT>::getNetwork()
+	web::BaseNetwork<ContainerT>* IOSocketBuffer<ContainerT>::getNetwork()
 	{
 		return network;
 	}
