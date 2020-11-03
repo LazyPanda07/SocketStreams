@@ -9,8 +9,6 @@ namespace streams
 	template<typename ContainerT = std::vector<char>>
 	class IOSocketStream : public std::iostream
 	{
-	public:
-
 	protected:
 		buffers::IOSocketBuffer<ContainerT>* buffer;
 

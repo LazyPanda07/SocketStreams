@@ -19,9 +19,6 @@ namespace web
 	class Network
 	{
 	public:
-		using super = typename Network<ContainerT>;
-
-	public:
 		enum class ReceiveMode 
 		{
 			allowResize,
