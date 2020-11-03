@@ -2,7 +2,7 @@
 
 #include <istream>
 
-#include "IOSocketBuffer.h"
+#include "BaseIOSocketBuffer.h"
 
 namespace streams
 {
@@ -10,7 +10,7 @@ namespace streams
 	class IOSocketStream : public std::iostream
 	{
 	protected:
-		buffers::IOSocketBuffer<ContainerT>* buffer;
+		buffers::BaseIOSocketBuffer<ContainerT>* buffer;
 
 	protected:
 		template<typename T>
@@ -30,7 +30,7 @@ namespace streams
 		template<typename FirstStringT, typename SecondStringT>
 		IOSocketStream(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize);
 
-		IOSocketStream(buffers::IOSocketBuffer<ContainerT>* IOSocketBufferSubclass);
+		IOSocketStream(buffers::BaseIOSocketBuffer<ContainerT>* IOSocketBufferSubclass);
 
 		IOSocketStream(IOSocketStream<ContainerT>&& other) noexcept;
 
@@ -112,33 +112,33 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	IOSocketStream<ContainerT>::IOSocketStream(SOCKET clientSocket) : buffer(new buffers::IOSocketBuffer<ContainerT>(clientSocket)), std::iostream(buffer)
+	IOSocketStream<ContainerT>::IOSocketStream(SOCKET clientSocket) : buffer(new buffers::BaseIOSocketBuffer<ContainerT>(clientSocket)), std::iostream(buffer)
 	{
 
 	}
 
 	template<typename ContainerT>
-	IOSocketStream<ContainerT>::IOSocketStream(SOCKET clientSocket, size_t bufferSize) : buffer(new buffers::IOSocketBuffer<ContainerT>(clientSocket, bufferSize)), std::iostream(buffer)
-	{
-
-	}
-
-	template<typename ContainerT>
-	template<typename FirstStringT, typename SecondStringT>
-	IOSocketStream<ContainerT>::IOSocketStream(const FirstStringT& ip, const SecondStringT& port) : buffer(new buffers::IOSocketBuffer<ContainerT>(ip, port)), std::iostream(buffer)
+	IOSocketStream<ContainerT>::IOSocketStream(SOCKET clientSocket, size_t bufferSize) : buffer(new buffers::BaseIOSocketBuffer<ContainerT>(clientSocket, bufferSize)), std::iostream(buffer)
 	{
 
 	}
 
 	template<typename ContainerT>
 	template<typename FirstStringT, typename SecondStringT>
-	IOSocketStream<ContainerT>::IOSocketStream(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) : buffer(new buffers::IOSocketBuffer<ContainerT>(ip, port, bufferSize)), std::iostream(buffer)
+	IOSocketStream<ContainerT>::IOSocketStream(const FirstStringT& ip, const SecondStringT& port) : buffer(new buffers::BaseIOSocketBuffer<ContainerT>(ip, port)), std::iostream(buffer)
 	{
 
 	}
 
 	template<typename ContainerT>
-	IOSocketStream<ContainerT>::IOSocketStream(buffers::IOSocketBuffer<ContainerT>* IOSocketBufferSubclass) : buffer(IOSocketBufferSubclass), std::iostream(buffer)
+	template<typename FirstStringT, typename SecondStringT>
+	IOSocketStream<ContainerT>::IOSocketStream(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) : buffer(new buffers::BaseIOSocketBuffer<ContainerT>(ip, port, bufferSize)), std::iostream(buffer)
+	{
+
+	}
+
+	template<typename ContainerT>
+	IOSocketStream<ContainerT>::IOSocketStream(buffers::BaseIOSocketBuffer<ContainerT>* IOSocketBufferSubclass) : buffer(IOSocketBufferSubclass), std::iostream(buffer)
 	{
 
 	}

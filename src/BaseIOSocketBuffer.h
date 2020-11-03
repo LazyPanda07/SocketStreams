@@ -7,7 +7,7 @@
 namespace buffers
 {
 	template<typename ContainerT = std::vector<char>>
-	class IOSocketBuffer : public std::streambuf
+	class BaseIOSocketBuffer : public std::streambuf
 	{
 	public:
 		using typename std::streambuf::int_type;
@@ -55,19 +55,19 @@ namespace buffers
 		} type;
 
 	public:
-		IOSocketBuffer(SOCKET clientSocket);
+		BaseIOSocketBuffer(SOCKET clientSocket);
 
-		IOSocketBuffer(SOCKET clientSocket, size_t bufferSize);
-
-		template<typename FirstStringT, typename SecondStringT>
-		IOSocketBuffer(const FirstStringT& ip, const SecondStringT& port);
+		BaseIOSocketBuffer(SOCKET clientSocket, size_t bufferSize);
 
 		template<typename FirstStringT, typename SecondStringT>
-		IOSocketBuffer(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize);
+		BaseIOSocketBuffer(const FirstStringT& ip, const SecondStringT& port);
 
-		IOSocketBuffer(web::BaseNetwork<ContainerT>* networkSubclass);
+		template<typename FirstStringT, typename SecondStringT>
+		BaseIOSocketBuffer(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize);
 
-		IOSocketBuffer(web::BaseNetwork<ContainerT>* networkSubclass, size_t bufferSize);
+		BaseIOSocketBuffer(web::BaseNetwork<ContainerT>* networkSubclass);
+
+		BaseIOSocketBuffer(web::BaseNetwork<ContainerT>* networkSubclass, size_t bufferSize);
 
 		virtual void setInputType() final;
 
@@ -77,17 +77,17 @@ namespace buffers
 
 		virtual int getLastPacketSize();
 
-		virtual ~IOSocketBuffer();
+		virtual ~BaseIOSocketBuffer();
 	};
 
 	template<typename ContainerT>
-	void IOSocketBuffer<ContainerT>::setPointers()
+	void BaseIOSocketBuffer<ContainerT>::setPointers()
 	{
 		setp(outBuffer.data(), outBuffer.data() + outBuffer.size() - 1);
 	}
 
 	template<typename ContainerT>
-	typename IOSocketBuffer<ContainerT>::int_type IOSocketBuffer<ContainerT>::overflow(int_type ch)
+	typename BaseIOSocketBuffer<ContainerT>::int_type BaseIOSocketBuffer<ContainerT>::overflow(int_type ch)
 	{
 		*pptr() = ch;
 		pbump(1);
@@ -102,7 +102,7 @@ namespace buffers
 	}
 
 	template<typename ContainerT>
-	typename IOSocketBuffer<ContainerT>::int_type IOSocketBuffer<ContainerT>::underflow()
+	typename BaseIOSocketBuffer<ContainerT>::int_type BaseIOSocketBuffer<ContainerT>::underflow()
 	{
 		type = IOType::input;
 
@@ -125,7 +125,7 @@ namespace buffers
 	}
 
 	template<typename ContainerT>
-	std::streamsize IOSocketBuffer<ContainerT>::xsputn(const char_type* s, std::streamsize count)
+	std::streamsize BaseIOSocketBuffer<ContainerT>::xsputn(const char_type* s, std::streamsize count)
 	{
 		type = IOType::output;
 
@@ -166,7 +166,7 @@ namespace buffers
 	}
 
 	template<typename ContainerT>
-	std::streamsize IOSocketBuffer<ContainerT>::xsgetn(char_type* s, std::streamsize count)
+	std::streamsize BaseIOSocketBuffer<ContainerT>::xsgetn(char_type* s, std::streamsize count)
 	{
 		type = IOType::input;
 
@@ -204,7 +204,7 @@ namespace buffers
 	}
 
 	template<typename ContainerT>
-	int IOSocketBuffer<ContainerT>::sync()
+	int BaseIOSocketBuffer<ContainerT>::sync()
 	{
 		switch (type)
 		{
@@ -248,76 +248,78 @@ namespace buffers
 	}
 
 	template<typename ContainerT>
-	typename ContainerT IOSocketBuffer<ContainerT>::dataPart() noexcept
+	typename ContainerT BaseIOSocketBuffer<ContainerT>::dataPart() noexcept
 	{
 		return ContainerT(pbase(), pptr());
 	}
 
 	template<typename ContainerT>
-	IOSocketBuffer<ContainerT>::IOSocketBuffer(SOCKET clientSocket) : network(new web::BaseNetwork<ContainerT>(clientSocket))
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(SOCKET clientSocket) : network(new web::BaseNetwork<ContainerT>(clientSocket))
 	{
 		this->setPointers();
 	}
 
 	template<typename ContainerT>
-	IOSocketBuffer<ContainerT>::IOSocketBuffer(SOCKET clientSocket, size_t bufferSize) : network(new web::BaseNetwork<ContainerT>(clientSocket, web::BaseNetwork<ContainerT>::ReceiveMode::prohibitResize)), outBuffer(bufferSize), inBuffer(bufferSize)
-	{
-		this->setPointers();
-	}
-
-	template<typename ContainerT>
-	template<typename FirstStringT, typename SecondStringT>
-	IOSocketBuffer<ContainerT>::IOSocketBuffer(const FirstStringT& ip, const SecondStringT& port) : network(new web::BaseNetwork<ContainerT>(ip, port))
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(SOCKET clientSocket, size_t bufferSize) : network(new web::BaseNetwork<ContainerT>(clientSocket, web::BaseNetwork<ContainerT>::ReceiveMode::prohibitResize)), outBuffer(bufferSize), inBuffer(bufferSize)
 	{
 		this->setPointers();
 	}
 
 	template<typename ContainerT>
 	template<typename FirstStringT, typename SecondStringT>
-	IOSocketBuffer<ContainerT>::IOSocketBuffer(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) : network(new web::BaseNetwork<ContainerT>(ip, port, web::BaseNetwork<ContainerT>::ReceiveMode::prohibitResize)), outBuffer(bufferSize), inBuffer(bufferSize)
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(const FirstStringT& ip, const SecondStringT& port) : network(new web::BaseNetwork<ContainerT>(ip, port))
 	{
 		this->setPointers();
 	}
 
 	template<typename ContainerT>
-	IOSocketBuffer<ContainerT>::IOSocketBuffer(web::BaseNetwork<ContainerT>* networkSubclass) : network(networkSubclass)
+	template<typename FirstStringT, typename SecondStringT>
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) : network(new web::BaseNetwork<ContainerT>(ip, port, web::BaseNetwork<ContainerT>::ReceiveMode::prohibitResize)), outBuffer(bufferSize), inBuffer(bufferSize)
 	{
 		this->setPointers();
 	}
 
 	template<typename ContainerT>
-	IOSocketBuffer<ContainerT>::IOSocketBuffer(web::BaseNetwork<ContainerT>* networkSubclass, size_t bufferSize) : network(networkSubclass), outBuffer(bufferSize), inBuffer(bufferSize)
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(web::BaseNetwork<ContainerT>* networkSubclass) : network(networkSubclass)
 	{
 		this->setPointers();
 	}
 
 	template<typename ContainerT>
-	void IOSocketBuffer<ContainerT>::setInputType()
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(web::BaseNetwork<ContainerT>* networkSubclass, size_t bufferSize) : network(networkSubclass), outBuffer(bufferSize), inBuffer(bufferSize)
+	{
+		this->setPointers();
+	}
+
+	template<typename ContainerT>
+	void BaseIOSocketBuffer<ContainerT>::setInputType()
 	{
 		type = IOType::input;
 	}
 
 	template<typename ContainerT>
-	void IOSocketBuffer<ContainerT>::setOutputType()
+	void BaseIOSocketBuffer<ContainerT>::setOutputType()
 	{
 		type = IOType::output;
 	}
 
 	template<typename ContainerT>
-	web::BaseNetwork<ContainerT>* IOSocketBuffer<ContainerT>::getNetwork()
+	web::BaseNetwork<ContainerT>* BaseIOSocketBuffer<ContainerT>::getNetwork()
 	{
 		return network;
 	}
 
 	template<typename ContainerT>
-	int IOSocketBuffer<ContainerT>::getLastPacketSize()
+	int BaseIOSocketBuffer<ContainerT>::getLastPacketSize()
 	{
 		return lastPacketSize;
 	}
 
 	template<typename ContainerT>
-	IOSocketBuffer<ContainerT>::~IOSocketBuffer()
+	BaseIOSocketBuffer<ContainerT>::~BaseIOSocketBuffer()
 	{
 		delete network;
 	}
+
+	using IOSocketBuffer = BaseIOSocketBuffer<std::vector<char>>;
 }
