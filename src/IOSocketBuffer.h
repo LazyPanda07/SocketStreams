@@ -6,32 +6,30 @@
 
 namespace buffers
 {
-	template<typename CharT, typename ContainerT = std::vector<CharT>>
-	class IOSocketBuffer : public std::basic_streambuf<CharT>
+	template<typename ContainerT = std::vector<char>>
+	class IOSocketBuffer : public std::streambuf
 	{
 	public:
-		using dataContainer = typename ContainerT;
-		using NetworkOperations = typename web::Network<CharT, ContainerT>;
-		using typename std::basic_streambuf<CharT>::int_type;
-		using typename std::basic_streambuf<CharT>::char_type;
-		using typename std::basic_streambuf<CharT>::traits_type;
+		using typename std::streambuf::int_type;
+		using typename std::streambuf::char_type;
+		using typename std::streambuf::traits_type;
 
-		using std::basic_streambuf<CharT>::pbase;
-		using std::basic_streambuf<CharT>::pptr;
-		using std::basic_streambuf<CharT>::epptr;
-		using std::basic_streambuf<CharT>::setp;
-		using std::basic_streambuf<CharT>::pbump;
+		using std::streambuf::pbase;
+		using std::streambuf::pptr;
+		using std::streambuf::epptr;
+		using std::streambuf::setp;
+		using std::streambuf::pbump;
 
-		using std::basic_streambuf<CharT>::eback;
-		using std::basic_streambuf<CharT>::gptr;
-		using std::basic_streambuf<CharT>::egptr;
-		using std::basic_streambuf<CharT>::setg;
-		using std::basic_streambuf<CharT>::gbump;
+		using std::streambuf::eback;
+		using std::streambuf::gptr;
+		using std::streambuf::egptr;
+		using std::streambuf::setg;
+		using std::streambuf::gbump;
 
 	protected:
-		dataContainer outBuffer;
-		dataContainer inBuffer;
-		NetworkOperations* network;
+		ContainerT outBuffer;
+		ContainerT inBuffer;
+		web::Network<ContainerT>* network;
 		int lastPacketSize;
 
 	protected:
@@ -47,7 +45,7 @@ namespace buffers
 
 		int sync() override;
 
-		dataContainer dataPart() noexcept;
+		ContainerT dataPart() noexcept;
 
 	protected:
 		enum class IOType : char
@@ -67,29 +65,29 @@ namespace buffers
 		template<typename FirstStringT, typename SecondStringT>
 		IOSocketBuffer(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize);
 
-		IOSocketBuffer(NetworkOperations* networkSubclass);
+		IOSocketBuffer(web::Network<ContainerT>* networkSubclass);
 
-		IOSocketBuffer(NetworkOperations* networkSubclass, size_t bufferSize);
+		IOSocketBuffer(web::Network<ContainerT>* networkSubclass, size_t bufferSize);
 
 		virtual void setInputType() final;
 
 		virtual void setOutputType() final;
 
-		virtual NetworkOperations* getNetwork() final;
+		virtual web::Network<ContainerT>* getNetwork() final;
 
 		virtual int getLastPacketSize();
 
 		virtual ~IOSocketBuffer();
 	};
 
-	template<typename CharT, typename ContainerT>
-	void IOSocketBuffer<CharT, ContainerT>::setPointers()
+	template<typename ContainerT>
+	void IOSocketBuffer<ContainerT>::setPointers()
 	{
 		setp(outBuffer.data(), outBuffer.data() + outBuffer.size() - 1);
 	}
 
-	template<typename CharT, typename ContainerT>
-	typename IOSocketBuffer<CharT, ContainerT>::int_type IOSocketBuffer<CharT, ContainerT>::overflow(int_type ch)
+	template<typename ContainerT>
+	typename IOSocketBuffer<ContainerT>::int_type IOSocketBuffer<ContainerT>::overflow(int_type ch)
 	{
 		*pptr() = ch;
 		pbump(1);
@@ -103,8 +101,8 @@ namespace buffers
 		return 0;
 	}
 
-	template<typename CharT, typename ContainerT>
-	typename IOSocketBuffer<CharT, ContainerT>::int_type IOSocketBuffer<CharT, ContainerT>::underflow()
+	template<typename ContainerT>
+	typename IOSocketBuffer<ContainerT>::int_type IOSocketBuffer<ContainerT>::underflow()
 	{
 		type = IOType::input;
 
@@ -126,16 +124,16 @@ namespace buffers
 		return traits_type::eof();
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::streamsize IOSocketBuffer<CharT, ContainerT>::xsputn(const char_type* s, std::streamsize count)
+	template<typename ContainerT>
+	std::streamsize IOSocketBuffer<ContainerT>::xsputn(const char_type* s, std::streamsize count)
 	{
 		type = IOType::output;
 
-		if (network->getResizeMode() == NetworkOperations::ReceiveMode::allowResize && outBuffer.size() < count)
+		if (network->getResizeMode() == web::Network<ContainerT>::ReceiveMode::allowResize && outBuffer.size() < count)
 		{
-			if constexpr (utility::checkResize<dataContainer>::value)
+			if constexpr (utility::checkResize<ContainerT>::value)
 			{
-				NetworkOperations::resizeFunction(outBuffer, count);
+				web::Network<ContainerT>::resizeFunction(outBuffer, count);
 				this->setPointers();
 			}
 		}
@@ -167,8 +165,8 @@ namespace buffers
 		return count;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::streamsize IOSocketBuffer<CharT, ContainerT>::xsgetn(char_type* s, std::streamsize count)
+	template<typename ContainerT>
+	std::streamsize IOSocketBuffer<ContainerT>::xsgetn(char_type* s, std::streamsize count)
 	{
 		type = IOType::input;
 
@@ -205,8 +203,8 @@ namespace buffers
 		return count ? count : traits_type::eof();
 	}
 
-	template<typename CharT, typename ContainerT>
-	int IOSocketBuffer<CharT, ContainerT>::sync()
+	template<typename ContainerT>
+	int IOSocketBuffer<ContainerT>::sync()
 	{
 		switch (type)
 		{
@@ -226,7 +224,7 @@ namespace buffers
 		{
 			ptrdiff_t size = pptr() - pbase();
 
-			if constexpr (utility::checkBegin<dataContainer>::value && utility::checkEnd<dataContainer>::value && utility::checkInitializerListConstructor<dataContainer>::value)
+			if constexpr (utility::checkBegin<ContainerT>::value && utility::checkEnd<ContainerT>::value && utility::checkInitializerListConstructor<ContainerT>::value)
 			{
 				lastPacketSize = network->sendData(this->dataPart());
 			}
@@ -249,76 +247,76 @@ namespace buffers
 		return 0;
 	}
 
-	template<typename CharT, typename ContainerT>
-	typename IOSocketBuffer<CharT, ContainerT>::dataContainer IOSocketBuffer<CharT, ContainerT>::dataPart() noexcept
+	template<typename ContainerT>
+	typename ContainerT IOSocketBuffer<ContainerT>::dataPart() noexcept
 	{
-		return dataContainer(pbase(), pptr());
+		return ContainerT(pbase(), pptr());
 	}
 
-	template<typename CharT, typename ContainerT>
-	IOSocketBuffer<CharT, ContainerT>::IOSocketBuffer(SOCKET clientSocket) : network(new NetworkOperations(clientSocket))
-	{
-		this->setPointers();
-	}
-
-	template<typename CharT, typename ContainerT>
-	IOSocketBuffer<CharT, ContainerT>::IOSocketBuffer(SOCKET clientSocket, size_t bufferSize) : network(new NetworkOperations(clientSocket, NetworkOperations::ReceiveMode::prohibitResize)), outBuffer(bufferSize), inBuffer(bufferSize)
+	template<typename ContainerT>
+	IOSocketBuffer<ContainerT>::IOSocketBuffer(SOCKET clientSocket) : network(new web::Network<ContainerT>(clientSocket))
 	{
 		this->setPointers();
 	}
 
-	template<typename CharT, typename ContainerT>
+	template<typename ContainerT>
+	IOSocketBuffer<ContainerT>::IOSocketBuffer(SOCKET clientSocket, size_t bufferSize) : network(new web::Network<ContainerT>(clientSocket, web::Network<ContainerT>::ReceiveMode::prohibitResize)), outBuffer(bufferSize), inBuffer(bufferSize)
+	{
+		this->setPointers();
+	}
+
+	template<typename ContainerT>
 	template<typename FirstStringT, typename SecondStringT>
-	IOSocketBuffer<CharT, ContainerT>::IOSocketBuffer(const FirstStringT& ip, const SecondStringT& port) : network(new NetworkOperations(ip, port))
+	IOSocketBuffer<ContainerT>::IOSocketBuffer(const FirstStringT& ip, const SecondStringT& port) : network(new web::Network<ContainerT>(ip, port))
 	{
 		this->setPointers();
 	}
 
-	template<typename CharT, typename ContainerT>
+	template<typename ContainerT>
 	template<typename FirstStringT, typename SecondStringT>
-	IOSocketBuffer<CharT, ContainerT>::IOSocketBuffer(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) : network(new NetworkOperations(ip, port, NetworkOperations::ReceiveMode::prohibitResize)), outBuffer(bufferSize), inBuffer(bufferSize)
+	IOSocketBuffer<ContainerT>::IOSocketBuffer(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) : network(new web::Network<ContainerT>(ip, port, web::Network<ContainerT>::ReceiveMode::prohibitResize)), outBuffer(bufferSize), inBuffer(bufferSize)
 	{
 		this->setPointers();
 	}
 
-	template<typename CharT, typename ContainerT>
-	IOSocketBuffer<CharT, ContainerT>::IOSocketBuffer(NetworkOperations* networkSubclass) : network(networkSubclass)
+	template<typename ContainerT>
+	IOSocketBuffer<ContainerT>::IOSocketBuffer(web::Network<ContainerT>* networkSubclass) : network(networkSubclass)
 	{
 		this->setPointers();
 	}
 
-	template<typename CharT, typename ContainerT>
-	IOSocketBuffer<CharT, ContainerT>::IOSocketBuffer(NetworkOperations* networkSubclass, size_t bufferSize) : network(networkSubclass), outBuffer(bufferSize), inBuffer(bufferSize)
+	template<typename ContainerT>
+	IOSocketBuffer<ContainerT>::IOSocketBuffer(web::Network<ContainerT>* networkSubclass, size_t bufferSize) : network(networkSubclass), outBuffer(bufferSize), inBuffer(bufferSize)
 	{
 		this->setPointers();
 	}
 
-	template<typename CharT, typename ContainerT>
-	void IOSocketBuffer<CharT, ContainerT>::setInputType()
+	template<typename ContainerT>
+	void IOSocketBuffer<ContainerT>::setInputType()
 	{
 		type = IOType::input;
 	}
 
-	template<typename CharT, typename ContainerT>
-	void IOSocketBuffer<CharT, ContainerT>::setOutputType()
+	template<typename ContainerT>
+	void IOSocketBuffer<ContainerT>::setOutputType()
 	{
 		type = IOType::output;
 	}
 
-	template<typename CharT, typename ContainerT>
-	typename IOSocketBuffer<CharT, ContainerT>::NetworkOperations* IOSocketBuffer<CharT, ContainerT>::getNetwork()
+	template<typename ContainerT>
+	web::Network<ContainerT>* IOSocketBuffer<ContainerT>::getNetwork()
 	{
 		return network;
 	}
 
-	template<typename CharT, typename ContainerT>
-	int IOSocketBuffer<CharT, ContainerT>::getLastPacketSize()
+	template<typename ContainerT>
+	int IOSocketBuffer<ContainerT>::getLastPacketSize()
 	{
 		return lastPacketSize;
 	}
 
-	template<typename CharT, typename ContainerT>
-	IOSocketBuffer<CharT, ContainerT>::~IOSocketBuffer()
+	template<typename ContainerT>
+	IOSocketBuffer<ContainerT>::~IOSocketBuffer()
 	{
 		delete network;
 	}
