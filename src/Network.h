@@ -15,15 +15,14 @@
 
 namespace web
 {
-	template<typename CharT, typename ContainerT = std::vector<CharT>>
+	template<typename ContainerT = std::vector<char>>
 	class Network
 	{
 	public:
-		using parent = typename Network<CharT, ContainerT>;
-		using dataContainer = typename ContainerT;
+		using super = typename Network<ContainerT>;
 
 	public:
-		enum class ReceiveMode : uint_fast8_t
+		enum class ReceiveMode 
 		{
 			allowResize,
 			prohibitResize
@@ -40,16 +39,16 @@ namespace web
 		Network(SOCKET clientSocket, ReceiveMode mode = ReceiveMode::allowResize);
 
 		//return total number of bytes
-		virtual int sendData(const dataContainer& data);
+		virtual int sendData(const ContainerT& data);
 
 		//return total number of bytes
-		virtual int sendData(const std::basic_string_view<CharT>& data);
+		virtual int sendData(const std::string_view& data);
 
 		//return total number of bytes
-		virtual int receiveData(dataContainer& data);
+		virtual int receiveData(ContainerT& data);
 
 		//return total number of bytes
-		virtual int receiveData(std::basic_string<CharT>& data);
+		virtual int receiveData(std::string& data);
 
 		template<typename Resizable>
 		static void resizeFunction(Resizable& data, size_t newSize);
@@ -69,16 +68,16 @@ namespace web
 		virtual ~Network();
 	};
 
-	template<typename CharT, typename ContainerT>
+	template<typename ContainerT>
 	template<typename Resizable>
-	void Network<CharT, ContainerT>::resizeFunction(Resizable& data, size_t newSize)
+	void Network<ContainerT>::resizeFunction(Resizable& data, size_t newSize)
 	{
 		data.resize(newSize);
 	}
 
-	template<typename CharT, typename ContainerT>
+	template<typename ContainerT>
 	template<typename FirstStringT, typename SecondStringT>
-	Network<CharT, ContainerT>::Network(const FirstStringT& ip, const SecondStringT& port, ReceiveMode mode) :
+	Network<ContainerT>::Network(const FirstStringT& ip, const SecondStringT& port, ReceiveMode mode) :
 		mode(mode),
 		clientSocket(INVALID_SOCKET)
 	{
@@ -119,17 +118,17 @@ namespace web
 		freeaddrinfo(info);
 	}
 
-	template<typename CharT, typename ContainerT>
-	Network<CharT, ContainerT>::Network(SOCKET clientSocket, ReceiveMode mode) : clientSocket(clientSocket), mode(ReceiveMode::allowResize)
+	template<typename ContainerT>
+	Network<ContainerT>::Network(SOCKET clientSocket, ReceiveMode mode) : clientSocket(clientSocket), mode(ReceiveMode::allowResize)
 	{
 
 	}
 
-	template<typename CharT, typename ContainerT>
-	int Network<CharT, ContainerT>::sendData(const dataContainer& data)
+	template<typename ContainerT>
+	int Network<ContainerT>::sendData(const ContainerT& data)
 	{
-		static_assert(utility::checkSize<dataContainer>::value, "Your dataContainer hasn't size method");
-		static_assert(utility::checkData<dataContainer>::value, "Your dataContainer hasn't data method");
+		static_assert(utility::checkSize<ContainerT>::value, "Your ContainerT hasn't size method");
+		static_assert(utility::checkData<ContainerT>::value, "Your ContainerT hasn't data method");
 
 		try
 		{
@@ -147,8 +146,8 @@ namespace web
 		}
 	}
 
-	template<typename CharT, typename ContainerT>
-	int Network<CharT, ContainerT>::sendData(const std::basic_string_view<CharT>& data)
+	template<typename ContainerT>
+	int Network<ContainerT>::sendData(const std::string_view& data)
 	{
 		try
 		{
@@ -166,10 +165,10 @@ namespace web
 		}
 	}
 
-	template<typename CharT, typename ContainerT>
-	int Network<CharT, ContainerT>::receiveData(dataContainer& data)
+	template<typename ContainerT>
+	int Network<ContainerT>::receiveData(ContainerT& data)
 	{
-		static_assert(utility::checkData<dataContainer>::value, "Your dataContainer hasn't data method");
+		static_assert(utility::checkData<ContainerT>::value, "Your ContainerT hasn't data method");
 
 		try
 		{
@@ -177,7 +176,7 @@ namespace web
 
 			this->receiveBytes(&size, sizeof(size));
 
-			if constexpr (utility::checkResize<dataContainer>::value)
+			if constexpr (utility::checkResize<ContainerT>::value)
 			{
 				if (mode == ReceiveMode::allowResize)
 				{
@@ -195,8 +194,8 @@ namespace web
 		}
 	}
 
-	template<typename CharT, typename ContainerT>
-	int Network<CharT, ContainerT>::receiveData(std::basic_string<CharT>& data)
+	template<typename ContainerT>
+	int Network<ContainerT>::receiveData(std::string& data)
 	{
 		try
 		{
@@ -219,21 +218,21 @@ namespace web
 		}
 	}
 
-	template<typename CharT, typename ContainerT>
-	void Network<CharT, ContainerT>::setReceiveMode(Network<CharT, ContainerT>::ReceiveMode mode)
+	template<typename ContainerT>
+	void Network<ContainerT>::setReceiveMode(Network<ContainerT>::ReceiveMode mode)
 	{
 		this->mode = mode;
 	}
 
-	template<typename CharT, typename ContainerT>
-	typename Network<CharT, ContainerT>::ReceiveMode Network<CharT, ContainerT>::getResizeMode()
+	template<typename ContainerT>
+	typename Network<ContainerT>::ReceiveMode Network<ContainerT>::getResizeMode()
 	{
 		return mode;
 	}
 
-	template<typename CharT, typename ContainerT>
+	template<typename ContainerT>
 	template<typename DataT>
-	int Network<CharT, ContainerT>::sendBytes(const DataT* const data, int count)
+	int Network<ContainerT>::sendBytes(const DataT* const data, int count)
 	{
 		int  lastSend = 0;
 		int totalSent = 0;
@@ -254,9 +253,9 @@ namespace web
 		return totalSent;
 	}
 
-	template<typename CharT, typename ContainerT>
+	template<typename ContainerT>
 	template<typename DataT>
-	int Network<CharT, ContainerT>::receiveBytes(DataT* const data, int count)
+	int Network<ContainerT>::receiveBytes(DataT* const data, int count)
 	{
 		int lastReceive = 0;
 		int totalReceive = 0;
@@ -277,8 +276,8 @@ namespace web
 		return totalReceive;
 	}
 
-	template<typename CharT, typename ContainerT>
-	Network<CharT, ContainerT>::~Network()
+	template<typename ContainerT>
+	Network<ContainerT>::~Network()
 	{
 		closesocket(clientSocket);
 	}
