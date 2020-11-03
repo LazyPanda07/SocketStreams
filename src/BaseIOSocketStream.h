@@ -7,7 +7,7 @@
 namespace streams
 {
 	template<typename ContainerT = std::vector<char>>
-	class IOSocketStream : public std::iostream
+	class BaseIOSocketStream : public std::iostream
 	{
 	protected:
 		buffers::BaseIOSocketBuffer<ContainerT>* buffer;
@@ -20,21 +20,21 @@ namespace streams
 		int receiveFundamental(T& value);
 
 	public:
-		IOSocketStream(SOCKET clientSocket);
+		BaseIOSocketStream(SOCKET clientSocket);
 
-		IOSocketStream(SOCKET clientSocket, size_t bufferSize);
-
-		template<typename FirstStringT, typename SecondStringT>
-		IOSocketStream(const FirstStringT& ip, const SecondStringT& port);
+		BaseIOSocketStream(SOCKET clientSocket, size_t bufferSize);
 
 		template<typename FirstStringT, typename SecondStringT>
-		IOSocketStream(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize);
+		BaseIOSocketStream(const FirstStringT& ip, const SecondStringT& port);
 
-		IOSocketStream(buffers::BaseIOSocketBuffer<ContainerT>* IOSocketBufferSubclass);
+		template<typename FirstStringT, typename SecondStringT>
+		BaseIOSocketStream(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize);
 
-		IOSocketStream(IOSocketStream<ContainerT>&& other) noexcept;
+		BaseIOSocketStream(buffers::BaseIOSocketBuffer<ContainerT>* IOSocketBufferSubclass);
 
-		IOSocketStream<ContainerT>& operator = (IOSocketStream<ContainerT>&& other) noexcept;
+		BaseIOSocketStream(BaseIOSocketStream<ContainerT>&& other) noexcept;
+
+		BaseIOSocketStream<ContainerT>& operator = (BaseIOSocketStream<ContainerT>&& other) noexcept;
 
 		std::iostream& operator << (bool value);
 		std::iostream& operator << (short value);
@@ -76,12 +76,12 @@ namespace streams
 
 		virtual std::iostream& operator << (const std::string_view& data);
 
-		virtual ~IOSocketStream();
+		virtual ~BaseIOSocketStream();
 	};
 
 	template<typename ContainerT>
 	template<typename T>
-	int IOSocketStream<ContainerT>::sendFundamental(T value)
+	int BaseIOSocketStream<ContainerT>::sendFundamental(T value)
 	{
 		try
 		{
@@ -97,7 +97,7 @@ namespace streams
 
 	template<typename ContainerT>
 	template<typename T>
-	int IOSocketStream<ContainerT>::receiveFundamental(T& value)
+	int BaseIOSocketStream<ContainerT>::receiveFundamental(T& value)
 	{
 		try
 		{
@@ -112,46 +112,46 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	IOSocketStream<ContainerT>::IOSocketStream(SOCKET clientSocket) : buffer(new buffers::BaseIOSocketBuffer<ContainerT>(clientSocket)), std::iostream(buffer)
+	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(SOCKET clientSocket) : buffer(new buffers::BaseIOSocketBuffer<ContainerT>(clientSocket)), std::iostream(buffer)
 	{
 
 	}
 
 	template<typename ContainerT>
-	IOSocketStream<ContainerT>::IOSocketStream(SOCKET clientSocket, size_t bufferSize) : buffer(new buffers::BaseIOSocketBuffer<ContainerT>(clientSocket, bufferSize)), std::iostream(buffer)
-	{
-
-	}
-
-	template<typename ContainerT>
-	template<typename FirstStringT, typename SecondStringT>
-	IOSocketStream<ContainerT>::IOSocketStream(const FirstStringT& ip, const SecondStringT& port) : buffer(new buffers::BaseIOSocketBuffer<ContainerT>(ip, port)), std::iostream(buffer)
+	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(SOCKET clientSocket, size_t bufferSize) : buffer(new buffers::BaseIOSocketBuffer<ContainerT>(clientSocket, bufferSize)), std::iostream(buffer)
 	{
 
 	}
 
 	template<typename ContainerT>
 	template<typename FirstStringT, typename SecondStringT>
-	IOSocketStream<ContainerT>::IOSocketStream(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) : buffer(new buffers::BaseIOSocketBuffer<ContainerT>(ip, port, bufferSize)), std::iostream(buffer)
+	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(const FirstStringT& ip, const SecondStringT& port) : buffer(new buffers::BaseIOSocketBuffer<ContainerT>(ip, port)), std::iostream(buffer)
 	{
 
 	}
 
 	template<typename ContainerT>
-	IOSocketStream<ContainerT>::IOSocketStream(buffers::BaseIOSocketBuffer<ContainerT>* IOSocketBufferSubclass) : buffer(IOSocketBufferSubclass), std::iostream(buffer)
+	template<typename FirstStringT, typename SecondStringT>
+	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) : buffer(new buffers::BaseIOSocketBuffer<ContainerT>(ip, port, bufferSize)), std::iostream(buffer)
 	{
 
 	}
 
 	template<typename ContainerT>
-	IOSocketStream<ContainerT>::IOSocketStream(IOSocketStream<ContainerT>&& other) noexcept :
+	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(buffers::BaseIOSocketBuffer<ContainerT>* IOSocketBufferSubclass) : buffer(IOSocketBufferSubclass), std::iostream(buffer)
+	{
+
+	}
+
+	template<typename ContainerT>
+	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(BaseIOSocketStream<ContainerT>&& other) noexcept :
 		std::iostream(nullptr)
 	{
 		*this = std::move(other);
 	}
 
 	template<typename ContainerT>
-	IOSocketStream<ContainerT>& IOSocketStream<ContainerT>::operator = (IOSocketStream<ContainerT>&& other) noexcept
+	BaseIOSocketStream<ContainerT>& BaseIOSocketStream<ContainerT>::operator = (BaseIOSocketStream<ContainerT>&& other) noexcept
 	{
 		delete buffer;
 		buffer = other.buffer;
@@ -161,7 +161,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator << (bool value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator << (bool value)
 	{
 		try
 		{
@@ -176,7 +176,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator << (short value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator << (short value)
 	{
 		try
 		{
@@ -191,7 +191,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator << (int value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator << (int value)
 	{
 		try
 		{
@@ -206,7 +206,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator << (long value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator << (long value)
 	{
 		try
 		{
@@ -221,7 +221,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator << (long long value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator << (long long value)
 	{
 		try
 		{
@@ -236,7 +236,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator << (unsigned short value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator << (unsigned short value)
 	{
 		try {
 			this->sendFundamental(value);
@@ -250,7 +250,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator << (unsigned int value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator << (unsigned int value)
 	{
 		try
 		{
@@ -265,7 +265,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator << (unsigned long value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator << (unsigned long value)
 	{
 		try
 		{
@@ -280,7 +280,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator << (unsigned long long value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator << (unsigned long long value)
 	{
 		try
 		{
@@ -295,7 +295,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator << (float value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator << (float value)
 	{
 		try
 		{
@@ -310,7 +310,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator << (double value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator << (double value)
 	{
 		try
 		{
@@ -324,7 +324,7 @@ namespace streams
 		return *this;
 	}
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator << (long double value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator << (long double value)
 	{
 		try
 		{
@@ -339,7 +339,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator >> (bool& value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (bool& value)
 	{
 		try
 		{
@@ -354,7 +354,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator >> (short& value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (short& value)
 	{
 		try
 		{
@@ -369,7 +369,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator >> (int& value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (int& value)
 	{
 		try
 		{
@@ -384,7 +384,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator >> (long& value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (long& value)
 	{
 		try
 		{
@@ -399,7 +399,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator >> (long long& value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (long long& value)
 	{
 		try
 		{
@@ -414,7 +414,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator >> (unsigned short& value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (unsigned short& value)
 	{
 		try
 		{
@@ -429,7 +429,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator >> (unsigned int& value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (unsigned int& value)
 	{
 		try
 		{
@@ -444,7 +444,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator >> (unsigned long& value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (unsigned long& value)
 	{
 		try
 		{
@@ -459,7 +459,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator >> (unsigned long long& value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (unsigned long long& value)
 	{
 		try
 		{
@@ -474,7 +474,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator >> (float& value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (float& value)
 	{
 		try
 		{
@@ -489,7 +489,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator >> (double& value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (double& value)
 	{
 		try
 		{
@@ -504,7 +504,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator >> (long double& value)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (long double& value)
 	{
 		try
 		{
@@ -519,7 +519,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator << (const ContainerT& data)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator << (const ContainerT& data)
 	{
 		if (buffer->sputn(data.data(), data.size()) == -1)
 		{
@@ -530,7 +530,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator >> (ContainerT& data)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (ContainerT& data)
 	{
 		if constexpr (utility::checkResize<ContainerT>::value)
 		{
@@ -551,7 +551,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator << (const std::string& data)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator << (const std::string& data)
 	{
 		if (buffer->sputn(data.data(), data.size()) == -1)
 		{
@@ -562,7 +562,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator >> (std::string& data)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (std::string& data)
 	{
 		buffer->setInputType();
 
@@ -582,7 +582,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& IOSocketStream<ContainerT>::operator << (const std::string_view& data)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator << (const std::string_view& data)
 	{
 		if (buffer->sputn(data.data(), data.size()) == -1)
 		{
@@ -593,8 +593,10 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	IOSocketStream<ContainerT>::~IOSocketStream()
+	BaseIOSocketStream<ContainerT>::~BaseIOSocketStream()
 	{
 		delete buffer;
 	}
+
+	using IOSocketStream = BaseIOSocketStream<std::vector<char>>;
 }

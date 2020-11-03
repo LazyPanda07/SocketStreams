@@ -28,7 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CheckAtCompileTime.h" />
-    <ClInclude Include="src\IOSocketStream.h" />
+    <ClInclude Include="src\BaseIOSocketStream.h" />
     <ClInclude Include="src\BaseNetwork.h" />
     <ClInclude Include="src\BaseIOSocketBuffer.h" />
     <ClInclude Include="src\WebException.h" />
@@ -36,7 +36,7 @@
   <ItemGroup>
     <ClCompile Include="src\CheckAtCompileTime.cpp" />
     <ClCompile Include="src\BaseIOSocketBuffer.cpp" />
-    <ClCompile Include="src\IOSocketStream.cpp" />
+    <ClCompile Include="src\BaseIOSocketStream.cpp" />
     <ClCompile Include="src\BaseNetwork.cpp" />
     <ClCompile Include="src\WebException.cpp" />
   </ItemGroup>
