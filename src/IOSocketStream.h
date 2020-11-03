@@ -6,15 +6,13 @@
 
 namespace streams
 {
-	template<typename CharT, typename ContainerT = std::vector<CharT>>
-	class IOSocketStream : public std::basic_iostream<CharT>
+	template<typename ContainerT = std::vector<char>>
+	class IOSocketStream : public std::iostream
 	{
 	public:
-		using dataContainer = typename ContainerT;
-		using ioBuffer = typename buffers::IOSocketBuffer<CharT, ContainerT>;
 
 	protected:
-		ioBuffer* buffer;
+		buffers::IOSocketBuffer<ContainerT>* buffer;
 
 	protected:
 		template<typename T>
@@ -34,58 +32,58 @@ namespace streams
 		template<typename FirstStringT, typename SecondStringT>
 		IOSocketStream(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize);
 
-		IOSocketStream(ioBuffer* IOSocketBufferSubclass);
+		IOSocketStream(buffers::IOSocketBuffer<ContainerT>* IOSocketBufferSubclass);
 
-		IOSocketStream(IOSocketStream<CharT, ContainerT>&& other) noexcept;
+		IOSocketStream(IOSocketStream<ContainerT>&& other) noexcept;
 
-		IOSocketStream<CharT, ContainerT>& operator = (IOSocketStream<CharT, ContainerT>&& other) noexcept;
+		IOSocketStream<ContainerT>& operator = (IOSocketStream<ContainerT>&& other) noexcept;
 
-		std::basic_iostream<CharT>& operator << (bool value);
-		std::basic_iostream<CharT>& operator << (short value);
-		std::basic_iostream<CharT>& operator << (int value);
-		std::basic_iostream<CharT>& operator << (long value);
-		std::basic_iostream<CharT>& operator << (long long value);
+		std::iostream& operator << (bool value);
+		std::iostream& operator << (short value);
+		std::iostream& operator << (int value);
+		std::iostream& operator << (long value);
+		std::iostream& operator << (long long value);
 
-		std::basic_iostream<CharT>& operator << (unsigned short value);
-		std::basic_iostream<CharT>& operator << (unsigned int value);
-		std::basic_iostream<CharT>& operator << (unsigned long value);
-		std::basic_iostream<CharT>& operator << (unsigned long long value);
+		std::iostream& operator << (unsigned short value);
+		std::iostream& operator << (unsigned int value);
+		std::iostream& operator << (unsigned long value);
+		std::iostream& operator << (unsigned long long value);
 
-		std::basic_iostream<CharT>& operator << (float value);
-		std::basic_iostream<CharT>& operator << (double value);
-		std::basic_iostream<CharT>& operator << (long double value);
+		std::iostream& operator << (float value);
+		std::iostream& operator << (double value);
+		std::iostream& operator << (long double value);
 
-		std::basic_iostream<CharT>& operator >> (bool& value);
-		std::basic_iostream<CharT>& operator >> (short& value);
-		std::basic_iostream<CharT>& operator >> (int& value);
-		std::basic_iostream<CharT>& operator >> (long& value);
-		std::basic_iostream<CharT>& operator >> (long long& value);
+		std::iostream& operator >> (bool& value);
+		std::iostream& operator >> (short& value);
+		std::iostream& operator >> (int& value);
+		std::iostream& operator >> (long& value);
+		std::iostream& operator >> (long long& value);
 
-		std::basic_iostream<CharT>& operator >> (unsigned short& value);
-		std::basic_iostream<CharT>& operator >> (unsigned int& value);
-		std::basic_iostream<CharT>& operator >> (unsigned long& value);
-		std::basic_iostream<CharT>& operator >> (unsigned long long& value);
+		std::iostream& operator >> (unsigned short& value);
+		std::iostream& operator >> (unsigned int& value);
+		std::iostream& operator >> (unsigned long& value);
+		std::iostream& operator >> (unsigned long long& value);
 
-		std::basic_iostream<CharT>& operator >> (float& value);
-		std::basic_iostream<CharT>& operator >> (double& value);
-		std::basic_iostream<CharT>& operator >> (long double& value);
+		std::iostream& operator >> (float& value);
+		std::iostream& operator >> (double& value);
+		std::iostream& operator >> (long double& value);
 
-		virtual std::basic_iostream<CharT>& operator << (const dataContainer& data);
+		virtual std::iostream& operator << (const ContainerT& data);
 
-		virtual std::basic_iostream<CharT>& operator >> (dataContainer& data);
+		virtual std::iostream& operator >> (ContainerT& data);
 
-		virtual std::basic_iostream<CharT>& operator << (const std::basic_string<CharT>& data);
+		virtual std::iostream& operator << (const std::string& data);
 
-		virtual std::basic_iostream<CharT>& operator >> (std::basic_string<CharT>& data);
+		virtual std::iostream& operator >> (std::string& data);
 
-		virtual std::basic_iostream<CharT>& operator << (const std::basic_string_view<CharT>& data);
+		virtual std::iostream& operator << (const std::string_view& data);
 
 		virtual ~IOSocketStream();
 	};
 
-	template<typename CharT, typename ContainerT>
+	template<typename ContainerT>
 	template<typename T>
-	int IOSocketStream<CharT, ContainerT>::sendFundamental(T value)
+	int IOSocketStream<ContainerT>::sendFundamental(T value)
 	{
 		try
 		{
@@ -99,9 +97,9 @@ namespace streams
 		}
 	}
 
-	template<typename CharT, typename ContainerT>
+	template<typename ContainerT>
 	template<typename T>
-	int IOSocketStream<CharT, ContainerT>::receiveFundamental(T& value)
+	int IOSocketStream<ContainerT>::receiveFundamental(T& value)
 	{
 		try
 		{
@@ -115,47 +113,47 @@ namespace streams
 		}
 	}
 
-	template<typename CharT, typename ContainerT>
-	IOSocketStream<CharT, ContainerT>::IOSocketStream(SOCKET clientSocket) : buffer(new ioBuffer(clientSocket)), std::basic_iostream<CharT>(buffer)
+	template<typename ContainerT>
+	IOSocketStream<ContainerT>::IOSocketStream(SOCKET clientSocket) : buffer(new buffers::IOSocketBuffer<ContainerT>(clientSocket)), std::iostream(buffer)
 	{
 
 	}
 
-	template<typename CharT, typename ContainerT>
-	IOSocketStream<CharT, ContainerT>::IOSocketStream(SOCKET clientSocket, size_t bufferSize) : buffer(new ioBuffer(clientSocket, bufferSize)), std::basic_iostream<CharT>(buffer)
+	template<typename ContainerT>
+	IOSocketStream<ContainerT>::IOSocketStream(SOCKET clientSocket, size_t bufferSize) : buffer(new buffers::IOSocketBuffer<ContainerT>(clientSocket, bufferSize)), std::iostream(buffer)
 	{
 
 	}
 
-	template<typename CharT, typename ContainerT>
+	template<typename ContainerT>
 	template<typename FirstStringT, typename SecondStringT>
-	IOSocketStream<CharT, ContainerT>::IOSocketStream(const FirstStringT& ip, const SecondStringT& port) : buffer(new ioBuffer(ip, port)), std::basic_iostream<CharT>(buffer)
+	IOSocketStream<ContainerT>::IOSocketStream(const FirstStringT& ip, const SecondStringT& port) : buffer(new buffers::IOSocketBuffer<ContainerT>(ip, port)), std::iostream(buffer)
 	{
 
 	}
 
-	template<typename CharT, typename ContainerT>
+	template<typename ContainerT>
 	template<typename FirstStringT, typename SecondStringT>
-	IOSocketStream<CharT, ContainerT>::IOSocketStream(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) : buffer(new ioBuffer(ip, port, bufferSize)), std::basic_iostream<CharT>(buffer)
+	IOSocketStream<ContainerT>::IOSocketStream(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) : buffer(new buffers::IOSocketBuffer<ContainerT>(ip, port, bufferSize)), std::iostream(buffer)
 	{
 
 	}
 
-	template<typename CharT, typename ContainerT>
-	IOSocketStream<CharT, ContainerT>::IOSocketStream(IOSocketStream<CharT, ContainerT>::ioBuffer* IOSocketBufferSubclass) : buffer(IOSocketBufferSubclass), std::basic_iostream<CharT>(buffer)
+	template<typename ContainerT>
+	IOSocketStream<ContainerT>::IOSocketStream(buffers::IOSocketBuffer<ContainerT>* IOSocketBufferSubclass) : buffer(IOSocketBufferSubclass), std::iostream(buffer)
 	{
 
 	}
 
-	template<typename CharT, typename ContainerT>
-	IOSocketStream<CharT, ContainerT>::IOSocketStream(IOSocketStream<CharT, ContainerT>&& other) noexcept :
-		std::basic_iostream<CharT>(nullptr)
+	template<typename ContainerT>
+	IOSocketStream<ContainerT>::IOSocketStream(IOSocketStream<ContainerT>&& other) noexcept :
+		std::iostream(nullptr)
 	{
 		*this = std::move(other);
 	}
 
-	template<typename CharT, typename ContainerT>
-	IOSocketStream<CharT, ContainerT>& IOSocketStream<CharT, ContainerT>::operator = (IOSocketStream<CharT, ContainerT>&& other) noexcept
+	template<typename ContainerT>
+	IOSocketStream<ContainerT>& IOSocketStream<ContainerT>::operator = (IOSocketStream<ContainerT>&& other) noexcept
 	{
 		delete buffer;
 		buffer = other.buffer;
@@ -164,8 +162,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (bool value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator << (bool value)
 	{
 		try
 		{
@@ -179,8 +177,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (short value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator << (short value)
 	{
 		try
 		{
@@ -194,8 +192,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (int value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator << (int value)
 	{
 		try
 		{
@@ -209,8 +207,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (long value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator << (long value)
 	{
 		try
 		{
@@ -224,8 +222,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (long long value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator << (long long value)
 	{
 		try
 		{
@@ -239,8 +237,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (unsigned short value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator << (unsigned short value)
 	{
 		try {
 			this->sendFundamental(value);
@@ -253,8 +251,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (unsigned int value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator << (unsigned int value)
 	{
 		try
 		{
@@ -268,8 +266,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (unsigned long value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator << (unsigned long value)
 	{
 		try
 		{
@@ -283,8 +281,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (unsigned long long value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator << (unsigned long long value)
 	{
 		try
 		{
@@ -298,8 +296,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (float value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator << (float value)
 	{
 		try
 		{
@@ -313,8 +311,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (double value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator << (double value)
 	{
 		try
 		{
@@ -327,8 +325,8 @@ namespace streams
 
 		return *this;
 	}
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (long double value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator << (long double value)
 	{
 		try
 		{
@@ -342,8 +340,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator >> (bool& value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator >> (bool& value)
 	{
 		try
 		{
@@ -357,8 +355,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator >> (short& value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator >> (short& value)
 	{
 		try
 		{
@@ -372,8 +370,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator >> (int& value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator >> (int& value)
 	{
 		try
 		{
@@ -387,8 +385,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator >> (long& value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator >> (long& value)
 	{
 		try
 		{
@@ -402,8 +400,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator >> (long long& value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator >> (long long& value)
 	{
 		try
 		{
@@ -417,8 +415,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator >> (unsigned short& value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator >> (unsigned short& value)
 	{
 		try
 		{
@@ -432,8 +430,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator >> (unsigned int& value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator >> (unsigned int& value)
 	{
 		try
 		{
@@ -447,8 +445,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator >> (unsigned long& value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator >> (unsigned long& value)
 	{
 		try
 		{
@@ -462,8 +460,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator >> (unsigned long long& value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator >> (unsigned long long& value)
 	{
 		try
 		{
@@ -477,8 +475,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator >> (float& value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator >> (float& value)
 	{
 		try
 		{
@@ -492,8 +490,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator >> (double& value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator >> (double& value)
 	{
 		try
 		{
@@ -507,8 +505,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator >> (long double& value)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator >> (long double& value)
 	{
 		try
 		{
@@ -522,8 +520,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (const IOSocketStream<CharT, ContainerT>::dataContainer& data)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator << (const ContainerT& data)
 	{
 		if (buffer->sputn(data.data(), data.size()) == -1)
 		{
@@ -533,10 +531,10 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator >> (IOSocketStream<CharT, ContainerT>::dataContainer& data)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator >> (ContainerT& data)
 	{
-		if constexpr (utility::checkResize<dataContainer>::value)
+		if constexpr (utility::checkResize<ContainerT>::value)
 		{
 			buffer->setInputType();
 			if (buffer->pubsync() == -1)
@@ -554,8 +552,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (const std::basic_string<CharT>& data)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator << (const std::string& data)
 	{
 		if (buffer->sputn(data.data(), data.size()) == -1)
 		{
@@ -565,8 +563,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator >> (std::basic_string<CharT>& data)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator >> (std::string& data)
 	{
 		buffer->setInputType();
 
@@ -585,8 +583,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	std::basic_iostream<CharT>& IOSocketStream<CharT, ContainerT>::operator << (const std::basic_string_view<CharT>& data)
+	template<typename ContainerT>
+	std::iostream& IOSocketStream<ContainerT>::operator << (const std::string_view& data)
 	{
 		if (buffer->sputn(data.data(), data.size()) == -1)
 		{
@@ -596,8 +594,8 @@ namespace streams
 		return *this;
 	}
 
-	template<typename CharT, typename ContainerT>
-	IOSocketStream<CharT, ContainerT>::~IOSocketStream()
+	template<typename ContainerT>
+	IOSocketStream<ContainerT>::~IOSocketStream()
 	{
 		delete buffer;
 	}
