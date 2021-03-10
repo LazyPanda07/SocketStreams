@@ -5,7 +5,8 @@
 
 namespace web
 {
-	WebException::WebException()
+	WebException::WebException() :
+		runtime_error("")
 	{
 		switch (WSAGetLastError())
 		{
@@ -218,7 +219,7 @@ namespace web
 
 		case WSAEDQUOT:
 			data = "Disc Quota Exceeded";
-			
+
 			break;
 
 		case WSAESTALE:
@@ -248,7 +249,7 @@ namespace web
 
 		case WSAHOST_NOT_FOUND:
 			data = "Host not found";
-			
+
 			break;
 
 		case WSATRY_AGAIN:
@@ -274,9 +275,10 @@ namespace web
 	}
 
 	WebException::WebException(WebException&& other) noexcept :
+		runtime_error(""),
 		data(std::move(other.data))
 	{
-		
+
 	}
 
 	const char* WebException::what() const noexcept
