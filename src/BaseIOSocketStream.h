@@ -20,6 +20,8 @@ namespace streams
 		int receiveFundamental(T& value);
 
 	public:
+		BaseIOSocketStream();
+
 		BaseIOSocketStream(SOCKET clientSocket);
 
 		BaseIOSocketStream(SOCKET clientSocket, size_t bufferSize);
@@ -109,6 +111,14 @@ namespace streams
 
 			throw std::move(e);
 		}
+	}
+
+	template<typename ContainerT>
+	BaseIOSocketStream<ContainerT>::BaseIOSocketStream() :
+		std::iostream(nullptr),
+		buffer(nullptr)
+	{
+
 	}
 
 	template<typename ContainerT>

@@ -55,6 +55,8 @@ namespace buffers
 		} type;
 
 	public:
+		BaseIOSocketBuffer();
+
 		BaseIOSocketBuffer(SOCKET clientSocket);
 
 		BaseIOSocketBuffer(SOCKET clientSocket, size_t bufferSize);
@@ -251,6 +253,13 @@ namespace buffers
 	typename ContainerT BaseIOSocketBuffer<ContainerT>::dataPart() noexcept
 	{
 		return ContainerT(pbase(), pptr());
+	}
+
+	template<typename ContainerT>
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer() :
+		network(nullptr)
+	{
+
 	}
 
 	template<typename ContainerT>
