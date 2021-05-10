@@ -83,9 +83,8 @@ namespace web
 
 		if (WSAStartup(MAKEWORD(2, 2), &wsaData))
 		{
-			throw WebException();
+			throw exceptions::WebException();
 		}
-
 
 		addrinfo* info = nullptr;
 		addrinfo hints = {};
@@ -96,7 +95,7 @@ namespace web
 
 		if (getaddrinfo(ip.data(), port.data(), &hints, &info))
 		{
-			throw WebException();
+			throw exceptions::WebException();
 		}
 
 		clientSocket = socket(info->ai_family, info->ai_socktype, info->ai_protocol);
@@ -104,13 +103,13 @@ namespace web
 		if (clientSocket == INVALID_SOCKET)
 		{
 			freeaddrinfo(info);
-			throw WebException();
+			throw exceptions::WebException();
 		}
 
 		if (connect(clientSocket, info->ai_addr, info->ai_addrlen))
 		{
 			freeaddrinfo(info);
-			throw WebException();
+			throw exceptions::WebException();
 		}
 
 		freeaddrinfo(info);
@@ -136,7 +135,7 @@ namespace web
 
 			return this->sendBytes(data.data(), size);
 		}
-		catch (const WebException& e)
+		catch (const exceptions::WebException& e)
 		{
 			this->log(e.what());
 
@@ -155,7 +154,7 @@ namespace web
 
 			return this->sendBytes(data.data(), size);
 		}
-		catch (const WebException& e)
+		catch (const exceptions::WebException& e)
 		{
 			this->log(e.what());
 
@@ -184,7 +183,7 @@ namespace web
 
 			return this->receiveBytes(data.data(), size);
 		}
-		catch (const WebException& e)
+		catch (const exceptions::WebException& e)
 		{
 			this->log(e.what());
 
@@ -208,7 +207,7 @@ namespace web
 
 			return this->receiveBytes(data.data(), size);
 		}
-		catch (const WebException& e)
+		catch (const exceptions::WebException& e)
 		{
 			this->log(e.what());
 
@@ -241,7 +240,7 @@ namespace web
 
 			if (lastSend == SOCKET_ERROR)
 			{
-				throw WebException();
+				throw exceptions::WebException();
 			}
 
 			totalSent += lastSend;
@@ -264,7 +263,7 @@ namespace web
 
 			if (lastReceive == SOCKET_ERROR || !lastReceive)
 			{
-				throw WebException();
+				throw exceptions::WebException();
 			}
 
 			totalReceive += lastReceive;

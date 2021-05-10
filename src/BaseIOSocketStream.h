@@ -89,11 +89,11 @@ namespace streams
 		{
 			return buffer->getNetwork()->sendBytes(&value, sizeof(value));
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException& e)
 		{
 			buffer->getNetwork()->log(e.what());
 
-			throw std::move(e);
+			throw;
 		}
 	}
 
@@ -105,11 +105,11 @@ namespace streams
 		{
 			return buffer->getNetwork()->receiveBytes(&value, sizeof(value));
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException& e)
 		{
 			buffer->getNetwork()->log(e.what());
 
-			throw std::move(e);
+			throw;
 		}
 	}
 
@@ -187,9 +187,9 @@ namespace streams
 		{
 			this->sendFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -202,9 +202,9 @@ namespace streams
 		{
 			this->sendFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -217,9 +217,9 @@ namespace streams
 		{
 			this->sendFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -232,9 +232,9 @@ namespace streams
 		{
 			this->sendFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -247,9 +247,9 @@ namespace streams
 		{
 			this->sendFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -261,9 +261,9 @@ namespace streams
 		try {
 			this->sendFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -276,9 +276,9 @@ namespace streams
 		{
 			this->sendFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -291,9 +291,9 @@ namespace streams
 		{
 			this->sendFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -306,9 +306,9 @@ namespace streams
 		{
 			this->sendFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -321,9 +321,9 @@ namespace streams
 		{
 			this->sendFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -336,9 +336,9 @@ namespace streams
 		{
 			this->sendFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -350,9 +350,9 @@ namespace streams
 		{
 			this->sendFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		};
 
 		return *this;
@@ -365,9 +365,9 @@ namespace streams
 		{
 			this->receiveFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -380,9 +380,9 @@ namespace streams
 		{
 			this->receiveFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -395,9 +395,9 @@ namespace streams
 		{
 			this->receiveFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -410,9 +410,9 @@ namespace streams
 		{
 			this->receiveFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -425,9 +425,9 @@ namespace streams
 		{
 			this->receiveFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -440,9 +440,9 @@ namespace streams
 		{
 			this->receiveFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -455,9 +455,9 @@ namespace streams
 		{
 			this->receiveFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -470,9 +470,9 @@ namespace streams
 		{
 			this->receiveFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -485,9 +485,9 @@ namespace streams
 		{
 			this->receiveFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -500,9 +500,9 @@ namespace streams
 		{
 			this->receiveFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -515,9 +515,9 @@ namespace streams
 		{
 			this->receiveFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -530,9 +530,9 @@ namespace streams
 		{
 			this->receiveFundamental(value);
 		}
-		catch (web::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			throw std::move(e);
+			throw;
 		}
 
 		return *this;
@@ -543,7 +543,7 @@ namespace streams
 	{
 		if (buffer->sputn(data.data(), data.size()) == -1)
 		{
-			throw web::WebException();
+			throw web::exceptions::WebException();
 		}
 
 		return *this;
@@ -557,14 +557,14 @@ namespace streams
 			buffer->setInputType();
 			if (buffer->pubsync() == -1)
 			{
-				throw web::WebException();
+				throw web::exceptions::WebException();
 			}
 			data.resize(buffer->getLastPacketSize());
 		}
 
 		if (buffer->sgetn(data.data(), data.size()) == -1)
 		{
-			throw web::WebException();
+			throw web::exceptions::WebException();
 		}
 
 		return *this;
@@ -575,7 +575,7 @@ namespace streams
 	{
 		if (buffer->sputn(data.data(), data.size()) == -1)
 		{
-			throw web::WebException();
+			throw web::exceptions::WebException();
 		}
 
 		return *this;
@@ -588,14 +588,14 @@ namespace streams
 
 		if (buffer->pubsync() == -1)
 		{
-			throw web::WebException();
+			throw web::exceptions::WebException();
 		}
 
 		data.resize(buffer->getLastPacketSize());
 
 		if (buffer->sgetn(data.data(), data.size()) == -1)
 		{
-			throw web::WebException();
+			throw web::exceptions::WebException();
 		}
 
 		return *this;
@@ -606,7 +606,7 @@ namespace streams
 	{
 		if (buffer->sputn(data.data(), data.size()) == -1)
 		{
-			throw web::WebException();
+			throw web::exceptions::WebException();
 		}
 
 		return *this;
