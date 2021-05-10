@@ -21,7 +21,7 @@ namespace streams
 		int receiveFundamental(T& value);
 
 	public:
-		BaseIOSocketStream() = default;
+		BaseIOSocketStream();
 
 		BaseIOSocketStream(SOCKET clientSocket);
 
@@ -112,6 +112,13 @@ namespace streams
 
 			throw;
 		}
+	}
+
+	template<typename ContainerT>
+	BaseIOSocketStream<ContainerT>::BaseIOSocketStream() :
+		std::iostream(nullptr)
+	{
+
 	}
 
 	template<typename ContainerT>
