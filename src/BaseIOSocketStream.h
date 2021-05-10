@@ -7,10 +7,11 @@
 namespace streams
 {
 	template<typename ContainerT = std::vector<char>>
-	class BaseIOSocketStream : public std::iostream
+	class BaseIOSocketStream : 
+		public std::iostream
 	{
 	protected:
-		buffers::BaseIOSocketBuffer<ContainerT>* buffer;
+		std::unique_ptr<buffers::BaseIOSocketBuffer<ContainerT>> buffer;
 
 	protected:
 		template<typename T>
@@ -20,7 +21,7 @@ namespace streams
 		int receiveFundamental(T& value);
 
 	public:
-		BaseIOSocketStream();
+		BaseIOSocketStream() = default;
 
 		BaseIOSocketStream(SOCKET clientSocket);
 
@@ -32,7 +33,7 @@ namespace streams
 		template<typename FirstStringT, typename SecondStringT>
 		BaseIOSocketStream(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize);
 
-		BaseIOSocketStream(buffers::BaseIOSocketBuffer<ContainerT>* IOSocketBufferSubclass);
+		BaseIOSocketStream(std::unique_ptr<buffers::BaseIOSocketBuffer<ContainerT>>&& IOSocketBufferSubclass) noexcept;
 
 		BaseIOSocketStream(BaseIOSocketStream<ContainerT>&& other) noexcept;
 
@@ -78,7 +79,7 @@ namespace streams
 
 		virtual std::iostream& operator << (const std::string_view& data);
 
-		virtual ~BaseIOSocketStream();
+		virtual ~BaseIOSocketStream() = default;
 	};
 
 	template<typename ContainerT>
@@ -114,68 +115,61 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	BaseIOSocketStream<ContainerT>::BaseIOSocketStream() :
-		std::iostream(nullptr),
-		buffer(nullptr)
-	{
-
-	}
-
-	template<typename ContainerT>
 	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(SOCKET clientSocket) :
 		std::iostream(nullptr),
-		buffer(new buffers::BaseIOSocketBuffer<ContainerT>(clientSocket))
+		buffer(std::make_unique<buffers::BaseIOSocketBuffer<ContainerT>>(clientSocket))
 	{
-		std::iostream::rdbuf(buffer);
+		std::iostream::rdbuf(buffer.get());
 	}
 
 	template<typename ContainerT>
 	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(SOCKET clientSocket, size_t bufferSize) :
 		std::iostream(nullptr),
-		buffer(new buffers::BaseIOSocketBuffer<ContainerT>(clientSocket, bufferSize))
+		buffer(std::make_unique<buffers::BaseIOSocketBuffer<ContainerT>>(clientSocket, bufferSize))
 	{
-		std::iostream::rdbuf(buffer);
+		std::iostream::rdbuf(buffer.get());
 	}
 
 	template<typename ContainerT>
 	template<typename FirstStringT, typename SecondStringT>
 	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(const FirstStringT& ip, const SecondStringT& port) :
 		std::iostream(nullptr),
-		buffer(new buffers::BaseIOSocketBuffer<ContainerT>(ip, port))
+		buffer(std::make_unique<buffers::BaseIOSocketBuffer<ContainerT>>(ip, port))
 	{
-		std::iostream::rdbuf(buffer);
+		std::iostream::rdbuf(buffer.get());
 	}
 
 	template<typename ContainerT>
 	template<typename FirstStringT, typename SecondStringT>
 	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) :
 		std::iostream(nullptr),
-		buffer(new buffers::BaseIOSocketBuffer<ContainerT>(ip, port, bufferSize))
+		buffer(std::make_unique<buffers::BaseIOSocketBuffer<ContainerT>>(ip, port, bufferSize))
 	{
-		std::iostream::rdbuf(buffer);
+		std::iostream::rdbuf(buffer.get());
 	}
 
 	template<typename ContainerT>
-	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(buffers::BaseIOSocketBuffer<ContainerT>* IOSocketBufferSubclass) :
+	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(std::unique_ptr<buffers::BaseIOSocketBuffer<ContainerT>>&& IOSocketBufferSubclass) noexcept :
 		std::iostream(nullptr),
-		buffer(IOSocketBufferSubclass)
+		buffer(std::move(IOSocketBufferSubclass))
 	{
-		std::iostream::rdbuf(buffer);
+		std::iostream::rdbuf(buffer.get());
 	}
 
 	template<typename ContainerT>
 	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(BaseIOSocketStream<ContainerT>&& other) noexcept :
-		std::iostream(nullptr)
+		std::iostream(nullptr),
+		buffer(std::move(other.buffer))
 	{
-		*this = std::move(other);
+		std::iostream::rdbuf(buffer.get());
 	}
 
 	template<typename ContainerT>
 	BaseIOSocketStream<ContainerT>& BaseIOSocketStream<ContainerT>::operator = (BaseIOSocketStream<ContainerT>&& other) noexcept
 	{
-		delete buffer;
-		buffer = other.buffer;
-		other.buffer = nullptr;
+		buffer = std::move(other.buffer);
+
+		std::iostream::rdbuf(buffer.get());
 
 		return *this;
 	}
@@ -610,12 +604,6 @@ namespace streams
 		}
 
 		return *this;
-	}
-
-	template<typename ContainerT>
-	BaseIOSocketStream<ContainerT>::~BaseIOSocketStream()
-	{
-		delete buffer;
 	}
 
 	using IOSocketStream = BaseIOSocketStream<std::vector<char>>;

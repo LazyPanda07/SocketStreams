@@ -1,13 +1,15 @@
 #pragma once
 
 #include <streambuf>
+#include <memory>
 
 #include "BaseNetwork.h"
 
 namespace buffers
 {
 	template<typename ContainerT = std::vector<char>>
-	class BaseIOSocketBuffer : public std::streambuf
+	class BaseIOSocketBuffer :
+		public std::streambuf
 	{
 	public:
 		using typename std::streambuf::int_type;
@@ -27,10 +29,18 @@ namespace buffers
 		using std::streambuf::gbump;
 
 	protected:
+		enum class IOType : uint8_t
+		{
+			input,
+			output
+		};
+
+	protected:
 		ContainerT outBuffer;
 		ContainerT inBuffer;
-		web::BaseNetwork<ContainerT>* network;
+		std::unique_ptr<web::BaseNetwork<ContainerT>> network;
 		int lastPacketSize;
+		IOType type;
 
 	protected:
 		void setPointers();
@@ -47,15 +57,12 @@ namespace buffers
 
 		ContainerT dataPart() noexcept;
 
-	protected:
-		enum class IOType : char
-		{
-			input,
-			output
-		} type;
-
 	public:
-		BaseIOSocketBuffer();
+		BaseIOSocketBuffer() = default;
+
+		BaseIOSocketBuffer(const BaseIOSocketBuffer&) = delete;
+
+		BaseIOSocketBuffer(BaseIOSocketBuffer&& other) noexcept;
 
 		BaseIOSocketBuffer(SOCKET clientSocket);
 
@@ -67,19 +74,25 @@ namespace buffers
 		template<typename FirstStringT, typename SecondStringT>
 		BaseIOSocketBuffer(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize);
 
-		BaseIOSocketBuffer(web::BaseNetwork<ContainerT>* networkSubclass);
+		BaseIOSocketBuffer(std::unique_ptr<web::BaseNetwork<ContainerT>>&& networkSubclass);
 
-		BaseIOSocketBuffer(web::BaseNetwork<ContainerT>* networkSubclass, size_t bufferSize);
+		BaseIOSocketBuffer(std::unique_ptr<web::BaseNetwork<ContainerT>>&& networkSubclass, size_t bufferSize);
+
+		BaseIOSocketBuffer& operator = (const BaseIOSocketBuffer&) = delete;
+
+		BaseIOSocketBuffer& operator = (BaseIOSocketBuffer&& other) noexcept;
 
 		virtual void setInputType() final;
 
 		virtual void setOutputType() final;
 
-		virtual web::BaseNetwork<ContainerT>* getNetwork() final;
+		virtual const std::unique_ptr<web::BaseNetwork<ContainerT>>& getNetwork() const final;
+
+		virtual std::unique_ptr<web::BaseNetwork<ContainerT>>& getNetwork() final;
 
 		virtual int getLastPacketSize();
 
-		virtual ~BaseIOSocketBuffer();
+		virtual ~BaseIOSocketBuffer() = default;
 	};
 
 	template<typename ContainerT>
@@ -256,48 +269,76 @@ namespace buffers
 	}
 
 	template<typename ContainerT>
-	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer() :
-		network(nullptr)
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(BaseIOSocketBuffer&& other) noexcept :
+		outBuffer(std::move(other.outBuffer)),
+		inBuffer(std::move(other.inBuffer)),
+		network(std::move(other.network)),
+		lastPacketSize(other.lastPacketSize),
+		type(other.type)
 	{
 
 	}
 
 	template<typename ContainerT>
-	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(SOCKET clientSocket) : network(new web::BaseNetwork<ContainerT>(clientSocket))
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(SOCKET clientSocket) :
+		network(std::make_unique<web::BaseNetwork<ContainerT>>(clientSocket))
 	{
 		this->setPointers();
 	}
 
 	template<typename ContainerT>
-	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(SOCKET clientSocket, size_t bufferSize) : network(new web::BaseNetwork<ContainerT>(clientSocket, web::BaseNetwork<ContainerT>::ReceiveMode::prohibitResize)), outBuffer(bufferSize), inBuffer(bufferSize)
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(SOCKET clientSocket, size_t bufferSize) :
+		network(std::make_unique<web::BaseNetwork<ContainerT>>(clientSocket, web::BaseNetwork<ContainerT>::ReceiveMode::prohibitResize)),
+		outBuffer(bufferSize),
+		inBuffer(bufferSize)
 	{
 		this->setPointers();
 	}
 
 	template<typename ContainerT>
 	template<typename FirstStringT, typename SecondStringT>
-	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(const FirstStringT& ip, const SecondStringT& port) : network(new web::BaseNetwork<ContainerT>(ip, port))
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(const FirstStringT& ip, const SecondStringT& port) :
+		network(std::make_unique<web::BaseNetwork<ContainerT>>(ip, port))
 	{
 		this->setPointers();
 	}
 
 	template<typename ContainerT>
 	template<typename FirstStringT, typename SecondStringT>
-	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) : network(new web::BaseNetwork<ContainerT>(ip, port, web::BaseNetwork<ContainerT>::ReceiveMode::prohibitResize)), outBuffer(bufferSize), inBuffer(bufferSize)
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) :
+		network(std::make_unique<web::BaseNetwork<ContainerT>>(ip, port, web::BaseNetwork<ContainerT>::ReceiveMode::prohibitResize)),
+		outBuffer(bufferSize),
+		inBuffer(bufferSize)
 	{
 		this->setPointers();
 	}
 
 	template<typename ContainerT>
-	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(web::BaseNetwork<ContainerT>* networkSubclass) : network(networkSubclass)
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(std::unique_ptr<web::BaseNetwork<ContainerT>>&& networkSubclass) :
+		network(std::move(networkSubclass))
 	{
 		this->setPointers();
 	}
 
 	template<typename ContainerT>
-	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(web::BaseNetwork<ContainerT>* networkSubclass, size_t bufferSize) : network(networkSubclass), outBuffer(bufferSize), inBuffer(bufferSize)
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(std::unique_ptr<web::BaseNetwork<ContainerT>>&& networkSubclass, size_t bufferSize) :
+		network(std::move(networkSubclass)),
+		outBuffer(bufferSize),
+		inBuffer(bufferSize)
 	{
 		this->setPointers();
+	}
+
+	template<typename ContainerT>
+	BaseIOSocketBuffer<ContainerT>& BaseIOSocketBuffer<ContainerT>::operator = (BaseIOSocketBuffer&& other) noexcept
+	{
+		outBuffer = std::move(other.outBuffer);
+		inBuffer = std::move(other.inBuffer);
+		network = std::move(other.network);
+		lastPacketSize = other.lastPacketSize;
+		type = other.type;
+
+		return *this;
 	}
 
 	template<typename ContainerT>
@@ -313,7 +354,13 @@ namespace buffers
 	}
 
 	template<typename ContainerT>
-	web::BaseNetwork<ContainerT>* BaseIOSocketBuffer<ContainerT>::getNetwork()
+	const std::unique_ptr<web::BaseNetwork<ContainerT>>& BaseIOSocketBuffer<ContainerT>::getNetwork() const
+	{
+		return network;
+	}
+
+	template<typename ContainerT>
+	std::unique_ptr<web::BaseNetwork<ContainerT>>& BaseIOSocketBuffer<ContainerT>::getNetwork()
 	{
 		return network;
 	}
@@ -322,12 +369,6 @@ namespace buffers
 	int BaseIOSocketBuffer<ContainerT>::getLastPacketSize()
 	{
 		return lastPacketSize;
-	}
-
-	template<typename ContainerT>
-	BaseIOSocketBuffer<ContainerT>::~BaseIOSocketBuffer()
-	{
-		delete network;
 	}
 
 	using IOSocketBuffer = BaseIOSocketBuffer<std::vector<char>>;
