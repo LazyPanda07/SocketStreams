@@ -106,7 +106,7 @@ namespace web
 			throw exceptions::WebException();
 		}
 
-		if (connect(clientSocket, info->ai_addr, info->ai_addrlen))
+		if (connect(clientSocket, info->ai_addr, static_cast<int>(info->ai_addrlen)))
 		{
 			freeaddrinfo(info);
 			throw exceptions::WebException();
@@ -129,7 +129,7 @@ namespace web
 
 		try
 		{
-			const int size = data.size();
+			int size = static_cast<int>(data.size());
 
 			this->sendBytes(&size, sizeof(size));
 
@@ -148,7 +148,7 @@ namespace web
 	{
 		try
 		{
-			const int size = data.size();
+			int size = static_cast<int>(data.size());
 
 			this->sendBytes(&size, sizeof(size));
 
