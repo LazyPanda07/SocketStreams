@@ -172,7 +172,7 @@ namespace buffers
 	{
 		type = IOType::output;
 
-		if (network->getResizeMode() == web::BaseNetwork<ContainerT>::receiveMode::allowResize && outBuffer.size() < count)
+		if (network->getResizeMode() == web::BaseNetwork<ContainerT>::receiveMode::allowResize && static_cast<std::streamsize>(outBuffer.size()) < count)
 		{
 			if constexpr (utility::checkResize<ContainerT>::value)
 			{
@@ -281,7 +281,7 @@ namespace buffers
 				lastPacketSize = network->sendData(outBuffer);
 			}
 
-			pbump(-size);
+			pbump(static_cast<int>(-size));
 
 			if (lastPacketSize == -1)
 			{
