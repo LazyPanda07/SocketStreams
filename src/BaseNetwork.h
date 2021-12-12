@@ -15,11 +15,13 @@
 
 namespace web
 {
+	/// @brief Base network class
+	/// @tparam ContainerT 
 	template<typename ContainerT = std::vector<char>>
 	class BaseNetwork
 	{
 	public:
-		enum class ReceiveMode 
+		enum class receiveMode 
 		{
 			allowResize,
 			prohibitResize
@@ -27,40 +29,73 @@ namespace web
 
 	protected:
 		SOCKET clientSocket;
-		ReceiveMode mode;
+		receiveMode mode;
 
 	public:
-		template<typename FirstStringT, typename SecondStringT>
-		BaseNetwork(const FirstStringT& ip, const SecondStringT& port, ReceiveMode mode = ReceiveMode::allowResize);
-
-		BaseNetwork(SOCKET clientSocket, ReceiveMode mode = ReceiveMode::allowResize);
-
-		//return total number of bytes
-		virtual int sendData(const ContainerT& data);
-
-		//return total number of bytes
-		virtual int sendData(const std::string_view& data);
-
-		//return total number of bytes
-		virtual int receiveData(ContainerT& data);
-
-		//return total number of bytes
-		virtual int receiveData(std::string& data);
-
 		template<typename Resizable>
 		static void resizeFunction(Resizable& data, size_t newSize);
 
-		virtual void setReceiveMode(ReceiveMode mode = ReceiveMode::allowResize) final;
+	public:
+		/// @brief Client side constructor
+		/// @tparam HostStringT 
+		/// @tparam PortStringT 
+		/// @param ip Remote address to connect to
+		/// @param port Remote port to connect to
+		/// @param mode 
+		/// @exception WebException 
+		template<typename HostStringT, typename PortStringT>
+		BaseNetwork(const HostStringT& ip, const PortStringT& port, receiveMode mode = receiveMode::allowResize);
 
-		virtual ReceiveMode getResizeMode() final;
+		/// @brief Server side contructor
+		/// @param clientSocket 
+		/// @param mode 
+		BaseNetwork(SOCKET clientSocket, receiveMode mode = receiveMode::allowResize);
 
+		/// @brief Send data through network
+		/// @param data 
+		/// @return Total number of sended bytes 
+		virtual int sendData(const ContainerT& data);
+
+		/// @brief Send data through network
+		/// @param data 
+		/// @return Total number of sended bytes 
+		virtual int sendData(std::string_view data);
+
+		/// @brief Receive data through network
+		/// @param data 
+		/// @return Total number of received bytes 
+		virtual int receiveData(ContainerT& data);
+
+		/// @brief Receive data through network
+		/// @param data 
+		/// @return Total number of received bytes 
+		virtual int receiveData(std::string& data);
+
+		virtual void setReceiveMode(receiveMode mode = receiveMode::allowResize) final;
+
+		virtual receiveMode getResizeMode() final;
+
+		/// @brief Send raw bytes through network
+		/// @tparam DataT 
+		/// @param data 
+		/// @param count 
+		/// @return Total number of sended bytes 
+		/// @exception WebException  
 		template<typename DataT>
 		int sendBytes(const DataT* const data, int count);
 
+		/// @brief 
+		/// @tparam DataT 
+		/// @param data 
+		/// @param count 
+		/// @return Total number of received bytes 
+		/// @exception WebException  
 		template<typename DataT>
 		int receiveBytes(DataT* const data, int count);
 
-		//default implementation uses clog
+		/// @brief Errors logging, default implementation uses clog
+		/// @param message 
+		/// @param data 
 		virtual void log(const std::string& message, std::any&& data = "");
 
 		virtual ~BaseNetwork();
@@ -74,8 +109,8 @@ namespace web
 	}
 
 	template<typename ContainerT>
-	template<typename FirstStringT, typename SecondStringT>
-	BaseNetwork<ContainerT>::BaseNetwork(const FirstStringT& ip, const SecondStringT& port, ReceiveMode mode) :
+	template<typename HostStringT, typename PortStringT>
+	BaseNetwork<ContainerT>::BaseNetwork(const HostStringT& ip, const PortStringT& port, receiveMode mode) :
 		mode(mode),
 		clientSocket(INVALID_SOCKET)
 	{
@@ -116,7 +151,9 @@ namespace web
 	}
 
 	template<typename ContainerT>
-	BaseNetwork<ContainerT>::BaseNetwork(SOCKET clientSocket, ReceiveMode mode) : clientSocket(clientSocket), mode(ReceiveMode::allowResize)
+	BaseNetwork<ContainerT>::BaseNetwork(SOCKET clientSocket, receiveMode mode) :
+		clientSocket(clientSocket),
+		mode(mode)
 	{
 
 	}
@@ -144,7 +181,7 @@ namespace web
 	}
 
 	template<typename ContainerT>
-	int BaseNetwork<ContainerT>::sendData(const std::string_view& data)
+	int BaseNetwork<ContainerT>::sendData(std::string_view data)
 	{
 		try
 		{
@@ -175,7 +212,7 @@ namespace web
 
 			if constexpr (utility::checkResize<ContainerT>::value)
 			{
-				if (mode == ReceiveMode::allowResize)
+				if (mode == receiveMode::allowResize)
 				{
 					this->resizeFunction(data, size);
 				}
@@ -200,7 +237,7 @@ namespace web
 
 			this->receiveBytes(&size, sizeof(size));
 
-			if (mode == ReceiveMode::allowResize)
+			if (mode == receiveMode::allowResize)
 			{
 				this->resizeFunction(data, size);
 			}
@@ -216,13 +253,13 @@ namespace web
 	}
 
 	template<typename ContainerT>
-	void BaseNetwork<ContainerT>::setReceiveMode(BaseNetwork<ContainerT>::ReceiveMode mode)
+	void BaseNetwork<ContainerT>::setReceiveMode(BaseNetwork<ContainerT>::receiveMode mode)
 	{
 		this->mode = mode;
 	}
 
 	template<typename ContainerT>
-	typename BaseNetwork<ContainerT>::ReceiveMode BaseNetwork<ContainerT>::getResizeMode()
+	typename BaseNetwork<ContainerT>::receiveMode BaseNetwork<ContainerT>::getResizeMode()
 	{
 		return mode;
 	}

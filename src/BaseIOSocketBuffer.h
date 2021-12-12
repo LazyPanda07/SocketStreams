@@ -7,9 +7,10 @@
 
 namespace buffers
 {
+	/// @brief Base input/output socket buffer
+	/// @tparam ContainerT 
 	template<typename ContainerT = std::vector<char>>
-	class BaseIOSocketBuffer :
-		public std::streambuf
+	class BaseIOSocketBuffer : public std::streambuf
 	{
 	public:
 		using typename std::streambuf::int_type;
@@ -29,7 +30,7 @@ namespace buffers
 		using std::streambuf::gbump;
 
 	protected:
-		enum class IOType : uint8_t
+		enum class IOType
 		{
 			input,
 			output
@@ -60,26 +61,51 @@ namespace buffers
 	public:
 		BaseIOSocketBuffer() = default;
 
+		/// @brief Deleted copy contructor
 		BaseIOSocketBuffer(const BaseIOSocketBuffer&) = delete;
 
+		/// @brief Move constructor
+		/// @param other 
 		BaseIOSocketBuffer(BaseIOSocketBuffer&& other) noexcept;
 
+		/// @brief Server side constructor
+		/// @param clientSocket 
 		BaseIOSocketBuffer(SOCKET clientSocket);
 
+		/// @brief Server side constructor
+		/// @param clientSocket 
+		/// @param bufferSize 
 		BaseIOSocketBuffer(SOCKET clientSocket, size_t bufferSize);
 
-		template<typename FirstStringT, typename SecondStringT>
-		BaseIOSocketBuffer(const FirstStringT& ip, const SecondStringT& port);
+		/// @brief Client side constructor
+		/// @tparam HostStringT 
+		/// @tparam PortStringT 
+		/// @param ip Remote address to connect to
+		/// @param port Remote port to connect to
+		template<typename HostStringT, typename PortStringT>
+		BaseIOSocketBuffer(const HostStringT& ip, const PortStringT& port);
 
-		template<typename FirstStringT, typename SecondStringT>
-		BaseIOSocketBuffer(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize);
+		/// @brief Client side constructor
+		/// @tparam HostStringT 
+		/// @tparam PortStringT 
+		/// @param ip Remote address to connect to
+		/// @param port Remote port to connect to
+		/// @param bufferSize 
+		template<typename HostStringT, typename PortStringT>
+		BaseIOSocketBuffer(const HostStringT& ip, const PortStringT& port, size_t bufferSize);
 
 		BaseIOSocketBuffer(std::unique_ptr<web::BaseNetwork<ContainerT>>&& networkSubclass);
 
 		BaseIOSocketBuffer(std::unique_ptr<web::BaseNetwork<ContainerT>>&& networkSubclass, size_t bufferSize);
 
+		/// @brief Deleted copy assignment operator
+		/// @param  
+		/// @return 
 		BaseIOSocketBuffer& operator = (const BaseIOSocketBuffer&) = delete;
 
+		/// @brief Move assignment operator 
+		/// @param other 
+		/// @return Self
 		BaseIOSocketBuffer& operator = (BaseIOSocketBuffer&& other) noexcept;
 
 		virtual void setInputType() final;
@@ -105,7 +131,9 @@ namespace buffers
 	typename BaseIOSocketBuffer<ContainerT>::int_type BaseIOSocketBuffer<ContainerT>::overflow(int_type ch)
 	{
 		*pptr() = ch;
+
 		pbump(1);
+
 		type = IOType::output;
 
 		if (this->sync() == -1)
@@ -144,16 +172,17 @@ namespace buffers
 	{
 		type = IOType::output;
 
-		if (network->getResizeMode() == web::BaseNetwork<ContainerT>::ReceiveMode::allowResize && outBuffer.size() < count)
+		if (network->getResizeMode() == web::BaseNetwork<ContainerT>::receiveMode::allowResize && outBuffer.size() < count)
 		{
 			if constexpr (utility::checkResize<ContainerT>::value)
 			{
 				web::BaseNetwork<ContainerT>::resizeFunction(outBuffer, count);
+
 				this->setPointers();
 			}
 		}
 
-		for (size_t i = 0; i < count; i++)
+		for (std::streamsize i = 0; i < count; i++)
 		{
 			if (pptr() == epptr())
 			{
@@ -165,6 +194,7 @@ namespace buffers
 			else
 			{
 				*pptr() = s[i];
+
 				pbump(1);
 			}
 		}
@@ -200,17 +230,20 @@ namespace buffers
 			return 0;
 		}
 
-		for (size_t i = 0; i < count; i++)
+		for (std::streamsize i = 0; i < count; i++)
 		{
 			if (gptr() == egptr())
 			{
 				s[i] = *gptr();
+
 				setg(nullptr, nullptr, nullptr);
+
 				return size;
 			}
 			else
 			{
 				s[i] = *gptr();
+
 				gbump(1);
 			}
 		}
@@ -288,7 +321,7 @@ namespace buffers
 
 	template<typename ContainerT>
 	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(SOCKET clientSocket, size_t bufferSize) :
-		network(std::make_unique<web::BaseNetwork<ContainerT>>(clientSocket, web::BaseNetwork<ContainerT>::ReceiveMode::prohibitResize)),
+		network(std::make_unique<web::BaseNetwork<ContainerT>>(clientSocket, web::BaseNetwork<ContainerT>::receiveMode::prohibitResize)),
 		outBuffer(bufferSize),
 		inBuffer(bufferSize)
 	{
@@ -296,17 +329,17 @@ namespace buffers
 	}
 
 	template<typename ContainerT>
-	template<typename FirstStringT, typename SecondStringT>
-	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(const FirstStringT& ip, const SecondStringT& port) :
+	template<typename HostStringT, typename PortStringT>
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(const HostStringT& ip, const PortStringT& port) :
 		network(std::make_unique<web::BaseNetwork<ContainerT>>(ip, port))
 	{
 		this->setPointers();
 	}
 
 	template<typename ContainerT>
-	template<typename FirstStringT, typename SecondStringT>
-	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) :
-		network(std::make_unique<web::BaseNetwork<ContainerT>>(ip, port, web::BaseNetwork<ContainerT>::ReceiveMode::prohibitResize)),
+	template<typename HostStringT, typename PortStringT>
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(const HostStringT& ip, const PortStringT& port, size_t bufferSize) :
+		network(std::make_unique<web::BaseNetwork<ContainerT>>(ip, port, web::BaseNetwork<ContainerT>::receiveMode::prohibitResize)),
 		outBuffer(bufferSize),
 		inBuffer(bufferSize)
 	{

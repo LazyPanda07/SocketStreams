@@ -10,6 +10,7 @@ namespace web
 {
 	namespace exceptions
 	{
+		/// @brief Network exception
 		class WebException : public std::runtime_error
 		{
 		private:

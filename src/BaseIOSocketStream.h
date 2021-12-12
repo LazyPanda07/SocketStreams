@@ -6,9 +6,10 @@
 
 namespace streams
 {
+	/// @brief Base input/output socket stream
+	/// @tparam ContainerT 
 	template<typename ContainerT = std::vector<char>>
-	class BaseIOSocketStream : 
-		public std::iostream
+	class BaseIOSocketStream : public std::iostream
 	{
 	protected:
 		std::unique_ptr<buffers::BaseIOSocketBuffer<ContainerT>> buffer;
@@ -23,51 +24,89 @@ namespace streams
 	public:
 		BaseIOSocketStream();
 
-		BaseIOSocketStream(SOCKET clientSocket);
+		/// @brief Deleted copy constructor
+		BaseIOSocketStream(const BaseIOSocketStream&) = delete;
 
-		BaseIOSocketStream(SOCKET clientSocket, size_t bufferSize);
-
-		template<typename FirstStringT, typename SecondStringT>
-		BaseIOSocketStream(const FirstStringT& ip, const SecondStringT& port);
-
-		template<typename FirstStringT, typename SecondStringT>
-		BaseIOSocketStream(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize);
-
-		BaseIOSocketStream(std::unique_ptr<buffers::BaseIOSocketBuffer<ContainerT>>&& IOSocketBufferSubclass) noexcept;
-
+		/// @brief Move constructor
+		/// @param other 
 		BaseIOSocketStream(BaseIOSocketStream<ContainerT>&& other) noexcept;
 
+		/// @brief Server side contructor
+		/// @param clientSocket 
+		BaseIOSocketStream(SOCKET clientSocket);
+
+		/// @brief Server side constructor
+		/// @param clientSocket 
+		/// @param bufferSize 
+		BaseIOSocketStream(SOCKET clientSocket, size_t bufferSize);
+
+		/// @brief Client side contructor
+		/// @tparam HostStringT 
+		/// @tparam PortStringT 
+		/// @param ip Remote address to connect to
+		/// @param port Remote port to connect to
+		template<typename HostStringT, typename PortStringT>
+		BaseIOSocketStream(const HostStringT& ip, const PortStringT& port);
+
+		/// @brief Client side contructor
+		/// @tparam HostStringT 
+		/// @tparam PortStringT 
+		/// @param ip Remote address to connect to
+		/// @param port Remote port to connect to
+		/// @param bufferSize 
+		template<typename HostStringT, typename PortStringT>
+		BaseIOSocketStream(const HostStringT& ip, const PortStringT& port, size_t bufferSize);
+
+		BaseIOSocketStream(std::unique_ptr<buffers::BaseIOSocketBuffer<ContainerT>>&& buffer);
+
+		/// @brief Constructor with custom network and default buffer
+		/// @param network 
+		BaseIOSocketStream(std::unique_ptr<web::BaseNetwork<ContainerT>>&& network);
+
+		/// @brief Constructor with custom network and default buffer with buffer size
+		/// @param network 
+		/// @param bufferSize 
+		BaseIOSocketStream(std::unique_ptr<web::BaseNetwork<ContainerT>>&& network, size_t bufferSize);
+
+		/// @brief Deleted copy assignment operator
+		/// @param  
+		/// @return 
+		BaseIOSocketStream<ContainerT>& operator = (const BaseIOSocketStream<ContainerT>&) = delete;
+
+		/// @brief Move assignment operator
+		/// @param other 
+		/// @return 
 		BaseIOSocketStream<ContainerT>& operator = (BaseIOSocketStream<ContainerT>&& other) noexcept;
 
-		std::iostream& operator << (bool value);
-		std::iostream& operator << (short value);
-		std::iostream& operator << (int value);
-		std::iostream& operator << (long value);
-		std::iostream& operator << (long long value);
+		std::iostream& operator << (bool value) override;
+		std::iostream& operator << (short value) override;
+		std::iostream& operator << (int value) override;
+		std::iostream& operator << (long value) override;
+		std::iostream& operator << (long long value) override;
 
-		std::iostream& operator << (unsigned short value);
-		std::iostream& operator << (unsigned int value);
-		std::iostream& operator << (unsigned long value);
-		std::iostream& operator << (unsigned long long value);
+		std::iostream& operator << (unsigned short value) override;
+		std::iostream& operator << (unsigned int value) override;
+		std::iostream& operator << (unsigned long value) override;
+		std::iostream& operator << (unsigned long long value) override;
 
-		std::iostream& operator << (float value);
-		std::iostream& operator << (double value);
-		std::iostream& operator << (long double value);
+		std::iostream& operator << (float value) override;
+		std::iostream& operator << (double value) override;
+		std::iostream& operator << (long double value) override;
 
-		std::iostream& operator >> (bool& value);
-		std::iostream& operator >> (short& value);
-		std::iostream& operator >> (int& value);
-		std::iostream& operator >> (long& value);
-		std::iostream& operator >> (long long& value);
+		std::iostream& operator >> (bool& value) override;
+		std::iostream& operator >> (short& value) override;
+		std::iostream& operator >> (int& value) override;
+		std::iostream& operator >> (long& value) override;
+		std::iostream& operator >> (long long& value) override;
 
-		std::iostream& operator >> (unsigned short& value);
-		std::iostream& operator >> (unsigned int& value);
-		std::iostream& operator >> (unsigned long& value);
-		std::iostream& operator >> (unsigned long long& value);
+		std::iostream& operator >> (unsigned short& value) override;
+		std::iostream& operator >> (unsigned int& value) override;
+		std::iostream& operator >> (unsigned long& value) override;
+		std::iostream& operator >> (unsigned long long& value) override;
 
-		std::iostream& operator >> (float& value);
-		std::iostream& operator >> (double& value);
-		std::iostream& operator >> (long double& value);
+		std::iostream& operator >> (float& value) override;
+		std::iostream& operator >> (double& value) override;
+		std::iostream& operator >> (long double& value) override;
 
 		virtual std::iostream& operator << (const ContainerT& data);
 
@@ -77,7 +116,7 @@ namespace streams
 
 		virtual std::iostream& operator >> (std::string& data);
 
-		virtual std::iostream& operator << (const std::string_view& data);
+		virtual std::iostream& operator << (std::string_view data);
 
 		virtual ~BaseIOSocketStream() = default;
 	};
@@ -138,8 +177,8 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	template<typename FirstStringT, typename SecondStringT>
-	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(const FirstStringT& ip, const SecondStringT& port) :
+	template<typename HostStringT, typename PortStringT>
+	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(const HostStringT& ip, const PortStringT& port) :
 		std::iostream(nullptr),
 		buffer(std::make_unique<buffers::BaseIOSocketBuffer<ContainerT>>(ip, port))
 	{
@@ -147,8 +186,8 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	template<typename FirstStringT, typename SecondStringT>
-	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(const FirstStringT& ip, const SecondStringT& port, size_t bufferSize) :
+	template<typename HostStringT, typename PortStringT>
+	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(const HostStringT& ip, const PortStringT& port, size_t bufferSize) :
 		std::iostream(nullptr),
 		buffer(std::make_unique<buffers::BaseIOSocketBuffer<ContainerT>>(ip, port, bufferSize))
 	{
@@ -156,9 +195,25 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(std::unique_ptr<buffers::BaseIOSocketBuffer<ContainerT>>&& IOSocketBufferSubclass) noexcept :
+	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(std::unique_ptr<buffers::BaseIOSocketBuffer<ContainerT>>&& buffer) :
 		std::iostream(nullptr),
-		buffer(std::move(IOSocketBufferSubclass))
+		buffer(std::move(buffer))
+	{
+		std::iostream::rdbuf(this->buffer.get());
+	}
+
+	template<typename ContainerT>
+	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(std::unique_ptr<web::BaseNetwork<ContainerT>>&& network) :
+		std::iostream(nullptr),
+		buffer(std::make_unique<buffers::IOSocketBuffer>(std::move(network)))
+	{
+		std::iostream::rdbuf(buffer.get());
+	}
+
+	template<typename ContainerT>
+	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(std::unique_ptr<web::BaseNetwork<ContainerT>>&& network, size_t bufferSize) :
+		std::iostream(nullptr),
+		buffer(std::make_unique<buffers::IOSocketBuffer>(std::move(network), bufferSize))
 	{
 		std::iostream::rdbuf(buffer.get());
 	}
@@ -603,7 +658,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator << (const std::string_view& data)
+	std::iostream& BaseIOSocketStream<ContainerT>::operator << (std::string_view data)
 	{
 		if (buffer->sputn(data.data(), data.size()) == -1)
 		{
