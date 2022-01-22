@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">SocketStreams
-   &#160;<span id="projectnumber">v1.0</span>
+   &#160;<span id="projectnumber">v1.1</span>
    </div>
   </td>
  </tr>
@@ -107,10 +107,10 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a63ac6928e0d5b5d73533efb9f40f5771"><td class="memTemplParams" colspan="2">template&lt;typename HostStringT , typename PortStringT &gt; </td></tr>
-<tr class="memitem:a63ac6928e0d5b5d73533efb9f40f5771"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classweb_1_1_base_network.html#a63ac6928e0d5b5d73533efb9f40f5771">BaseNetwork</a> (const HostStringT &amp;ip, const PortStringT &amp;port, <a class="el" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> <a class="el" href="classweb_1_1_base_network.html#a90c17f6a91999e2d2c61050a8a1fc44c">mode</a>=<a class="el" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6aed72a57c429221dbba7dbd657d0a61e3">receiveMode::allowResize</a>)</td></tr>
-<tr class="memdesc:a63ac6928e0d5b5d73533efb9f40f5771"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client side constructor.  <a href="classweb_1_1_base_network.html#a63ac6928e0d5b5d73533efb9f40f5771">More...</a><br /></td></tr>
-<tr class="separator:a63ac6928e0d5b5d73533efb9f40f5771"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab06bf83484cf15f47570506f239357af"><td class="memTemplParams" colspan="2">template&lt;typename HostStringT , typename PortStringT &gt; </td></tr>
+<tr class="memitem:ab06bf83484cf15f47570506f239357af"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classweb_1_1_base_network.html#ab06bf83484cf15f47570506f239357af">BaseNetwork</a> (const HostStringT &amp;ip, const PortStringT &amp;port, DWORD timeout=30 '000, <a class="el" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> <a class="el" href="classweb_1_1_base_network.html#a90c17f6a91999e2d2c61050a8a1fc44c">mode</a>=<a class="el" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6aed72a57c429221dbba7dbd657d0a61e3">receiveMode::allowResize</a>)</td></tr>
+<tr class="memdesc:ab06bf83484cf15f47570506f239357af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client side constructor.  <a href="classweb_1_1_base_network.html#ab06bf83484cf15f47570506f239357af">More...</a><br /></td></tr>
+<tr class="separator:ab06bf83484cf15f47570506f239357af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55921646b68d05ce7651c7d6c76874d3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweb_1_1_base_network.html#a55921646b68d05ce7651c7d6c76874d3">BaseNetwork</a> (SOCKET <a class="el" href="classweb_1_1_base_network.html#a197f34ea41c6951ac4bc7ccc80fa0af2">clientSocket</a>, <a class="el" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> <a class="el" href="classweb_1_1_base_network.html#a90c17f6a91999e2d2c61050a8a1fc44c">mode</a>=<a class="el" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6aed72a57c429221dbba7dbd657d0a61e3">receiveMode::allowResize</a>)</td></tr>
 <tr class="memdesc:a55921646b68d05ce7651c7d6c76874d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Server side contructor.  <a href="classweb_1_1_base_network.html#a55921646b68d05ce7651c7d6c76874d3">More...</a><br /></td></tr>
 <tr class="separator:a55921646b68d05ce7651c7d6c76874d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,10 +126,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab384010e7ea309607726d23415d0f8d3"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweb_1_1_base_network.html#ab384010e7ea309607726d23415d0f8d3">receiveData</a> (std::string &amp;data)</td></tr>
 <tr class="memdesc:ab384010e7ea309607726d23415d0f8d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive data through network.  <a href="classweb_1_1_base_network.html#ab384010e7ea309607726d23415d0f8d3">More...</a><br /></td></tr>
 <tr class="separator:ab384010e7ea309607726d23415d0f8d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb778c87da0e6f6d4f8d4a30ff7116c7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweb_1_1_base_network.html#aeb778c87da0e6f6d4f8d4a30ff7116c7">setReceiveMode</a> (<a class="el" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> <a class="el" href="classweb_1_1_base_network.html#a90c17f6a91999e2d2c61050a8a1fc44c">mode</a>=<a class="el" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6aed72a57c429221dbba7dbd657d0a61e3">receiveMode::allowResize</a>) final</td></tr>
-<tr class="separator:aeb778c87da0e6f6d4f8d4a30ff7116c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99b09acc062500433c18476936b4b3e1"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweb_1_1_base_network.html#a99b09acc062500433c18476936b4b3e1">getResizeMode</a> () final</td></tr>
-<tr class="separator:a99b09acc062500433c18476936b4b3e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b1467a4b0f9186c696ca04ef4117e88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweb_1_1_base_network.html#a1b1467a4b0f9186c696ca04ef4117e88">setReceiveMode</a> (<a class="el" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> <a class="el" href="classweb_1_1_base_network.html#a90c17f6a91999e2d2c61050a8a1fc44c">mode</a>=<a class="el" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6aed72a57c429221dbba7dbd657d0a61e3">receiveMode::allowResize</a>)</td></tr>
+<tr class="memdesc:a1b1467a4b0f9186c696ca04ef4117e88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set currrent receive mode.  <a href="classweb_1_1_base_network.html#a1b1467a4b0f9186c696ca04ef4117e88">More...</a><br /></td></tr>
+<tr class="separator:a1b1467a4b0f9186c696ca04ef4117e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41d99b9d30242877f923275776c1545f"><td class="memItemLeft" align="right" valign="top">SOCKET&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweb_1_1_base_network.html#a41d99b9d30242877f923275776c1545f">getClientSocket</a> () const</td></tr>
+<tr class="memdesc:a41d99b9d30242877f923275776c1545f"><td class="mdescLeft">&#160;</td><td class="mdescRight">clientSocket getter  <a href="classweb_1_1_base_network.html#a41d99b9d30242877f923275776c1545f">More...</a><br /></td></tr>
+<tr class="separator:a41d99b9d30242877f923275776c1545f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6eda3582deb957868aecfdde8878cc0b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweb_1_1_base_network.html#a6eda3582deb957868aecfdde8878cc0b">getResizeMode</a> ()</td></tr>
+<tr class="memdesc:a6eda3582deb957868aecfdde8878cc0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current receive mode.  <a href="classweb_1_1_base_network.html#a6eda3582deb957868aecfdde8878cc0b">More...</a><br /></td></tr>
+<tr class="separator:a6eda3582deb957868aecfdde8878cc0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a959c17376aad2ff1d5af9b6f7367ee79"><td class="memTemplParams" colspan="2">template&lt;typename DataT &gt; </td></tr>
 <tr class="memitem:a959c17376aad2ff1d5af9b6f7367ee79"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classweb_1_1_base_network.html#a959c17376aad2ff1d5af9b6f7367ee79">sendBytes</a> (const DataT *const data, int count)</td></tr>
 <tr class="memdesc:a959c17376aad2ff1d5af9b6f7367ee79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send raw bytes through network.  <a href="classweb_1_1_base_network.html#a959c17376aad2ff1d5af9b6f7367ee79">More...</a><br /></td></tr>
@@ -198,8 +203,8 @@ template&lt;typename ContainerT  = std::vector&lt;char&gt;&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a63ac6928e0d5b5d73533efb9f40f5771"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63ac6928e0d5b5d73533efb9f40f5771">&#9670;&nbsp;</a></span>BaseNetwork() <span class="overload">[1/2]</span></h2>
+<a id="ab06bf83484cf15f47570506f239357af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab06bf83484cf15f47570506f239357af">&#9670;&nbsp;</a></span>BaseNetwork() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -219,6 +224,12 @@ template&lt;typename HostStringT , typename PortStringT &gt; </div>
           <td></td>
           <td class="paramtype">const PortStringT &amp;&#160;</td>
           <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&#160;</td>
+          <td class="paramname"><em>timeout</em> = <code>30'000</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -246,7 +257,8 @@ template&lt;typename HostStringT , typename PortStringT &gt; </div>
   <table class="params">
     <tr><td class="paramname">ip</td><td>Remote address to connect to </td></tr>
     <tr><td class="paramname">port</td><td>Remote port to connect to </td></tr>
-    <tr><td class="paramname">mode</td><td></td></tr>
+    <tr><td class="paramname">timeout</td><td>Timeout for receive and send calls in milliseconds </td></tr>
+    <tr><td class="paramname">mode</td><td>Receive mode </td></tr>
   </table>
   </dd>
 </dl>
@@ -325,27 +337,41 @@ template&lt;typename ContainerT &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a99b09acc062500433c18476936b4b3e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99b09acc062500433c18476936b4b3e1">&#9670;&nbsp;</a></span>getResizeMode()</h2>
+<a id="a41d99b9d30242877f923275776c1545f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41d99b9d30242877f923275776c1545f">&#9670;&nbsp;</a></span>getClientSocket()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename ContainerT &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SOCKET <a class="el" href="classweb_1_1_base_network.html">web::BaseNetwork</a>&lt; ContainerT &gt;::getClientSocket</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>clientSocket getter </p>
+<dl class="section return"><dt>Returns</dt><dd>clientSocket </dd></dl>
+
+</div>
+</div>
+<a id="a6eda3582deb957868aecfdde8878cc0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6eda3582deb957868aecfdde8878cc0b">&#9670;&nbsp;</a></span>getResizeMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ContainerT &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classweb_1_1_base_network.html">BaseNetwork</a>&lt; ContainerT &gt;::<a class="el" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> <a class="el" href="classweb_1_1_base_network.html">web::BaseNetwork</a>&lt; ContainerT &gt;::getResizeMode</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+
+<p>Get current receive mode. </p>
+<dl class="section return"><dt>Returns</dt><dd>mode </dd></dl>
 
 </div>
 </div>
@@ -388,9 +414,8 @@ template&lt;typename ContainerT &gt; </div>
 <p>Errors logging, default implementation uses clog. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">message</td><td></td></tr>
-    <tr><td class="paramname">data</td><td><br  />
- </td></tr>
+    <tr><td class="paramname">message</td><td>Log message </td></tr>
+    <tr><td class="paramname">data</td><td>Additional data </td></tr>
   </table>
   </dd>
 </dl>
@@ -697,16 +722,13 @@ template&lt;typename ContainerT &gt; </div>
 
 </div>
 </div>
-<a id="aeb778c87da0e6f6d4f8d4a30ff7116c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb778c87da0e6f6d4f8d4a30ff7116c7">&#9670;&nbsp;</a></span>setReceiveMode()</h2>
+<a id="a1b1467a4b0f9186c696ca04ef4117e88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b1467a4b0f9186c696ca04ef4117e88">&#9670;&nbsp;</a></span>setReceiveMode()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename ContainerT  = std::vector&lt;char&gt;&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void <a class="el" href="classweb_1_1_base_network.html">web::BaseNetwork</a>&lt; ContainerT &gt;::setReceiveMode </td>
@@ -716,12 +738,15 @@ template&lt;typename ContainerT  = std::vector&lt;char&gt;&gt; </div>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+
+<p>Set currrent receive mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>New receive mode </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

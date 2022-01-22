@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">SocketStreams
-   &#160;<span id="projectnumber">v1.0</span>
+   &#160;<span id="projectnumber">v1.1</span>
    </div>
   </td>
  </tr>
@@ -107,7 +107,7 @@ $(document).ready(function(){initNavTree('_base_network_8h_source.html',''); ini
 <div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html">   21</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classweb_1_1_base_network.html">BaseNetwork</a></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    {</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">   24</a></span>&#160;        <span class="keyword">enum class</span> <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">   24</a></span>&#160;        <span class="keyword">enum class</span> <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        {</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6aed72a57c429221dbba7dbd657d0a61e3">allowResize</a>,</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6a3f10d7a0a2371eeeca9bad8633112876">prohibitResize</a></div>
@@ -122,278 +122,299 @@ $(document).ready(function(){initNavTree('_base_network_8h_source.html',''); ini
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classweb_1_1_base_network.html#ab227b4cb990016cc675ce830455499d5">resizeFunction</a>(Resizable&amp; data, <span class="keywordtype">size_t</span> newSize);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> HostStringT, <span class="keyword">typename</span> PortStringT&gt;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="classweb_1_1_base_network.html#a63ac6928e0d5b5d73533efb9f40f5771">BaseNetwork</a>(<span class="keyword">const</span> HostStringT&amp; ip, <span class="keyword">const</span> PortStringT&amp; port, <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> <a class="code" href="classweb_1_1_base_network.html#a90c17f6a91999e2d2c61050a8a1fc44c">mode</a> = <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6aed72a57c429221dbba7dbd657d0a61e3">receiveMode::allowResize</a>);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="classweb_1_1_base_network.html#a63ac6928e0d5b5d73533efb9f40f5771">BaseNetwork</a>(SOCKET <a class="code" href="classweb_1_1_base_network.html#a197f34ea41c6951ac4bc7ccc80fa0af2">clientSocket</a>, <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> <a class="code" href="classweb_1_1_base_network.html#a90c17f6a91999e2d2c61050a8a1fc44c">mode</a> = <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6aed72a57c429221dbba7dbd657d0a61e3">receiveMode::allowResize</a>);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#aba498a7ef8ab26ef2a4144a957085dfe">sendData</a>(<span class="keyword">const</span> ContainerT&amp; data);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#aba498a7ef8ab26ef2a4144a957085dfe">sendData</a>(std::string_view data);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#a0dd499eedf60658e29d4622394f656b6">receiveData</a>(ContainerT&amp; data);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#a0dd499eedf60658e29d4622394f656b6">receiveData</a>(std::string&amp; data);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classweb_1_1_base_network.html#aeb778c87da0e6f6d4f8d4a30ff7116c7">setReceiveMode</a>(<a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> <a class="code" href="classweb_1_1_base_network.html#a90c17f6a91999e2d2c61050a8a1fc44c">mode</a> = <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6aed72a57c429221dbba7dbd657d0a61e3">receiveMode::allowResize</a>) <span class="keyword">final</span>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> <a class="code" href="classweb_1_1_base_network.html#a99b09acc062500433c18476936b4b3e1">getResizeMode</a>() final;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        template&lt;typename DataT&gt;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#a959c17376aad2ff1d5af9b6f7367ee79">sendBytes</a>(const DataT* const data, <span class="keywordtype">int</span> count);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> HostStringT, <span class="keyword">typename</span> PortStringT&gt;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="classweb_1_1_base_network.html#ab06bf83484cf15f47570506f239357af">BaseNetwork</a>(<span class="keyword">const</span> HostStringT&amp; ip, <span class="keyword">const</span> PortStringT&amp; port, DWORD timeout = 30&#39;000, <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> <a class="code" href="classweb_1_1_base_network.html#a90c17f6a91999e2d2c61050a8a1fc44c">mode</a> = <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6aed72a57c429221dbba7dbd657d0a61e3">receiveMode::allowResize</a>);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="classweb_1_1_base_network.html#ab06bf83484cf15f47570506f239357af">BaseNetwork</a>(SOCKET <a class="code" href="classweb_1_1_base_network.html#a197f34ea41c6951ac4bc7ccc80fa0af2">clientSocket</a>, <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> <a class="code" href="classweb_1_1_base_network.html#a90c17f6a91999e2d2c61050a8a1fc44c">mode</a> = <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6aed72a57c429221dbba7dbd657d0a61e3">receiveMode::allowResize</a>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#aba498a7ef8ab26ef2a4144a957085dfe">sendData</a>(<span class="keyword">const</span> ContainerT&amp; data);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#aba498a7ef8ab26ef2a4144a957085dfe">sendData</a>(std::string_view data);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#a0dd499eedf60658e29d4622394f656b6">receiveData</a>(ContainerT&amp; data);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#a0dd499eedf60658e29d4622394f656b6">receiveData</a>(std::string&amp; data);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classweb_1_1_base_network.html#a1b1467a4b0f9186c696ca04ef4117e88">setReceiveMode</a>(<a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> <a class="code" href="classweb_1_1_base_network.html#a90c17f6a91999e2d2c61050a8a1fc44c">mode</a> = <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6aed72a57c429221dbba7dbd657d0a61e3">receiveMode::allowResize</a>);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        SOCKET <a class="code" href="classweb_1_1_base_network.html#a41d99b9d30242877f923275776c1545f">getClientSocket</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> <a class="code" href="classweb_1_1_base_network.html#a6eda3582deb957868aecfdde8878cc0b">getResizeMode</a>();</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        template&lt;typename DataT&gt;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#a1821968e6d83e43d281883656d30b78f">receiveBytes</a>(DataT* const data, <span class="keywordtype">int</span> count);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> DataT&gt;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#a959c17376aad2ff1d5af9b6f7367ee79">sendBytes</a>(<span class="keyword">const</span> DataT* <span class="keyword">const</span> data, <span class="keywordtype">int</span> count);</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        virtual <span class="keywordtype">void</span> <a class="code" href="classweb_1_1_base_network.html#a93d9e598f732e33996e741659d2ae012">log</a>(const std::<span class="keywordtype">string</span>&amp; message, std::any&amp;&amp; data = &quot;&quot;);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        virtual ~<a class="code" href="classweb_1_1_base_network.html">BaseNetwork</a>();</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    };</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    template&lt;typename ContainerT&gt;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    template&lt;typename Resizable&gt;</div>
-<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#ab227b4cb990016cc675ce830455499d5">  106</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classweb_1_1_base_network.html">BaseNetwork</a>&lt;ContainerT&gt;::<a class="code" href="classweb_1_1_base_network.html#ab227b4cb990016cc675ce830455499d5">resizeFunction</a>(Resizable&amp; data, <span class="keywordtype">size_t</span> newSize)</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    {</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        data.resize(newSize);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> HostStringT, <span class="keyword">typename</span> PortStringT&gt;</div>
-<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a63ac6928e0d5b5d73533efb9f40f5771">  113</a></span>&#160;    <a class="code" href="classweb_1_1_base_network.html#a63ac6928e0d5b5d73533efb9f40f5771">BaseNetwork&lt;ContainerT&gt;::BaseNetwork</a>(<span class="keyword">const</span> HostStringT&amp; ip, <span class="keyword">const</span> PortStringT&amp; port, <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> <a class="code" href="classweb_1_1_base_network.html#a90c17f6a91999e2d2c61050a8a1fc44c">mode</a>) :</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <a class="code" href="classweb_1_1_base_network.html#a90c17f6a91999e2d2c61050a8a1fc44c">mode</a>(<a class="code" href="classweb_1_1_base_network.html#a90c17f6a91999e2d2c61050a8a1fc44c">mode</a>),</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <a class="code" href="classweb_1_1_base_network.html#a197f34ea41c6951ac4bc7ccc80fa0af2">clientSocket</a>(INVALID_SOCKET)</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> DataT&gt;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#a1821968e6d83e43d281883656d30b78f">receiveBytes</a>(DataT* <span class="keyword">const</span> data, <span class="keywordtype">int</span> count);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classweb_1_1_base_network.html#a93d9e598f732e33996e741659d2ae012">log</a>(<span class="keyword">const</span> std::string&amp; message, std::any&amp;&amp; data = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classweb_1_1_base_network.html#aef4d0a9f838b238c9759517c392245a2">~BaseNetwork</a>();</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    };</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Resizable&gt;</div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#ab227b4cb990016cc675ce830455499d5">  115</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classweb_1_1_base_network.html#ab227b4cb990016cc675ce830455499d5">BaseNetwork&lt;ContainerT&gt;::resizeFunction</a>(Resizable&amp; data, <span class="keywordtype">size_t</span> newSize)</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        WSADATA wsaData;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordflow">if</span> (WSAStartup(MAKEWORD(2, 2), &amp;wsaData))</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        {</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            <span class="keywordflow">throw</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>();</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        }</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        addrinfo* info = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        addrinfo hints = {};</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        hints.ai_family = AF_INET;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        hints.ai_socktype = SOCK_STREAM;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        hints.ai_protocol = IPPROTO_TCP;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="keywordflow">if</span> (getaddrinfo(ip.data(), port.data(), &amp;hints, &amp;info))</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        {</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            <span class="keywordflow">throw</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>();</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        data.resize(newSize);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> HostStringT, <span class="keyword">typename</span> PortStringT&gt;</div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#ab06bf83484cf15f47570506f239357af">  122</a></span>&#160;    <a class="code" href="classweb_1_1_base_network.html#ab06bf83484cf15f47570506f239357af">BaseNetwork&lt;ContainerT&gt;::BaseNetwork</a>(<span class="keyword">const</span> HostStringT&amp; ip, <span class="keyword">const</span> PortStringT&amp; port, DWORD timeout, <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> mode) :</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        mode(mode),</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        clientSocket(INVALID_SOCKET)</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        WSADATA wsaData;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keywordflow">if</span> (WSAStartup(MAKEWORD(2, 2), &amp;wsaData))</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <span class="keywordflow">throw</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        addrinfo* info = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        addrinfo hints = {};</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <a class="code" href="classweb_1_1_base_network.html#a197f34ea41c6951ac4bc7ccc80fa0af2">clientSocket</a> = socket(info-&gt;ai_family, info-&gt;ai_socktype, info-&gt;ai_protocol);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classweb_1_1_base_network.html#a197f34ea41c6951ac4bc7ccc80fa0af2">clientSocket</a> == INVALID_SOCKET)</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        {</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            freeaddrinfo(info);</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            <span class="keywordflow">throw</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>();</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        }</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordflow">if</span> (connect(<a class="code" href="classweb_1_1_base_network.html#a197f34ea41c6951ac4bc7ccc80fa0af2">clientSocket</a>, info-&gt;ai_addr, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(info-&gt;ai_addrlen)))</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        {</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            freeaddrinfo(info);</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            <span class="keywordflow">throw</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>();</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        }</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        freeaddrinfo(info);</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    }</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
-<div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a55921646b68d05ce7651c7d6c76874d3">  154</a></span>&#160;    <a class="code" href="classweb_1_1_base_network.html#a63ac6928e0d5b5d73533efb9f40f5771">BaseNetwork&lt;ContainerT&gt;::BaseNetwork</a>(SOCKET clientSocket, <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> mode) :</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        clientSocket(clientSocket),</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        mode(mode)</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    {</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    }</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        hints.ai_family = AF_INET;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        hints.ai_socktype = SOCK_STREAM;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        hints.ai_protocol = IPPROTO_TCP;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        <span class="keywordflow">if</span> (getaddrinfo(ip.data(), port.data(), &amp;hints, &amp;info))</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        {</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            <span class="keywordflow">throw</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>();</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        }</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <a class="code" href="classweb_1_1_base_network.html#a197f34ea41c6951ac4bc7ccc80fa0af2">clientSocket</a> = socket(info-&gt;ai_family, info-&gt;ai_socktype, info-&gt;ai_protocol);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classweb_1_1_base_network.html#a197f34ea41c6951ac4bc7ccc80fa0af2">clientSocket</a> == INVALID_SOCKET)</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        {</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            freeaddrinfo(info);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            <span class="keywordflow">throw</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>();</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        }</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="keywordflow">if</span> (connect(<a class="code" href="classweb_1_1_base_network.html#a197f34ea41c6951ac4bc7ccc80fa0af2">clientSocket</a>, info-&gt;ai_addr, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(info-&gt;ai_addrlen)))</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        {</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            freeaddrinfo(info);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            <span class="keywordflow">throw</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>();</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        }</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
-<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#aba498a7ef8ab26ef2a4144a957085dfe">  162</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#aba498a7ef8ab26ef2a4144a957085dfe">BaseNetwork&lt;ContainerT&gt;::sendData</a>(<span class="keyword">const</span> ContainerT&amp; data)</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    {</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        static_assert(<a class="code" href="classutility_1_1check_size.html">utility::checkSize&lt;ContainerT&gt;::value</a>, <span class="stringliteral">&quot;Your ContainerT hasn&#39;t size method&quot;</span>);</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        static_assert(<a class="code" href="classutility_1_1check_data.html">utility::checkData&lt;ContainerT&gt;::value</a>, <span class="stringliteral">&quot;Your ContainerT hasn&#39;t data method&quot;</span>);</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        {</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            <span class="keywordtype">int</span> size = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(data.size());</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <span class="keywordflow">if</span> (setsockopt(<a class="code" href="classweb_1_1_base_network.html#a197f34ea41c6951ac4bc7ccc80fa0af2">clientSocket</a>, SOL_SOCKET, SO_SNDTIMEO, <span class="keyword">static_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(&amp;timeout), <span class="keyword">sizeof</span>(timeout)))</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        {</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            <span class="keywordflow">throw</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>();</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="keywordflow">if</span> (setsockopt(<a class="code" href="classweb_1_1_base_network.html#a197f34ea41c6951ac4bc7ccc80fa0af2">clientSocket</a>, SOL_SOCKET, SO_RCVTIMEO, <span class="keyword">static_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(&amp;timeout), <span class="keyword">sizeof</span>(timeout)))</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        {</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            <span class="keywordflow">throw</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>();</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        }</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            this-&gt;sendBytes(&amp;size, <span class="keyword">sizeof</span>(size));</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            <span class="keywordflow">return</span> this-&gt;sendBytes(data.data(), size);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        }</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>&amp; e)</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        {</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            this-&gt;log(e.<a class="code" href="classweb_1_1exceptions_1_1_web_exception.html#a766b7818d91728c62c9215fb77db61bc">what</a>());</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        }</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    }</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
-<div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#aa709e3010137bc7c25354f7c87baedb9">  184</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#aba498a7ef8ab26ef2a4144a957085dfe">BaseNetwork&lt;ContainerT&gt;::sendData</a>(std::string_view data)</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    {</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        {</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            <span class="keywordtype">int</span> size = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(data.size());</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            this-&gt;sendBytes(&amp;size, <span class="keyword">sizeof</span>(size));</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        freeaddrinfo(info);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    }</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
+<div class="line"><a name="l00175"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a55921646b68d05ce7651c7d6c76874d3">  175</a></span>&#160;    <a class="code" href="classweb_1_1_base_network.html#ab06bf83484cf15f47570506f239357af">BaseNetwork&lt;ContainerT&gt;::BaseNetwork</a>(SOCKET clientSocket, <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">receiveMode</a> mode) :</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        clientSocket(clientSocket),</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        mode(mode)</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    {</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    }</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
+<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#aba498a7ef8ab26ef2a4144a957085dfe">  183</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#aba498a7ef8ab26ef2a4144a957085dfe">BaseNetwork&lt;ContainerT&gt;::sendData</a>(<span class="keyword">const</span> ContainerT&amp; data)</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    {</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        static_assert(<a class="code" href="classutility_1_1check_size.html">utility::checkSize&lt;ContainerT&gt;::value</a>, <span class="stringliteral">&quot;Your ContainerT hasn&#39;t size method&quot;</span>);</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        static_assert(<a class="code" href="classutility_1_1check_data.html">utility::checkData&lt;ContainerT&gt;::value</a>, <span class="stringliteral">&quot;Your ContainerT hasn&#39;t data method&quot;</span>);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        {</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            <span class="keywordtype">int</span> size = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(data.size());</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            <span class="keywordflow">return</span> this-&gt;sendBytes(data.data(), size);</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        }</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>&amp; e)</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        {</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            this-&gt;log(e.<a class="code" href="classweb_1_1exceptions_1_1_web_exception.html#a766b7818d91728c62c9215fb77db61bc">what</a>());</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        }</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    }</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
-<div class="line"><a name="l00203"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a0dd499eedf60658e29d4622394f656b6">  203</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#a0dd499eedf60658e29d4622394f656b6">BaseNetwork&lt;ContainerT&gt;::receiveData</a>(ContainerT&amp; data)</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    {</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        static_assert(<a class="code" href="classutility_1_1check_data.html">utility::checkData&lt;ContainerT&gt;::value</a>, <span class="stringliteral">&quot;Your ContainerT hasn&#39;t data method&quot;</span>);</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            this-&gt;sendBytes(&amp;size, <span class="keyword">sizeof</span>(size));</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            <span class="keywordflow">return</span> this-&gt;sendBytes(data.data(), size);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        }</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>&amp; e)</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        {</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            this-&gt;log(e.<a class="code" href="classweb_1_1exceptions_1_1_web_exception.html#a766b7818d91728c62c9215fb77db61bc">what</a>());</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        }</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    }</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
+<div class="line"><a name="l00205"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#aa709e3010137bc7c25354f7c87baedb9">  205</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#aba498a7ef8ab26ef2a4144a957085dfe">BaseNetwork&lt;ContainerT&gt;::sendData</a>(std::string_view data)</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    {</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        {</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            <span class="keywordtype">int</span> size;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            <span class="keywordtype">int</span> size = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(data.size());</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            this-&gt;receiveBytes(&amp;size, <span class="keyword">sizeof</span>(size));</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            this-&gt;sendBytes(&amp;size, <span class="keyword">sizeof</span>(size));</div>
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            <span class="keywordflow">if</span> constexpr (<a class="code" href="classutility_1_1check_resize.html">utility::checkResize&lt;ContainerT&gt;::value</a>)</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            {</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                <span class="keywordflow">if</span> (mode == receiveMode::allowResize)</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                {</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                    this-&gt;resizeFunction(data, size);</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                }</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            }</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            <span class="keywordflow">return</span> this-&gt;receiveBytes(data.data(), size);</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        }</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>&amp; e)</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        {</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            this-&gt;log(e.<a class="code" href="classweb_1_1exceptions_1_1_web_exception.html#a766b7818d91728c62c9215fb77db61bc">what</a>());</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        }</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    }</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
-<div class="line"><a name="l00232"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#ab384010e7ea309607726d23415d0f8d3">  232</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#a0dd499eedf60658e29d4622394f656b6">BaseNetwork&lt;ContainerT&gt;::receiveData</a>(std::string&amp; data)</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    {</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        {</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            <span class="keywordtype">int</span> size;</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            this-&gt;receiveBytes(&amp;size, <span class="keyword">sizeof</span>(size));</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            <span class="keywordflow">if</span> (mode == receiveMode::allowResize)</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            {</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                this-&gt;resizeFunction(data, size);</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            }</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;            <span class="keywordflow">return</span> this-&gt;receiveBytes(data.data(), size);</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        }</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>&amp; e)</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        {</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            this-&gt;log(e.<a class="code" href="classweb_1_1exceptions_1_1_web_exception.html#a766b7818d91728c62c9215fb77db61bc">what</a>());</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160; </div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;            <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        }</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    }</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
-<div class="line"><a name="l00256"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#aeb778c87da0e6f6d4f8d4a30ff7116c7">  256</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classweb_1_1_base_network.html#aeb778c87da0e6f6d4f8d4a30ff7116c7">BaseNetwork&lt;ContainerT&gt;::setReceiveMode</a>(<a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">BaseNetwork&lt;ContainerT&gt;::receiveMode</a> mode)</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    {</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        this-&gt;mode = mode;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    }</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            <span class="keywordflow">return</span> this-&gt;sendBytes(data.data(), size);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        }</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>&amp; e)</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        {</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            this-&gt;log(e.<a class="code" href="classweb_1_1exceptions_1_1_web_exception.html#a766b7818d91728c62c9215fb77db61bc">what</a>());</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        }</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    }</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
+<div class="line"><a name="l00224"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a0dd499eedf60658e29d4622394f656b6">  224</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#a0dd499eedf60658e29d4622394f656b6">BaseNetwork&lt;ContainerT&gt;::receiveData</a>(ContainerT&amp; data)</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    {</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        static_assert(<a class="code" href="classutility_1_1check_data.html">utility::checkData&lt;ContainerT&gt;::value</a>, <span class="stringliteral">&quot;Your ContainerT hasn&#39;t data method&quot;</span>);</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        {</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            <span class="keywordtype">int</span> size = 0;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160; </div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            this-&gt;receiveBytes(&amp;size, <span class="keyword">sizeof</span>(size));</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;            <span class="keywordflow">if</span> constexpr (<a class="code" href="classutility_1_1check_resize.html">utility::checkResize&lt;ContainerT&gt;::value</a>)</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            {</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                <span class="keywordflow">if</span> (mode == receiveMode::allowResize)</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                {</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                    this-&gt;resizeFunction(data, <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(size));</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                }</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            }</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="keywordflow">return</span> this-&gt;receiveBytes(data.data(), size);</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        }</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>&amp; e)</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        {</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            this-&gt;log(e.<a class="code" href="classweb_1_1exceptions_1_1_web_exception.html#a766b7818d91728c62c9215fb77db61bc">what</a>());</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        }</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    }</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160; </div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
+<div class="line"><a name="l00253"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#ab384010e7ea309607726d23415d0f8d3">  253</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#a0dd499eedf60658e29d4622394f656b6">BaseNetwork&lt;ContainerT&gt;::receiveData</a>(std::string&amp; data)</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    {</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        {</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;            <span class="keywordtype">int</span> size = 0;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;            this-&gt;receiveBytes(&amp;size, <span class="keyword">sizeof</span>(size));</div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; </div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
-<div class="line"><a name="l00262"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a99b09acc062500433c18476936b4b3e1">  262</a></span>&#160;    <span class="keyword">typename</span> <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">BaseNetwork&lt;ContainerT&gt;::receiveMode</a> <a class="code" href="classweb_1_1_base_network.html#a99b09acc062500433c18476936b4b3e1">BaseNetwork&lt;ContainerT&gt;::getResizeMode</a>()</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    {</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        <span class="keywordflow">return</span> mode;</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    }</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160; </div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> DataT&gt;</div>
-<div class="line"><a name="l00269"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a959c17376aad2ff1d5af9b6f7367ee79">  269</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#a959c17376aad2ff1d5af9b6f7367ee79">BaseNetwork&lt;ContainerT&gt;::sendBytes</a>(<span class="keyword">const</span> DataT* <span class="keyword">const</span> data, <span class="keywordtype">int</span> count)</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    {</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        <span class="keywordtype">int</span>  lastSend = 0;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <span class="keywordtype">int</span> totalSent = 0;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160; </div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <span class="keywordflow">do</span></div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        {</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            lastSend = send(clientSocket, <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(data) + totalSent, count - totalSent, NULL);</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160; </div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            <span class="keywordflow">if</span> (lastSend == SOCKET_ERROR)</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            {</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                <span class="keywordflow">throw</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>();</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            }</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160; </div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            totalSent += lastSend;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160; </div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;        } <span class="keywordflow">while</span> (totalSent &lt; count);</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160; </div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;        <span class="keywordflow">return</span> totalSent;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    }</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160; </div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> DataT&gt;</div>
-<div class="line"><a name="l00292"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a1821968e6d83e43d281883656d30b78f">  292</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#a1821968e6d83e43d281883656d30b78f">BaseNetwork&lt;ContainerT&gt;::receiveBytes</a>(DataT* <span class="keyword">const</span> data, <span class="keywordtype">int</span> count)</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    {</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        <span class="keywordtype">int</span> lastReceive = 0;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        <span class="keywordtype">int</span> totalReceive = 0;</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160; </div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        <span class="keywordflow">do</span></div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        {</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;            lastReceive = recv(clientSocket, <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(data) + totalReceive, count - totalReceive, NULL);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            <span class="keywordflow">if</span> (mode == receiveMode::allowResize)</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;            {</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                this-&gt;resizeFunction(data, <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(size));</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;            }</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160; </div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            <span class="keywordflow">return</span> this-&gt;receiveBytes(data.data(), size);</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        }</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>&amp; e)</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        {</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            this-&gt;log(e.<a class="code" href="classweb_1_1exceptions_1_1_web_exception.html#a766b7818d91728c62c9215fb77db61bc">what</a>());</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160; </div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;            <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        }</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    }</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160; </div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
+<div class="line"><a name="l00277"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a1b1467a4b0f9186c696ca04ef4117e88">  277</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classweb_1_1_base_network.html#a1b1467a4b0f9186c696ca04ef4117e88">BaseNetwork&lt;ContainerT&gt;::setReceiveMode</a>(<a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">BaseNetwork&lt;ContainerT&gt;::receiveMode</a> mode)</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    {</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        this-&gt;mode = mode;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    }</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
+<div class="line"><a name="l00283"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a41d99b9d30242877f923275776c1545f">  283</a></span>&#160;    SOCKET <a class="code" href="classweb_1_1_base_network.html#a41d99b9d30242877f923275776c1545f">BaseNetwork&lt;ContainerT&gt;::getClientSocket</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;        <span class="keywordflow">return</span> clientSocket;</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    }</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
+<div class="line"><a name="l00289"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a6eda3582deb957868aecfdde8878cc0b">  289</a></span>&#160;    <span class="keyword">typename</span> <a class="code" href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">BaseNetwork&lt;ContainerT&gt;::receiveMode</a> <a class="code" href="classweb_1_1_base_network.html#a6eda3582deb957868aecfdde8878cc0b">BaseNetwork&lt;ContainerT&gt;::getResizeMode</a>()</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    {</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        <span class="keywordflow">return</span> mode;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    }</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160; </div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> DataT&gt;</div>
+<div class="line"><a name="l00296"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a959c17376aad2ff1d5af9b6f7367ee79">  296</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#a959c17376aad2ff1d5af9b6f7367ee79">BaseNetwork&lt;ContainerT&gt;::sendBytes</a>(<span class="keyword">const</span> DataT* <span class="keyword">const</span> data, <span class="keywordtype">int</span> count)</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    {</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        <span class="keywordtype">int</span> lastSend = 0;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        <span class="keywordtype">int</span> totalSent = 0;</div>
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; </div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;            <span class="keywordflow">if</span> (lastReceive == SOCKET_ERROR || !lastReceive)</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;            {</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                <span class="keywordflow">throw</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>();</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;            }</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160; </div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;            totalReceive += lastReceive;</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160; </div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        } <span class="keywordflow">while</span> (totalReceive &lt; count);</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        <span class="keywordflow">do</span></div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        {</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;            lastSend = send(clientSocket, <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(data) + totalSent, count - totalSent, NULL);</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160; </div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;            <span class="keywordflow">if</span> (lastSend == SOCKET_ERROR)</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;            {</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                <span class="keywordflow">throw</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>();</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;            }</div>
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        <span class="keywordflow">return</span> totalReceive;</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    }</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160; </div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
-<div class="line"><a name="l00314"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a93d9e598f732e33996e741659d2ae012">  314</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classweb_1_1_base_network.html#a93d9e598f732e33996e741659d2ae012">BaseNetwork&lt;ContainerT&gt;::log</a>(<span class="keyword">const</span> std::string&amp; message, std::any&amp;&amp; data)</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    {</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;        std::clog &lt;&lt; message;</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    }</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160; </div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
-<div class="line"><a name="l00320"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#aef4d0a9f838b238c9759517c392245a2">  320</a></span>&#160;    <a class="code" href="classweb_1_1_base_network.html#aef4d0a9f838b238c9759517c392245a2">BaseNetwork&lt;ContainerT&gt;::~BaseNetwork</a>()</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    {</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        closesocket(clientSocket);</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    }</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160; </div>
-<div class="line"><a name="l00325"></a><span class="lineno"><a class="line" href="namespaceweb.html#a973bb2f1051fa7704fe728a51b29ac0b">  325</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classweb_1_1_base_network.html">Network</a> = <a class="code" href="classweb_1_1_base_network.html">BaseNetwork&lt;std::vector&lt;char&gt;</a>&gt;;</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;}</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;            totalSent += lastSend;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160; </div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        } <span class="keywordflow">while</span> (totalSent &lt; count);</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160; </div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;        <span class="keywordflow">return</span> totalSent;</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    }</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160; </div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> DataT&gt;</div>
+<div class="line"><a name="l00319"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a1821968e6d83e43d281883656d30b78f">  319</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classweb_1_1_base_network.html#a1821968e6d83e43d281883656d30b78f">BaseNetwork&lt;ContainerT&gt;::receiveBytes</a>(DataT* <span class="keyword">const</span> data, <span class="keywordtype">int</span> count)</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    {</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        <span class="keywordtype">int</span> lastReceive = 0;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        <span class="keywordtype">int</span> totalReceive = 0;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160; </div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        <span class="keywordflow">do</span></div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        {</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            lastReceive = recv(clientSocket, <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(data) + totalReceive, count - totalReceive, NULL);</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160; </div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;            <span class="keywordflow">if</span> (lastReceive == SOCKET_ERROR || !lastReceive)</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            {</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                <span class="keywordflow">throw</span> <a class="code" href="classweb_1_1exceptions_1_1_web_exception.html">exceptions::WebException</a>();</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;            }</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160; </div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;            totalReceive += lastReceive;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160; </div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;        } <span class="keywordflow">while</span> (totalReceive &lt; count);</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160; </div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;        <span class="keywordflow">return</span> totalReceive;</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    }</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160; </div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
+<div class="line"><a name="l00341"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#a93d9e598f732e33996e741659d2ae012">  341</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classweb_1_1_base_network.html#a93d9e598f732e33996e741659d2ae012">BaseNetwork&lt;ContainerT&gt;::log</a>(<span class="keyword">const</span> std::string&amp; message, std::any&amp;&amp; data)</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    {</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        std::clog &lt;&lt; message;</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    }</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160; </div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ContainerT&gt;</div>
+<div class="line"><a name="l00347"></a><span class="lineno"><a class="line" href="classweb_1_1_base_network.html#aef4d0a9f838b238c9759517c392245a2">  347</a></span>&#160;    <a class="code" href="classweb_1_1_base_network.html#aef4d0a9f838b238c9759517c392245a2">BaseNetwork&lt;ContainerT&gt;::~BaseNetwork</a>()</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    {</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;        closesocket(clientSocket);</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    }</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160; </div>
+<div class="line"><a name="l00352"></a><span class="lineno"><a class="line" href="namespaceweb.html#a973bb2f1051fa7704fe728a51b29ac0b">  352</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classweb_1_1_base_network.html">Network</a> = <a class="code" href="classweb_1_1_base_network.html">BaseNetwork&lt;std::vector&lt;char&gt;</a>&gt;;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;}</div>
 <div class="ttc" id="a_check_at_compile_time_8h_html"><div class="ttname"><a href="_check_at_compile_time_8h.html">CheckAtCompileTime.h</a></div></div>
 <div class="ttc" id="a_web_exception_8h_html"><div class="ttname"><a href="_web_exception_8h.html">WebException.h</a></div></div>
 <div class="ttc" id="aclassutility_1_1check_data_html"><div class="ttname"><a href="classutility_1_1check_data.html">utility::checkData</a></div><div class="ttdef"><b>Definition:</b> CheckAtCompileTime.h:38</div></div>
 <div class="ttc" id="aclassutility_1_1check_resize_html"><div class="ttname"><a href="classutility_1_1check_resize.html">utility::checkResize</a></div><div class="ttdef"><b>Definition:</b> CheckAtCompileTime.h:32</div></div>
 <div class="ttc" id="aclassutility_1_1check_size_html"><div class="ttname"><a href="classutility_1_1check_size.html">utility::checkSize</a></div><div class="ttdef"><b>Definition:</b> CheckAtCompileTime.h:26</div></div>
 <div class="ttc" id="aclassweb_1_1_base_network_html"><div class="ttname"><a href="classweb_1_1_base_network.html">web::BaseNetwork</a></div><div class="ttdoc">Base network class.</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:22</div></div>
-<div class="ttc" id="aclassweb_1_1_base_network_html_a0dd499eedf60658e29d4622394f656b6"><div class="ttname"><a href="classweb_1_1_base_network.html#a0dd499eedf60658e29d4622394f656b6">web::BaseNetwork::receiveData</a></div><div class="ttdeci">virtual int receiveData(ContainerT &amp;data)</div><div class="ttdoc">Receive data through network.</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:203</div></div>
-<div class="ttc" id="aclassweb_1_1_base_network_html_a1821968e6d83e43d281883656d30b78f"><div class="ttname"><a href="classweb_1_1_base_network.html#a1821968e6d83e43d281883656d30b78f">web::BaseNetwork::receiveBytes</a></div><div class="ttdeci">int receiveBytes(DataT *const data, int count)</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:292</div></div>
+<div class="ttc" id="aclassweb_1_1_base_network_html_a0dd499eedf60658e29d4622394f656b6"><div class="ttname"><a href="classweb_1_1_base_network.html#a0dd499eedf60658e29d4622394f656b6">web::BaseNetwork::receiveData</a></div><div class="ttdeci">virtual int receiveData(ContainerT &amp;data)</div><div class="ttdoc">Receive data through network.</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:224</div></div>
+<div class="ttc" id="aclassweb_1_1_base_network_html_a1821968e6d83e43d281883656d30b78f"><div class="ttname"><a href="classweb_1_1_base_network.html#a1821968e6d83e43d281883656d30b78f">web::BaseNetwork::receiveBytes</a></div><div class="ttdeci">int receiveBytes(DataT *const data, int count)</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:319</div></div>
 <div class="ttc" id="aclassweb_1_1_base_network_html_a197f34ea41c6951ac4bc7ccc80fa0af2"><div class="ttname"><a href="classweb_1_1_base_network.html#a197f34ea41c6951ac4bc7ccc80fa0af2">web::BaseNetwork::clientSocket</a></div><div class="ttdeci">SOCKET clientSocket</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:31</div></div>
-<div class="ttc" id="aclassweb_1_1_base_network_html_a63ac6928e0d5b5d73533efb9f40f5771"><div class="ttname"><a href="classweb_1_1_base_network.html#a63ac6928e0d5b5d73533efb9f40f5771">web::BaseNetwork::BaseNetwork</a></div><div class="ttdeci">BaseNetwork(const HostStringT &amp;ip, const PortStringT &amp;port, receiveMode mode=receiveMode::allowResize)</div><div class="ttdoc">Client side constructor.</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:113</div></div>
+<div class="ttc" id="aclassweb_1_1_base_network_html_a1b1467a4b0f9186c696ca04ef4117e88"><div class="ttname"><a href="classweb_1_1_base_network.html#a1b1467a4b0f9186c696ca04ef4117e88">web::BaseNetwork::setReceiveMode</a></div><div class="ttdeci">void setReceiveMode(receiveMode mode=receiveMode::allowResize)</div><div class="ttdoc">Set currrent receive mode.</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:277</div></div>
+<div class="ttc" id="aclassweb_1_1_base_network_html_a41d99b9d30242877f923275776c1545f"><div class="ttname"><a href="classweb_1_1_base_network.html#a41d99b9d30242877f923275776c1545f">web::BaseNetwork::getClientSocket</a></div><div class="ttdeci">SOCKET getClientSocket() const</div><div class="ttdoc">clientSocket getter</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:283</div></div>
 <div class="ttc" id="aclassweb_1_1_base_network_html_a6a6f55184b86617a96fe82db28470ac6"><div class="ttname"><a href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6">web::BaseNetwork::receiveMode</a></div><div class="ttdeci">receiveMode</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:25</div></div>
 <div class="ttc" id="aclassweb_1_1_base_network_html_a6a6f55184b86617a96fe82db28470ac6a3f10d7a0a2371eeeca9bad8633112876"><div class="ttname"><a href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6a3f10d7a0a2371eeeca9bad8633112876">web::BaseNetwork::receiveMode::prohibitResize</a></div><div class="ttdeci">@ prohibitResize</div></div>
 <div class="ttc" id="aclassweb_1_1_base_network_html_a6a6f55184b86617a96fe82db28470ac6aed72a57c429221dbba7dbd657d0a61e3"><div class="ttname"><a href="classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6aed72a57c429221dbba7dbd657d0a61e3">web::BaseNetwork::receiveMode::allowResize</a></div><div class="ttdeci">@ allowResize</div></div>
+<div class="ttc" id="aclassweb_1_1_base_network_html_a6eda3582deb957868aecfdde8878cc0b"><div class="ttname"><a href="classweb_1_1_base_network.html#a6eda3582deb957868aecfdde8878cc0b">web::BaseNetwork::getResizeMode</a></div><div class="ttdeci">receiveMode getResizeMode()</div><div class="ttdoc">Get current receive mode.</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:289</div></div>
 <div class="ttc" id="aclassweb_1_1_base_network_html_a90c17f6a91999e2d2c61050a8a1fc44c"><div class="ttname"><a href="classweb_1_1_base_network.html#a90c17f6a91999e2d2c61050a8a1fc44c">web::BaseNetwork::mode</a></div><div class="ttdeci">receiveMode mode</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:32</div></div>
-<div class="ttc" id="aclassweb_1_1_base_network_html_a93d9e598f732e33996e741659d2ae012"><div class="ttname"><a href="classweb_1_1_base_network.html#a93d9e598f732e33996e741659d2ae012">web::BaseNetwork::log</a></div><div class="ttdeci">virtual void log(const std::string &amp;message, std::any &amp;&amp;data=&quot;&quot;)</div><div class="ttdoc">Errors logging, default implementation uses clog.</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:314</div></div>
-<div class="ttc" id="aclassweb_1_1_base_network_html_a959c17376aad2ff1d5af9b6f7367ee79"><div class="ttname"><a href="classweb_1_1_base_network.html#a959c17376aad2ff1d5af9b6f7367ee79">web::BaseNetwork::sendBytes</a></div><div class="ttdeci">int sendBytes(const DataT *const data, int count)</div><div class="ttdoc">Send raw bytes through network.</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:269</div></div>
-<div class="ttc" id="aclassweb_1_1_base_network_html_a99b09acc062500433c18476936b4b3e1"><div class="ttname"><a href="classweb_1_1_base_network.html#a99b09acc062500433c18476936b4b3e1">web::BaseNetwork::getResizeMode</a></div><div class="ttdeci">virtual receiveMode getResizeMode() final</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:262</div></div>
-<div class="ttc" id="aclassweb_1_1_base_network_html_ab227b4cb990016cc675ce830455499d5"><div class="ttname"><a href="classweb_1_1_base_network.html#ab227b4cb990016cc675ce830455499d5">web::BaseNetwork::resizeFunction</a></div><div class="ttdeci">static void resizeFunction(Resizable &amp;data, size_t newSize)</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:106</div></div>
-<div class="ttc" id="aclassweb_1_1_base_network_html_aba498a7ef8ab26ef2a4144a957085dfe"><div class="ttname"><a href="classweb_1_1_base_network.html#aba498a7ef8ab26ef2a4144a957085dfe">web::BaseNetwork::sendData</a></div><div class="ttdeci">virtual int sendData(const ContainerT &amp;data)</div><div class="ttdoc">Send data through network.</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:162</div></div>
-<div class="ttc" id="aclassweb_1_1_base_network_html_aeb778c87da0e6f6d4f8d4a30ff7116c7"><div class="ttname"><a href="classweb_1_1_base_network.html#aeb778c87da0e6f6d4f8d4a30ff7116c7">web::BaseNetwork::setReceiveMode</a></div><div class="ttdeci">virtual void setReceiveMode(receiveMode mode=receiveMode::allowResize) final</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:256</div></div>
-<div class="ttc" id="aclassweb_1_1_base_network_html_aef4d0a9f838b238c9759517c392245a2"><div class="ttname"><a href="classweb_1_1_base_network.html#aef4d0a9f838b238c9759517c392245a2">web::BaseNetwork::~BaseNetwork</a></div><div class="ttdeci">virtual ~BaseNetwork()</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:320</div></div>
+<div class="ttc" id="aclassweb_1_1_base_network_html_a93d9e598f732e33996e741659d2ae012"><div class="ttname"><a href="classweb_1_1_base_network.html#a93d9e598f732e33996e741659d2ae012">web::BaseNetwork::log</a></div><div class="ttdeci">virtual void log(const std::string &amp;message, std::any &amp;&amp;data=&quot;&quot;)</div><div class="ttdoc">Errors logging, default implementation uses clog.</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:341</div></div>
+<div class="ttc" id="aclassweb_1_1_base_network_html_a959c17376aad2ff1d5af9b6f7367ee79"><div class="ttname"><a href="classweb_1_1_base_network.html#a959c17376aad2ff1d5af9b6f7367ee79">web::BaseNetwork::sendBytes</a></div><div class="ttdeci">int sendBytes(const DataT *const data, int count)</div><div class="ttdoc">Send raw bytes through network.</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:296</div></div>
+<div class="ttc" id="aclassweb_1_1_base_network_html_ab06bf83484cf15f47570506f239357af"><div class="ttname"><a href="classweb_1_1_base_network.html#ab06bf83484cf15f47570506f239357af">web::BaseNetwork::BaseNetwork</a></div><div class="ttdeci">BaseNetwork(const HostStringT &amp;ip, const PortStringT &amp;port, DWORD timeout=30 '000, receiveMode mode=receiveMode::allowResize)</div><div class="ttdoc">Client side constructor.</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:122</div></div>
+<div class="ttc" id="aclassweb_1_1_base_network_html_ab227b4cb990016cc675ce830455499d5"><div class="ttname"><a href="classweb_1_1_base_network.html#ab227b4cb990016cc675ce830455499d5">web::BaseNetwork::resizeFunction</a></div><div class="ttdeci">static void resizeFunction(Resizable &amp;data, size_t newSize)</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:115</div></div>
+<div class="ttc" id="aclassweb_1_1_base_network_html_aba498a7ef8ab26ef2a4144a957085dfe"><div class="ttname"><a href="classweb_1_1_base_network.html#aba498a7ef8ab26ef2a4144a957085dfe">web::BaseNetwork::sendData</a></div><div class="ttdeci">virtual int sendData(const ContainerT &amp;data)</div><div class="ttdoc">Send data through network.</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:183</div></div>
+<div class="ttc" id="aclassweb_1_1_base_network_html_aef4d0a9f838b238c9759517c392245a2"><div class="ttname"><a href="classweb_1_1_base_network.html#aef4d0a9f838b238c9759517c392245a2">web::BaseNetwork::~BaseNetwork</a></div><div class="ttdeci">virtual ~BaseNetwork()</div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:347</div></div>
 <div class="ttc" id="aclassweb_1_1exceptions_1_1_web_exception_html"><div class="ttname"><a href="classweb_1_1exceptions_1_1_web_exception.html">web::exceptions::WebException</a></div><div class="ttdoc">Network exception.</div><div class="ttdef"><b>Definition:</b> WebException.h:15</div></div>
 <div class="ttc" id="aclassweb_1_1exceptions_1_1_web_exception_html_a766b7818d91728c62c9215fb77db61bc"><div class="ttname"><a href="classweb_1_1exceptions_1_1_web_exception.html#a766b7818d91728c62c9215fb77db61bc">web::exceptions::WebException::what</a></div><div class="ttdeci">const char * what() const noexcept override</div><div class="ttdef"><b>Definition:</b> WebException.cpp:278</div></div>
 <div class="ttc" id="anamespaceweb_html"><div class="ttname"><a href="namespaceweb.html">web</a></div><div class="ttdef"><b>Definition:</b> BaseNetwork.h:17</div></div>
