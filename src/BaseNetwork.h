@@ -41,10 +41,11 @@ namespace web
 		/// @tparam PortStringT 
 		/// @param ip Remote address to connect to
 		/// @param port Remote port to connect to
-		/// @param mode 
+		/// @param timeout Timeout for receive and send calls
+		/// @param mode Receive mode
 		/// @exception WebException 
 		template<typename HostStringT, typename PortStringT>
-		BaseNetwork(const HostStringT& ip, const PortStringT& port, receiveMode mode = receiveMode::allowResize);
+		BaseNetwork(const HostStringT& ip, const PortStringT& port, DWORD timeout = 30'000, receiveMode mode = receiveMode::allowResize);
 
 		/// @brief Server side contructor
 		/// @param clientSocket 
@@ -71,9 +72,17 @@ namespace web
 		/// @return Total number of received bytes 
 		virtual int receiveData(std::string& data);
 
-		virtual void setReceiveMode(receiveMode mode = receiveMode::allowResize) final;
+		/// @brief Set currrent receive mode
+		/// @param mode New receive mode
+		void setReceiveMode(receiveMode mode = receiveMode::allowResize);
 
-		virtual receiveMode getResizeMode() final;
+		/// @brief clientSocket getter
+		/// @return clientSocket
+		SOCKET getClientSocket() const;
+
+		/// @brief Get current receive mode
+		/// @return mode
+		receiveMode getResizeMode();
 
 		/// @brief Send raw bytes through network
 		/// @tparam DataT 
@@ -94,8 +103,8 @@ namespace web
 		int receiveBytes(DataT* const data, int count);
 
 		/// @brief Errors logging, default implementation uses clog
-		/// @param message 
-		/// @param data 
+		/// @param message Log message
+		/// @param data Additional data
 		virtual void log(const std::string& message, std::any&& data = "");
 
 		virtual ~BaseNetwork();
@@ -110,7 +119,7 @@ namespace web
 
 	template<typename ContainerT>
 	template<typename HostStringT, typename PortStringT>
-	BaseNetwork<ContainerT>::BaseNetwork(const HostStringT& ip, const PortStringT& port, receiveMode mode) :
+	BaseNetwork<ContainerT>::BaseNetwork(const HostStringT& ip, const PortStringT& port, DWORD timeout, receiveMode mode) :
 		mode(mode),
 		clientSocket(INVALID_SOCKET)
 	{
@@ -138,14 +147,19 @@ namespace web
 		if (clientSocket == INVALID_SOCKET)
 		{
 			freeaddrinfo(info);
+
 			throw exceptions::WebException();
 		}
 
 		if (connect(clientSocket, info->ai_addr, static_cast<int>(info->ai_addrlen)))
 		{
 			freeaddrinfo(info);
+
 			throw exceptions::WebException();
 		}
+
+		setsockopt(clientSocket, SOL_SOCKET, SO_SNDTIMEO, static_cast<const char*>(&timeout), sizeof(timeout));
+		setsockopt(clientSocket, SOL_SOCKET, SO_RCVTIMEO, static_cast<const char*>(&timeout), sizeof(timeout));
 
 		freeaddrinfo(info);
 	}
@@ -256,6 +270,12 @@ namespace web
 	void BaseNetwork<ContainerT>::setReceiveMode(BaseNetwork<ContainerT>::receiveMode mode)
 	{
 		this->mode = mode;
+	}
+
+	template<typename ContainerT>
+	SOCKET BaseNetwork<ContainerT>::getClientSocket() const
+	{
+		return clientSocket;
 	}
 
 	template<typename ContainerT>
