@@ -15,6 +15,10 @@ namespace streams
 		std::unique_ptr<buffers::BaseIOSocketBuffer<ContainerT>> buffer;
 
 	protected:
+		/// @brief This method should throw web::exceptions::WebException
+		virtual void logAndThrowWebException();
+
+	protected:
 		template<typename T>
 		int sendFundamental(T value);
 
@@ -122,6 +126,21 @@ namespace streams
 	};
 
 	template<typename ContainerT>
+	void BaseIOSocketStream<ContainerT>::logAndThrowWebException()
+	{
+		web::exceptions::WebException e;
+
+		buffer->getNetwork()->log(e.what());
+
+		if (!fail())
+		{
+			setstate(failbit);
+		}
+
+		throw e;
+	}
+
+	template<typename ContainerT>
 	template<typename T>
 	int BaseIOSocketStream<ContainerT>::sendFundamental(T value)
 	{
@@ -132,6 +151,11 @@ namespace streams
 		catch (const web::exceptions::WebException& e)
 		{
 			buffer->getNetwork()->log(e.what());
+
+			if (!fail())
+			{
+				setstate(failbit);
+			}
 
 			throw;
 		}
@@ -149,6 +173,11 @@ namespace streams
 		{
 			buffer->getNetwork()->log(e.what());
 
+			if (!fail())
+			{
+				setstate(failbit);
+			}
+			
 			throw;
 		}
 	}
@@ -239,14 +268,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator << (bool value)
 	{
-		try
-		{
-			this->sendFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->sendFundamental(value);
 
 		return *this;
 	}
@@ -254,14 +276,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator << (short value)
 	{
-		try
-		{
-			this->sendFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->sendFundamental(value);
 
 		return *this;
 	}
@@ -269,14 +284,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator << (int value)
 	{
-		try
-		{
-			this->sendFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->sendFundamental(value);
 
 		return *this;
 	}
@@ -284,14 +292,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator << (long value)
 	{
-		try
-		{
-			this->sendFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->sendFundamental(value);
 
 		return *this;
 	}
@@ -299,14 +300,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator << (long long value)
 	{
-		try
-		{
-			this->sendFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->sendFundamental(value);
 
 		return *this;
 	}
@@ -314,13 +308,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator << (unsigned short value)
 	{
-		try {
-			this->sendFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->sendFundamental(value);
 
 		return *this;
 	}
@@ -328,14 +316,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator << (unsigned int value)
 	{
-		try
-		{
-			this->sendFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->sendFundamental(value);
 
 		return *this;
 	}
@@ -343,14 +324,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator << (unsigned long value)
 	{
-		try
-		{
-			this->sendFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->sendFundamental(value);
 
 		return *this;
 	}
@@ -358,14 +332,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator << (unsigned long long value)
 	{
-		try
-		{
-			this->sendFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->sendFundamental(value);
 
 		return *this;
 	}
@@ -373,14 +340,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator << (float value)
 	{
-		try
-		{
-			this->sendFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->sendFundamental(value);
 
 		return *this;
 	}
@@ -388,14 +348,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator << (double value)
 	{
-		try
-		{
-			this->sendFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->sendFundamental(value);
 
 		return *this;
 	}
@@ -403,14 +356,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator << (long double value)
 	{
-		try
-		{
-			this->sendFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		};
+		this->sendFundamental(value);
 
 		return *this;
 	}
@@ -418,14 +364,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (bool& value)
 	{
-		try
-		{
-			this->receiveFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->receiveFundamental(value);
 
 		return *this;
 	}
@@ -433,14 +372,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (short& value)
 	{
-		try
-		{
-			this->receiveFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->receiveFundamental(value);
 
 		return *this;
 	}
@@ -448,14 +380,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (int& value)
 	{
-		try
-		{
-			this->receiveFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->receiveFundamental(value);
 
 		return *this;
 	}
@@ -463,14 +388,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (long& value)
 	{
-		try
-		{
-			this->receiveFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->receiveFundamental(value);
 
 		return *this;
 	}
@@ -478,14 +396,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (long long& value)
 	{
-		try
-		{
-			this->receiveFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->receiveFundamental(value);
 
 		return *this;
 	}
@@ -493,14 +404,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (unsigned short& value)
 	{
-		try
-		{
-			this->receiveFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->receiveFundamental(value);
 
 		return *this;
 	}
@@ -508,14 +412,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (unsigned int& value)
 	{
-		try
-		{
-			this->receiveFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->receiveFundamental(value);
 
 		return *this;
 	}
@@ -523,14 +420,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (unsigned long& value)
 	{
-		try
-		{
-			this->receiveFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->receiveFundamental(value);
 
 		return *this;
 	}
@@ -538,14 +428,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (unsigned long long& value)
 	{
-		try
-		{
-			this->receiveFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->receiveFundamental(value);
 
 		return *this;
 	}
@@ -553,14 +436,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (float& value)
 	{
-		try
-		{
-			this->receiveFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->receiveFundamental(value);
 
 		return *this;
 	}
@@ -568,14 +444,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (double& value)
 	{
-		try
-		{
-			this->receiveFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->receiveFundamental(value);
 
 		return *this;
 	}
@@ -583,14 +452,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (long double& value)
 	{
-		try
-		{
-			this->receiveFundamental(value);
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			throw;
-		}
+		this->receiveFundamental(value);
 
 		return *this;
 	}
@@ -600,7 +462,7 @@ namespace streams
 	{
 		if (buffer->sputn(data.data(), data.size()) == -1)
 		{
-			throw web::exceptions::WebException();
+			this->logAndThrowWebException();
 		}
 
 		return *this;
@@ -614,14 +476,14 @@ namespace streams
 			buffer->setInputType();
 			if (buffer->pubsync() == -1)
 			{
-				throw web::exceptions::WebException();
+				this->logAndThrowWebException();
 			}
 			data.resize(buffer->getLastPacketSize());
 		}
 
 		if (buffer->sgetn(data.data(), data.size()) == -1)
 		{
-			throw web::exceptions::WebException();
+			this->logAndThrowWebException();
 		}
 
 		return *this;
@@ -632,7 +494,7 @@ namespace streams
 	{
 		if (buffer->sputn(data.data(), data.size()) == -1)
 		{
-			throw web::exceptions::WebException();
+			this->logAndThrowWebException();
 		}
 
 		return *this;
@@ -645,14 +507,14 @@ namespace streams
 
 		if (buffer->pubsync() == -1)
 		{
-			throw web::exceptions::WebException();
+			this->logAndThrowWebException();
 		}
 
 		data.resize(buffer->getLastPacketSize());
 
 		if (buffer->sgetn(data.data(), data.size()) == -1)
 		{
-			throw web::exceptions::WebException();
+			this->logAndThrowWebException();
 		}
 
 		return *this;
@@ -663,7 +525,7 @@ namespace streams
 	{
 		if (buffer->sputn(data.data(), data.size()) == -1)
 		{
-			throw web::exceptions::WebException();
+			this->logAndThrowWebException();
 		}
 
 		return *this;
