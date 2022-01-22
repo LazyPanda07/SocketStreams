@@ -74,7 +74,7 @@ namespace buffers
 
 		/// @brief Server side constructor
 		/// @param clientSocket 
-		/// @param bufferSize 
+		/// @param bufferSize Fixed buffer size
 		BaseIOSocketBuffer(SOCKET clientSocket, size_t bufferSize);
 
 		/// @brief Client side constructor
@@ -82,8 +82,10 @@ namespace buffers
 		/// @tparam PortStringT 
 		/// @param ip Remote address to connect to
 		/// @param port Remote port to connect to
+		/// @param timeout Timeout for receive and send calls in milliseconds
+		/// @param mode Receive mode
 		template<typename HostStringT, typename PortStringT>
-		BaseIOSocketBuffer(const HostStringT& ip, const PortStringT& port);
+		BaseIOSocketBuffer(const HostStringT& ip, const PortStringT& port, DWORD timeout = 30'000, web::Network::receiveMode mode = web::Network::receiveMode::allowResize);
 
 		/// @brief Client side constructor
 		/// @tparam HostStringT 
@@ -91,8 +93,10 @@ namespace buffers
 		/// @param ip Remote address to connect to
 		/// @param port Remote port to connect to
 		/// @param bufferSize 
+		/// @param timeout Timeout for receive and send calls in milliseconds
+		/// @param mode Receive mode
 		template<typename HostStringT, typename PortStringT>
-		BaseIOSocketBuffer(const HostStringT& ip, const PortStringT& port, size_t bufferSize);
+		BaseIOSocketBuffer(const HostStringT& ip, const PortStringT& port, size_t bufferSize, DWORD timeout = 30'000, web::Network::receiveMode mode = web::Network::receiveMode::allowResize);
 
 		BaseIOSocketBuffer(std::unique_ptr<web::BaseNetwork<ContainerT>>&& networkSubclass);
 
@@ -330,16 +334,16 @@ namespace buffers
 
 	template<typename ContainerT>
 	template<typename HostStringT, typename PortStringT>
-	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(const HostStringT& ip, const PortStringT& port) :
-		network(std::make_unique<web::BaseNetwork<ContainerT>>(ip, port))
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(const HostStringT& ip, const PortStringT& port, DWORD timeout, web::Network::receiveMode mode) :
+		network(std::make_unique<web::BaseNetwork<ContainerT>>(ip, port, timeout, mode))
 	{
 		this->setPointers();
 	}
 
 	template<typename ContainerT>
 	template<typename HostStringT, typename PortStringT>
-	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(const HostStringT& ip, const PortStringT& port, size_t bufferSize) :
-		network(std::make_unique<web::BaseNetwork<ContainerT>>(ip, port, web::BaseNetwork<ContainerT>::receiveMode::prohibitResize)),
+	BaseIOSocketBuffer<ContainerT>::BaseIOSocketBuffer(const HostStringT& ip, const PortStringT& port, size_t bufferSize, DWORD timeout, web::Network::receiveMode mode) :
+		network(std::make_unique<web::BaseNetwork<ContainerT>>(ip, port, timeout, mode, web::BaseNetwork<ContainerT>::receiveMode::prohibitResize)),
 		outBuffer(bufferSize),
 		inBuffer(bufferSize)
 	{

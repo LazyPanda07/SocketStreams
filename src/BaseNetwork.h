@@ -41,7 +41,7 @@ namespace web
 		/// @tparam PortStringT 
 		/// @param ip Remote address to connect to
 		/// @param port Remote port to connect to
-		/// @param timeout Timeout for receive and send calls
+		/// @param timeout Timeout for receive and send calls in milliseconds
 		/// @param mode Receive mode
 		/// @exception WebException 
 		template<typename HostStringT, typename PortStringT>

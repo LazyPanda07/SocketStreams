@@ -41,7 +41,7 @@ namespace streams
 
 		/// @brief Server side constructor
 		/// @param clientSocket 
-		/// @param bufferSize 
+		/// @param bufferSize Fixed buffer size
 		BaseIOSocketStream(SOCKET clientSocket, size_t bufferSize);
 
 		/// @brief Client side contructor
@@ -49,17 +49,21 @@ namespace streams
 		/// @tparam PortStringT 
 		/// @param ip Remote address to connect to
 		/// @param port Remote port to connect to
+		/// @param timeout Timeout for receive and send calls in milliseconds
+		/// @param mode Receive mode
 		template<typename HostStringT, typename PortStringT>
-		BaseIOSocketStream(const HostStringT& ip, const PortStringT& port);
+		BaseIOSocketStream(const HostStringT& ip, const PortStringT& port, DWORD timeout = 30'000, web::Network::receiveMode mode = web::Network::receiveMode::allowResize);
 
 		/// @brief Client side contructor
 		/// @tparam HostStringT 
 		/// @tparam PortStringT 
 		/// @param ip Remote address to connect to
 		/// @param port Remote port to connect to
-		/// @param bufferSize 
+		/// @param bufferSize Fixed buffer size
+		/// @param timeout Timeout for receive and send calls in milliseconds
+		/// @param mode Receive mode
 		template<typename HostStringT, typename PortStringT>
-		BaseIOSocketStream(const HostStringT& ip, const PortStringT& port, size_t bufferSize);
+		BaseIOSocketStream(const HostStringT& ip, const PortStringT& port, size_t bufferSize, DWORD timeout = 30'000, web::Network::receiveMode mode = web::Network::receiveMode::allowResize);
 
 		BaseIOSocketStream(std::unique_ptr<buffers::BaseIOSocketBuffer<ContainerT>>&& buffer);
 
@@ -69,7 +73,7 @@ namespace streams
 
 		/// @brief Constructor with custom network and default buffer with buffer size
 		/// @param network 
-		/// @param bufferSize 
+		/// @param bufferSize Fixed buffer size
 		BaseIOSocketStream(std::unique_ptr<web::BaseNetwork<ContainerT>>&& network, size_t bufferSize);
 
 		/// @brief Deleted copy assignment operator
@@ -207,18 +211,18 @@ namespace streams
 
 	template<typename ContainerT>
 	template<typename HostStringT, typename PortStringT>
-	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(const HostStringT& ip, const PortStringT& port) :
+	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(const HostStringT& ip, const PortStringT& port, DWORD timeout, web::Network::receiveMode mode) :
 		std::iostream(nullptr),
-		buffer(std::make_unique<buffers::BaseIOSocketBuffer<ContainerT>>(ip, port))
+		buffer(std::make_unique<buffers::BaseIOSocketBuffer<ContainerT>>(ip, port, timeout, mode))
 	{
 		std::iostream::rdbuf(buffer.get());
 	}
 
 	template<typename ContainerT>
 	template<typename HostStringT, typename PortStringT>
-	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(const HostStringT& ip, const PortStringT& port, size_t bufferSize) :
+	BaseIOSocketStream<ContainerT>::BaseIOSocketStream(const HostStringT& ip, const PortStringT& port, size_t bufferSize, DWORD timeout, web::Network::receiveMode mode) :
 		std::iostream(nullptr),
-		buffer(std::make_unique<buffers::BaseIOSocketBuffer<ContainerT>>(ip, port, bufferSize))
+		buffer(std::make_unique<buffers::BaseIOSocketBuffer<ContainerT>>(ip, port, bufferSize, timeout, mode))
 	{
 		std::iostream::rdbuf(buffer.get());
 	}
