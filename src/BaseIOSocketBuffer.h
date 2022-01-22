@@ -180,7 +180,7 @@ namespace buffers
 		{
 			if constexpr (utility::checkResize<ContainerT>::value)
 			{
-				web::BaseNetwork<ContainerT>::resizeFunction(outBuffer, count);
+				web::BaseNetwork<ContainerT>::resizeFunction(outBuffer, static_cast<size_t>(count));
 
 				this->setPointers();
 			}

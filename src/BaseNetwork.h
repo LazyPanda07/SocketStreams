@@ -21,7 +21,7 @@ namespace web
 	class BaseNetwork
 	{
 	public:
-		enum class receiveMode 
+		enum class receiveMode
 		{
 			allowResize,
 			prohibitResize
@@ -158,8 +158,15 @@ namespace web
 			throw exceptions::WebException();
 		}
 
-		setsockopt(clientSocket, SOL_SOCKET, SO_SNDTIMEO, static_cast<const char*>(&timeout), sizeof(timeout));
-		setsockopt(clientSocket, SOL_SOCKET, SO_RCVTIMEO, static_cast<const char*>(&timeout), sizeof(timeout));
+		if (setsockopt(clientSocket, SOL_SOCKET, SO_SNDTIMEO, static_cast<const char*>(&timeout), sizeof(timeout)))
+		{
+			throw exceptions::WebException();
+		}
+
+		if (setsockopt(clientSocket, SOL_SOCKET, SO_RCVTIMEO, static_cast<const char*>(&timeout), sizeof(timeout)))
+		{
+			throw exceptions::WebException();
+		}
 
 		freeaddrinfo(info);
 	}
@@ -220,7 +227,7 @@ namespace web
 
 		try
 		{
-			int size;
+			int size = 0;
 
 			this->receiveBytes(&size, sizeof(size));
 
@@ -228,7 +235,7 @@ namespace web
 			{
 				if (mode == receiveMode::allowResize)
 				{
-					this->resizeFunction(data, size);
+					this->resizeFunction(data, static_cast<size_t>(size));
 				}
 			}
 
@@ -247,13 +254,13 @@ namespace web
 	{
 		try
 		{
-			int size;
+			int size = 0;
 
 			this->receiveBytes(&size, sizeof(size));
 
 			if (mode == receiveMode::allowResize)
 			{
-				this->resizeFunction(data, size);
+				this->resizeFunction(data, static_cast<size_t>(size));
 			}
 
 			return this->receiveBytes(data.data(), size);
@@ -288,7 +295,7 @@ namespace web
 	template<typename DataT>
 	int BaseNetwork<ContainerT>::sendBytes(const DataT* const data, int count)
 	{
-		int  lastSend = 0;
+		int lastSend = 0;
 		int totalSent = 0;
 
 		do

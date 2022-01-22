@@ -464,7 +464,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator << (const ContainerT& data)
 	{
-		if (buffer->sputn(data.data(), data.size()) == -1)
+		if (buffer->sputn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 		{
 			this->logAndThrowWebException();
 		}
@@ -478,14 +478,16 @@ namespace streams
 		if constexpr (utility::checkResize<ContainerT>::value)
 		{
 			buffer->setInputType();
+
 			if (buffer->pubsync() == -1)
 			{
 				this->logAndThrowWebException();
 			}
-			data.resize(buffer->getLastPacketSize());
+
+			data.resize(static_cast<size_t>(buffer->getLastPacketSize()));
 		}
 
-		if (buffer->sgetn(data.data(), data.size()) == -1)
+		if (buffer->sgetn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 		{
 			this->logAndThrowWebException();
 		}
@@ -496,7 +498,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator << (const std::string& data)
 	{
-		if (buffer->sputn(data.data(), data.size()) == -1)
+		if (buffer->sputn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 		{
 			this->logAndThrowWebException();
 		}
@@ -514,9 +516,9 @@ namespace streams
 			this->logAndThrowWebException();
 		}
 
-		data.resize(buffer->getLastPacketSize());
+		data.resize(static_cast<size_t>(buffer->getLastPacketSize()));
 
-		if (buffer->sgetn(data.data(), data.size()) == -1)
+		if (buffer->sgetn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 		{
 			this->logAndThrowWebException();
 		}
@@ -527,7 +529,7 @@ namespace streams
 	template<typename ContainerT>
 	std::iostream& BaseIOSocketStream<ContainerT>::operator << (std::string_view data)
 	{
-		if (buffer->sputn(data.data(), data.size()) == -1)
+		if (buffer->sputn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 		{
 			this->logAndThrowWebException();
 		}
