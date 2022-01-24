@@ -158,12 +158,12 @@ namespace web
 			throw exceptions::WebException();
 		}
 
-		if (setsockopt(clientSocket, SOL_SOCKET, SO_SNDTIMEO, static_cast<const char*>(&timeout), sizeof(timeout)))
+		if (setsockopt(clientSocket, SOL_SOCKET, SO_SNDTIMEO, reinterpret_cast<const char*>(&timeout), sizeof(timeout)))
 		{
 			throw exceptions::WebException();
 		}
 
-		if (setsockopt(clientSocket, SOL_SOCKET, SO_RCVTIMEO, static_cast<const char*>(&timeout), sizeof(timeout)))
+		if (setsockopt(clientSocket, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<const char*>(&timeout), sizeof(timeout)))
 		{
 			throw exceptions::WebException();
 		}
