@@ -86,45 +86,45 @@ namespace streams
 		/// @return 
 		BaseIOSocketStream<ContainerT>& operator = (BaseIOSocketStream<ContainerT>&& other) noexcept;
 
-		std::iostream& operator << (bool value);
-		std::iostream& operator << (short value);
-		std::iostream& operator << (int value);
-		std::iostream& operator << (long value);
-		std::iostream& operator << (long long value);
+		std::ostream& operator << (bool value) override;
+		std::ostream& operator << (short value) override;
+		std::ostream& operator << (int value) override;
+		std::ostream& operator << (long value) override;
+		std::ostream& operator << (long long value) override;
 
-		std::iostream& operator << (unsigned short value);
-		std::iostream& operator << (unsigned int value);
-		std::iostream& operator << (unsigned long value);
-		std::iostream& operator << (unsigned long long value);
+		std::ostream& operator << (unsigned short value) override;
+		std::ostream& operator << (unsigned int value) override;
+		std::ostream& operator << (unsigned long value) override;
+		std::ostream& operator << (unsigned long long value) override;
 
-		std::iostream& operator << (float value);
-		std::iostream& operator << (double value);
-		std::iostream& operator << (long double value);
+		std::ostream& operator << (float value) override;
+		std::ostream& operator << (double value) override;
+		std::ostream& operator << (long double value) override;
 
-		std::iostream& operator >> (bool& value);
-		std::iostream& operator >> (short& value);
-		std::iostream& operator >> (int& value);
-		std::iostream& operator >> (long& value);
-		std::iostream& operator >> (long long& value);
+		std::istream& operator >> (bool& value) override;
+		std::istream& operator >> (short& value) override;
+		std::istream& operator >> (int& value) override;
+		std::istream& operator >> (long& value) override;
+		std::istream& operator >> (long long& value) override;
 
-		std::iostream& operator >> (unsigned short& value);
-		std::iostream& operator >> (unsigned int& value);
-		std::iostream& operator >> (unsigned long& value);
-		std::iostream& operator >> (unsigned long long& value);
+		std::istream& operator >> (unsigned short& value) override;
+		std::istream& operator >> (unsigned int& value) override;
+		std::istream& operator >> (unsigned long& value) override;
+		std::istream& operator >> (unsigned long long& value) override;
 
-		std::iostream& operator >> (float& value);
-		std::iostream& operator >> (double& value);
-		std::iostream& operator >> (long double& value);
+		std::istream& operator >> (float& value) override;
+		std::istream& operator >> (double& value) override;
+		std::istream& operator >> (long double& value) override;
 
-		virtual std::iostream& operator << (const ContainerT& data);
+		virtual std::ostream& operator << (const ContainerT& data);
 
-		virtual std::iostream& operator >> (ContainerT& data);
+		virtual std::istream& operator >> (ContainerT& data);
 
-		virtual std::iostream& operator << (const std::string& data);
+		virtual std::ostream& operator << (const std::string& data);
 
-		virtual std::iostream& operator >> (std::string& data);
+		virtual std::istream& operator >> (std::string& data);
 
-		virtual std::iostream& operator << (std::string_view data);
+		virtual std::ostream& operator << (std::string_view data);
 
 		virtual ~BaseIOSocketStream() = default;
 	};
@@ -270,7 +270,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator << (bool value)
+	std::ostream& BaseIOSocketStream<ContainerT>::operator << (bool value)
 	{
 		this->sendFundamental(value);
 
@@ -278,7 +278,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator << (short value)
+	std::ostream& BaseIOSocketStream<ContainerT>::operator << (short value)
 	{
 		this->sendFundamental(value);
 
@@ -286,7 +286,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator << (int value)
+	std::ostream& BaseIOSocketStream<ContainerT>::operator << (int value)
 	{
 		this->sendFundamental(value);
 
@@ -294,7 +294,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator << (long value)
+	std::ostream& BaseIOSocketStream<ContainerT>::operator << (long value)
 	{
 		this->sendFundamental(value);
 
@@ -302,7 +302,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator << (long long value)
+	std::ostream& BaseIOSocketStream<ContainerT>::operator << (long long value)
 	{
 		this->sendFundamental(value);
 
@@ -310,7 +310,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator << (unsigned short value)
+	std::ostream& BaseIOSocketStream<ContainerT>::operator << (unsigned short value)
 	{
 		this->sendFundamental(value);
 
@@ -318,7 +318,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator << (unsigned int value)
+	std::ostream& BaseIOSocketStream<ContainerT>::operator << (unsigned int value)
 	{
 		this->sendFundamental(value);
 
@@ -326,7 +326,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator << (unsigned long value)
+	std::ostream& BaseIOSocketStream<ContainerT>::operator << (unsigned long value)
 	{
 		this->sendFundamental(value);
 
@@ -334,7 +334,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator << (unsigned long long value)
+	std::ostream& BaseIOSocketStream<ContainerT>::operator << (unsigned long long value)
 	{
 		this->sendFundamental(value);
 
@@ -342,7 +342,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator << (float value)
+	std::ostream& BaseIOSocketStream<ContainerT>::operator << (float value)
 	{
 		this->sendFundamental(value);
 
@@ -350,7 +350,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator << (double value)
+	std::ostream& BaseIOSocketStream<ContainerT>::operator << (double value)
 	{
 		this->sendFundamental(value);
 
@@ -358,7 +358,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator << (long double value)
+	std::ostream& BaseIOSocketStream<ContainerT>::operator << (long double value)
 	{
 		this->sendFundamental(value);
 
@@ -366,7 +366,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (bool& value)
+	std::istream& BaseIOSocketStream<ContainerT>::operator >> (bool& value)
 	{
 		this->receiveFundamental(value);
 
@@ -374,7 +374,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (short& value)
+	std::istream& BaseIOSocketStream<ContainerT>::operator >> (short& value)
 	{
 		this->receiveFundamental(value);
 
@@ -382,7 +382,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (int& value)
+	std::istream& BaseIOSocketStream<ContainerT>::operator >> (int& value)
 	{
 		this->receiveFundamental(value);
 
@@ -390,7 +390,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (long& value)
+	std::istream& BaseIOSocketStream<ContainerT>::operator >> (long& value)
 	{
 		this->receiveFundamental(value);
 
@@ -398,7 +398,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (long long& value)
+	std::istream& BaseIOSocketStream<ContainerT>::operator >> (long long& value)
 	{
 		this->receiveFundamental(value);
 
@@ -406,7 +406,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (unsigned short& value)
+	std::istream& BaseIOSocketStream<ContainerT>::operator >> (unsigned short& value)
 	{
 		this->receiveFundamental(value);
 
@@ -414,7 +414,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (unsigned int& value)
+	std::istream& BaseIOSocketStream<ContainerT>::operator >> (unsigned int& value)
 	{
 		this->receiveFundamental(value);
 
@@ -422,7 +422,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (unsigned long& value)
+	std::istream& BaseIOSocketStream<ContainerT>::operator >> (unsigned long& value)
 	{
 		this->receiveFundamental(value);
 
@@ -430,7 +430,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (unsigned long long& value)
+	std::istream& BaseIOSocketStream<ContainerT>::operator >> (unsigned long long& value)
 	{
 		this->receiveFundamental(value);
 
@@ -438,7 +438,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (float& value)
+	std::istream& BaseIOSocketStream<ContainerT>::operator >> (float& value)
 	{
 		this->receiveFundamental(value);
 
@@ -446,7 +446,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (double& value)
+	std::istream& BaseIOSocketStream<ContainerT>::operator >> (double& value)
 	{
 		this->receiveFundamental(value);
 
@@ -454,7 +454,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (long double& value)
+	std::istream& BaseIOSocketStream<ContainerT>::operator >> (long double& value)
 	{
 		this->receiveFundamental(value);
 
@@ -462,7 +462,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator << (const ContainerT& data)
+	std::ostream& BaseIOSocketStream<ContainerT>::operator << (const ContainerT& data)
 	{
 		if (buffer->sputn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 		{
@@ -473,7 +473,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (ContainerT& data)
+	std::istream& BaseIOSocketStream<ContainerT>::operator >> (ContainerT& data)
 	{
 		if constexpr (utility::checkResize<ContainerT>::value)
 		{
@@ -496,7 +496,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator << (const std::string& data)
+	std::ostream& BaseIOSocketStream<ContainerT>::operator << (const std::string& data)
 	{
 		if (buffer->sputn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 		{
@@ -507,7 +507,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator >> (std::string& data)
+	std::istream& BaseIOSocketStream<ContainerT>::operator >> (std::string& data)
 	{
 		buffer->setInputType();
 
@@ -527,7 +527,7 @@ namespace streams
 	}
 
 	template<typename ContainerT>
-	std::iostream& BaseIOSocketStream<ContainerT>::operator << (std::string_view data)
+	std::ostream& BaseIOSocketStream<ContainerT>::operator << (std::string_view data)
 	{
 		if (buffer->sputn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 		{
