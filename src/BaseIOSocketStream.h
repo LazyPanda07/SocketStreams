@@ -86,35 +86,35 @@ namespace streams
 		/// @return 
 		BaseIOSocketStream<ContainerT>& operator = (BaseIOSocketStream<ContainerT>&& other) noexcept;
 
-		std::ostream& operator << (bool value) override;
-		std::ostream& operator << (short value) override;
-		std::ostream& operator << (int value) override;
-		std::ostream& operator << (long value) override;
-		std::ostream& operator << (long long value) override;
+		std::ostream& operator << (bool value);
+		std::ostream& operator << (short value);
+		std::ostream& operator << (int value);
+		std::ostream& operator << (long value);
+		std::ostream& operator << (long long value);
 
-		std::ostream& operator << (unsigned short value) override;
-		std::ostream& operator << (unsigned int value) override;
-		std::ostream& operator << (unsigned long value) override;
-		std::ostream& operator << (unsigned long long value) override;
+		std::ostream& operator << (unsigned short value);
+		std::ostream& operator << (unsigned int value);
+		std::ostream& operator << (unsigned long value);
+		std::ostream& operator << (unsigned long long value);
 
-		std::ostream& operator << (float value) override;
-		std::ostream& operator << (double value) override;
-		std::ostream& operator << (long double value) override;
+		std::ostream& operator << (float value);
+		std::ostream& operator << (double value);
+		std::ostream& operator << (long double value);
 
-		std::istream& operator >> (bool& value) override;
-		std::istream& operator >> (short& value) override;
-		std::istream& operator >> (int& value) override;
-		std::istream& operator >> (long& value) override;
-		std::istream& operator >> (long long& value) override;
+		std::istream& operator >> (bool& value);
+		std::istream& operator >> (short& value);
+		std::istream& operator >> (int& value);
+		std::istream& operator >> (long& value);
+		std::istream& operator >> (long long& value);
 
-		std::istream& operator >> (unsigned short& value) override;
-		std::istream& operator >> (unsigned int& value) override;
-		std::istream& operator >> (unsigned long& value) override;
-		std::istream& operator >> (unsigned long long& value) override;
+		std::istream& operator >> (unsigned short& value);
+		std::istream& operator >> (unsigned int& value);
+		std::istream& operator >> (unsigned long& value);
+		std::istream& operator >> (unsigned long long& value);
 
-		std::istream& operator >> (float& value) override;
-		std::istream& operator >> (double& value) override;
-		std::istream& operator >> (long double& value) override;
+		std::istream& operator >> (float& value);
+		std::istream& operator >> (double& value);
+		std::istream& operator >> (long double& value);
 
 		virtual std::ostream& operator << (const ContainerT& data);
 
