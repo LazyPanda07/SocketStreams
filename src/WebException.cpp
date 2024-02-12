@@ -1,9 +1,11 @@
 #include "WebException.h"
 
-#ifndef __LINUX__
+#ifdef __LINUX__
+#include <cstring>
+#else
 #include <WinSock2.h>
 #include <winbase.h>
-#endif // !__LINUX__
+#endif // __LINUX__
 
 namespace web
 {
