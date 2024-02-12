@@ -34,10 +34,6 @@
     <ClInclude Include="src\WebException.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\CheckAtCompileTime.cpp" />
-    <ClCompile Include="src\BaseIOSocketBuffer.cpp" />
-    <ClCompile Include="src\BaseIOSocketStream.cpp" />
-    <ClCompile Include="src\BaseNetwork.cpp" />
     <ClCompile Include="src\WebException.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

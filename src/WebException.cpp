@@ -1,12 +1,22 @@
 #include "WebException.h"
 
+#ifndef __LINUX__
 #include <WinSock2.h>
 #include <winbase.h>
+#endif // !__LINUX__
 
 namespace web
 {
 	namespace exceptions
 	{
+#ifdef __LINUX__
+		WebException::WebException() :
+			runtime_error(strerror(errno)),
+			errorCode(errno)
+		{
+
+		}
+#else
 		WebException::WebException() :
 			runtime_error(""),
 			errorCode(WSAGetLastError())
@@ -274,6 +284,7 @@ namespace web
 				break;
 			}
 		}
+#endif // __LINUX__
 
 		const char* WebException::what() const noexcept
 		{

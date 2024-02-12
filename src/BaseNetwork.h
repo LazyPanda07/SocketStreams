@@ -5,13 +5,28 @@
 #include <string>
 #include <any>
 
+#ifdef __LINUX__
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#else
 #include <WinSock2.h>
 #include <WS2tcpip.h>
+#endif // !__LINUX__
 
 #include "CheckAtCompileTime.h"
 #include "WebException.h"
 
-#pragma comment (lib,"ws2_32.lib")
+#ifndef __LINUX__
+#pragma comment (lib, "ws2_32.lib")
+#endif // !__LINUX__
+
+#ifdef __LINUX__
+#define SOCKET int
+#define INVALID_SOCKET -1
+#define SOCKET_ERROR -1
+#define DWORD uint32_t
+#endif // __LINUX__
 
 namespace web
 {
@@ -123,12 +138,19 @@ namespace web
 		mode(mode),
 		clientSocket(INVALID_SOCKET)
 	{
+#ifdef __LINUX__
+		timeval timeoutValue;
+
+		timeoutValue.tv_usec = timeout * 1000;
+#else
 		WSADATA wsaData;
+		DWORD timeoutValue = timeout;
 
 		if (WSAStartup(MAKEWORD(2, 2), &wsaData))
 		{
 			throw exceptions::WebException();
 		}
+#endif // __LINUX__
 
 		addrinfo* info = nullptr;
 		addrinfo hints = {};
@@ -142,28 +164,26 @@ namespace web
 			throw exceptions::WebException();
 		}
 
-		clientSocket = socket(info->ai_family, info->ai_socktype, info->ai_protocol);
-
-		if (clientSocket == INVALID_SOCKET)
+		if (clientSocket = socket(info->ai_family, info->ai_socktype, info->ai_protocol); clientSocket == INVALID_SOCKET)
 		{
 			freeaddrinfo(info);
 
 			throw exceptions::WebException();
 		}
 
-		if (connect(clientSocket, info->ai_addr, static_cast<int>(info->ai_addrlen)))
+		if (connect(clientSocket, info->ai_addr, static_cast<int>(info->ai_addrlen)) == SOCKET_ERROR)
 		{
 			freeaddrinfo(info);
 
 			throw exceptions::WebException();
 		}
 
-		if (setsockopt(clientSocket, SOL_SOCKET, SO_SNDTIMEO, reinterpret_cast<const char*>(&timeout), sizeof(timeout)))
+		if (setsockopt(clientSocket, SOL_SOCKET, SO_SNDTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeout)) == SOCKET_ERROR)
 		{
 			throw exceptions::WebException();
 		}
 
-		if (setsockopt(clientSocket, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<const char*>(&timeout), sizeof(timeout)))
+		if (setsockopt(clientSocket, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeout)) == SOCKET_ERROR)
 		{
 			throw exceptions::WebException();
 		}
