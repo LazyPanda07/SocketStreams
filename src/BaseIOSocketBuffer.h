@@ -300,7 +300,7 @@ namespace buffers
 	}
 
 	template<typename ContainerT>
-	typename ContainerT BaseIOSocketBuffer<ContainerT>::dataPart() noexcept
+	ContainerT BaseIOSocketBuffer<ContainerT>::dataPart() noexcept
 	{
 		return ContainerT(pbase(), pptr());
 	}

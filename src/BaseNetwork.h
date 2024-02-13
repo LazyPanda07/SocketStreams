@@ -9,6 +9,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
+#include <unistd.h>
 #else
 #include <WinSock2.h>
 #include <WS2tcpip.h>
@@ -22,6 +23,7 @@
 #endif // !__LINUX__
 
 #ifdef __LINUX__
+#define closesocket close
 #define SOCKET int
 #define INVALID_SOCKET -1
 #define SOCKET_ERROR -1
