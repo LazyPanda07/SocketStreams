@@ -13,10 +13,10 @@ namespace web
 	{
 #ifdef __LINUX__
 		WebException::WebException() :
-			runtime_error(strerror(errno)),
+			runtime_error(""),
 			errorCode(errno)
 		{
-
+			data = strerror(errno);
 		}
 #else
 		WebException::WebException() :
