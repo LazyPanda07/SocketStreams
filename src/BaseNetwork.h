@@ -150,7 +150,7 @@ namespace web
 
 		if (WSAStartup(MAKEWORD(2, 2), &wsaData))
 		{
-			throw exceptions::WebException();
+			THROW_WEB_EXCEPTION;
 		}
 #endif // __LINUX__
 
@@ -163,31 +163,31 @@ namespace web
 
 		if (getaddrinfo(ip.data(), port.data(), &hints, &info))
 		{
-			throw exceptions::WebException();
+			THROW_WEB_EXCEPTION;
 		}
 
 		if (clientSocket = socket(info->ai_family, info->ai_socktype, info->ai_protocol); clientSocket == INVALID_SOCKET)
 		{
 			freeaddrinfo(info);
 
-			throw exceptions::WebException();
+			THROW_WEB_EXCEPTION;
 		}
 
 		if (connect(clientSocket, info->ai_addr, static_cast<int>(info->ai_addrlen)) == SOCKET_ERROR)
 		{
 			freeaddrinfo(info);
 
-			throw exceptions::WebException();
+			THROW_WEB_EXCEPTION;
 		}
 
 		if (setsockopt(clientSocket, SOL_SOCKET, SO_SNDTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeout)) == SOCKET_ERROR)
 		{
-			throw exceptions::WebException();
+			THROW_WEB_EXCEPTION;
 		}
 
 		if (setsockopt(clientSocket, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeout)) == SOCKET_ERROR)
 		{
-			throw exceptions::WebException();
+			THROW_WEB_EXCEPTION;
 		}
 
 		freeaddrinfo(info);
@@ -326,7 +326,7 @@ namespace web
 
 			if (lastSend == SOCKET_ERROR)
 			{
-				throw exceptions::WebException();
+				THROW_WEB_EXCEPTION;
 			}
 
 			totalSent += lastSend;
@@ -349,7 +349,7 @@ namespace web
 
 			if (lastReceive == SOCKET_ERROR || !lastReceive)
 			{
-				throw exceptions::WebException();
+				THROW_WEB_EXCEPTION;
 			}
 
 			totalReceive += lastReceive;

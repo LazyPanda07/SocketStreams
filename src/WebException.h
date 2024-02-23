@@ -15,10 +15,15 @@ namespace web
 		{
 		private:
 			std::string data;
+			std::string_view file;
 			int errorCode;
+			int line;
+
+		private:
+			WebException();
 
 		public:
-			WebException();
+			WebException(int line, std::string_view file);
 
 			WebException(const exceptions::WebException& other) = default;
 
@@ -28,9 +33,19 @@ namespace web
 
 			int getErrorCode() const noexcept;
 
+			int getLine() const noexcept;
+
+			std::string_view getFile() const noexcept;
+
 			~WebException() = default;
 		};
 	}
 }
 
 #endif // !__WEB_EXCEPTION__
+
+#ifndef THROW_WEB_EXCEPTION
+
+#define THROW_WEB_EXCEPTION { throw web::exceptions::WebException(__LINE__, __FILE__); }
+
+#endif
