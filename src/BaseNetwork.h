@@ -180,7 +180,7 @@ namespace web
 			THROW_WEB_EXCEPTION;
 		}
 
-		if (setsockopt(clientSocket, SOL_SOCKET, SO_SNDTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeoutValue) == SOCKET_ERROR)
+		if (setsockopt(clientSocket, SOL_SOCKET, SO_SNDTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeoutValue)) == SOCKET_ERROR)
 		{
 			THROW_WEB_EXCEPTION;
 		}
