@@ -143,7 +143,8 @@ namespace web
 #ifdef __LINUX__
 		timeval timeoutValue;
 
-		timeoutValue.tv_usec = timeout * 1000;
+		timeoutValue.tv_sec = timeout / 1000;
+		timeoutValue.tv_usec = (timeout - timeoutValue.tv_sec * 1000) * 1000;
 #else
 		WSADATA wsaData;
 		DWORD timeoutValue = timeout;
