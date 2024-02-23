@@ -132,7 +132,7 @@ namespace streams
 	template<typename ContainerT>
 	void BaseIOSocketStream<ContainerT>::logAndThrowWebException()
 	{
-		web::exceptions::WebException e;
+		web::exceptions::WebException e(__LINE__, __FILE__);
 
 		buffer->getNetwork()->log(e.what());
 
