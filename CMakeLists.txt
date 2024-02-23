@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 project(SocketStreams)
 
 add_library(
-	${PROJECT} STATIC
+	${PROJECT_NAME} STATIC
 	src/WebException.cpp
 )
 
