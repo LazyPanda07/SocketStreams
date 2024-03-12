@@ -334,6 +334,10 @@ namespace web
 			{
 				THROW_WEB_EXCEPTION;
 			}
+			else if (!lastSend)
+			{
+				return totalSent;
+			}
 
 			totalSent += lastSend;
 
@@ -356,6 +360,10 @@ namespace web
 			if (lastReceive == SOCKET_ERROR || !lastReceive)
 			{
 				THROW_WEB_EXCEPTION;
+			}
+			else if (!lastReceive)
+			{
+				return totalReceive;
 			}
 
 			totalReceive += lastReceive;

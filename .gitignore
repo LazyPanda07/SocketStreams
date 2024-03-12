@@ -34,8 +34,5 @@
 # VS folder
 .vs/
 
-# Solution file
-SocketStreams.sln
-
 # Binaries
 bin/
