@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.27.0)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install-dir)
+set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install-dir CACHE STRING "")
 
 if (UNIX)
 	add_definitions(-D__LINUX__)
