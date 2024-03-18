@@ -75,7 +75,7 @@ namespace web
 		/// @brief Receive data through network
 		/// @param data 
 		/// @return Total number of received bytes 
-		virtual int receiveData(std::string& data, );
+		virtual int receiveData(std::string& data, bool& endOfStream);
 
 		/// @brief Errors logging, default implementation uses clog
 		/// @param message Log message
