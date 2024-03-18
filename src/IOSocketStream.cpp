@@ -312,7 +312,7 @@ namespace streams
 		}
 		catch (const web::exceptions::WebException&)
 		{
-			setstate(std::ios_bas::failbit);
+			setstate(std::ios_base::failbit);
 
 			throw;
 		}
