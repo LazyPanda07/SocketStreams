@@ -129,9 +129,9 @@ namespace buffers
 		switch (type)
 		{
 		case IOType::input:
-			lastPacketSize = network->receiveData(inBuffer);
+			lastPacketSize = network->receiveData(inBuffer, endOfStream);
 
-			if (lastPacketSize == -1)
+			if (endOfStream)
 			{
 				return -1;
 			}
@@ -141,11 +141,11 @@ namespace buffers
 			break;
 
 		case IOType::output:
-			lastPacketSize = network->sendData(outBuffer);
+			lastPacketSize = network->sendData(outBuffer, endOfStream);
 
 			pbump(static_cast<int>(-(pptr() - pbase())));
 
-			if (lastPacketSize == -1)
+			if (endOfStream)
 			{
 				return -1;
 			}
@@ -239,8 +239,13 @@ namespace buffers
 		return network;
 	}
 
-	int IOSocketBuffer::getLastPacketSize()
+	int IOSocketBuffer::getLastPacketSize() const
 	{
 		return lastPacketSize;
+	}
+
+	bool IOSocketBuffer::getEndOfStream() const
+	{
+		return endOfStream;
 	}
 }

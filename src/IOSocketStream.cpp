@@ -2,20 +2,6 @@
 
 namespace streams
 {
-	void IOSocketStream::logAndThrowWebException()
-	{
-		web::exceptions::WebException e(__LINE__, __FILE__);
-
-		buffer->getNetwork()->log(e.what());
-
-		if (!fail())
-		{
-			setstate(failbit);
-		}
-
-		throw e;
-	}
-
 	IOSocketStream::IOSocketStream() :
 		std::iostream(nullptr)
 	{
@@ -259,7 +245,7 @@ namespace streams
 	{
 		if (buffer->sputn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 		{
-			this->logAndThrowWebException();
+			setstate(std::ios_base::eofbit();
 		}
 
 		return *this;
@@ -271,14 +257,16 @@ namespace streams
 
 		if (buffer->pubsync() == -1)
 		{
-			this->logAndThrowWebException();
+			setstate(std::ios_base::eofbit();
+
+			return *this;
 		}
 
 		data.resize(static_cast<size_t>(buffer->getLastPacketSize()));
 
 		if (buffer->sgetn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 		{
-			this->logAndThrowWebException();
+			setstate(std::ios_base::eofbit();
 		}
 
 		return *this;
@@ -290,14 +278,16 @@ namespace streams
 
 		if (buffer->pubsync() == -1)
 		{
-			this->logAndThrowWebException();
+			setstate(std::ios_base::eofbit();
+
+			return *this;
 		}
 
 		data.resize(static_cast<size_t>(buffer->getLastPacketSize()));
 
 		if (buffer->sgetn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 		{
-			this->logAndThrowWebException();
+			setstate(std::ios_base::eofbit();
 		}
 
 		return *this;
@@ -307,7 +297,7 @@ namespace streams
 	{
 		if (buffer->sputn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 		{
-			this->logAndThrowWebException();
+			setstate(std::ios_base::eofbit();
 		}
 
 		return *this;

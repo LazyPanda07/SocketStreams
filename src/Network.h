@@ -60,22 +60,22 @@ namespace web
 		/// @brief Send data through network
 		/// @param data 
 		/// @return Total number of sended bytes 
-		virtual int sendData(const std::vector<char>& data);
+		virtual int sendData(const std::vector<char>& data, bool& endOfStream);
 
 		/// @brief Send data through network
 		/// @param data 
 		/// @return Total number of sended bytes 
-		virtual int sendData(std::string_view data);
+		virtual int sendData(std::string_view data, bool& endOfStream);
 
 		/// @brief Receive data through network
 		/// @param data 
 		/// @return Total number of received bytes 
-		virtual int receiveData(std::vector<char>& data);
+		virtual int receiveData(std::vector<char>& data, bool& endOfStream);
 
 		/// @brief Receive data through network
 		/// @param data 
 		/// @return Total number of received bytes 
-		virtual int receiveData(std::string& data);
+		virtual int receiveData(std::string& data, );
 
 		/// @brief Errors logging, default implementation uses clog
 		/// @param message Log message
@@ -93,7 +93,7 @@ namespace web
 		/// @return Total number of sended bytes 
 		/// @exception WebException  
 		template<typename DataT>
-		int sendBytes(const DataT* const data, int count);
+		int sendBytes(const DataT* const data, int count, bool& endOfStream);
 
 		/// @brief 
 		/// @tparam DataT 
@@ -102,16 +102,18 @@ namespace web
 		/// @return Total number of received bytes 
 		/// @exception WebException  
 		template<typename DataT>
-		int receiveBytes(DataT* const data, int count);
+		int receiveBytes(DataT* const data, int count, bool& endOfStream);
 
 		virtual ~Network();
 	};
 
 	template<typename DataT>
-	int Network::sendBytes(const DataT* const data, int count)
+	int Network::sendBytes(const DataT* const data, int count, bool& endOfStream)
 	{
 		int lastSend = 0;
 		int totalSent = 0;
+
+		endOfStream = false;
 
 		do
 		{
@@ -123,6 +125,8 @@ namespace web
 			}
 			else if (!lastSend)
 			{
+				endOfStream = true;
+
 				return totalSent;
 			}
 
@@ -134,10 +138,12 @@ namespace web
 	}
 
 	template<typename DataT>
-	int Network::receiveBytes(DataT* const data, int count)
+	int Network::receiveBytes(DataT* const data, int count, bool& endOfStream)
 	{
 		int lastReceive = 0;
 		int totalReceive = 0;
+
+		endOfStream = false;
 
 		do
 		{
@@ -149,6 +155,8 @@ namespace web
 			}
 			else if (!lastReceive)
 			{
+				endOfStream = true;
+
 				return totalReceive;
 			}
 

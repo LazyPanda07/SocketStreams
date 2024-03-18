@@ -39,6 +39,7 @@ namespace buffers
 		std::vector<char> inBuffer;
 		std::unique_ptr<web::Network> network;
 		int lastPacketSize;
+		bool endOfStream;
 		IOType type;
 
 	protected:
@@ -110,7 +111,9 @@ namespace buffers
 
 		std::unique_ptr<web::Network>& getNetwork();
 
-		virtual int getLastPacketSize();
+		int getLastPacketSize() const;
+
+		bool getEndOfStream() const;
 
 		virtual ~IOSocketBuffer() = default;
 	};

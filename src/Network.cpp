@@ -65,96 +65,116 @@ namespace web
 
 	}
 
-	int Network::sendData(const std::vector<char>& data)
+	int Network::sendData(const std::vector<char>& data, bool& endOfStream)
 	{
 		try
 		{
 			int size = static_cast<int>(data.size());
 
-			this->sendBytes(&size, sizeof(size));
+			int lastPacketSize = this->sendBytes(&size, sizeof(size), endOfStream);
 
-			return this->sendBytes(data.data(), size);
+			if (endOfStream)
+			{
+				return lastPacketSize;
+			}
+
+			return this->sendBytes(data.data(), size, endOfStream);
 		}
 		catch (const exceptions::WebException& e)
 		{
 			this->log(e.what());
 
-			return -1;
+			throw;
 		}
 	}
 
-	int Network::sendData(std::string_view data)
+	int Network::sendData(std::string_view data, bool& endOfStream)
 	{
 		try
 		{
 			int size = static_cast<int>(data.size());
 
-			this->sendBytes(&size, sizeof(size));
+			int lastPacketSize = this->sendBytes(&size, sizeof(size), endOfStream);
 
-			return this->sendBytes(data.data(), size);
+			if (endOfStream)
+			{
+				return lastPacketSize;
+			}
+
+			return this->sendBytes(data.data(), size, endOfStream);
 		}
 		catch (const exceptions::WebException& e)
 		{
 			this->log(e.what());
 
-			return -1;
+			throw;
 		}
 	}
 
-	int Network::receiveData(std::vector<char>& data)
+	int Network::receiveData(std::vector<char>& data, bool& endOfStream)
 	{
 		try
 		{
 			int size = 0;
 
-			this->receiveBytes(&size, sizeof(size));
+			int lastPacketSize = this->receiveBytes(&size, sizeof(size), endOfStream);
+
+			if (endOfStream)
+			{
+				return lastPacketSize;
+			}
 
 			if (data.size() < size)
 			{
 				data.resize(static_cast<size_t>(size));
 			}
 
-			return this->receiveBytes(data.data(), size);
+			return this->receiveBytes(data.data(), size, endOfStream);
 		}
 		catch (const exceptions::WebException& e)
 		{
 			this->log(e.what());
 
-			return -1;
+			throw;
 		}
 	}
 
-	int Network::receiveData(std::string& data)
+	int Network::receiveData(std::string& data, bool& endOfStream)
 	{
 		try
 		{
 			int size = 0;
 
-			this->receiveBytes(&size, sizeof(size));
+			int lastPacketSize = this->receiveBytes(&size, sizeof(size), endOfStream);
+
+			if (endOfStream)
+			{
+				return lastPacketSize;
+			}
 
 			if (data.size() < size)
 			{
 				data.resize(static_cast<size_t>(size));
 			}
 
-			return this->receiveBytes(data.data(), size);
+			return this->receiveBytes(data.data(), size, endOfStream);
 		}
 		catch (const exceptions::WebException& e)
 		{
 			this->log(e.what());
 
-			return -1;
+			throw;
 		}
-	}
-
-	SOCKET Network::getClientSocket() const
-	{
-		return clientSocket;
 	}
 
 	void Network::log(const std::string& message, std::any&& data)
 	{
 		std::clog << message;
+	}
+
+	SOCKET Network::getClientSocket() const
+	{
+		return clientSocket;
 	}
 
 	Network::~Network()

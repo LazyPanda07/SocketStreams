@@ -13,10 +13,6 @@ namespace streams
 		std::unique_ptr<buffers::IOSocketBuffer> buffer;
 
 	protected:
-		/// @brief This method should throw web::exceptions::WebException
-		virtual void logAndThrowWebException();
-
-	protected:
 		template<typename T>
 		int sendFundamental(T value);
 
@@ -124,16 +120,20 @@ namespace streams
 	{
 		try
 		{
-			return buffer->getNetwork()->sendBytes(&value, sizeof(value));
+			bool endOfStream = false;
+
+			int lastPacketSize = buffer->getNetwork()->sendBytes(&value, sizeof(value), endOfStream);
+
+			if (endOfStream)
+			{
+				setstate(std::ios_base::eofbit);
+			}
+
+			return lastPacketSize;
 		}
 		catch (const web::exceptions::WebException& e)
 		{
-			buffer->getNetwork()->log(e.what());
-
-			if (!fail())
-			{
-				setstate(failbit);
-			}
+			setstate(failbit);
 
 			throw;
 		}
@@ -144,16 +144,20 @@ namespace streams
 	{
 		try
 		{
-			return buffer->getNetwork()->receiveBytes(&value, sizeof(value));
+			bool endOfStream = false;
+
+ 			int lastPacketSize = buffer->getNetwork()->receiveBytes(&value, sizeof(value), endOfStream);
+
+			if (endOfStream)
+			{
+				setstate(std::ios_base::eofbit);
+			}
+
+			return lastPacketSize;
 		}
 		catch (const web::exceptions::WebException& e)
 		{
-			buffer->getNetwork()->log(e.what());
-
-			if (!fail())
-			{
-				setstate(failbit);
-			}
+			setstate(failbit);
 
 			throw;
 		}
