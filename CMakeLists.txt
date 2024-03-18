@@ -11,8 +11,11 @@ project(SocketStreams)
 
 add_library(
 	${PROJECT_NAME} STATIC
+	src/Network.cpp
 	src/WebException.cpp
 	src/SocketStreamsUtility.cpp
+	src/IOSocketBuffer.cpp
+	src/IOSocketStream.cpp
 )
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)

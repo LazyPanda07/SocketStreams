@@ -28,13 +28,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CheckAtCompileTime.h" />
-    <ClInclude Include="src\BaseIOSocketStream.h" />
-    <ClInclude Include="src\BaseNetwork.h" />
-    <ClInclude Include="src\BaseIOSocketBuffer.h" />
+    <ClInclude Include="src\IOSocketStream.h" />
+    <ClInclude Include="src\Network.h" />
+    <ClInclude Include="src\IOSocketBuffer.h" />
     <ClInclude Include="src\SocketStreamsUtility.h" />
     <ClInclude Include="src\WebException.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\IOSocketBuffer.cpp" />
+    <ClCompile Include="src\IOSocketStream.cpp" />
+    <ClCompile Include="src\Network.cpp" />
     <ClCompile Include="src\SocketStreamsUtility.cpp" />
     <ClCompile Include="src\WebException.cpp" />
   </ItemGroup>
