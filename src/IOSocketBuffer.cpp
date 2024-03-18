@@ -239,12 +239,12 @@ namespace buffers
 		return network;
 	}
 
-	int IOSocketBuffer::getLastPacketSize() noexcept const
+	int IOSocketBuffer::getLastPacketSize() const noexcept
 	{
 		return lastPacketSize;
 	}
 
-	bool IOSocketBuffer::getEndOfStream() noexcept const
+	bool IOSocketBuffer::getEndOfStream() const noexcept
 	{
 		return endOfStream;
 	}

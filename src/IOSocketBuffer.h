@@ -111,9 +111,9 @@ namespace buffers
 
 		std::unique_ptr<web::Network>& getNetwork();
 
-		int getLastPacketSize() noexcept const;
+		int getLastPacketSize() const noexcept;
 
-		bool getEndOfStream() noexcept const;
+		bool getEndOfStream() const noexcept;
 
 		virtual ~IOSocketBuffer() = default;
 	};
