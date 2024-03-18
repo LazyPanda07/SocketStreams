@@ -245,7 +245,7 @@ namespace streams
 	{
 		if (buffer->sputn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 		{
-			setstate(std::ios_base::eofbit();
+			setstate(std::ios_base::eofbit);
 		}
 
 		return *this;
@@ -257,7 +257,7 @@ namespace streams
 
 		if (buffer->pubsync() == -1)
 		{
-			setstate(std::ios_base::eofbit();
+			setstate(std::ios_base::eofbit);
 
 			return *this;
 		}
@@ -266,7 +266,7 @@ namespace streams
 
 		if (buffer->sgetn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 		{
-			setstate(std::ios_base::eofbit();
+			setstate(std::ios_base::eofbit);
 		}
 
 		return *this;
@@ -278,7 +278,7 @@ namespace streams
 
 		if (buffer->pubsync() == -1)
 		{
-			setstate(std::ios_base::eofbit();
+			setstate(std::ios_base::eofbit);
 
 			return *this;
 		}
@@ -287,7 +287,7 @@ namespace streams
 
 		if (buffer->sgetn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 		{
-			setstate(std::ios_base::eofbit();
+			setstate(std::ios_base::eofbit);
 		}
 
 		return *this;
@@ -297,7 +297,7 @@ namespace streams
 	{
 		if (buffer->sputn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 		{
-			setstate(std::ios_base::eofbit();
+			setstate(std::ios_base::eofbit);
 		}
 
 		return *this;
