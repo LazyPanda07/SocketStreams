@@ -219,12 +219,12 @@ namespace buffers
 		return *this;
 	}
 
-	void IOSocketBuffer::setInputType()
+	void IOSocketBuffer::setInputType() noexcept
 	{
 		type = IOType::input;
 	}
 
-	void IOSocketBuffer::setOutputType()
+	void IOSocketBuffer::setOutputType() noexcept
 	{
 		type = IOType::output;
 	}
@@ -239,12 +239,12 @@ namespace buffers
 		return network;
 	}
 
-	int IOSocketBuffer::getLastPacketSize() const
+	int IOSocketBuffer::getLastPacketSize() noexcept const
 	{
 		return lastPacketSize;
 	}
 
-	bool IOSocketBuffer::getEndOfStream() const
+	bool IOSocketBuffer::getEndOfStream() noexcept const
 	{
 		return endOfStream;
 	}

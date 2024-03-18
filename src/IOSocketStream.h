@@ -131,9 +131,9 @@ namespace streams
 
 			return lastPacketSize;
 		}
-		catch (const web::exceptions::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			setstate(failbit);
+			setstate(std::ios_base::failbit);
 
 			throw;
 		}
@@ -155,9 +155,9 @@ namespace streams
 
 			return lastPacketSize;
 		}
-		catch (const web::exceptions::WebException& e)
+		catch (const web::exceptions::WebException&)
 		{
-			setstate(failbit);
+			setstate(std::ios_base::failbit);
 
 			throw;
 		}

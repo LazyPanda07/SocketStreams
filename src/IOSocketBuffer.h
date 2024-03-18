@@ -103,17 +103,17 @@ namespace buffers
 		/// @return Self
 		IOSocketBuffer& operator = (IOSocketBuffer&& other) noexcept;
 
-		void setInputType();
+		void setInputType() noexcept;
 
-		void setOutputType();
+		void setOutputType() noexcept;
 
 		const std::unique_ptr<web::Network>& getNetwork() const;
 
 		std::unique_ptr<web::Network>& getNetwork();
 
-		int getLastPacketSize() const;
+		int getLastPacketSize() noexcept const;
 
-		bool getEndOfStream() const;
+		bool getEndOfStream() noexcept const;
 
 		virtual ~IOSocketBuffer() = default;
 	};
