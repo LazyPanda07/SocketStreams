@@ -27,7 +27,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\CheckAtCompileTime.h" />
     <ClInclude Include="src\IOSocketStream.h" />
     <ClInclude Include="src\Network.h" />
     <ClInclude Include="src\IOSocketBuffer.h" />

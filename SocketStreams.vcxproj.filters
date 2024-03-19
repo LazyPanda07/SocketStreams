@@ -18,9 +18,6 @@
     <ClInclude Include="src\WebException.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\CheckAtCompileTime.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="src\Network.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
