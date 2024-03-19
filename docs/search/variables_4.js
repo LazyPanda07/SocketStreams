@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mode_0',['mode',['../classweb_1_1_base_network.html#a90c17f6a91999e2d2c61050a8a1fc44c',1,'web::BaseNetwork']]]
+  ['lastpacketsize_0',['lastPacketSize',['../classbuffers_1_1_i_o_socket_buffer.html#a28cb0e4fb10f8fc00adbd8a966672c8c',1,'buffers::IOSocketBuffer']]]
 ];

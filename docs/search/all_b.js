@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['prohibitresize_0',['prohibitResize',['../classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6a3f10d7a0a2371eeeca9bad8633112876',1,'web::BaseNetwork']]]
+  ['throw_5fweb_5fexception_0',['THROW_WEB_EXCEPTION',['../_web_exception_8h.html#a660b3b132261f4623c60619f709c9b91',1,'WebException.h']]],
+  ['type_1',['type',['../classbuffers_1_1_i_o_socket_buffer.html#a1adabdc96433625da04fd0d7a4bdafbf',1,'buffers::IOSocketBuffer']]]
 ];

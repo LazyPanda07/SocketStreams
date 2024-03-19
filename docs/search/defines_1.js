@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['create_5fcheck_5fclass_0',['CREATE_CHECK_CLASS',['../_check_at_compile_time_8h.html#a04a1ed6b91f47880d53f3638afe74e6a',1,'CheckAtCompileTime.h']]]
+  ['throw_5fweb_5fexception_0',['THROW_WEB_EXCEPTION',['../_web_exception_8h.html#a660b3b132261f4623c60619f709c9b91',1,'WebException.h']]]
 ];

@@ -15,7 +15,6 @@
 #include <WS2tcpip.h>
 #endif // __LINUX__
 
-#include "CheckAtCompileTime.h"
 #include "WebException.h"
 
 #ifndef __LINUX__

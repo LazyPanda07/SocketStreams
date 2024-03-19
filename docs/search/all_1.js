@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['allowresize_0',['allowResize',['../classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6aed72a57c429221dbba7dbd657d0a61e3',1,'web::BaseNetwork']]]
+  ['buffer_0',['buffer',['../classstreams_1_1_i_o_socket_stream.html#aa3c7cc13522c7537af037f598223ae68',1,'streams::IOSocketStream']]],
+  ['buffers_1',['buffers',['../namespacebuffers.html',1,'']]]
 ];

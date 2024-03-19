@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['stringconversion_0',['StringConversion',['../classutility_1_1_string_conversion.html',1,'utility']]]
+  ['webexception_0',['WebException',['../classweb_1_1exceptions_1_1_web_exception.html',1,'web::exceptions']]]
 ];

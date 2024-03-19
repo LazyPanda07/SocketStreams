@@ -108,6 +108,8 @@ namespace streams
 
 		virtual std::istream& operator >> (std::vector<char>& data);
 
+		virtual std::istream& operator << (const std::string& data);
+
 		virtual std::istream& operator >> (std::string& data);
 
 		virtual std::ostream& operator << (std::string_view data);

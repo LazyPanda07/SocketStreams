@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['allowresize_0',['allowResize',['../classweb_1_1_base_network.html#a6a6f55184b86617a96fe82db28470ac6aed72a57c429221dbba7dbd657d0a61e3',1,'web::BaseNetwork']]]
+  ['input_0',['input',['../classbuffers_1_1_i_o_socket_buffer.html#a106c98293f3e6aaa1baf612cda37d6c3aa43c1b0aa53a0c908810c06ab1ff3967',1,'buffers::IOSocketBuffer']]]
 ];

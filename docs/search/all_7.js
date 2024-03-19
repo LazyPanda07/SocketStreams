@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['lastpacketsize_0',['lastPacketSize',['../classbuffers_1_1_base_i_o_socket_buffer.html#a8ac85184c778f64831082e0b9d0e5ec7',1,'buffers::BaseIOSocketBuffer']]],
-  ['log_1',['log',['../classweb_1_1_base_network.html#a93d9e598f732e33996e741659d2ae012',1,'web::BaseNetwork']]],
-  ['logandthrowwebexception_2',['logAndThrowWebException',['../classstreams_1_1_base_i_o_socket_stream.html#ac98ee6edc09def119115639e52972efc',1,'streams::BaseIOSocketStream']]]
+  ['network_0',['network',['../classweb_1_1_network.html',1,'web::Network'],['../classbuffers_1_1_i_o_socket_buffer.html#a7665d8d75bf32b26f4cd454354f67289',1,'buffers::IOSocketBuffer::network'],['../classweb_1_1_network.html#ad275af6ef458689cb15bf4fc52c09d19',1,'web::Network::Network(std::string_view ip, std::string_view port, DWORD timeout=30 &apos;000)'],['../classweb_1_1_network.html#ae8fb19ca81155526f04d4777427b9867',1,'web::Network::Network(SOCKET clientSocket)']]],
+  ['network_2ecpp_1',['Network.cpp',['../_network_8cpp.html',1,'']]],
+  ['network_2eh_2',['Network.h',['../_network_8h.html',1,'']]]
 ];

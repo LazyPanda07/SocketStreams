@@ -290,6 +290,25 @@ namespace streams
 		return *this;
 	}
 	
+	std::istream& IOSocketStream::operator << (const std::string& data)
+	{
+		try
+		{
+			if (buffer->sputn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
+			{
+				setstate(std::ios_base::eofbit);
+			}
+		}
+		catch (const web::exceptions::WebException&)
+		{
+			setstate(std::ios_base::failbit);
+
+			throw;
+		}
+
+		return *this;
+	}
+
 	std::istream& IOSocketStream::operator >> (std::string& data)
 	{
 		buffer->setInputType();
