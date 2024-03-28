@@ -1,5 +1,7 @@
 #include "IOSocketBuffer.h"
 
+#include <iterator>
+
 namespace buffers
 {
 	void IOSocketBuffer::setPointers()
@@ -141,9 +143,11 @@ namespace buffers
 			break;
 
 		case IOType::output:
-			lastPacketSize = network->sendData(outBuffer, endOfStream);
+			int size = static_cast<int>(std::distance(pbase(), pptr()));
 
-			pbump(static_cast<int>(-(pptr() - pbase())));
+			lastPacketSize = network->sendBytes(pbase(), size, endOfStream);
+
+			pbump(-size);
 
 			if (endOfStream)
 			{
@@ -161,7 +165,8 @@ namespace buffers
 		inBuffer(std::move(other.inBuffer)),
 		network(std::move(other.network)),
 		lastPacketSize(other.lastPacketSize),
-		type(other.type)
+		type(other.type),
+		endOfStream(other.endOfStream)
 	{
 
 	}
