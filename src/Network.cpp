@@ -2,6 +2,16 @@
 
 namespace web
 {
+	int Network::sendBytesImplementation(const char* data, int count, int flags)
+	{
+		return send(clientSocket, data, count, flags);
+	}
+
+	int Network::receiveBytesImplementation(char* data, int count, int flags)
+	{
+		return recv(clientSocket, data, count, flags);
+	}
+
 	Network::Network(std::string_view ip, std::string_view port, DWORD timeout) :
 		clientSocket(INVALID_SOCKET)
 	{

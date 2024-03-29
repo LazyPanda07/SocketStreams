@@ -28,23 +28,12 @@ namespace buffers
 		using std::streambuf::gbump;
 
 	protected:
-		enum class IOType
-		{
-			input,
-			output
-		};
-
-	protected:
-		std::vector<char> outBuffer;
-		std::vector<char> inBuffer;
 		std::unique_ptr<web::Network> network;
 		int lastPacketSize;
 		bool endOfStream;
 		IOType type;
 
 	protected:
-		void setPointers();
-
 		int_type overflow(int_type ch) override;
 
 		int_type underflow() override;
@@ -52,8 +41,6 @@ namespace buffers
 		std::streamsize xsputn(const char_type* s, std::streamsize count) override;
 
 		std::streamsize xsgetn(char_type* s, std::streamsize count) override;
-
-		int sync() override;
 
 	public:
 		IOSocketBuffer() = default;
@@ -63,16 +50,11 @@ namespace buffers
 
 		/// @brief Move constructor
 		/// @param other 
-		IOSocketBuffer(IOSocketBuffer&& other) noexcept;
+		IOSocketBuffer(IOSocketBuffer&& other) noexcept = default;
 
 		/// @brief Server side constructor
 		/// @param clientSocket 
 		IOSocketBuffer(SOCKET clientSocket);
-
-		/// @brief Server side constructor
-		/// @param clientSocket 
-		/// @param bufferSize Fixed buffer size
-		IOSocketBuffer(SOCKET clientSocket, size_t bufferSize);
 
 		/// @brief Client side constructor
 		/// @param ip Remote address to connect to
@@ -81,17 +63,7 @@ namespace buffers
 		/// @param mode Receive mode
 		IOSocketBuffer(std::string_view ip, std::string_view port, DWORD timeout = 30'000);
 
-		/// @brief Client side constructor
-		/// @param ip Remote address to connect to
-		/// @param port Remote port to connect to
-		/// @param bufferSize 
-		/// @param timeout Timeout for receive and send calls in milliseconds
-		/// @param mode Receive mode
-		IOSocketBuffer(std::string_view ip, std::string_view port, size_t bufferSize, DWORD timeout = 30'000);
-
 		IOSocketBuffer(std::unique_ptr<web::Network>&& networkSubclass);
-
-		IOSocketBuffer(std::unique_ptr<web::Network>&& networkSubclass, size_t bufferSize);
 
 		/// @brief Deleted copy assignment operator
 		/// @param  
@@ -101,15 +73,11 @@ namespace buffers
 		/// @brief Move assignment operator 
 		/// @param other 
 		/// @return Self
-		IOSocketBuffer& operator = (IOSocketBuffer&& other) noexcept;
+		IOSocketBuffer& operator = (IOSocketBuffer&& other) noexcept = default;
 
-		void setInputType() noexcept;
+		const std::unique_ptr<web::Network>& getNetwork() const noexcept;
 
-		void setOutputType() noexcept;
-
-		const std::unique_ptr<web::Network>& getNetwork() const;
-
-		std::unique_ptr<web::Network>& getNetwork();
+		std::unique_ptr<web::Network>& getNetwork() noexcept;
 
 		int getLastPacketSize() const noexcept;
 

@@ -42,6 +42,11 @@ namespace web
 	protected:
 		SOCKET clientSocket;
 
+	protected:
+		virtual int sendBytesImplementation(const char* data, int count, int flags = NULL);
+
+		virtual int receiveBytesImplementation(char* data, int count, int flags = NULL);
+
 	public:
 		/// @brief Client side constructor
 		/// @param ip Remote address to connect to
@@ -92,7 +97,7 @@ namespace web
 		/// @return Total number of sended bytes 
 		/// @exception WebException  
 		template<typename DataT>
-		int sendBytes(const DataT* const data, int count, bool& endOfStream);
+		int sendBytes(const DataT* data, int count, bool& endOfStream);
 
 		/// @brief 
 		/// @tparam DataT 
@@ -101,13 +106,13 @@ namespace web
 		/// @return Total number of received bytes 
 		/// @exception WebException  
 		template<typename DataT>
-		int receiveBytes(DataT* const data, int count, bool& endOfStream);
+		int receiveBytes(DataT* data, int count, bool& endOfStream);
 
 		virtual ~Network();
 	};
 
 	template<typename DataT>
-	int Network::sendBytes(const DataT* const data, int count, bool& endOfStream)
+	int Network::sendBytes(const DataT* data, int count, bool& endOfStream)
 	{
 		int lastSend = 0;
 		int totalSent = 0;
@@ -116,7 +121,7 @@ namespace web
 
 		do
 		{
-			lastSend = send(clientSocket, reinterpret_cast<const char*>(data) + totalSent, count - totalSent, NULL);
+			lastSend = this->sendBytesImplementation(reinterpret_cast<const char*>(data) + totalSent, count - totalSent);
 
 			if (lastSend == SOCKET_ERROR)
 			{
@@ -137,7 +142,7 @@ namespace web
 	}
 
 	template<typename DataT>
-	int Network::receiveBytes(DataT* const data, int count, bool& endOfStream)
+	int Network::receiveBytes(DataT* data, int count, bool& endOfStream)
 	{
 		int lastReceive = 0;
 		int totalReceive = 0;
@@ -146,7 +151,7 @@ namespace web
 
 		do
 		{
-			lastReceive = recv(clientSocket, reinterpret_cast<char*>(data) + totalReceive, count - totalReceive, NULL);
+			lastReceive = this->receiveBytesImplementation(reinterpret_cast<char*>(data) + totalReceive, count - totalReceive);
 
 			if (lastReceive == SOCKET_ERROR || !lastReceive)
 			{
