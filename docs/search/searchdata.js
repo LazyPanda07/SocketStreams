@@ -5,10 +5,8 @@ var indexSectionsWithContent =
   2: "bsw",
   3: "insw",
   4: "gilnorsuwx~",
-  5: "bceilnot",
-  6: "i",
-  7: "io",
-  8: "_t"
+  5: "bceln",
+  6: "_t"
 };
 
 var indexSectionNames =
@@ -19,9 +17,7 @@ var indexSectionNames =
   3: "files",
   4: "functions",
   5: "variables",
-  6: "enums",
-  7: "enumvalues",
-  8: "defines"
+  6: "defines"
 };
 
 var indexSectionLabels =
@@ -32,8 +28,6 @@ var indexSectionLabels =
   3: "Files",
   4: "Functions",
   5: "Variables",
-  6: "Enumerations",
-  7: "Enumerator",
-  8: "Macros"
+  6: "Macros"
 };
 

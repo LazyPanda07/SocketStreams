@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.1.2</span>
+   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.2.0</span>
    </div>
   </td>
  </tr>
@@ -91,6 +91,7 @@ $(document).ready(function(){initNavTree('classweb_1_1_network.html',''); initRe
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classweb_1_1_network-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">web::Network Class Reference</div></div>
@@ -128,15 +129,22 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af6849ad23ccb0acdeb91232de5a9a24c" id="r_af6849ad23ccb0acdeb91232de5a9a24c"><td class="memItemLeft" align="right" valign="top">SOCKET&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweb_1_1_network.html#af6849ad23ccb0acdeb91232de5a9a24c">getClientSocket</a> () const</td></tr>
 <tr class="memdesc:af6849ad23ccb0acdeb91232de5a9a24c"><td class="mdescLeft">&#160;</td><td class="mdescRight">clientSocket getter  <br /></td></tr>
 <tr class="separator:af6849ad23ccb0acdeb91232de5a9a24c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54ee0aef17b28a391a75e1980bbdbd4a" id="r_a54ee0aef17b28a391a75e1980bbdbd4a"><td class="memTemplParams" colspan="2">template&lt;typename DataT &gt; </td></tr>
-<tr class="memitem:a54ee0aef17b28a391a75e1980bbdbd4a"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classweb_1_1_network.html#a54ee0aef17b28a391a75e1980bbdbd4a">sendBytes</a> (const DataT *const data, int count, bool &amp;endOfStream)</td></tr>
-<tr class="memdesc:a54ee0aef17b28a391a75e1980bbdbd4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send raw bytes through network.  <br /></td></tr>
-<tr class="separator:a54ee0aef17b28a391a75e1980bbdbd4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff298443dc93eeeea1dc89df3f3f3402" id="r_aff298443dc93eeeea1dc89df3f3f3402"><td class="memTemplParams" colspan="2">template&lt;typename DataT &gt; </td></tr>
-<tr class="memitem:aff298443dc93eeeea1dc89df3f3f3402"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classweb_1_1_network.html#aff298443dc93eeeea1dc89df3f3f3402">receiveBytes</a> (DataT *const data, int count, bool &amp;endOfStream)</td></tr>
-<tr class="separator:aff298443dc93eeeea1dc89df3f3f3402"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a851c761bcf4e93d4b1c7f46a29020152" id="r_a851c761bcf4e93d4b1c7f46a29020152"><td class="memTemplParams" colspan="2">template&lt;typename DataT &gt; </td></tr>
+<tr class="memitem:a851c761bcf4e93d4b1c7f46a29020152"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classweb_1_1_network.html#a851c761bcf4e93d4b1c7f46a29020152">sendBytes</a> (const DataT *data, int count, bool &amp;endOfStream)</td></tr>
+<tr class="memdesc:a851c761bcf4e93d4b1c7f46a29020152"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send raw bytes through network.  <br /></td></tr>
+<tr class="separator:a851c761bcf4e93d4b1c7f46a29020152"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd7c1fbb0893f37a4d219f743e48a906" id="r_acd7c1fbb0893f37a4d219f743e48a906"><td class="memTemplParams" colspan="2">template&lt;typename DataT &gt; </td></tr>
+<tr class="memitem:acd7c1fbb0893f37a4d219f743e48a906"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classweb_1_1_network.html#acd7c1fbb0893f37a4d219f743e48a906">receiveBytes</a> (DataT *data, int count, bool &amp;endOfStream)</td></tr>
+<tr class="separator:acd7c1fbb0893f37a4d219f743e48a906"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b91abdc8b7cd04c0491bc7911e390a2" id="r_a1b91abdc8b7cd04c0491bc7911e390a2"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweb_1_1_network.html#a1b91abdc8b7cd04c0491bc7911e390a2">~Network</a> ()</td></tr>
 <tr class="separator:a1b91abdc8b7cd04c0491bc7911e390a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a782af43b82944b912788b1f2825c8e7f" id="r_a782af43b82944b912788b1f2825c8e7f"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweb_1_1_network.html#a782af43b82944b912788b1f2825c8e7f">sendBytesImplementation</a> (const char *data, int count, int flags=NULL)</td></tr>
+<tr class="separator:a782af43b82944b912788b1f2825c8e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6403e3b86f650a8bc56d8291ced5dc28" id="r_a6403e3b86f650a8bc56d8291ced5dc28"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweb_1_1_network.html#a6403e3b86f650a8bc56d8291ced5dc28">receiveBytesImplementation</a> (char *data, int count, int flags=NULL)</td></tr>
+<tr class="separator:a6403e3b86f650a8bc56d8291ced5dc28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -317,8 +325,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aff298443dc93eeeea1dc89df3f3f3402" name="aff298443dc93eeeea1dc89df3f3f3402"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff298443dc93eeeea1dc89df3f3f3402">&#9670;&#160;</a></span>receiveBytes()</h2>
+<a id="acd7c1fbb0893f37a4d219f743e48a906" name="acd7c1fbb0893f37a4d219f743e48a906"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd7c1fbb0893f37a4d219f743e48a906">&#9670;&#160;</a></span>receiveBytes()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -328,7 +336,7 @@ template&lt;typename DataT &gt; </div>
         <tr>
           <td class="memname">int web::Network::receiveBytes </td>
           <td>(</td>
-          <td class="paramtype">DataT *const&#160;</td>
+          <td class="paramtype">DataT *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -371,6 +379,48 @@ template&lt;typename DataT &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a6403e3b86f650a8bc56d8291ced5dc28" name="a6403e3b86f650a8bc56d8291ced5dc28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6403e3b86f650a8bc56d8291ced5dc28">&#9670;&#160;</a></span>receiveBytesImplementation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int web::Network::receiveBytesImplementation </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>flags</em> = <code>NULL</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -466,8 +516,8 @@ template&lt;typename DataT &gt; </div>
 
 </div>
 </div>
-<a id="a54ee0aef17b28a391a75e1980bbdbd4a" name="a54ee0aef17b28a391a75e1980bbdbd4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54ee0aef17b28a391a75e1980bbdbd4a">&#9670;&#160;</a></span>sendBytes()</h2>
+<a id="a851c761bcf4e93d4b1c7f46a29020152" name="a851c761bcf4e93d4b1c7f46a29020152"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a851c761bcf4e93d4b1c7f46a29020152">&#9670;&#160;</a></span>sendBytes()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -477,7 +527,7 @@ template&lt;typename DataT &gt; </div>
         <tr>
           <td class="memname">int web::Network::sendBytes </td>
           <td>(</td>
-          <td class="paramtype">const DataT *const&#160;</td>
+          <td class="paramtype">const DataT *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -522,6 +572,48 @@ template&lt;typename DataT &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a782af43b82944b912788b1f2825c8e7f" name="a782af43b82944b912788b1f2825c8e7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a782af43b82944b912788b1f2825c8e7f">&#9670;&#160;</a></span>sendBytesImplementation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int web::Network::sendBytesImplementation </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>flags</em> = <code>NULL</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
