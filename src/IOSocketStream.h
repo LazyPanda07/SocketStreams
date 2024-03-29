@@ -33,11 +33,6 @@ namespace streams
 		/// @param clientSocket 
 		IOSocketStream(SOCKET clientSocket);
 
-		/// @brief Server side constructor
-		/// @param clientSocket 
-		/// @param bufferSize Fixed buffer size
-		IOSocketStream(SOCKET clientSocket, size_t bufferSize);
-
 		/// @brief Client side contructor
 		/// @param ip Remote address to connect to
 		/// @param port Remote port to connect to
@@ -45,24 +40,11 @@ namespace streams
 		/// @param mode Receive mode
 		IOSocketStream(std::string_view ip, std::string_view port, DWORD timeout = 30'000);
 
-		/// @brief Client side contructor
-		/// @param ip Remote address to connect to
-		/// @param port Remote port to connect to
-		/// @param bufferSize Fixed buffer size
-		/// @param timeout Timeout for receive and send calls in milliseconds
-		/// @param mode Receive mode
-		IOSocketStream(std::string_view ip, std::string_view port, size_t bufferSize, DWORD timeout = 30'000);
-
 		IOSocketStream(std::unique_ptr<buffers::IOSocketBuffer>&& buffer);
 
 		/// @brief Constructor with custom network and default buffer
 		/// @param network 
 		IOSocketStream(std::unique_ptr<web::Network>&& network);
-
-		/// @brief Constructor with custom network and default buffer with buffer size
-		/// @param network 
-		/// @param bufferSize Fixed buffer size
-		IOSocketStream(std::unique_ptr<web::Network>&& network, size_t bufferSize);
 
 		/// @brief Deleted copy assignment operator
 		/// @param  

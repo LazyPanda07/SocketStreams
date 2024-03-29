@@ -15,23 +15,9 @@ namespace streams
 		std::iostream::rdbuf(buffer.get());
 	}
 
-	IOSocketStream::IOSocketStream(SOCKET clientSocket, size_t bufferSize) :
-		std::iostream(nullptr),
-		buffer(std::make_unique<buffers::IOSocketBuffer>(clientSocket, bufferSize))
-	{
-		std::iostream::rdbuf(buffer.get());
-	}
-
 	IOSocketStream::IOSocketStream(std::string_view ip, std::string_view port, DWORD timeout) :
 		std::iostream(nullptr),
 		buffer(std::make_unique<buffers::IOSocketBuffer>(ip, port, timeout))
-	{
-		std::iostream::rdbuf(buffer.get());
-	}
-
-	IOSocketStream::IOSocketStream(std::string_view ip, std::string_view port, size_t bufferSize, DWORD timeout) :
-		std::iostream(nullptr),
-		buffer(std::make_unique<buffers::IOSocketBuffer>(ip, port, bufferSize, timeout))
 	{
 		std::iostream::rdbuf(buffer.get());
 	}
@@ -46,13 +32,6 @@ namespace streams
 	IOSocketStream::IOSocketStream(std::unique_ptr<web::Network>&& network) :
 		std::iostream(nullptr),
 		buffer(std::make_unique<buffers::IOSocketBuffer>(std::move(network)))
-	{
-		std::iostream::rdbuf(buffer.get());
-	}
-
-	IOSocketStream::IOSocketStream(std::unique_ptr<web::Network>&& network, size_t bufferSize) :
-		std::iostream(nullptr),
-		buffer(std::make_unique<buffers::IOSocketBuffer>(std::move(network), bufferSize))
 	{
 		std::iostream::rdbuf(buffer.get());
 	}
