@@ -54,12 +54,12 @@ namespace buffers
 		
 	}
 
-	const std::unique_ptr<web::Network>& IOSocketBuffer::getNetwork() const
+	const std::unique_ptr<web::Network>& IOSocketBuffer::getNetwork() const noexcept
 	{
 		return network;
 	}
 
-	std::unique_ptr<web::Network>& IOSocketBuffer::getNetwork()
+	std::unique_ptr<web::Network>& IOSocketBuffer::getNetwork() noexcept
 	{
 		return network;
 	}

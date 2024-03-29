@@ -31,7 +31,6 @@ namespace buffers
 		std::unique_ptr<web::Network> network;
 		int lastPacketSize;
 		bool endOfStream;
-		IOType type;
 
 	protected:
 		int_type overflow(int_type ch) override;

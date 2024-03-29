@@ -262,19 +262,8 @@ namespace streams
 
 	std::istream& IOSocketStream::operator >> (std::vector<char>& data)
 	{
-		buffer->setInputType();
-
 		try
 		{
-			if (buffer->pubsync() == -1)
-			{
-				setstate(std::ios_base::eofbit);
-
-				return *this;
-			}
-
-			data.resize(static_cast<size_t>(buffer->getLastPacketSize()));
-
 			if (buffer->sgetn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 			{
 				setstate(std::ios_base::eofbit);
@@ -311,19 +300,8 @@ namespace streams
 
 	std::istream& IOSocketStream::operator >> (std::string& data)
 	{
-		buffer->setInputType();
-
 		try
 		{
-			if (buffer->pubsync() == -1)
-			{
-				setstate(std::ios_base::eofbit);
-
-				return *this;
-			}
-
-			data.resize(static_cast<size_t>(buffer->getLastPacketSize()));
-
 			if (buffer->sgetn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
 			{
 				setstate(std::ios_base::eofbit);
