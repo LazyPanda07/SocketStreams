@@ -153,7 +153,7 @@ namespace web
 		{
 			lastReceive = this->receiveBytesImplementation(reinterpret_cast<char*>(data) + totalReceive, count - totalReceive);
 
-			if (lastReceive == SOCKET_ERROR || !lastReceive)
+			if (lastReceive == SOCKET_ERROR)
 			{
 				THROW_WEB_EXCEPTION;
 			}

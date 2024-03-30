@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.2.0</span>
+   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.2.1</span>
    </div>
   </td>
  </tr>
@@ -218,7 +218,7 @@ $(document).ready(function(){initNavTree('_network_8h_source.html',''); initResi
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        {</div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            lastReceive = this-&gt;<a class="code hl_function" href="classweb_1_1_network.html#a6403e3b86f650a8bc56d8291ced5dc28">receiveBytesImplementation</a>(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(data) + totalReceive, count - totalReceive);</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            <span class="keywordflow">if</span> (lastReceive == SOCKET_ERROR || !lastReceive)</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            <span class="keywordflow">if</span> (lastReceive == SOCKET_ERROR)</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>            {</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>                <a class="code hl_define" href="_web_exception_8h.html#a660b3b132261f4623c60619f709c9b91">THROW_WEB_EXCEPTION</a>;</div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>            }</div>
