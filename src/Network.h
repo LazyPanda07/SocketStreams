@@ -66,15 +66,36 @@ namespace web
 		/// @param mode 
 		Network(SOCKET clientSocket);
 
+		/**
+		* @brief Send data through network
+		* @param data Actual data with some useful methods. Called with std::vector<char> or std::string
+		* @param endOfStream Is connection closed
+		* @return Total number of bytes send
+		*/
 		virtual int sendData(const utility::ContainerWrapper& data, bool& endOfStream);
 
+		/**
+		* @brief Send raw data through network
+		* @param data Actual data. Called from write method
+		* @param endOfStream Is connection closed
+		* @return Total number bytes send
+		*/
 		virtual int sendRawData(const char* data, int size, bool& endOfStream);
 
-		/// @brief Receive data through network
-		/// @param data 
-		/// @return Total number of received bytes 
+		/**
+		* @brief Receive data through network
+		* @param data Actual data with some useful methods. Called with std::vector<char> or std::string
+		* @param endOfStream Is connection closed
+		* @return Total number of bytes receive
+		*/
 		virtual int receiveData(utility::ContainerWrapper& data, bool& endOfStream);
 
+		/**
+		* @brief Receive data through network
+		* @param data Actual data. Called from read method
+		* @param endOfStream Is connection closed
+		* @return Total number of bytes receive
+		*/
 		virtual int receiveRawData(char* data, int size, bool& endOfStream);
 
 		/// @brief Errors logging, default implementation uses clog

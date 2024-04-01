@@ -7,6 +7,9 @@ namespace web
 {
 	namespace utility
 	{
+		/**
+		* @brief Requirements for in/out socket operations
+		*/
 		template<typename T>
 		concept Container = requires(T value)
 		{
@@ -17,6 +20,9 @@ namespace web
 			{ value[size_t()] } -> std::same_as<char&>;
 		};
 
+		/**
+		* @brief Wrap Container concept instance
+		*/
 		class ContainerWrapper
 		{
 		private:

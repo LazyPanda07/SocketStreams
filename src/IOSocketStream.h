@@ -94,9 +94,17 @@ namespace streams
 		std::istream& operator >> (double& value);
 		std::istream& operator >> (long double& value);
 
+		/**
+		* @brief Send data through network
+		* @param data Container concept instance
+		*/
 		template<web::utility::Container T>
 		std::ostream& operator << (const T& data);
 
+		/**
+		* @brief Receive data through network
+		* @param data Container concept instance
+		*/
 		template<web::utility::Container T>
 		std::istream& operator >> (T& data);
 
