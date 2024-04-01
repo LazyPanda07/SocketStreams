@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.27.0)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install-dir CACHE STRING "")
 
 if (UNIX)
@@ -16,6 +16,7 @@ add_library(
 	src/SocketStreamsUtility.cpp
 	src/IOSocketBuffer.cpp
 	src/IOSocketStream.cpp
+	src/ContainerWrapper.cpp
 )
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)

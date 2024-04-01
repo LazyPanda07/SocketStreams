@@ -15,18 +15,6 @@ namespace buffers
 		using typename std::streambuf::char_type;
 		using typename std::streambuf::traits_type;
 
-		using std::streambuf::pbase;
-		using std::streambuf::pptr;
-		using std::streambuf::epptr;
-		using std::streambuf::setp;
-		using std::streambuf::pbump;
-
-		using std::streambuf::eback;
-		using std::streambuf::gptr;
-		using std::streambuf::egptr;
-		using std::streambuf::setg;
-		using std::streambuf::gbump;
-
 	protected:
 		std::unique_ptr<web::Network> network;
 		int lastPacketSize;
@@ -37,9 +25,9 @@ namespace buffers
 
 		int_type underflow() override;
 
-		std::streamsize xsputn(const char_type* s, std::streamsize count) override;
+		std::streamsize xsputn(const char_type* s, std::streamsize size) override;
 
-		std::streamsize xsgetn(char_type* s, std::streamsize count) override;
+		std::streamsize xsgetn(char_type* s, std::streamsize size) override;
 
 	public:
 		IOSocketBuffer() = default;
@@ -76,12 +64,10 @@ namespace buffers
 
 		const std::unique_ptr<web::Network>& getNetwork() const noexcept;
 
-		std::unique_ptr<web::Network>& getNetwork() noexcept;
-
 		int getLastPacketSize() const noexcept;
 
 		bool getEndOfStream() const noexcept;
 
-		virtual ~IOSocketBuffer() = default;
+		~IOSocketBuffer() = default;
 	};
 }

@@ -2,6 +2,16 @@
 
 namespace streams
 {
+	int IOSocketStream::sendFundamentalImplementation(const char* value, int valueSize, bool& endOfStream)
+	{	
+		return buffer->getNetwork()->sendBytes(value, valueSize, endOfStream);
+	}
+
+	int IOSocketStream::receiveFundamentalImplementation(char* value, int valueSize, bool& endOfStream)
+	{
+		return buffer->getNetwork()->receiveBytes(value, valueSize, endOfStream);
+	}
+
 	IOSocketStream::IOSocketStream() :
 		std::iostream(nullptr)
 	{
@@ -216,101 +226,6 @@ namespace streams
 	std::istream& IOSocketStream::operator >> (long double& value)
 	{
 		this->receiveFundamental(value);
-
-		return *this;
-	}
-
-	std::ostream& IOSocketStream::operator << (const std::vector<char>& data)
-	{
-		try 
-		{
-			if (buffer->sputn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
-			{
-				setstate(std::ios_base::eofbit);
-			}
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			setstate(std::ios_base::failbit);
-
-			throw;
-		}
-		
-		return *this;
-	}
-
-	std::istream& IOSocketStream::operator >> (std::vector<char>& data)
-	{
-		try
-		{
-			if (buffer->sgetn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
-			{
-				setstate(std::ios_base::eofbit);
-			}
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			setstate(std::ios_base::failbit);
-
-			throw;
-		}
-
-		return *this;
-	}
-	
-	std::istream& IOSocketStream::operator << (const std::string& data)
-	{
-		try
-		{
-			if (buffer->sputn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
-			{
-				setstate(std::ios_base::eofbit);
-			}
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			setstate(std::ios_base::failbit);
-
-			throw;
-		}
-
-		return *this;
-	}
-
-	std::istream& IOSocketStream::operator >> (std::string& data)
-	{
-		try
-		{
-			if (buffer->sgetn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
-			{
-				setstate(std::ios_base::eofbit);
-			}
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			setstate(std::ios_base::failbit);
-
-			throw;
-		}
-
-		return *this;
-	}
-
-	std::ostream& IOSocketStream::operator << (std::string_view data)
-	{
-		try
-		{
-			if (buffer->sputn(data.data(), static_cast<std::streamsize>(data.size())) == -1)
-			{
-				setstate(std::ios_base::eofbit);
-			}
-		}
-		catch (const web::exceptions::WebException&)
-		{
-			setstate(std::ios_base::failbit);
-
-			throw;
-		}
 
 		return *this;
 	}

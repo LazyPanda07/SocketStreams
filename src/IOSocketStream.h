@@ -6,6 +6,9 @@
 
 namespace streams
 {
+	template<typename T>
+	concept Fundamental = std::is_fundamental_v<T>;
+
 	/// @brief Base input/output socket stream
 	class IOSocketStream : public std::iostream
 	{
@@ -13,11 +16,15 @@ namespace streams
 		std::unique_ptr<buffers::IOSocketBuffer> buffer;
 
 	protected:
-		template<typename T>
+		template<Fundamental T>
 		int sendFundamental(T value);
 
-		template<typename T>
+		template<Fundamental T>
 		int receiveFundamental(T& value);
+
+		virtual int sendFundamentalImplementation(const char* value, int valueSize, bool& endOfStream);
+
+		virtual int receiveFundamentalImplementation(char* value, int valueSize, bool& endOfStream);
 
 	public:
 		IOSocketStream();
@@ -86,27 +93,22 @@ namespace streams
 		std::istream& operator >> (double& value);
 		std::istream& operator >> (long double& value);
 
-		virtual std::ostream& operator << (const std::vector<char>& data);
+		template<web::utility::Container T>
+		std::ostream& operator << (const T& data);
 
-		virtual std::istream& operator >> (std::vector<char>& data);
-
-		virtual std::istream& operator << (const std::string& data);
-
-		virtual std::istream& operator >> (std::string& data);
-
-		virtual std::ostream& operator << (std::string_view data);
+		template<web::utility::Container T>
+		std::istream& operator >> (T& data);
 
 		virtual ~IOSocketStream() = default;
 	};
 
-	template<typename T>
+	template<Fundamental T>
 	int IOSocketStream::sendFundamental(T value)
 	{
 		try
 		{
 			bool endOfStream = false;
-
-			int lastPacketSize = buffer->getNetwork()->sendBytes(&value, sizeof(value), endOfStream);
+			int lastPacketSize = this->sendFundamentalImplementation(reinterpret_cast<const char*>(&value), sizeof(value), endOfStream);
 
 			if (endOfStream)
 			{
@@ -123,14 +125,13 @@ namespace streams
 		}
 	}
 
-	template<typename T>
+	template<Fundamental T>
 	int IOSocketStream::receiveFundamental(T& value)
 	{
 		try
 		{
 			bool endOfStream = false;
-
- 			int lastPacketSize = buffer->getNetwork()->receiveBytes(&value, sizeof(value), endOfStream);
+			int lastPacketSize = this->receiveFundamentalImplementation(reinterpret_cast<char*>(&value), sizeof(value), endOfStream);
 
 			if (endOfStream)
 			{
@@ -145,5 +146,49 @@ namespace streams
 
 			throw;
 		}
+	}
+
+	template<web::utility::Container T>
+	std::ostream& IOSocketStream::operator << (const T& data)
+	{
+		web::utility::ContainerWrapper container(const_cast<T&>(data));
+
+		try
+		{
+			if (buffer->sputn(reinterpret_cast<const char*>(&container), sizeof(container)) == buffers::IOSocketBuffer::traits_type::eof())
+			{
+				setstate(std::ios_base::eofbit);
+			}
+		}
+		catch (const web::exceptions::WebException&)
+		{
+			setstate(std::ios_base::failbit);
+
+			throw;
+		}
+
+		return *this;
+	}
+
+	template<web::utility::Container T>
+	std::istream& IOSocketStream::operator >> (T& data)
+	{
+		web::utility::ContainerWrapper container(data);
+
+		try
+		{
+			if (buffer->sgetn(reinterpret_cast<char*>(&container), sizeof(container)) == buffers::IOSocketBuffer::traits_type::eof())
+			{
+				setstate(std::ios_base::eofbit);
+			}
+		}
+		catch (const web::exceptions::WebException&)
+		{
+			setstate(std::ios_base::failbit);
+
+			throw;
+		}
+
+		return *this;
 	}
 }

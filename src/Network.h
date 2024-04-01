@@ -16,6 +16,7 @@
 #endif // __LINUX__
 
 #include "WebException.h"
+#include "ContainerWrapper.h"
 
 #ifndef __LINUX__
 #pragma comment (lib, "ws2_32.lib")
@@ -43,9 +44,9 @@ namespace web
 		SOCKET clientSocket;
 
 	protected:
-		virtual int sendBytesImplementation(const char* data, int count, int flags = NULL);
+		virtual int sendBytesImplementation(const char* data, int size, int flags = NULL);
 
-		virtual int receiveBytesImplementation(char* data, int count, int flags = NULL);
+		virtual int receiveBytesImplementation(char* data, int size, int flags = NULL);
 
 	public:
 		/// @brief Client side constructor
@@ -61,25 +62,12 @@ namespace web
 		/// @param mode 
 		Network(SOCKET clientSocket);
 
-		/// @brief Send data through network
-		/// @param data 
-		/// @return Total number of sended bytes 
-		virtual int sendData(const std::vector<char>& data, bool& endOfStream);
-
-		/// @brief Send data through network
-		/// @param data 
-		/// @return Total number of sended bytes 
-		virtual int sendData(std::string_view data, bool& endOfStream);
+		virtual int sendData(const utility::ContainerWrapper& data, bool& endOfStream);
 
 		/// @brief Receive data through network
 		/// @param data 
 		/// @return Total number of received bytes 
-		virtual int receiveData(std::vector<char>& data, bool& endOfStream);
-
-		/// @brief Receive data through network
-		/// @param data 
-		/// @return Total number of received bytes 
-		virtual int receiveData(std::string& data, bool& endOfStream);
+		virtual int receiveData(utility::ContainerWrapper& data, bool& endOfStream);
 
 		/// @brief Errors logging, default implementation uses clog
 		/// @param message Log message
@@ -93,26 +81,26 @@ namespace web
 		/// @brief Send raw bytes through network
 		/// @tparam DataT 
 		/// @param data 
-		/// @param count 
+		/// @param size 
 		/// @return Total number of sended bytes 
 		/// @exception WebException  
 		template<typename DataT>
-		int sendBytes(const DataT* data, int count, bool& endOfStream);
+		int sendBytes(const DataT* data, int size, bool& endOfStream);
 
 		/// @brief 
 		/// @tparam DataT 
 		/// @param data 
-		/// @param count 
+		/// @param size 
 		/// @return Total number of received bytes 
 		/// @exception WebException  
 		template<typename DataT>
-		int receiveBytes(DataT* data, int count, bool& endOfStream);
+		int receiveBytes(DataT* data, int size, bool& endOfStream);
 
 		virtual ~Network();
 	};
 
 	template<typename DataT>
-	int Network::sendBytes(const DataT* data, int count, bool& endOfStream)
+	int Network::sendBytes(const DataT* data, int size, bool& endOfStream)
 	{
 		int lastSend = 0;
 		int totalSent = 0;
@@ -121,7 +109,7 @@ namespace web
 
 		do
 		{
-			lastSend = this->sendBytesImplementation(reinterpret_cast<const char*>(data) + totalSent, count - totalSent);
+			lastSend = this->sendBytesImplementation(reinterpret_cast<const char*>(data) + totalSent, size - totalSent);
 
 			if (lastSend == SOCKET_ERROR)
 			{
@@ -136,13 +124,13 @@ namespace web
 
 			totalSent += lastSend;
 
-		} while (totalSent < count);
+		} while (totalSent < size);
 
 		return totalSent;
 	}
 
 	template<typename DataT>
-	int Network::receiveBytes(DataT* data, int count, bool& endOfStream)
+	int Network::receiveBytes(DataT* data, int size, bool& endOfStream)
 	{
 		int lastReceive = 0;
 		int totalReceive = 0;
@@ -151,7 +139,7 @@ namespace web
 
 		do
 		{
-			lastReceive = this->receiveBytesImplementation(reinterpret_cast<char*>(data) + totalReceive, count - totalReceive);
+			lastReceive = this->receiveBytesImplementation(reinterpret_cast<char*>(data) + totalReceive, size - totalReceive);
 
 			if (lastReceive == SOCKET_ERROR)
 			{
@@ -166,7 +154,7 @@ namespace web
 
 			totalReceive += lastReceive;
 
-		} while (totalReceive < count);
+		} while (totalReceive < size);
 
 		return totalReceive;
 	}

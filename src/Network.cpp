@@ -2,14 +2,14 @@
 
 namespace web
 {
-	int Network::sendBytesImplementation(const char* data, int count, int flags)
+	int Network::sendBytesImplementation(const char* data, int size, int flags)
 	{
-		return send(clientSocket, data, count, flags);
+		return send(clientSocket, data, size, flags);
 	}
 
-	int Network::receiveBytesImplementation(char* data, int count, int flags)
+	int Network::receiveBytesImplementation(char* data, int size, int flags)
 	{
-		return recv(clientSocket, data, count, flags);
+		return recv(clientSocket, data, size, flags);
 	}
 
 	Network::Network(std::string_view ip, std::string_view port, DWORD timeout) :
@@ -75,12 +75,11 @@ namespace web
 
 	}
 
-	int Network::sendData(const std::vector<char>& data, bool& endOfStream)
+	int Network::sendData(const utility::ContainerWrapper& data, bool& endOfStream)
 	{
 		try
 		{
 			int size = static_cast<int>(data.size());
-
 			int lastPacketSize = this->sendBytes(&size, sizeof(size), endOfStream);
 
 			if (endOfStream)
@@ -98,63 +97,11 @@ namespace web
 		}
 	}
 
-	int Network::sendData(std::string_view data, bool& endOfStream)
-	{
-		try
-		{
-			int size = static_cast<int>(data.size());
-
-			int lastPacketSize = this->sendBytes(&size, sizeof(size), endOfStream);
-
-			if (endOfStream)
-			{
-				return lastPacketSize;
-			}
-
-			return this->sendBytes(data.data(), size, endOfStream);
-		}
-		catch (const exceptions::WebException& e)
-		{
-			this->log(e.what());
-
-			throw;
-		}
-	}
-
-	int Network::receiveData(std::vector<char>& data, bool& endOfStream)
+	int Network::receiveData(utility::ContainerWrapper& data, bool& endOfStream)
 	{
 		try
 		{
 			int size = 0;
-
-			int lastPacketSize = this->receiveBytes(&size, sizeof(size), endOfStream);
-
-			if (endOfStream)
-			{
-				return lastPacketSize;
-			}
-
-			if (data.size() < size)
-			{
-				data.resize(static_cast<size_t>(size));
-			}
-
-			return this->receiveBytes(data.data(), size, endOfStream);
-		}
-		catch (const exceptions::WebException& e)
-		{
-			this->log(e.what());
-
-			throw;
-		}
-	}
-
-	int Network::receiveData(std::string& data, bool& endOfStream)
-	{
-		try
-		{
-			int size = 0;
-
 			int lastPacketSize = this->receiveBytes(&size, sizeof(size), endOfStream);
 
 			if (endOfStream)

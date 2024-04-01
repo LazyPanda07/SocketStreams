@@ -22,44 +22,49 @@ namespace buffers
 		return endOfStream ? traits_type::eof() : data;
 	}
 
-	std::streamsize IOSocketBuffer::xsputn(const char_type* s, std::streamsize count)
+	std::streamsize IOSocketBuffer::xsputn(const char_type* s, std::streamsize size)
 	{
-		lastPacketSize = network->sendBytes(s, count, endOfStream);
+		const web::utility::ContainerWrapper& container = *(reinterpret_cast<const web::utility::ContainerWrapper*>(s));
+
+		lastPacketSize = network->sendData(container, endOfStream);
 		
 		return endOfStream ? traits_type::eof() : lastPacketSize;
 	}
 
-	std::streamsize IOSocketBuffer::xsgetn(char_type* s, std::streamsize count)
+	std::streamsize IOSocketBuffer::xsgetn(char_type* s, std::streamsize size)
 	{
-		lastPacketSize = network->receiveBytes(s, count, endOfStream);
+		web::utility::ContainerWrapper& container = *(reinterpret_cast<web::utility::ContainerWrapper*>(s));
+
+		lastPacketSize = network->receiveData(container, endOfStream);
 
 		return endOfStream ? traits_type::eof() : lastPacketSize;
 	}
 
 	IOSocketBuffer::IOSocketBuffer(SOCKET clientSocket) :
-		network(std::make_unique<web::Network>(clientSocket))
+		network(std::make_unique<web::Network>(clientSocket)),
+		lastPacketSize(0),
+		endOfStream(false)
 	{
 		
 	}
 
 	IOSocketBuffer::IOSocketBuffer(std::string_view ip, std::string_view port, DWORD timeout) :
-		network(std::make_unique<web::Network>(ip, port, timeout))
+		network(std::make_unique<web::Network>(ip, port, timeout)),
+		lastPacketSize(0),
+		endOfStream(false)
 	{
 		
 	}
 
 	IOSocketBuffer::IOSocketBuffer(std::unique_ptr<web::Network>&& networkSubclass) :
-		network(std::move(networkSubclass))
+		network(std::move(networkSubclass)),
+		lastPacketSize(0),
+		endOfStream(false)
 	{
 		
 	}
 
 	const std::unique_ptr<web::Network>& IOSocketBuffer::getNetwork() const noexcept
-	{
-		return network;
-	}
-
-	std::unique_ptr<web::Network>& IOSocketBuffer::getNetwork() noexcept
 	{
 		return network;
 	}

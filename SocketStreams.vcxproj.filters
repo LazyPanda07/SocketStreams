@@ -30,6 +30,9 @@
     <ClInclude Include="src\SocketStreamsUtility.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="src\ContainerWrapper.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\WebException.cpp">
@@ -45,6 +48,9 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="src\IOSocketStream.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ContainerWrapper.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
