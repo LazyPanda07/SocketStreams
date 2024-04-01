@@ -10,6 +10,9 @@ var annotated_dup =
       [ "exceptions", "namespaceweb_1_1exceptions.html", [
         [ "WebException", "classweb_1_1exceptions_1_1_web_exception.html", "classweb_1_1exceptions_1_1_web_exception" ]
       ] ],
+      [ "utility", "namespaceweb_1_1utility.html", [
+        [ "ContainerWrapper", "classweb_1_1utility_1_1_container_wrapper.html", "classweb_1_1utility_1_1_container_wrapper" ]
+      ] ],
       [ "Network", "classweb_1_1_network.html", "classweb_1_1_network" ]
     ] ]
 ];

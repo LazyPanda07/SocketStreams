@@ -32,6 +32,7 @@ var NAVTREE =
         [ "Functions", "namespacemembers_func.html", null ]
       ] ]
     ] ],
+    [ "Concepts", "concepts.html", "concepts" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -54,7 +55,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_i_o_socket_buffer_8cpp.html"
+"_container_wrapper_8cpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

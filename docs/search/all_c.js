@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['underflow_0',['underflow',['../classbuffers_1_1_i_o_socket_buffer.html#af6c13832b7ee0073e2519632207b096f',1,'buffers::IOSocketBuffer']]]
+  ['throw_5fweb_5fexception_0',['THROW_WEB_EXCEPTION',['../_web_exception_8h.html#a660b3b132261f4623c60619f709c9b91',1,'WebException.h']]]
 ];

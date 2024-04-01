@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['_7eiosocketbuffer_0',['~IOSocketBuffer',['../classbuffers_1_1_i_o_socket_buffer.html#a27857d2fc5c2b4af7fb2d2db027a986b',1,'buffers::IOSocketBuffer']]],
-  ['_7eiosocketstream_1',['~IOSocketStream',['../classstreams_1_1_i_o_socket_stream.html#a2fa279594c96845a85d51012edc1dd67',1,'streams::IOSocketStream']]],
-  ['_7enetwork_2',['~Network',['../classweb_1_1_network.html#a1b91abdc8b7cd04c0491bc7911e390a2',1,'web::Network']]],
-  ['_7ewebexception_3',['~WebException',['../classweb_1_1exceptions_1_1_web_exception.html#afdb4178173c9753ebcf7ab65b15b6295',1,'web::exceptions::WebException']]]
+  ['webexception_0',['webexception',['../classweb_1_1exceptions_1_1_web_exception.html#ac773b78b3c69023b720579f1f5ead107',1,'web::exceptions::WebException::WebException(int line, std::string_view file)'],['../classweb_1_1exceptions_1_1_web_exception.html#ab46e686a945e4dcb3f86c897f9a48ab7',1,'web::exceptions::WebException::WebException(const exceptions::WebException &amp;other)=default'],['../classweb_1_1exceptions_1_1_web_exception.html#a0f9f717a30816e09a8f6e261f55fc333',1,'web::exceptions::WebException::WebException(WebException &amp;&amp;other) noexcept=default']]],
+  ['what_1',['what',['../classweb_1_1exceptions_1_1_web_exception.html#a766b7818d91728c62c9215fb77db61bc',1,'web::exceptions::WebException']]]
 ];

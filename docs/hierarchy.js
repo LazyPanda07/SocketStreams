@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "web::utility::ContainerWrapper", "classweb_1_1utility_1_1_container_wrapper.html", null ],
     [ "std::iostream", null, [
       [ "streams::IOSocketStream", "classstreams_1_1_i_o_socket_stream.html", null ]
     ] ],
