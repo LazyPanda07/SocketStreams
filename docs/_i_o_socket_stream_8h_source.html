@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.3.0</span>
+   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.3.1</span>
    </div>
   </td>
  </tr>
@@ -240,7 +240,7 @@ $(document).ready(function(){initNavTree('_i_o_socket_stream_8h_source.html','')
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="classstreams_1_1_i_o_socket_stream.html#ad97d6e5291a74def0763b4b3d28a7991">  161</a></span>    std::ostream&amp; <a class="code hl_function" href="classstreams_1_1_i_o_socket_stream.html#a4bc34f12b2b0cc561160b2a5581e7b82">IOSocketStream::operator &lt;&lt; </a>(<span class="keyword">const</span> T&amp; data)</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    {</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        <a class="code hl_class" href="classweb_1_1utility_1_1_container_wrapper.html">web::utility::ContainerWrapper</a> container(<span class="keyword">const_cast&lt;</span>T&amp;<span class="keyword">&gt;</span>(data));</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        std::streamsize size = std::numeric_limits&lt;std::streamsize&gt;::max();</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        <span class="keyword">constexpr</span> std::streamsize size = std::numeric_limits&lt;std::streamsize&gt;::max();</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <span class="keywordflow">try</span></div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        {</div>
@@ -265,7 +265,7 @@ $(document).ready(function(){initNavTree('_i_o_socket_stream_8h_source.html','')
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="classstreams_1_1_i_o_socket_stream.html#af8149177921253d78ae72d6ad8ba33b8">  184</a></span>    std::istream&amp; <a class="code hl_function" href="classstreams_1_1_i_o_socket_stream.html#acdc319f380bf6e63f129f6659a7175ea">IOSocketStream::operator &gt;&gt; </a>(T&amp; data)</div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    {</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        <a class="code hl_class" href="classweb_1_1utility_1_1_container_wrapper.html">web::utility::ContainerWrapper</a> container(data);</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        std::streamsize size = std::numeric_limits&lt;std::streamsize&gt;::max();</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        <span class="keyword">constexpr</span> std::streamsize size = std::numeric_limits&lt;std::streamsize&gt;::max();</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        <span class="keywordflow">try</span></div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        {</div>
