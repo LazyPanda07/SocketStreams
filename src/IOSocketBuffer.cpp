@@ -33,7 +33,7 @@ namespace buffers
 		}
 		else
 		{
-			lastPacketSize = network->sendRawData(s, size, endOfStream);
+			lastPacketSize = network->sendRawData(s, static_cast<int>(size), endOfStream);
 		}
 
 		return endOfStream ? traits_type::eof() : lastPacketSize;
@@ -49,7 +49,7 @@ namespace buffers
 		}
 		else
 		{
-			lastPacketSize = network->receiveRawData(s, size, endOfStream);
+			lastPacketSize = network->receiveRawData(s, static_cast<int>(size), endOfStream);
 		}
 
 		return endOfStream ? traits_type::eof() : lastPacketSize;
