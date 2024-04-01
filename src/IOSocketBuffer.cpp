@@ -1,6 +1,7 @@
 #include "IOSocketBuffer.h"
 
 #include <iterator>
+#include <limits>
 
 namespace buffers
 {
@@ -24,18 +25,32 @@ namespace buffers
 
 	std::streamsize IOSocketBuffer::xsputn(const char_type* s, std::streamsize size)
 	{
-		const web::utility::ContainerWrapper& container = *(reinterpret_cast<const web::utility::ContainerWrapper*>(s));
+		if (size == std::numeric_limits<std::streamsize>::max())
+		{
+			const web::utility::ContainerWrapper& container = *(reinterpret_cast<const web::utility::ContainerWrapper*>(s));
 
-		lastPacketSize = network->sendData(container, endOfStream);
-		
+			lastPacketSize = network->sendData(container, endOfStream);
+		}
+		else
+		{
+			lastPacketSize = network->sendRawData(s, size, endOfStream);
+		}
+
 		return endOfStream ? traits_type::eof() : lastPacketSize;
 	}
 
 	std::streamsize IOSocketBuffer::xsgetn(char_type* s, std::streamsize size)
 	{
-		web::utility::ContainerWrapper& container = *(reinterpret_cast<web::utility::ContainerWrapper*>(s));
+		if (size == std::numeric_limits<std::streamsize>::max())
+		{
+			web::utility::ContainerWrapper& container = *(reinterpret_cast<web::utility::ContainerWrapper*>(s));
 
-		lastPacketSize = network->receiveData(container, endOfStream);
+			lastPacketSize = network->receiveData(container, endOfStream);
+		}
+		else
+		{
+			lastPacketSize = network->receiveRawData(s, size, endOfStream);
+		}
 
 		return endOfStream ? traits_type::eof() : lastPacketSize;
 	}

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <istream>
+#include <limits>
 
 #include "IOSocketBuffer.h"
 
@@ -152,10 +153,11 @@ namespace streams
 	std::ostream& IOSocketStream::operator << (const T& data)
 	{
 		web::utility::ContainerWrapper container(const_cast<T&>(data));
+		std::streamsize size = std::numeric_limits<std::streamsize>::max();
 
 		try
 		{
-			if (buffer->sputn(reinterpret_cast<const char*>(&container), sizeof(container)) == buffers::IOSocketBuffer::traits_type::eof())
+			if (buffer->sputn(reinterpret_cast<const char*>(&container), size) == buffers::IOSocketBuffer::traits_type::eof())
 			{
 				setstate(std::ios_base::eofbit);
 			}
@@ -174,10 +176,11 @@ namespace streams
 	std::istream& IOSocketStream::operator >> (T& data)
 	{
 		web::utility::ContainerWrapper container(data);
+		std::streamsize size = std::numeric_limits<std::streamsize>::max();
 
 		try
 		{
-			if (buffer->sgetn(reinterpret_cast<char*>(&container), sizeof(container)) == buffers::IOSocketBuffer::traits_type::eof())
+			if (buffer->sgetn(reinterpret_cast<char*>(&container), size) == buffers::IOSocketBuffer::traits_type::eof())
 			{
 				setstate(std::ios_base::eofbit);
 			}

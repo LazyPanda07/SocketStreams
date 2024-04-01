@@ -64,10 +64,14 @@ namespace web
 
 		virtual int sendData(const utility::ContainerWrapper& data, bool& endOfStream);
 
+		virtual int sendRawData(const char* data, int size, bool& endOfStream);
+
 		/// @brief Receive data through network
 		/// @param data 
 		/// @return Total number of received bytes 
 		virtual int receiveData(utility::ContainerWrapper& data, bool& endOfStream);
+
+		virtual int receiveRawData(char* data, int size, bool& endOfStream);
 
 		/// @brief Errors logging, default implementation uses clog
 		/// @param message Log message

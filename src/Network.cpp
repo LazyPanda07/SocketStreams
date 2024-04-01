@@ -97,6 +97,27 @@ namespace web
 		}
 	}
 
+	int Network::sendRawData(const char* data, int size, bool& endOfStream)
+	{
+		try
+		{
+			int lastPacketSize = this->sendBytes(&size, sizeof(size), endOfStream);
+
+			if (endOfStream)
+			{
+				return lastPacketSize;
+			}
+
+			return this->sendBytes(data, size, endOfStream);
+		}
+		catch (const exceptions::WebException& e)
+		{
+			this->log(e.what());
+
+			throw;
+		}
+	}
+
 	int Network::receiveData(utility::ContainerWrapper& data, bool& endOfStream)
 	{
 		try
@@ -115,6 +136,33 @@ namespace web
 			}
 
 			return this->receiveBytes(data.data(), size, endOfStream);
+		}
+		catch (const exceptions::WebException& e)
+		{
+			this->log(e.what());
+
+			throw;
+		}
+	}
+
+	int Network::receiveRawData(char* data, int size, bool& endOfStream)
+	{
+		try
+		{
+			int inputSize = 0;
+			int lastPacketSize = this->receiveBytes(&inputSize, sizeof(inputSize), endOfStream);
+
+			if (endOfStream)
+			{
+				return lastPacketSize;
+			}
+
+			if (size < inputSize)
+			{
+				std::cerr << "In " << __FUNCTION__ << " passed size(" << size << ") < actual data size(" << inputSize << ')' << std::endl;
+			}
+
+			return this->receiveBytes(data, size, endOfStream);
 		}
 		catch (const exceptions::WebException& e)
 		{
