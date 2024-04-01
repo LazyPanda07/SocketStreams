@@ -1,5 +1,9 @@
 #pragma once
 
+#ifndef __LINUX__
+#define NOMINMAX
+#endif
+
 #include <iostream>
 #include <vector>
 #include <string>
