@@ -168,6 +168,6 @@ namespace web
 
 		endOfStream = !static_cast<bool>(receive);
 
-		return totalReceive;
+		return receive;
 	}
 }
