@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef __LINUX__
-#define NOMINMAX
-#endif
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -161,29 +157,16 @@ namespace web
 	template<typename DataT>
 	int Network::receiveBytes(DataT* data, int size, bool& endOfStream)
 	{
-		int lastReceive = 0;
-		int totalReceive = 0;
-
+		int receive = this->receiveBytesImplementation(reinterpret_cast<char*>(data), size);
+		
 		endOfStream = false;
 
-		do
+		if (receive == SOCKET_ERROR)
 		{
-			lastReceive = this->receiveBytesImplementation(reinterpret_cast<char*>(data) + totalReceive, size - totalReceive);
+			THROW_WEB_EXCEPTION;
+		}
 
-			if (lastReceive == SOCKET_ERROR)
-			{
-				THROW_WEB_EXCEPTION;
-			}
-			else if (!lastReceive)
-			{
-				endOfStream = true;
-
-				return totalReceive;
-			}
-
-			totalReceive += lastReceive;
-
-		} while (totalReceive < size);
+		endOfStream = !static_cast<bool>(receive);
 
 		return totalReceive;
 	}

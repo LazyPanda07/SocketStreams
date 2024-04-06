@@ -161,7 +161,7 @@ namespace streams
 	std::ostream& IOSocketStream::operator << (const T& data)
 	{
 		web::utility::ContainerWrapper container(const_cast<T&>(data));
-		constexpr std::streamsize size = std::numeric_limits<std::streamsize>::max();
+		constexpr std::streamsize size = (std::numeric_limits<std::streamsize>::max)();
 
 		try
 		{
@@ -184,7 +184,7 @@ namespace streams
 	std::istream& IOSocketStream::operator >> (T& data)
 	{
 		web::utility::ContainerWrapper container(data);
-		constexpr std::streamsize size = std::numeric_limits<std::streamsize>::max();
+		constexpr std::streamsize size = (std::numeric_limits<std::streamsize>::max)();
 
 		try
 		{

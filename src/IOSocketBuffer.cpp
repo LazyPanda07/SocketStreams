@@ -25,7 +25,7 @@ namespace buffers
 
 	std::streamsize IOSocketBuffer::xsputn(const char_type* s, std::streamsize size)
 	{
-		if (size == std::numeric_limits<std::streamsize>::max())
+		if (size == (std::numeric_limits<std::streamsize>::max)())
 		{
 			const web::utility::ContainerWrapper& container = *(reinterpret_cast<const web::utility::ContainerWrapper*>(s));
 
@@ -41,7 +41,7 @@ namespace buffers
 
 	std::streamsize IOSocketBuffer::xsgetn(char_type* s, std::streamsize size)
 	{
-		if (size == std::numeric_limits<std::streamsize>::max())
+		if (size == (std::numeric_limits<std::streamsize>::max)())
 		{
 			web::utility::ContainerWrapper& container = *(reinterpret_cast<web::utility::ContainerWrapper*>(s));
 
