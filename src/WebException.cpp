@@ -301,7 +301,7 @@ namespace web
 
 		const char* WebException::what() const noexcept
 		{
-			return return format("Error code '{}' with description '{}' in file '{}' on line '{}'", errorCode, data, file, line).data();
+			return format("Error code '{}' with description '{}' in file '{}' on line '{}'", errorCode, data, file, line).data();
 		}
 
 		int WebException::getErrorCode() const noexcept
