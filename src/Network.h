@@ -59,7 +59,6 @@ namespace web
 
 		/// @brief Server side contructor
 		/// @param clientSocket 
-		/// @param mode 
 		Network(SOCKET clientSocket);
 
 		/**

@@ -49,20 +49,24 @@ namespace web
 			THROW_WEB_EXCEPTION;
 		}
 
-		if (connect(clientSocket, info->ai_addr, static_cast<int>(info->ai_addrlen)) == SOCKET_ERROR)
+		if (setsockopt(clientSocket, SOL_SOCKET, SO_SNDTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeoutValue)) == SOCKET_ERROR)
 		{
 			freeaddrinfo(info);
 
 			THROW_WEB_EXCEPTION;
 		}
 
-		if (setsockopt(clientSocket, SOL_SOCKET, SO_SNDTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeoutValue)) == SOCKET_ERROR)
+		if (setsockopt(clientSocket, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeoutValue)) == SOCKET_ERROR)
 		{
+			freeaddrinfo(info);
+
 			THROW_WEB_EXCEPTION;
 		}
 
-		if (setsockopt(clientSocket, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeoutValue)) == SOCKET_ERROR)
+		if (connect(clientSocket, info->ai_addr, static_cast<int>(info->ai_addrlen)) == SOCKET_ERROR)
 		{
+			freeaddrinfo(info);
+
 			THROW_WEB_EXCEPTION;
 		}
 
