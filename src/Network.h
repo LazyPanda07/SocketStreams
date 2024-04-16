@@ -44,9 +44,11 @@ namespace web
 		SOCKET clientSocket;
 
 	protected:
-		virtual int sendBytesImplementation(const char* data, int size, int flags = NULL);
+		virtual int sendBytesImplementation(const char* data, int size, int flags = 0);
 
-		virtual int receiveBytesImplementation(char* data, int size, int flags = NULL);
+		virtual int receiveBytesImplementation(char* data, int size, int flags = 0);
+
+		virtual void throwException(int line, std::string_view file) const;
 
 	public:
 		/// @brief Client side constructor
@@ -137,7 +139,7 @@ namespace web
 
 			if (lastSend == SOCKET_ERROR)
 			{
-				THROW_WEB_EXCEPTION;
+				this->throwException();
 			}
 			else if (!lastSend)
 			{
@@ -162,7 +164,7 @@ namespace web
 
 		if (receive == SOCKET_ERROR)
 		{
-			THROW_WEB_EXCEPTION;
+			this->throwException();
 		}
 
 		endOfStream = !static_cast<bool>(receive);
