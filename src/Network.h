@@ -139,7 +139,7 @@ namespace web
 
 			if (lastSend == SOCKET_ERROR)
 			{
-				this->throwException();
+				this->throwException(__LINE__, __FILE__);
 			}
 			else if (!lastSend)
 			{
@@ -164,7 +164,7 @@ namespace web
 
 		if (receive == SOCKET_ERROR)
 		{
-			this->throwException();
+			this->throwException(__LINE__, __FILE__);
 		}
 
 		endOfStream = !static_cast<bool>(receive);
