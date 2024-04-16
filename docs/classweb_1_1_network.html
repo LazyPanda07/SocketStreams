@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.3.6</span>
+   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.4.0</span>
    </div>
   </td>
  </tr>
@@ -141,10 +141,12 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a120b5e8ca65a180a0d280edf0cc26bad" id="r_a120b5e8ca65a180a0d280edf0cc26bad"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweb_1_1_network.html#a120b5e8ca65a180a0d280edf0cc26bad">sendBytesImplementation</a> (const char *data, int size, int flags=NULL)</td></tr>
-<tr class="separator:a120b5e8ca65a180a0d280edf0cc26bad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a157d79debb6cae4c95f553c2692985bd" id="r_a157d79debb6cae4c95f553c2692985bd"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweb_1_1_network.html#a157d79debb6cae4c95f553c2692985bd">receiveBytesImplementation</a> (char *data, int size, int flags=NULL)</td></tr>
-<tr class="separator:a157d79debb6cae4c95f553c2692985bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67d44cc9686d8f6966b4dc8615cdb947" id="r_a67d44cc9686d8f6966b4dc8615cdb947"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweb_1_1_network.html#a67d44cc9686d8f6966b4dc8615cdb947">sendBytesImplementation</a> (const char *data, int size, int flags=0)</td></tr>
+<tr class="separator:a67d44cc9686d8f6966b4dc8615cdb947"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad04dbe2f4d4cdda8c9e9ee3325c7843a" id="r_ad04dbe2f4d4cdda8c9e9ee3325c7843a"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweb_1_1_network.html#ad04dbe2f4d4cdda8c9e9ee3325c7843a">receiveBytesImplementation</a> (char *data, int size, int flags=0)</td></tr>
+<tr class="separator:ad04dbe2f4d4cdda8c9e9ee3325c7843a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a041f63753f11c6c16cc11a812329bb" id="r_a8a041f63753f11c6c16cc11a812329bb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweb_1_1_network.html#a8a041f63753f11c6c16cc11a812329bb">throwException</a> (int line, std::string_view file) const</td></tr>
+<tr class="separator:a8a041f63753f11c6c16cc11a812329bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -381,8 +383,8 @@ template&lt;typename DataT &gt; </div>
 
 </div>
 </div>
-<a id="a157d79debb6cae4c95f553c2692985bd" name="a157d79debb6cae4c95f553c2692985bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a157d79debb6cae4c95f553c2692985bd">&#9670;&#160;</a></span>receiveBytesImplementation()</h2>
+<a id="ad04dbe2f4d4cdda8c9e9ee3325c7843a" name="ad04dbe2f4d4cdda8c9e9ee3325c7843a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad04dbe2f4d4cdda8c9e9ee3325c7843a">&#9670;&#160;</a></span>receiveBytesImplementation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -406,7 +408,7 @@ template&lt;typename DataT &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>flags</em> = <code>NULL</code>&#160;</td>
+          <td class="paramname"><em>flags</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -580,8 +582,8 @@ template&lt;typename DataT &gt; </div>
 
 </div>
 </div>
-<a id="a120b5e8ca65a180a0d280edf0cc26bad" name="a120b5e8ca65a180a0d280edf0cc26bad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a120b5e8ca65a180a0d280edf0cc26bad">&#9670;&#160;</a></span>sendBytesImplementation()</h2>
+<a id="a67d44cc9686d8f6966b4dc8615cdb947" name="a67d44cc9686d8f6966b4dc8615cdb947"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67d44cc9686d8f6966b4dc8615cdb947">&#9670;&#160;</a></span>sendBytesImplementation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -605,7 +607,7 @@ template&lt;typename DataT &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>flags</em> = <code>NULL</code>&#160;</td>
+          <td class="paramname"><em>flags</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -717,6 +719,42 @@ template&lt;typename DataT &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Total number bytes send </dd></dl>
+
+</div>
+</div>
+<a id="a8a041f63753f11c6c16cc11a812329bb" name="a8a041f63753f11c6c16cc11a812329bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a041f63753f11c6c16cc11a812329bb">&#9670;&#160;</a></span>throwException()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void web::Network::throwException </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>file</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

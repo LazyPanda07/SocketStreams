@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['xsgetn_0',['xsgetn',['../classbuffers_1_1_i_o_socket_buffer.html#a7a7d36d46c5ee1c5876618b67aced456',1,'buffers::IOSocketBuffer']]],
-  ['xsputn_1',['xsputn',['../classbuffers_1_1_i_o_socket_buffer.html#acf0329e06bcc32e9d8a383fc6854c36b',1,'buffers::IOSocketBuffer']]]
+  ['webexception_0',['webexception',['../classweb_1_1exceptions_1_1_web_exception.html#ac773b78b3c69023b720579f1f5ead107',1,'web::exceptions::WebException::WebException(int line, std::string_view file)'],['../classweb_1_1exceptions_1_1_web_exception.html#ab46e686a945e4dcb3f86c897f9a48ab7',1,'web::exceptions::WebException::WebException(const exceptions::WebException &amp;other)=default'],['../classweb_1_1exceptions_1_1_web_exception.html#a0f9f717a30816e09a8f6e261f55fc333',1,'web::exceptions::WebException::WebException(WebException &amp;&amp;other) noexcept=default']]],
+  ['what_1',['what',['../classweb_1_1exceptions_1_1_web_exception.html#a766b7818d91728c62c9215fb77db61bc',1,'web::exceptions::WebException']]]
 ];

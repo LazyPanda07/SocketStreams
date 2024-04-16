@@ -12,6 +12,11 @@ namespace web
 		return recv(clientSocket, data, size, flags);
 	}
 
+	void Network::throwException(int line, std::string_view file) const
+	{
+		throw exceptions::WebException(line, file);
+	}
+
 	Network::Network(std::string_view ip, std::string_view port, DWORD timeout) :
 		clientSocket(INVALID_SOCKET)
 	{
