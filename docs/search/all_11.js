@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['web_0',['web',['../namespaceweb.html',1,'']]],
-  ['web_3a_3aexceptions_1',['exceptions',['../namespaceweb_1_1exceptions.html',1,'web']]],
-  ['web_3a_3autility_2',['utility',['../namespaceweb_1_1utility.html',1,'web']]],
-  ['webexception_3',['webexception',['../classweb_1_1exceptions_1_1_web_exception.html',1,'web::exceptions::WebException'],['../classweb_1_1exceptions_1_1_web_exception.html#ac773b78b3c69023b720579f1f5ead107',1,'web::exceptions::WebException::WebException(int line, std::string_view file)'],['../classweb_1_1exceptions_1_1_web_exception.html#ab46e686a945e4dcb3f86c897f9a48ab7',1,'web::exceptions::WebException::WebException(const exceptions::WebException &amp;other)=default'],['../classweb_1_1exceptions_1_1_web_exception.html#a0f9f717a30816e09a8f6e261f55fc333',1,'web::exceptions::WebException::WebException(WebException &amp;&amp;other) noexcept=default']]],
-  ['webexception_2ecpp_4',['WebException.cpp',['../_web_exception_8cpp.html',1,'']]],
-  ['webexception_2eh_5',['WebException.h',['../_web_exception_8h.html',1,'']]],
-  ['what_6',['what',['../classweb_1_1exceptions_1_1_web_exception.html#a766b7818d91728c62c9215fb77db61bc',1,'web::exceptions::WebException']]]
+  ['_7econtainerwrapper_0',['~ContainerWrapper',['../classweb_1_1utility_1_1_container_wrapper.html#a2b033b86861983f978e9059abb045f9c',1,'web::utility::ContainerWrapper']]],
+  ['_7eiosocketbuffer_1',['~IOSocketBuffer',['../classbuffers_1_1_i_o_socket_buffer.html#a0fa0f5b37c5e0b6b7eb896d36cc5114e',1,'buffers::IOSocketBuffer']]],
+  ['_7eiosocketstream_2',['~IOSocketStream',['../classstreams_1_1_i_o_socket_stream.html#a2fa279594c96845a85d51012edc1dd67',1,'streams::IOSocketStream']]],
+  ['_7enetwork_3',['~Network',['../classweb_1_1_network.html#a1b91abdc8b7cd04c0491bc7911e390a2',1,'web::Network']]],
+  ['_7ewebexception_4',['~WebException',['../classweb_1_1exceptions_1_1_web_exception.html#afdb4178173c9753ebcf7ab65b15b6295',1,'web::exceptions::WebException']]]
 ];

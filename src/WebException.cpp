@@ -285,8 +285,6 @@ namespace web
 				break;
 
 			default:
-				data = std::to_string(WSAGetLastError());
-
 				break;
 			}
 		}

@@ -149,7 +149,6 @@ namespace web
 			}
 
 			totalSent += lastSend;
-
 		} while (totalSent < size);
 
 		return totalSent;
