@@ -13,7 +13,7 @@ namespace web
 		/// @brief Network exception
 		class WebException : public std::runtime_error
 		{
-		private:
+		protected:
 			std::string data;
 			std::string_view file;
 			int errorCode;
@@ -25,9 +25,13 @@ namespace web
 		public:
 			WebException(int line, std::string_view file);
 
-			WebException(const exceptions::WebException& other) = default;
+			WebException(const WebException& other) = default;
 
 			WebException(WebException&& other) noexcept = default;
+
+			WebException& operator = (const WebException& other) = default;
+
+			WebException& operator = (WebException&& other) noexcept = default;
 
 			const char* what() const noexcept override;
 
