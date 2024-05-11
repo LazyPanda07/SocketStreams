@@ -51,6 +51,8 @@ namespace streams
 		buffer(std::move(other.buffer))
 	{
 		std::iostream::rdbuf(buffer.get());
+
+		other.rdbuf(nullptr);
 	}
 
 	IOSocketStream& IOSocketStream::operator = (IOSocketStream&& other) noexcept
@@ -58,6 +60,8 @@ namespace streams
 		buffer = std::move(other.buffer);
 
 		std::iostream::rdbuf(buffer.get());
+
+		other.rdbuf(nullptr);
 
 		return *this;
 	}
