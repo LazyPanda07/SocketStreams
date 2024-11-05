@@ -160,14 +160,12 @@ namespace web
 	{
 		int receive = this->receiveBytesImplementation(reinterpret_cast<char*>(data), size);
 		
-		endOfStream = false;
+		endOfStream = !static_cast<bool>(receive);
 
 		if (receive == SOCKET_ERROR)
 		{
 			this->throwException(__LINE__, __FILE__);
 		}
-
-		endOfStream = !static_cast<bool>(receive);
 
 		return receive;
 	}
