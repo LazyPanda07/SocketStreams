@@ -8,7 +8,7 @@ namespace buffers
 	void IOSocketBuffer::setPointers()
 	{
 		setg(&lastInputCharacter, &lastInputCharacter, nullptr);
-		setp(&lastOutputCharacter, &lastOutputCharacter, nullptr);
+		setp(&lastOutputCharacter, nullptr);
 	}
 
 	typename IOSocketBuffer::int_type IOSocketBuffer::overflow(int_type ch)
