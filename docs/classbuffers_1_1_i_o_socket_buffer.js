@@ -17,6 +17,8 @@ var classbuffers_1_1_i_o_socket_buffer =
     [ "xsgetn", "classbuffers_1_1_i_o_socket_buffer.html#a7a7d36d46c5ee1c5876618b67aced456", null ],
     [ "xsputn", "classbuffers_1_1_i_o_socket_buffer.html#acf0329e06bcc32e9d8a383fc6854c36b", null ],
     [ "endOfStream", "classbuffers_1_1_i_o_socket_buffer.html#a51315518d8ae46fcc788f88aa53c12d7", null ],
+    [ "lastInputCharacter", "classbuffers_1_1_i_o_socket_buffer.html#aff5474720b07a0620691476af237be67", null ],
+    [ "lastOutputCharacter", "classbuffers_1_1_i_o_socket_buffer.html#a1c220d20b3c2b4d537749c8de4d3f35d", null ],
     [ "lastPacketSize", "classbuffers_1_1_i_o_socket_buffer.html#a28cb0e4fb10f8fc00adbd8a966672c8c", null ],
     [ "network", "classbuffers_1_1_i_o_socket_buffer.html#a7665d8d75bf32b26f4cd454354f67289", null ]
 ];
