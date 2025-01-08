@@ -13,22 +13,36 @@ namespace buffers
 
 	typename IOSocketBuffer::int_type IOSocketBuffer::overflow(int_type ch)
 	{
-		char data = ch;
+		lastOutputCharacter = ch;
 
-		lastPacketSize = network->sendBytes(&data, sizeof(data), endOfStream);
+		lastPacketSize = network->sendBytes(&lastOutputCharacter, sizeof(lastOutputCharacter), endOfStream);
 
-		lastOutputCharacter = endOfStream ? traits_type::eof() : traits_type::eof() + 1;
+		if (endOfStream)
+		{
+			lastOutputCharacter = traits_type::eof();
+		}
+		else
+		{
+			lastOutputCharacter = traits_type::eof() + 1;
+
+			setp(&lastOutputCharacter, nullptr);
+		}
 
 		return lastOutputCharacter;
 	}
 
 	typename IOSocketBuffer::int_type IOSocketBuffer::underflow()
 	{
-		char data;
+		lastPacketSize = network->receiveBytes(&lastInputCharacter, sizeof(lastInputCharacter), endOfStream);
 
-		lastPacketSize = network->receiveBytes(&data, sizeof(data), endOfStream);
-
-		lastInputCharacter = endOfStream ? traits_type::eof() : data;
+		if (endOfStream)
+		{
+			lastInputCharacter = traits_type::eof();
+		}
+		else
+		{
+			setg(&lastInputCharacter, &lastInputCharacter, nullptr);
+		}
 
 		return lastInputCharacter;
 	}
