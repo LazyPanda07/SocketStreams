@@ -6,5 +6,6 @@ var searchData=
   ['receivefundamental_3',['receiveFundamental',['../classstreams_1_1_i_o_socket_stream.html#a0052d02a094bf7d461856f10254220cb',1,'streams::IOSocketStream']]],
   ['receivefundamentalimplementation_4',['receiveFundamentalImplementation',['../classstreams_1_1_i_o_socket_stream.html#a8677f598583ff2e3d1d92cce8b82201d',1,'streams::IOSocketStream']]],
   ['receiverawdata_5',['receiveRawData',['../classweb_1_1_network.html#a18fe242d53974728977f3f4b570dc682',1,'web::Network']]],
-  ['resize_6',['resize',['../classweb_1_1utility_1_1_container_wrapper.html#af307bab2b7711a5c9ba1eb95019567c2',1,'web::utility::ContainerWrapper']]]
+  ['resize_6',['resize',['../classweb_1_1utility_1_1_container_wrapper.html#af307bab2b7711a5c9ba1eb95019567c2',1,'web::utility::ContainerWrapper']]],
+  ['resizeimplementation_7',['resizeImplementation',['../classweb_1_1utility_1_1_container_wrapper.html#a0df9e0d250b0469b151ffe9be9f962ab',1,'web::utility::ContainerWrapper']]]
 ];

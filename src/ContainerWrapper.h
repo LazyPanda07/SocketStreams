@@ -25,12 +25,22 @@ namespace web
 		*/
 		class ContainerWrapper
 		{
-		private:
+		protected:
 			std::function<char* ()> dataImplementation;
 			std::function<const char* ()> constDataImplementation;
 			std::function<size_t()> sizeImplementation;
 			std::function<void(size_t)> resizeImplementation;
 			std::function<char& (size_t)> operatorImplementation;
+
+		protected:
+			ContainerWrapper
+			(
+				const std::function<char* ()>& dataImplementation,
+				const std::function<const char* ()>& constDataImplementation,
+				const std::function<size_t()>& sizeImplementation,
+				const std::function<void(size_t)>& resizeImplementation,
+				const std::function<char& (size_t)>& operatorImplementation
+			);
 
 		public:
 			template<Container T>
@@ -54,7 +64,7 @@ namespace web
 
 			char& operator [](size_t index);
 
-			~ContainerWrapper() = default;
+			virtual ~ContainerWrapper() = default;
 		};
 	}
 }
@@ -64,32 +74,32 @@ namespace web
 	namespace utility
 	{
 		template<Container T>
-		ContainerWrapper::ContainerWrapper(T& value)
-		{
-			dataImplementation = [&value]() mutable -> char*
+		ContainerWrapper::ContainerWrapper(T& value) :
+			ContainerWrapper
+			(
+				[&value]() mutable -> char*
 				{
 					return value.data();
-				};
-
-			constDataImplementation = [&value]() mutable -> const char*
+				},
+				[&value]() mutable -> const char*
 				{
 					return const_cast<const T&>(value).data();
-				};
-
-			sizeImplementation = [&value]() mutable -> size_t
+				},
+				[&value]() mutable -> size_t
 				{
 					return value.size();
-				};
-
-			resizeImplementation = [&value](size_t newSize) mutable -> void
+				},
+				[&value](size_t newSize) mutable -> void
 				{
 					value.resize(newSize);
-				};
-
-			operatorImplementation = [&value](size_t index) mutable -> char&
+				},
+				[&value](size_t index) mutable -> char&
 				{
 					return value[index];
-				};
+				}
+			)
+		{
+
 		}
 	}
 }

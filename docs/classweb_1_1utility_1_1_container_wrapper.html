@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.4.9</span>
+   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.4.10</span>
    </div>
   </td>
  </tr>
@@ -98,6 +98,8 @@ $(function(){initNavTree('classweb_1_1utility_1_1_container_wrapper.html',''); i
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classweb_1_1utility_1_1_container_wrapper-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">web::utility::ContainerWrapper Class Reference</div></div>
 </div><!--header-->
@@ -131,14 +133,76 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af307bab2b7711a5c9ba1eb95019567c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbc50097122f7af70ce34b04ec497dc2" id="r_acbc50097122f7af70ce34b04ec497dc2"><td class="memItemLeft" align="right" valign="top">char &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbc50097122f7af70ce34b04ec497dc2">operator[]</a> (size_t index)</td></tr>
 <tr class="separator:acbc50097122f7af70ce34b04ec497dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b033b86861983f978e9059abb045f9c" id="r_a2b033b86861983f978e9059abb045f9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b033b86861983f978e9059abb045f9c">~ContainerWrapper</a> ()=default</td></tr>
-<tr class="separator:a2b033b86861983f978e9059abb045f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2632296ed75c2c82726a198a0ed04cc" id="r_aa2632296ed75c2c82726a198a0ed04cc"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2632296ed75c2c82726a198a0ed04cc">~ContainerWrapper</a> ()=default</td></tr>
+<tr class="separator:aa2632296ed75c2c82726a198a0ed04cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a03b07a56c647a44b1f08c3308cc960b8" id="r_a03b07a56c647a44b1f08c3308cc960b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03b07a56c647a44b1f08c3308cc960b8">ContainerWrapper</a> (const std::function&lt; char *()&gt; &amp;<a class="el" href="#ae336bb32f26c3b5035d200bdb68d7e51">dataImplementation</a>, const std::function&lt; const char *()&gt; &amp;<a class="el" href="#a9c9b7bacd738a20c26f61de58d39d2d1">constDataImplementation</a>, const std::function&lt; size_t()&gt; &amp;<a class="el" href="#a5dc21897cc48268e05564c170e255556">sizeImplementation</a>, const std::function&lt; void(size_t)&gt; &amp;<a class="el" href="#a0df9e0d250b0469b151ffe9be9f962ab">resizeImplementation</a>, const std::function&lt; char &amp;(size_t)&gt; &amp;<a class="el" href="#ab186798ba800cab5b318a907da7904fe">operatorImplementation</a>)</td></tr>
+<tr class="separator:a03b07a56c647a44b1f08c3308cc960b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ae336bb32f26c3b5035d200bdb68d7e51" id="r_ae336bb32f26c3b5035d200bdb68d7e51"><td class="memItemLeft" align="right" valign="top">std::function&lt; char *()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae336bb32f26c3b5035d200bdb68d7e51">dataImplementation</a></td></tr>
+<tr class="separator:ae336bb32f26c3b5035d200bdb68d7e51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c9b7bacd738a20c26f61de58d39d2d1" id="r_a9c9b7bacd738a20c26f61de58d39d2d1"><td class="memItemLeft" align="right" valign="top">std::function&lt; const char *()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c9b7bacd738a20c26f61de58d39d2d1">constDataImplementation</a></td></tr>
+<tr class="separator:a9c9b7bacd738a20c26f61de58d39d2d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dc21897cc48268e05564c170e255556" id="r_a5dc21897cc48268e05564c170e255556"><td class="memItemLeft" align="right" valign="top">std::function&lt; size_t()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5dc21897cc48268e05564c170e255556">sizeImplementation</a></td></tr>
+<tr class="separator:a5dc21897cc48268e05564c170e255556"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0df9e0d250b0469b151ffe9be9f962ab" id="r_a0df9e0d250b0469b151ffe9be9f962ab"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(size_t)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0df9e0d250b0469b151ffe9be9f962ab">resizeImplementation</a></td></tr>
+<tr class="separator:a0df9e0d250b0469b151ffe9be9f962ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab186798ba800cab5b318a907da7904fe" id="r_ab186798ba800cab5b318a907da7904fe"><td class="memItemLeft" align="right" valign="top">std::function&lt; char &amp;(size_t)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab186798ba800cab5b318a907da7904fe">operatorImplementation</a></td></tr>
+<tr class="separator:ab186798ba800cab5b318a907da7904fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Wrap <a class="el" href="conceptweb_1_1utility_1_1_container.html" title="Requirements for in/out socket operations.">Container</a> concept instance. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a03b07a56c647a44b1f08c3308cc960b8" name="a03b07a56c647a44b1f08c3308cc960b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03b07a56c647a44b1f08c3308cc960b8">&#9670;&#160;</a></span>ContainerWrapper() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">web::utility::ContainerWrapper::ContainerWrapper </td>
+          <td>(</td>
+          <td class="paramtype">const std::function&lt; char *()&gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>dataImplementation</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::function&lt; const char *()&gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>constDataImplementation</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::function&lt; size_t()&gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>sizeImplementation</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::function&lt; void(size_t)&gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>resizeImplementation</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::function&lt; char &amp;(size_t)&gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>operatorImplementation</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a900e8d013f0eb4da038798a481ff8eab" name="a900e8d013f0eb4da038798a481ff8eab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a900e8d013f0eb4da038798a481ff8eab">&#9670;&#160;</a></span>ContainerWrapper() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a900e8d013f0eb4da038798a481ff8eab">&#9670;&#160;</a></span>ContainerWrapper() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -157,7 +221,7 @@ template&lt;Container T&gt; </div>
 </div>
 </div>
 <a id="ad2d7b38962c8022e117d7443b710e796" name="ad2d7b38962c8022e117d7443b710e796"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad2d7b38962c8022e117d7443b710e796">&#9670;&#160;</a></span>ContainerWrapper() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2d7b38962c8022e117d7443b710e796">&#9670;&#160;</a></span>ContainerWrapper() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -182,7 +246,7 @@ template&lt;Container T&gt; </div>
 </div>
 </div>
 <a id="ae1722bb7bfef98a4ac6e416ffcbd6b3b" name="ae1722bb7bfef98a4ac6e416ffcbd6b3b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae1722bb7bfef98a4ac6e416ffcbd6b3b">&#9670;&#160;</a></span>ContainerWrapper() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1722bb7bfef98a4ac6e416ffcbd6b3b">&#9670;&#160;</a></span>ContainerWrapper() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -206,8 +270,8 @@ template&lt;Container T&gt; </div>
 
 </div>
 </div>
-<a id="a2b033b86861983f978e9059abb045f9c" name="a2b033b86861983f978e9059abb045f9c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b033b86861983f978e9059abb045f9c">&#9670;&#160;</a></span>~ContainerWrapper()</h2>
+<a id="aa2632296ed75c2c82726a198a0ed04cc" name="aa2632296ed75c2c82726a198a0ed04cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2632296ed75c2c82726a198a0ed04cc">&#9670;&#160;</a></span>~ContainerWrapper()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -216,7 +280,7 @@ template&lt;Container T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">web::utility::ContainerWrapper::~ContainerWrapper </td>
+          <td class="memname">virtual web::utility::ContainerWrapper::~ContainerWrapper </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -224,7 +288,7 @@ template&lt;Container T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -363,6 +427,117 @@ template&lt;Container T&gt; </div>
           <td> const</td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a9c9b7bacd738a20c26f61de58d39d2d1" name="a9c9b7bacd738a20c26f61de58d39d2d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c9b7bacd738a20c26f61de58d39d2d1">&#9670;&#160;</a></span>constDataImplementation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;const char* ()&gt; web::utility::ContainerWrapper::constDataImplementation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae336bb32f26c3b5035d200bdb68d7e51" name="ae336bb32f26c3b5035d200bdb68d7e51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae336bb32f26c3b5035d200bdb68d7e51">&#9670;&#160;</a></span>dataImplementation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;char* ()&gt; web::utility::ContainerWrapper::dataImplementation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab186798ba800cab5b318a907da7904fe" name="ab186798ba800cab5b318a907da7904fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab186798ba800cab5b318a907da7904fe">&#9670;&#160;</a></span>operatorImplementation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;char&amp; (size_t)&gt; web::utility::ContainerWrapper::operatorImplementation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0df9e0d250b0469b151ffe9be9f962ab" name="a0df9e0d250b0469b151ffe9be9f962ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0df9e0d250b0469b151ffe9be9f962ab">&#9670;&#160;</a></span>resizeImplementation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;void(size_t)&gt; web::utility::ContainerWrapper::resizeImplementation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5dc21897cc48268e05564c170e255556" name="a5dc21897cc48268e05564c170e255556"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dc21897cc48268e05564c170e255556">&#9670;&#160;</a></span>sizeImplementation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;size_t()&gt; web::utility::ContainerWrapper::sizeImplementation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

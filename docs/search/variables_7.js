@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type_0',['type',['../classbuffers_1_1_i_o_socket_buffer.html#a1adabdc96433625da04fd0d7a4bdafbf',1,'buffers::IOSocketBuffer']]]
+  ['operatorimplementation_0',['operatorImplementation',['../classweb_1_1utility_1_1_container_wrapper.html#ab186798ba800cab5b318a907da7904fe',1,'web::utility::ContainerWrapper']]]
 ];

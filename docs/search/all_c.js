@@ -7,8 +7,9 @@ var searchData=
   ['sendfundamentalimplementation_4',['sendFundamentalImplementation',['../classstreams_1_1_i_o_socket_stream.html#af49aa8f635ef6626439b58368020c38a',1,'streams::IOSocketStream']]],
   ['sendrawdata_5',['sendRawData',['../classweb_1_1_network.html#a074c9dc5b62947809b30bd0e2a0cf912',1,'web::Network']]],
   ['size_6',['size',['../classweb_1_1utility_1_1_container_wrapper.html#ae86a48aee9e9749d8c8f0ebf97fa93b0',1,'web::utility::ContainerWrapper']]],
-  ['socketstreamsutility_2ecpp_7',['SocketStreamsUtility.cpp',['../_socket_streams_utility_8cpp.html',1,'']]],
-  ['socketstreamsutility_2eh_8',['SocketStreamsUtility.h',['../_socket_streams_utility_8h.html',1,'']]],
-  ['streams_9',['streams',['../namespacestreams.html',1,'']]],
-  ['streams_3a_3afundamental_10',['Fundamental',['../conceptstreams_1_1_fundamental.html',1,'streams']]]
+  ['sizeimplementation_7',['sizeImplementation',['../classweb_1_1utility_1_1_container_wrapper.html#a5dc21897cc48268e05564c170e255556',1,'web::utility::ContainerWrapper']]],
+  ['socketstreamsutility_2ecpp_8',['SocketStreamsUtility.cpp',['../_socket_streams_utility_8cpp.html',1,'']]],
+  ['socketstreamsutility_2eh_9',['SocketStreamsUtility.h',['../_socket_streams_utility_8h.html',1,'']]],
+  ['streams_10',['streams',['../namespacestreams.html',1,'']]],
+  ['streams_3a_3afundamental_11',['Fundamental',['../conceptstreams_1_1_fundamental.html',1,'streams']]]
 ];
