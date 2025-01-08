@@ -15,9 +15,6 @@ namespace buffers
 		using typename std::streambuf::char_type;
 		using typename std::streambuf::traits_type;
 
-	private:
-		void setPointers();
-
 	protected:
 		std::unique_ptr<web::Network> network;
 		int lastPacketSize;
