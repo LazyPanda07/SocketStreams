@@ -5,13 +5,21 @@
 
 namespace buffers
 {
+	void IOSocketBuffer::setPointers()
+	{
+		setg(&lastInputCharacter, &lastInputCharacter, nullptr);
+		setp(&lastOutputCharacter, &lastOutputCharacter, nullptr);
+	}
+
 	typename IOSocketBuffer::int_type IOSocketBuffer::overflow(int_type ch)
 	{
 		char data = ch;
 
 		lastPacketSize = network->sendBytes(&data, sizeof(data), endOfStream);
 
-		return endOfStream ? traits_type::eof() : 0;
+		lastOutputCharacter = endOfStream ? traits_type::eof() : traits_type::eof() + 1;
+
+		return lastOutputCharacter;
 	}
 
 	typename IOSocketBuffer::int_type IOSocketBuffer::underflow()
@@ -20,7 +28,9 @@ namespace buffers
 
 		lastPacketSize = network->receiveBytes(&data, sizeof(data), endOfStream);
 
-		return endOfStream ? traits_type::eof() : data;
+		lastInputCharacter = endOfStream ? traits_type::eof() : data;
+
+		return lastInputCharacter;
 	}
 
 	std::streamsize IOSocketBuffer::xsputn(const char_type* s, std::streamsize size)
@@ -58,25 +68,31 @@ namespace buffers
 	IOSocketBuffer::IOSocketBuffer(SOCKET clientSocket) :
 		network(std::make_unique<web::Network>(clientSocket)),
 		lastPacketSize(0),
+		lastInputCharacter('\0'),
+		lastOutputCharacter('\0'),
 		endOfStream(false)
 	{
-		
+		this->setPointers();
 	}
 
 	IOSocketBuffer::IOSocketBuffer(std::string_view ip, std::string_view port, DWORD timeout) :
 		network(std::make_unique<web::Network>(ip, port, timeout)),
 		lastPacketSize(0),
+		lastInputCharacter('\0'),
+		lastOutputCharacter('\0'),
 		endOfStream(false)
 	{
-		
+		this->setPointers();
 	}
 
 	IOSocketBuffer::IOSocketBuffer(std::unique_ptr<web::Network>&& networkSubclass) :
 		network(std::move(networkSubclass)),
 		lastPacketSize(0),
+		lastInputCharacter('\0'),
+		lastOutputCharacter('\0'),
 		endOfStream(false)
 	{
-		
+		this->setPointers();
 	}
 
 	const std::unique_ptr<web::Network>& IOSocketBuffer::getNetwork() const noexcept
