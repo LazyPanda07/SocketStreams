@@ -5,12 +5,6 @@
 
 namespace buffers
 {
-	void IOSocketBuffer::setPointers()
-	{
-		setg(&lastInputCharacter, &lastInputCharacter, &(lastInputCharacter)+1);
-		setp(&lastOutputCharacter, &(lastOutputCharacter)+1);
-	}
-
 	typename IOSocketBuffer::int_type IOSocketBuffer::overflow(int_type ch)
 	{
 		lastOutputCharacter = ch;
@@ -86,7 +80,7 @@ namespace buffers
 		lastOutputCharacter('\0'),
 		endOfStream(false)
 	{
-		this->setPointers();
+
 	}
 
 	IOSocketBuffer::IOSocketBuffer(std::string_view ip, std::string_view port, DWORD timeout) :
@@ -96,7 +90,7 @@ namespace buffers
 		lastOutputCharacter('\0'),
 		endOfStream(false)
 	{
-		this->setPointers();
+
 	}
 
 	IOSocketBuffer::IOSocketBuffer(std::unique_ptr<web::Network>&& networkSubclass) :
@@ -106,7 +100,7 @@ namespace buffers
 		lastOutputCharacter('\0'),
 		endOfStream(false)
 	{
-		this->setPointers();
+
 	}
 
 	const std::unique_ptr<web::Network>& IOSocketBuffer::getNetwork() const noexcept
