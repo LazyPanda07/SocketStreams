@@ -4,12 +4,10 @@
 #include <limits>
 
 #include "IOSocketBuffer.h"
+#include "SocketStreamsUtility.h"
 
 namespace streams
 {
-	template<typename T>
-	concept Fundamental = std::is_fundamental_v<T>;
-
 	/// @brief Base input/output socket stream
 	class IOSocketStream : public std::iostream
 	{
@@ -17,10 +15,10 @@ namespace streams
 		std::unique_ptr<buffers::IOSocketBuffer> buffer;
 
 	protected:
-		template<Fundamental T>
+		template<web::utility::Fundamental T>
 		int sendFundamental(T value);
 
-		template<Fundamental T>
+		template<web::utility::Fundamental T>
 		int receiveFundamental(T& value);
 
 		virtual int sendFundamentalImplementation(const char* value, int valueSize, bool& endOfStream);
@@ -111,7 +109,7 @@ namespace streams
 		virtual ~IOSocketStream() = default;
 	};
 
-	template<Fundamental T>
+	template<web::utility::Fundamental T>
 	int IOSocketStream::sendFundamental(T value)
 	{
 		try
@@ -134,7 +132,7 @@ namespace streams
 		}
 	}
 
-	template<Fundamental T>
+	template<web::utility::Fundamental T>
 	int IOSocketStream::receiveFundamental(T& value)
 	{
 		try

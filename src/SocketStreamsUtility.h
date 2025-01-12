@@ -2,14 +2,14 @@
 
 #include <string>
 
-namespace web
+namespace web::utility
 {
-	namespace utility
-	{
-		/**
-		 * @brief Get curret version of SocketStreams library
-		 * @return 
-		 */
-		std::string getSocketStreamsVersion();
-	}
+	template<typename T>
+	concept Fundamental = std::is_fundamental_v<T>;
+
+	/**
+	 * @brief Get curret version of SocketStreams library
+	 * @return
+	 */
+	std::string getSocketStreamsVersion();
 }

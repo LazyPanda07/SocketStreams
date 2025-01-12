@@ -36,3 +36,7 @@
 
 # Binaries
 bin/
+out/
+
+# GTest
+gtest/
