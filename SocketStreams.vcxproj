@@ -35,6 +35,7 @@
     <ClInclude Include="src\WebException.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\BufferArray.cpp" />
     <ClCompile Include="src\ContainerWrapper.cpp" />
     <ClCompile Include="src\IOSocketBuffer.cpp" />
     <ClCompile Include="src\IOSocketStream.cpp" />

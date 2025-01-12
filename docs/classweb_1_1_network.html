@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.4.10</span>
+   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.5.0</span>
    </div>
   </td>
  </tr>
@@ -118,31 +118,34 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae8fb19ca81155526f04d4777427b9867" id="r_ae8fb19ca81155526f04d4777427b9867"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8fb19ca81155526f04d4777427b9867">Network</a> (SOCKET <a class="el" href="#aff2607898ebd587090a42e108ea49dbd">clientSocket</a>)</td></tr>
 <tr class="memdesc:ae8fb19ca81155526f04d4777427b9867"><td class="mdescLeft">&#160;</td><td class="mdescRight">Server side contructor.  <br /></td></tr>
 <tr class="separator:ae8fb19ca81155526f04d4777427b9867"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae466f380d73b92f1450b8c74d7ff0a59" id="r_ae466f380d73b92f1450b8c74d7ff0a59"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae466f380d73b92f1450b8c74d7ff0a59">sendData</a> (const <a class="el" href="classweb_1_1utility_1_1_container_wrapper.html">utility::ContainerWrapper</a> &amp;data, bool &amp;endOfStream)</td></tr>
-<tr class="memdesc:ae466f380d73b92f1450b8c74d7ff0a59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send data through network.  <br /></td></tr>
-<tr class="separator:ae466f380d73b92f1450b8c74d7ff0a59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a074c9dc5b62947809b30bd0e2a0cf912" id="r_a074c9dc5b62947809b30bd0e2a0cf912"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a074c9dc5b62947809b30bd0e2a0cf912">sendRawData</a> (const char *data, int size, bool &amp;endOfStream)</td></tr>
-<tr class="memdesc:a074c9dc5b62947809b30bd0e2a0cf912"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send raw data through network.  <br /></td></tr>
-<tr class="separator:a074c9dc5b62947809b30bd0e2a0cf912"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87f2609d309d3a68efb40074e7b67076" id="r_a87f2609d309d3a68efb40074e7b67076"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87f2609d309d3a68efb40074e7b67076">receiveData</a> (<a class="el" href="classweb_1_1utility_1_1_container_wrapper.html">utility::ContainerWrapper</a> &amp;data, bool &amp;endOfStream)</td></tr>
-<tr class="memdesc:a87f2609d309d3a68efb40074e7b67076"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive data through network.  <br /></td></tr>
-<tr class="separator:a87f2609d309d3a68efb40074e7b67076"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18fe242d53974728977f3f4b570dc682" id="r_a18fe242d53974728977f3f4b570dc682"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18fe242d53974728977f3f4b570dc682">receiveRawData</a> (char *data, int size, bool &amp;endOfStream)</td></tr>
-<tr class="memdesc:a18fe242d53974728977f3f4b570dc682"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive data through network.  <br /></td></tr>
-<tr class="separator:a18fe242d53974728977f3f4b570dc682"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a138fd714971893c444c1716fe3658c" id="r_a9a138fd714971893c444c1716fe3658c"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a138fd714971893c444c1716fe3658c">sendData</a> (const <a class="el" href="classweb_1_1utility_1_1_container_wrapper.html">utility::ContainerWrapper</a> &amp;data, bool &amp;endOfStream, int flags=0)</td></tr>
+<tr class="memdesc:a9a138fd714971893c444c1716fe3658c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send data through network.  <br /></td></tr>
+<tr class="separator:a9a138fd714971893c444c1716fe3658c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e7e29aafa7f0f5fe1cd1aea0a920fc3" id="r_a0e7e29aafa7f0f5fe1cd1aea0a920fc3"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e7e29aafa7f0f5fe1cd1aea0a920fc3">sendRawData</a> (const char *data, int size, bool &amp;endOfStream, int flags=0)</td></tr>
+<tr class="memdesc:a0e7e29aafa7f0f5fe1cd1aea0a920fc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send raw data through network.  <br /></td></tr>
+<tr class="separator:a0e7e29aafa7f0f5fe1cd1aea0a920fc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2599aa11984fe14f6ec37dcb731d3131" id="r_a2599aa11984fe14f6ec37dcb731d3131"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2599aa11984fe14f6ec37dcb731d3131">receiveData</a> (<a class="el" href="classweb_1_1utility_1_1_container_wrapper.html">utility::ContainerWrapper</a> &amp;data, bool &amp;endOfStream, int flags=0)</td></tr>
+<tr class="memdesc:a2599aa11984fe14f6ec37dcb731d3131"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive data through network.  <br /></td></tr>
+<tr class="separator:a2599aa11984fe14f6ec37dcb731d3131"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0240c5aa58ec03d0a7ace640a0ec3f2d" id="r_a0240c5aa58ec03d0a7ace640a0ec3f2d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0240c5aa58ec03d0a7ace640a0ec3f2d">receiveRawData</a> (char *data, int size, bool &amp;endOfStream, int flags=0)</td></tr>
+<tr class="memdesc:a0240c5aa58ec03d0a7ace640a0ec3f2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive data through network.  <br /></td></tr>
+<tr class="separator:a0240c5aa58ec03d0a7ace640a0ec3f2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5495cfd1f40897532135e0ef45fe9d4a" id="r_a5495cfd1f40897532135e0ef45fe9d4a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5495cfd1f40897532135e0ef45fe9d4a">log</a> (const std::string &amp;message, std::any &amp;&amp;data=&quot;&quot;)</td></tr>
 <tr class="memdesc:a5495cfd1f40897532135e0ef45fe9d4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Errors logging, default implementation uses clog.  <br /></td></tr>
 <tr class="separator:a5495cfd1f40897532135e0ef45fe9d4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a015051ca702a7662f731c5062b280991" id="r_a015051ca702a7662f731c5062b280991"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a015051ca702a7662f731c5062b280991">addReceiveBuffer</a> (std::string_view buffer)</td></tr>
+<tr class="memdesc:a015051ca702a7662f731c5062b280991"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add additional data that uses before getting bytes from network.  <br /></td></tr>
+<tr class="separator:a015051ca702a7662f731c5062b280991"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6849ad23ccb0acdeb91232de5a9a24c" id="r_af6849ad23ccb0acdeb91232de5a9a24c"><td class="memItemLeft" align="right" valign="top">SOCKET&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6849ad23ccb0acdeb91232de5a9a24c">getClientSocket</a> () const</td></tr>
 <tr class="memdesc:af6849ad23ccb0acdeb91232de5a9a24c"><td class="mdescLeft">&#160;</td><td class="mdescRight">clientSocket getter  <br /></td></tr>
 <tr class="separator:af6849ad23ccb0acdeb91232de5a9a24c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32f2648205f4242bca802f587fcb80ef" id="r_a32f2648205f4242bca802f587fcb80ef"><td class="memTemplParams" colspan="2">template&lt;typename DataT &gt; </td></tr>
-<tr class="memitem:a32f2648205f4242bca802f587fcb80ef"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a32f2648205f4242bca802f587fcb80ef">sendBytes</a> (const DataT *data, int size, bool &amp;endOfStream)</td></tr>
-<tr class="memdesc:a32f2648205f4242bca802f587fcb80ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send raw bytes through network.  <br /></td></tr>
-<tr class="separator:a32f2648205f4242bca802f587fcb80ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a7e248544d0dbb5884bf8dec332ee2b" id="r_a0a7e248544d0dbb5884bf8dec332ee2b"><td class="memTemplParams" colspan="2">template&lt;typename DataT &gt; </td></tr>
-<tr class="memitem:a0a7e248544d0dbb5884bf8dec332ee2b"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a0a7e248544d0dbb5884bf8dec332ee2b">receiveBytes</a> (DataT *data, int size, bool &amp;endOfStream)</td></tr>
-<tr class="separator:a0a7e248544d0dbb5884bf8dec332ee2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ed19a5561a7fd78c54ce842297bee32" id="r_a4ed19a5561a7fd78c54ce842297bee32"><td class="memTemplParams" colspan="2">template&lt;typename DataT &gt; </td></tr>
+<tr class="memitem:a4ed19a5561a7fd78c54ce842297bee32"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a4ed19a5561a7fd78c54ce842297bee32">sendBytes</a> (const DataT *data, int size, bool &amp;endOfStream, int flags=0)</td></tr>
+<tr class="memdesc:a4ed19a5561a7fd78c54ce842297bee32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send raw bytes through network.  <br /></td></tr>
+<tr class="separator:a4ed19a5561a7fd78c54ce842297bee32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f42be1e52bf35b870488951594d2079" id="r_a5f42be1e52bf35b870488951594d2079"><td class="memTemplParams" colspan="2">template&lt;typename DataT &gt; </td></tr>
+<tr class="memitem:a5f42be1e52bf35b870488951594d2079"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a5f42be1e52bf35b870488951594d2079">receiveBytes</a> (DataT *data, int size, bool &amp;endOfStream, int flags=0)</td></tr>
+<tr class="separator:a5f42be1e52bf35b870488951594d2079"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b91abdc8b7cd04c0491bc7911e390a2" id="r_a1b91abdc8b7cd04c0491bc7911e390a2"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b91abdc8b7cd04c0491bc7911e390a2">~Network</a> ()</td></tr>
 <tr class="separator:a1b91abdc8b7cd04c0491bc7911e390a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -159,6 +162,8 @@ Protected Member Functions</h2></td></tr>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:aff2607898ebd587090a42e108ea49dbd" id="r_aff2607898ebd587090a42e108ea49dbd"><td class="memItemLeft" align="right" valign="top">SOCKET&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff2607898ebd587090a42e108ea49dbd">clientSocket</a></td></tr>
 <tr class="separator:aff2607898ebd587090a42e108ea49dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5554fc980511c4b5ed2949c385ae4005" id="r_a5554fc980511c4b5ed2949c385ae4005"><td class="memItemLeft" align="right" valign="top">std::queue&lt; std::string_view &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5554fc980511c4b5ed2949c385ae4005">buffers</a></td></tr>
+<tr class="separator:a5554fc980511c4b5ed2949c385ae4005"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base network class. </p>
@@ -259,6 +264,31 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a015051ca702a7662f731c5062b280991" name="a015051ca702a7662f731c5062b280991"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a015051ca702a7662f731c5062b280991">&#9670;&#160;</a></span>addReceiveBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void web::Network::addReceiveBuffer </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add additional data that uses before getting bytes from network. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="af6849ad23ccb0acdeb91232de5a9a24c" name="af6849ad23ccb0acdeb91232de5a9a24c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af6849ad23ccb0acdeb91232de5a9a24c">&#9670;&#160;</a></span>getClientSocket()</h2>
 
@@ -317,8 +347,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a0a7e248544d0dbb5884bf8dec332ee2b" name="a0a7e248544d0dbb5884bf8dec332ee2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a7e248544d0dbb5884bf8dec332ee2b">&#9670;&#160;</a></span>receiveBytes()</h2>
+<a id="a5f42be1e52bf35b870488951594d2079" name="a5f42be1e52bf35b870488951594d2079"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f42be1e52bf35b870488951594d2079">&#9670;&#160;</a></span>receiveBytes()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -338,7 +368,12 @@ template&lt;typename DataT &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>endOfStream</em></span>&#160;)</td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>endOfStream</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>flags</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -352,6 +387,8 @@ template&lt;typename DataT &gt; </div>
   <table class="params">
     <tr><td class="paramname">data</td><td></td></tr>
     <tr><td class="paramname">size</td><td></td></tr>
+    <tr><td class="paramname">endOfStream</td><td></td></tr>
+    <tr><td class="paramname">flags</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -400,8 +437,8 @@ template&lt;typename DataT &gt; </div>
 
 </div>
 </div>
-<a id="a87f2609d309d3a68efb40074e7b67076" name="a87f2609d309d3a68efb40074e7b67076"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87f2609d309d3a68efb40074e7b67076">&#9670;&#160;</a></span>receiveData()</h2>
+<a id="a2599aa11984fe14f6ec37dcb731d3131" name="a2599aa11984fe14f6ec37dcb731d3131"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2599aa11984fe14f6ec37dcb731d3131">&#9670;&#160;</a></span>receiveData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -417,7 +454,12 @@ template&lt;typename DataT &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>endOfStream</em></span>&#160;)</td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>endOfStream</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>flags</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -439,8 +481,8 @@ template&lt;typename DataT &gt; </div>
 
 </div>
 </div>
-<a id="a18fe242d53974728977f3f4b570dc682" name="a18fe242d53974728977f3f4b570dc682"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18fe242d53974728977f3f4b570dc682">&#9670;&#160;</a></span>receiveRawData()</h2>
+<a id="a0240c5aa58ec03d0a7ace640a0ec3f2d" name="a0240c5aa58ec03d0a7ace640a0ec3f2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0240c5aa58ec03d0a7ace640a0ec3f2d">&#9670;&#160;</a></span>receiveRawData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -461,7 +503,12 @@ template&lt;typename DataT &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>endOfStream</em></span>&#160;)</td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>endOfStream</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>flags</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -483,8 +530,8 @@ template&lt;typename DataT &gt; </div>
 
 </div>
 </div>
-<a id="a32f2648205f4242bca802f587fcb80ef" name="a32f2648205f4242bca802f587fcb80ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32f2648205f4242bca802f587fcb80ef">&#9670;&#160;</a></span>sendBytes()</h2>
+<a id="a4ed19a5561a7fd78c54ce842297bee32" name="a4ed19a5561a7fd78c54ce842297bee32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ed19a5561a7fd78c54ce842297bee32">&#9670;&#160;</a></span>sendBytes()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -504,7 +551,12 @@ template&lt;typename DataT &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>endOfStream</em></span>&#160;)</td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>endOfStream</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>flags</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -520,6 +572,8 @@ template&lt;typename DataT &gt; </div>
   <table class="params">
     <tr><td class="paramname">data</td><td></td></tr>
     <tr><td class="paramname">size</td><td></td></tr>
+    <tr><td class="paramname">endOfStream</td><td></td></tr>
+    <tr><td class="paramname">flags</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -568,8 +622,8 @@ template&lt;typename DataT &gt; </div>
 
 </div>
 </div>
-<a id="ae466f380d73b92f1450b8c74d7ff0a59" name="ae466f380d73b92f1450b8c74d7ff0a59"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae466f380d73b92f1450b8c74d7ff0a59">&#9670;&#160;</a></span>sendData()</h2>
+<a id="a9a138fd714971893c444c1716fe3658c" name="a9a138fd714971893c444c1716fe3658c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a138fd714971893c444c1716fe3658c">&#9670;&#160;</a></span>sendData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -585,7 +639,12 @@ template&lt;typename DataT &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>endOfStream</em></span>&#160;)</td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>endOfStream</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>flags</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -607,8 +666,8 @@ template&lt;typename DataT &gt; </div>
 
 </div>
 </div>
-<a id="a074c9dc5b62947809b30bd0e2a0cf912" name="a074c9dc5b62947809b30bd0e2a0cf912"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a074c9dc5b62947809b30bd0e2a0cf912">&#9670;&#160;</a></span>sendRawData()</h2>
+<a id="a0e7e29aafa7f0f5fe1cd1aea0a920fc3" name="a0e7e29aafa7f0f5fe1cd1aea0a920fc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e7e29aafa7f0f5fe1cd1aea0a920fc3">&#9670;&#160;</a></span>sendRawData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -629,7 +688,12 @@ template&lt;typename DataT &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>endOfStream</em></span>&#160;)</td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>endOfStream</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>flags</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -681,6 +745,28 @@ template&lt;typename DataT &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a5554fc980511c4b5ed2949c385ae4005" name="a5554fc980511c4b5ed2949c385ae4005"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5554fc980511c4b5ed2949c385ae4005">&#9670;&#160;</a></span>buffers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::queue&lt;std::string_view&gt; web::Network::buffers</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aff2607898ebd587090a42e108ea49dbd" name="aff2607898ebd587090a42e108ea49dbd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aff2607898ebd587090a42e108ea49dbd">&#9670;&#160;</a></span>clientSocket</h2>
 

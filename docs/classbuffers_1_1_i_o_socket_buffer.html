@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.4.10</span>
+   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.5.0</span>
    </div>
   </td>
  </tr>
@@ -151,6 +151,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:a4e608201ba5ddd6f420b322714e23b15" id="r_a4e608201ba5ddd6f420b322714e23b15"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e608201ba5ddd6f420b322714e23b15">getAvailableInputSize</a> () const</td></tr>
+<tr class="separator:a4e608201ba5ddd6f420b322714e23b15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a201fcf789fb0feb99a6aa4a0c0d4fed5" id="r_a201fcf789fb0feb99a6aa4a0c0d4fed5"><td class="memItemLeft" align="right" valign="top">int_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a201fcf789fb0feb99a6aa4a0c0d4fed5">overflow</a> (int_type ch) override</td></tr>
 <tr class="separator:a201fcf789fb0feb99a6aa4a0c0d4fed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6c13832b7ee0073e2519632207b096f" id="r_af6c13832b7ee0073e2519632207b096f"><td class="memItemLeft" align="right" valign="top">int_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6c13832b7ee0073e2519632207b096f">underflow</a> () override</td></tr>
@@ -166,10 +168,8 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a7665d8d75bf32b26f4cd454354f67289"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28cb0e4fb10f8fc00adbd8a966672c8c" id="r_a28cb0e4fb10f8fc00adbd8a966672c8c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28cb0e4fb10f8fc00adbd8a966672c8c">lastPacketSize</a></td></tr>
 <tr class="separator:a28cb0e4fb10f8fc00adbd8a966672c8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff5474720b07a0620691476af237be67" id="r_aff5474720b07a0620691476af237be67"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff5474720b07a0620691476af237be67">lastInputCharacter</a></td></tr>
-<tr class="separator:aff5474720b07a0620691476af237be67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c220d20b3c2b4d537749c8de4d3f35d" id="r_a1c220d20b3c2b4d537749c8de4d3f35d"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c220d20b3c2b4d537749c8de4d3f35d">lastOutputCharacter</a></td></tr>
-<tr class="separator:a1c220d20b3c2b4d537749c8de4d3f35d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1f709a2572b65330e24817be347bce7" id="r_af1f709a2572b65330e24817be347bce7"><td class="memItemLeft" align="right" valign="top">BufferArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1f709a2572b65330e24817be347bce7">inputData</a></td></tr>
+<tr class="separator:af1f709a2572b65330e24817be347bce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51315518d8ae46fcc788f88aa53c12d7" id="r_a51315518d8ae46fcc788f88aa53c12d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51315518d8ae46fcc788f88aa53c12d7">endOfStream</a></td></tr>
 <tr class="separator:a51315518d8ae46fcc788f88aa53c12d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -368,6 +368,31 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4e608201ba5ddd6f420b322714e23b15" name="a4e608201ba5ddd6f420b322714e23b15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e608201ba5ddd6f420b322714e23b15">&#9670;&#160;</a></span>getAvailableInputSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t buffers::IOSocketBuffer::getAvailableInputSize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a1a2fc10cfab13a972cc7eafb9dacfbc4" name="a1a2fc10cfab13a972cc7eafb9dacfbc4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1a2fc10cfab13a972cc7eafb9dacfbc4">&#9670;&#160;</a></span>getEndOfStream()</h2>
 
@@ -643,8 +668,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aff5474720b07a0620691476af237be67" name="aff5474720b07a0620691476af237be67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff5474720b07a0620691476af237be67">&#9670;&#160;</a></span>lastInputCharacter</h2>
+<a id="af1f709a2572b65330e24817be347bce7" name="af1f709a2572b65330e24817be347bce7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1f709a2572b65330e24817be347bce7">&#9670;&#160;</a></span>inputData</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -653,29 +678,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">char buffers::IOSocketBuffer::lastInputCharacter</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a1c220d20b3c2b4d537749c8de4d3f35d" name="a1c220d20b3c2b4d537749c8de4d3f35d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c220d20b3c2b4d537749c8de4d3f35d">&#9670;&#160;</a></span>lastOutputCharacter</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char buffers::IOSocketBuffer::lastOutputCharacter</td>
+          <td class="memname">BufferArray buffers::IOSocketBuffer::inputData</td>
         </tr>
       </table>
   </td>

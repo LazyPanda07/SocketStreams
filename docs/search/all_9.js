@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['network_0',['Network',['../classweb_1_1_network.html',1,'web::Network'],['../classweb_1_1_network.html#ad275af6ef458689cb15bf4fc52c09d19',1,'web::Network::Network(std::string_view ip, std::string_view port, DWORD timeout=30 &apos;000)'],['../classweb_1_1_network.html#ae8fb19ca81155526f04d4777427b9867',1,'web::Network::Network(SOCKET clientSocket)']]],
-  ['network_1',['network',['../classbuffers_1_1_i_o_socket_buffer.html#a7665d8d75bf32b26f4cd454354f67289',1,'buffers::IOSocketBuffer']]],
-  ['network_2ecpp_2',['Network.cpp',['../_network_8cpp.html',1,'']]],
-  ['network_2eh_3',['Network.h',['../_network_8h.html',1,'']]]
+  ['lastpacketsize_0',['lastPacketSize',['../classbuffers_1_1_i_o_socket_buffer.html#a28cb0e4fb10f8fc00adbd8a966672c8c',1,'buffers::IOSocketBuffer']]],
+  ['line_1',['line',['../classweb_1_1exceptions_1_1_web_exception.html#a78d94b6a4b8ff4451a16dae3275b6116',1,'web::exceptions::WebException']]],
+  ['log_2',['log',['../classweb_1_1_network.html#a5495cfd1f40897532135e0ef45fe9d4a',1,'web::Network']]]
 ];

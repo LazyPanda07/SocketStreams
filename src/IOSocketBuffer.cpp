@@ -5,40 +5,37 @@
 
 namespace buffers
 {
+	size_t IOSocketBuffer::getAvailableInputSize() const
+	{
+		return gptr() ? egptr() - gptr() : 0;
+	}
+
 	typename IOSocketBuffer::int_type IOSocketBuffer::overflow(int_type ch)
 	{
-		lastOutputCharacter = ch;
+		char character = ch;
 
-		lastPacketSize = network->sendBytes(&lastOutputCharacter, sizeof(lastOutputCharacter), endOfStream);
+		lastPacketSize = network->sendBytes(&character, sizeof(character), endOfStream);
 
 		if (endOfStream)
 		{
-			lastOutputCharacter = traits_type::eof();
-		}
-		else
-		{
-			lastOutputCharacter = traits_type::eof() + 1;
-
-			setp(&lastOutputCharacter, &(lastOutputCharacter)+1);
+			return traits_type::eof();
 		}
 
-		return lastOutputCharacter;
+		return traits_type::eof() + 1;
 	}
 
 	typename IOSocketBuffer::int_type IOSocketBuffer::underflow()
 	{
-		lastPacketSize = network->receiveBytes(&lastInputCharacter, sizeof(lastInputCharacter), endOfStream);
+		lastPacketSize = network->receiveBytes(inputData.get(), static_cast<int>(inputData.size()), endOfStream);
 
 		if (endOfStream)
 		{
-			lastInputCharacter = traits_type::eof();
-		}
-		else
-		{
-			setg(&lastInputCharacter, &lastInputCharacter, &(lastInputCharacter)+1);
+			return traits_type::eof();
 		}
 
-		return lastInputCharacter;
+		setg(inputData.get(), inputData.get(), inputData.get(static_cast<size_t>(lastPacketSize) + 1));
+
+		return *gptr();
 	}
 
 	std::streamsize IOSocketBuffer::xsputn(const char_type* s, std::streamsize size)
@@ -59,6 +56,13 @@ namespace buffers
 
 	std::streamsize IOSocketBuffer::xsgetn(char_type* s, std::streamsize size)
 	{
+		if (size_t bufferSize = this->getAvailableInputSize(); bufferSize)
+		{
+			network->addReceiveBuffer(inputData.get(bufferSize));
+
+			gbump(std::min<int>(bufferSize, size));
+		}
+
 		if (size == (std::numeric_limits<std::streamsize>::max)())
 		{
 			web::utility::ContainerWrapper& container = *(reinterpret_cast<web::utility::ContainerWrapper*>(s));
@@ -76,8 +80,6 @@ namespace buffers
 	IOSocketBuffer::IOSocketBuffer(SOCKET clientSocket) :
 		network(std::make_unique<web::Network>(clientSocket)),
 		lastPacketSize(0),
-		lastInputCharacter('\0'),
-		lastOutputCharacter('\0'),
 		endOfStream(false)
 	{
 
@@ -86,8 +88,6 @@ namespace buffers
 	IOSocketBuffer::IOSocketBuffer(std::string_view ip, std::string_view port, DWORD timeout) :
 		network(std::make_unique<web::Network>(ip, port, timeout)),
 		lastPacketSize(0),
-		lastInputCharacter('\0'),
-		lastOutputCharacter('\0'),
 		endOfStream(false)
 	{
 
@@ -96,8 +96,6 @@ namespace buffers
 	IOSocketBuffer::IOSocketBuffer(std::unique_ptr<web::Network>&& networkSubclass) :
 		network(std::move(networkSubclass)),
 		lastPacketSize(0),
-		lastInputCharacter('\0'),
-		lastOutputCharacter('\0'),
 		endOfStream(false)
 	{
 
