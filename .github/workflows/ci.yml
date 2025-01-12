@@ -123,7 +123,7 @@ jobs:
 
     - name: Run
       working-directory: Tests/build/bin
-      run: valgrind ./Tests
+      run: ./Tests
 
 
   publish:

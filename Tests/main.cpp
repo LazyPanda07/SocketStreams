@@ -23,7 +23,7 @@ TEST(Streams, DefaultNetwork)
 
 	data = "another data";
 
-	{
+	{	
 		std::string result;
 
 		stream << data;
