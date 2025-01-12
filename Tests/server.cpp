@@ -33,7 +33,7 @@ private:
 
 public:
 	TestServer() :
-		BaseTCPServer("127.0.0.1", "8080")
+		BaseTCPServer("8080", "127.0.0.1")
 	{
 
 	}
