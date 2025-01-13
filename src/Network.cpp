@@ -92,8 +92,6 @@ namespace web
 		if (ioctl(clientSocket, FIONREAD, &result) < 0)
 		{
 			THROW_WEB_EXCEPTION;
-
-			return false;
 		}
 #else
 		u_long result = 0;
@@ -101,8 +99,6 @@ namespace web
 		if (ioctlsocket(clientSocket, FIONREAD, &result) == SOCKET_ERROR) 
 		{
 			THROW_WEB_EXCEPTION;
-
-			return false;
 		}
 #endif
 

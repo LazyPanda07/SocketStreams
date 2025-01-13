@@ -2,6 +2,9 @@
 
 #include <iterator>
 #include <limits>
+#include <algorithm>
+#include <chrono>
+#include <thread>
 
 namespace buffers
 {
@@ -26,9 +29,21 @@ namespace buffers
 
 	typename IOSocketBuffer::int_type IOSocketBuffer::underflow()
 	{
+		using namespace std::chrono_literals;
+
 		int availableBytes = 0;
 
-		if (!network->isDataAvailable(&availableBytes))
+		for (size_t i = 0; i < 5; i++)
+		{
+			if (network->isDataAvailable(&availableBytes))
+			{
+				break;
+			}
+
+			std::this_thread::sleep_for(5ms);
+		}
+
+		if (!availableBytes)
 		{
 			return traits_type::eof();
 		}
