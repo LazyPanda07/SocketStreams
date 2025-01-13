@@ -67,6 +67,12 @@ namespace web
 		Network(SOCKET clientSocket);
 
 		/**
+		 * @brief Check if Network contains data
+		 * @return 
+		 */
+		bool isDataAvailable(int* availableBytes = nullptr) const;
+
+		/**
 		* @brief Send data through network
 		* @param data Actual data with some useful methods. Called with std::vector<char> or std::string
 		* @param endOfStream Is connection closed

@@ -5,6 +5,7 @@ var classweb_1_1_network =
     [ "~Network", "classweb_1_1_network.html#a1b91abdc8b7cd04c0491bc7911e390a2", null ],
     [ "addReceiveBuffer", "classweb_1_1_network.html#a015051ca702a7662f731c5062b280991", null ],
     [ "getClientSocket", "classweb_1_1_network.html#af6849ad23ccb0acdeb91232de5a9a24c", null ],
+    [ "isDataAvailable", "classweb_1_1_network.html#a21ab4a399d8f7ef6150326cc36dc3365", null ],
     [ "log", "classweb_1_1_network.html#a5495cfd1f40897532135e0ef45fe9d4a", null ],
     [ "receiveBytes", "classweb_1_1_network.html#a5f42be1e52bf35b870488951594d2079", null ],
     [ "receiveBytesImplementation", "classweb_1_1_network.html#ad04dbe2f4d4cdda8c9e9ee3325c7843a", null ],
