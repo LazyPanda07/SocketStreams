@@ -16,7 +16,7 @@ var NAVTREEINDEX0 =
 "_socket_streams_utility_8cpp.html":[3,0,0,9],
 "_socket_streams_utility_8cpp.html#a6d4f07ca0bdc5379f1b811306df67743":[3,0,0,9,0],
 "_socket_streams_utility_8h.html":[3,0,0,10],
-"_socket_streams_utility_8h.html#a6d4f07ca0bdc5379f1b811306df67743":[3,0,0,10,0],
+"_socket_streams_utility_8h.html#a6d4f07ca0bdc5379f1b811306df67743":[3,0,0,10,1],
 "_socket_streams_utility_8h_source.html":[3,0,0,10],
 "_web_exception_8cpp.html":[3,0,0,11],
 "_web_exception_8h.html":[3,0,0,12],

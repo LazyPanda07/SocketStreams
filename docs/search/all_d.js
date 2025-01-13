@@ -10,6 +10,5 @@ var searchData=
   ['sizeimplementation_7',['sizeImplementation',['../classweb_1_1utility_1_1_container_wrapper.html#a5dc21897cc48268e05564c170e255556',1,'web::utility::ContainerWrapper']]],
   ['socketstreamsutility_2ecpp_8',['SocketStreamsUtility.cpp',['../_socket_streams_utility_8cpp.html',1,'']]],
   ['socketstreamsutility_2eh_9',['SocketStreamsUtility.h',['../_socket_streams_utility_8h.html',1,'']]],
-  ['streams_10',['streams',['../namespacestreams.html',1,'']]],
-  ['streams_3a_3afundamental_11',['Fundamental',['../conceptstreams_1_1_fundamental.html',1,'streams']]]
+  ['streams_10',['streams',['../namespacestreams.html',1,'']]]
 ];
