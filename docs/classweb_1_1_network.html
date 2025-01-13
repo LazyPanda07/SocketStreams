@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.5.0</span>
+   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.6.0</span>
    </div>
   </td>
  </tr>
@@ -118,6 +118,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae8fb19ca81155526f04d4777427b9867" id="r_ae8fb19ca81155526f04d4777427b9867"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8fb19ca81155526f04d4777427b9867">Network</a> (SOCKET <a class="el" href="#aff2607898ebd587090a42e108ea49dbd">clientSocket</a>)</td></tr>
 <tr class="memdesc:ae8fb19ca81155526f04d4777427b9867"><td class="mdescLeft">&#160;</td><td class="mdescRight">Server side contructor.  <br /></td></tr>
 <tr class="separator:ae8fb19ca81155526f04d4777427b9867"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21ab4a399d8f7ef6150326cc36dc3365" id="r_a21ab4a399d8f7ef6150326cc36dc3365"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21ab4a399d8f7ef6150326cc36dc3365">isDataAvailable</a> (int *availableBytes=nullptr) const</td></tr>
+<tr class="memdesc:a21ab4a399d8f7ef6150326cc36dc3365"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <a class="el" href="classweb_1_1_network.html" title="Base network class.">Network</a> contains data.  <br /></td></tr>
+<tr class="separator:a21ab4a399d8f7ef6150326cc36dc3365"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a138fd714971893c444c1716fe3658c" id="r_a9a138fd714971893c444c1716fe3658c"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a138fd714971893c444c1716fe3658c">sendData</a> (const <a class="el" href="classweb_1_1utility_1_1_container_wrapper.html">utility::ContainerWrapper</a> &amp;data, bool &amp;endOfStream, int flags=0)</td></tr>
 <tr class="memdesc:a9a138fd714971893c444c1716fe3658c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send data through network.  <br /></td></tr>
 <tr class="separator:a9a138fd714971893c444c1716fe3658c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -306,6 +309,26 @@ Protected Attributes</h2></td></tr>
 
 <p>clientSocket getter </p>
 <dl class="section return"><dt>Returns</dt><dd>clientSocket </dd></dl>
+
+</div>
+</div>
+<a id="a21ab4a399d8f7ef6150326cc36dc3365" name="a21ab4a399d8f7ef6150326cc36dc3365"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21ab4a399d8f7ef6150326cc36dc3365">&#9670;&#160;</a></span>isDataAvailable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool web::Network::isDataAvailable </td>
+          <td>(</td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>availableBytes</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if <a class="el" href="classweb_1_1_network.html" title="Base network class.">Network</a> contains data. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>

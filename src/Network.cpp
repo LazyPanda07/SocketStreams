@@ -84,6 +84,36 @@ namespace web
 
 	}
 
+	bool Network::isDataAvailable(int* availableBytes) const
+	{
+#ifdef __LINUX__
+		int result = 0;
+
+		if (ioctl(clientSocket, FIONREAD, &result) < 0)
+		{
+			THROW_WEB_EXCEPTION;
+
+			return false;
+		}
+#else
+		u_long result = 0;
+
+		if (ioctlsocket(clientSocket, FIONREAD, &result) == SOCKET_ERROR) 
+		{
+			THROW_WEB_EXCEPTION;
+
+			return false;
+		}
+#endif
+
+		if (availableBytes)
+		{
+			*availableBytes = static_cast<int>(result);
+		}
+
+		return result > 0;
+	}
+
 	int Network::sendData(const utility::ContainerWrapper& data, bool& endOfStream, int flags)
 	{
 		try

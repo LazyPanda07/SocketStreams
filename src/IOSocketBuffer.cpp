@@ -26,7 +26,14 @@ namespace buffers
 
 	typename IOSocketBuffer::int_type IOSocketBuffer::underflow()
 	{
-		lastPacketSize = network->receiveBytes(inputData.get(), static_cast<int>(inputData.size()), endOfStream);
+		int availableBytes = 0;
+
+		if (!network->isDataAvailable(&availableBytes))
+		{
+			return traits_type::eof();
+		}
+
+		lastPacketSize = network->receiveBytes(inputData.get(), (std::min)(availableBytes, static_cast<int>(inputData.size())), endOfStream);
 
 		if (endOfStream)
 		{
