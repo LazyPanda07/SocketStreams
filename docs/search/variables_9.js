@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sizeimplementation_0',['sizeImplementation',['../classweb_1_1utility_1_1_container_wrapper.html#a5dc21897cc48268e05564c170e255556',1,'web::utility::ContainerWrapper']]]
+  ['resizeimplementation_0',['resizeImplementation',['../classweb_1_1utility_1_1_container_wrapper.html#a0df9e0d250b0469b151ffe9be9f962ab',1,'web::utility::ContainerWrapper']]]
 ];

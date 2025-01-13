@@ -84,19 +84,19 @@ namespace web
 
 	}
 
-	int Network::sendData(const utility::ContainerWrapper& data, bool& endOfStream)
+	int Network::sendData(const utility::ContainerWrapper& data, bool& endOfStream, int flags)
 	{
 		try
 		{
 			int size = static_cast<int>(data.size());
-			int lastPacketSize = this->sendBytes(&size, sizeof(size), endOfStream);
+			int lastPacketSize = this->sendBytes(&size, sizeof(size), endOfStream, flags);
 
 			if (endOfStream)
 			{
 				return lastPacketSize;
 			}
 
-			return this->sendBytes(data.data(), size, endOfStream);
+			return this->sendBytes(data.data(), size, endOfStream, flags);
 		}
 		catch (const exceptions::WebException& e)
 		{
@@ -106,18 +106,18 @@ namespace web
 		}
 	}
 
-	int Network::sendRawData(const char* data, int size, bool& endOfStream)
+	int Network::sendRawData(const char* data, int size, bool& endOfStream, int flags)
 	{
 		try
 		{
-			int lastPacketSize = this->sendBytes(&size, sizeof(size), endOfStream);
+			int lastPacketSize = this->sendBytes(&size, sizeof(size), endOfStream, flags);
 
 			if (endOfStream)
 			{
 				return lastPacketSize;
 			}
 
-			return this->sendBytes(data, size, endOfStream);
+			return this->sendBytes(data, size, endOfStream, flags);
 		}
 		catch (const exceptions::WebException& e)
 		{
@@ -127,12 +127,12 @@ namespace web
 		}
 	}
 
-	int Network::receiveData(utility::ContainerWrapper& data, bool& endOfStream)
+	int Network::receiveData(utility::ContainerWrapper& data, bool& endOfStream, int flags)
 	{
 		try
 		{
 			int size = 0;
-			int lastPacketSize = this->receiveBytes(&size, sizeof(size), endOfStream);
+			int lastPacketSize = this->receiveBytes(&size, sizeof(size), endOfStream, flags);
 
 			if (endOfStream)
 			{
@@ -144,7 +144,7 @@ namespace web
 				data.resize(static_cast<size_t>(size));
 			}
 
-			return this->receiveBytes(data.data(), size, endOfStream);
+			return this->receiveBytes(data.data(), size, endOfStream, flags);
 		}
 		catch (const exceptions::WebException& e)
 		{
@@ -154,12 +154,12 @@ namespace web
 		}
 	}
 
-	int Network::receiveRawData(char* data, int size, bool& endOfStream)
+	int Network::receiveRawData(char* data, int size, bool& endOfStream, int flags)
 	{
 		try
 		{
 			int inputSize = 0;
-			int lastPacketSize = this->receiveBytes(&inputSize, sizeof(inputSize), endOfStream);
+			int lastPacketSize = this->receiveBytes(&inputSize, sizeof(inputSize), endOfStream, flags);
 
 			if (endOfStream)
 			{
@@ -171,7 +171,7 @@ namespace web
 				std::cerr << "In " << __FUNCTION__ << " passed size(" << size << ") < actual data size(" << inputSize << ')' << std::endl;
 			}
 
-			return this->receiveBytes(data, size, endOfStream);
+			return this->receiveBytes(data, size, endOfStream, flags);
 		}
 		catch (const exceptions::WebException& e)
 		{
@@ -179,6 +179,11 @@ namespace web
 
 			throw;
 		}
+	}
+
+	void Network::addReceiveBuffer(std::string_view buffer)
+	{
+		buffers.push(buffer);
 	}
 
 	void Network::log(const std::string& message, std::any&& data)

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['operatorimplementation_0',['operatorImplementation',['../classweb_1_1utility_1_1_container_wrapper.html#ab186798ba800cab5b318a907da7904fe',1,'web::utility::ContainerWrapper']]]
+  ['network_0',['network',['../classbuffers_1_1_i_o_socket_buffer.html#a7665d8d75bf32b26f4cd454354f67289',1,'buffers::IOSocketBuffer']]]
 ];

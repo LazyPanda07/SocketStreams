@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['buffer_0',['buffer',['../classstreams_1_1_i_o_socket_stream.html#aa3c7cc13522c7537af037f598223ae68',1,'streams::IOSocketStream']]],
-  ['buffers_1',['buffers',['../namespacebuffers.html',1,'']]]
+  ['addreceivebuffer_0',['addReceiveBuffer',['../classweb_1_1_network.html#a015051ca702a7662f731c5062b280991',1,'web::Network']]]
 ];

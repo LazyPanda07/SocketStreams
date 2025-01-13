@@ -36,3 +36,8 @@
 
 # Binaries
 bin/
+out/
+build/
+
+# GTest
+gtest/

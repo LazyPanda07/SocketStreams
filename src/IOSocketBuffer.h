@@ -15,11 +15,38 @@ namespace buffers
 		using typename std::streambuf::char_type;
 		using typename std::streambuf::traits_type;
 
+	private:
+		class BufferArray
+		{
+		private:
+			size_t dataSize;
+			void* data;
+
+		public:
+			BufferArray();
+
+			BufferArray(const BufferArray& other) = delete;
+
+			BufferArray(BufferArray&& other) noexcept;
+
+			BufferArray& operator =(const BufferArray& other) = delete;
+
+			BufferArray& operator =(BufferArray&& other) noexcept;
+
+			size_t size() const;
+
+			char* get(size_t offset = 0);
+
+			~BufferArray();
+		};
+
+	protected:
+		size_t getAvailableInputSize() const;
+
 	protected:
 		std::unique_ptr<web::Network> network;
 		int lastPacketSize;
-		char lastInputCharacter;
-		char lastOutputCharacter;
+		BufferArray inputData;
 		bool endOfStream;
 
 	protected:

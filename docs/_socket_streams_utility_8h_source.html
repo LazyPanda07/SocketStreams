@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.4.10</span>
+   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.5.0</span>
    </div>
   </td>
  </tr>
@@ -103,15 +103,16 @@ $(function(){initNavTree('_socket_streams_utility_8h_source.html',''); initResiz
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceweb.html">web</a></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceweb_1_1utility.html">web::utility</a></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>{</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="keyword">namespace </span>utility</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        std::string <a class="code hl_function" href="namespaceweb_1_1utility.html#a6d4f07ca0bdc5379f1b811306df67743">getSocketStreamsVersion</a>();</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    }</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="conceptweb_1_1utility_1_1_fundamental.html">    8</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="conceptweb_1_1utility_1_1_fundamental.html">Fundamental</a> = std::is_fundamental_v&lt;T&gt;;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    std::string <a class="code hl_function" href="namespaceweb_1_1utility.html#a6d4f07ca0bdc5379f1b811306df67743">getSocketStreamsVersion</a>();</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>}</div>
+<div class="ttc" id="aconceptweb_1_1utility_1_1_fundamental_html"><div class="ttname"><a href="conceptweb_1_1utility_1_1_fundamental.html">web::utility::Fundamental</a></div><div class="ttdef"><b>Definition</b> SocketStreamsUtility.h:8</div></div>
+<div class="ttc" id="anamespaceweb_1_1utility_html"><div class="ttname"><a href="namespaceweb_1_1utility.html">web::utility</a></div><div class="ttdef"><b>Definition</b> ContainerWrapper.cpp:6</div></div>
 <div class="ttc" id="anamespaceweb_1_1utility_html_a6d4f07ca0bdc5379f1b811306df67743"><div class="ttname"><a href="namespaceweb_1_1utility.html#a6d4f07ca0bdc5379f1b811306df67743">web::utility::getSocketStreamsVersion</a></div><div class="ttdeci">std::string getSocketStreamsVersion()</div><div class="ttdoc">Get curret version of SocketStreams library.</div><div class="ttdef"><b>Definition</b> SocketStreamsUtility.cpp:7</div></div>
-<div class="ttc" id="anamespaceweb_html"><div class="ttname"><a href="namespaceweb.html">web</a></div><div class="ttdef"><b>Definition</b> ContainerWrapper.cpp:4</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

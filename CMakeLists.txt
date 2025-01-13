@@ -7,7 +7,7 @@ if (UNIX)
 	add_definitions(-D__LINUX__)
 endif ()
 
-project(SocketStreams VERSION 1.4.10)
+project(SocketStreams VERSION 1.5.0)
 
 add_library(
 	${PROJECT_NAME} STATIC
@@ -17,6 +17,7 @@ add_library(
 	src/IOSocketBuffer.cpp
 	src/IOSocketStream.cpp
 	src/ContainerWrapper.cpp
+	src/BufferArray.cpp
 )
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)

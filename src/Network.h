@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <queue>
 #include <string>
 #include <any>
 
@@ -43,6 +44,7 @@ namespace web
 	{
 	protected:
 		SOCKET clientSocket;
+		std::queue<std::string_view> buffers;
 
 	protected:
 		virtual int sendBytesImplementation(const char* data, int size, int flags = 0);
@@ -70,7 +72,7 @@ namespace web
 		* @param endOfStream Is connection closed
 		* @return Total number of bytes send
 		*/
-		virtual int sendData(const utility::ContainerWrapper& data, bool& endOfStream);
+		virtual int sendData(const utility::ContainerWrapper& data, bool& endOfStream, int flags = 0);
 
 		/**
 		* @brief Send raw data through network
@@ -78,7 +80,7 @@ namespace web
 		* @param endOfStream Is connection closed
 		* @return Total number bytes send
 		*/
-		virtual int sendRawData(const char* data, int size, bool& endOfStream);
+		virtual int sendRawData(const char* data, int size, bool& endOfStream, int flags = 0);
 
 		/**
 		* @brief Receive data through network
@@ -86,7 +88,7 @@ namespace web
 		* @param endOfStream Is connection closed
 		* @return Total number of bytes receive
 		*/
-		virtual int receiveData(utility::ContainerWrapper& data, bool& endOfStream);
+		virtual int receiveData(utility::ContainerWrapper& data, bool& endOfStream, int flags = 0);
 
 		/**
 		* @brief Receive data through network
@@ -94,12 +96,18 @@ namespace web
 		* @param endOfStream Is connection closed
 		* @return Total number of bytes receive
 		*/
-		virtual int receiveRawData(char* data, int size, bool& endOfStream);
+		virtual int receiveRawData(char* data, int size, bool& endOfStream, int flags = 0);
 
 		/// @brief Errors logging, default implementation uses clog
 		/// @param message Log message
 		/// @param data Additional data
 		virtual void log(const std::string& message, std::any&& data = "");
+
+		/**
+		 * @brief Add additional data that uses before getting bytes from network
+		 * @param buffer
+		 */
+		void addReceiveBuffer(std::string_view buffer);
 
 		/// @brief clientSocket getter
 		/// @return clientSocket
@@ -109,25 +117,29 @@ namespace web
 		/// @tparam DataT 
 		/// @param data 
 		/// @param size 
+		/// @param endOfStream 
+		/// @param flags 
 		/// @return Total number of sended bytes 
 		/// @exception WebException  
 		template<typename DataT>
-		int sendBytes(const DataT* data, int size, bool& endOfStream);
+		int sendBytes(const DataT* data, int size, bool& endOfStream, int flags = 0);
 
 		/// @brief 
 		/// @tparam DataT 
 		/// @param data 
 		/// @param size 
+		/// @param endOfStream 
+		/// @param flags
 		/// @return Total number of received bytes 
 		/// @exception WebException  
 		template<typename DataT>
-		int receiveBytes(DataT* data, int size, bool& endOfStream);
+		int receiveBytes(DataT* data, int size, bool& endOfStream, int flags = 0);
 
 		virtual ~Network();
 	};
 
 	template<typename DataT>
-	int Network::sendBytes(const DataT* data, int size, bool& endOfStream)
+	int Network::sendBytes(const DataT* data, int size, bool& endOfStream, int flags)
 	{
 		int lastSend = 0;
 		int totalSent = 0;
@@ -136,7 +148,7 @@ namespace web
 
 		do
 		{
-			lastSend = this->sendBytesImplementation(reinterpret_cast<const char*>(data) + totalSent, size - totalSent);
+			lastSend = this->sendBytesImplementation(reinterpret_cast<const char*>(data) + totalSent, size - totalSent, flags);
 
 			if (lastSend == SOCKET_ERROR)
 			{
@@ -156,10 +168,35 @@ namespace web
 	}
 
 	template<typename DataT>
-	int Network::receiveBytes(DataT* data, int size, bool& endOfStream)
+	int Network::receiveBytes(DataT* data, int size, bool& endOfStream, int flags)
 	{
-		int receive = this->receiveBytesImplementation(reinterpret_cast<char*>(data), size);
-		
+		int receive = 0;
+		char* actualData = reinterpret_cast<char*>(data);
+
+		while (buffers.size())
+		{
+			std::string_view receiveBuffer = buffers.front();
+			size_t fromBufferSize = (std::min)(receiveBuffer.size(), static_cast<size_t>(size));
+
+			std::copy(receiveBuffer.data(), receiveBuffer.data() + fromBufferSize, actualData);
+
+			receiveBuffer = std::string_view(receiveBuffer.data() + fromBufferSize, receiveBuffer.size() - fromBufferSize);
+
+			actualData += fromBufferSize;
+			receive += fromBufferSize;
+			size -= fromBufferSize;
+
+			if (receiveBuffer.empty())
+			{
+				buffers.pop();
+			}
+		}
+
+		if (size)
+		{
+			receive += this->receiveBytesImplementation(actualData, size, flags);
+		}
+
 		endOfStream = !static_cast<bool>(receive);
 
 		if (receive == SOCKET_ERROR)

@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['sendbytes_0',['sendBytes',['../classweb_1_1_network.html#a32f2648205f4242bca802f587fcb80ef',1,'web::Network']]],
-  ['sendbytesimplementation_1',['sendBytesImplementation',['../classweb_1_1_network.html#a67d44cc9686d8f6966b4dc8615cdb947',1,'web::Network']]],
-  ['senddata_2',['sendData',['../classweb_1_1_network.html#ae466f380d73b92f1450b8c74d7ff0a59',1,'web::Network']]],
-  ['sendfundamental_3',['sendFundamental',['../classstreams_1_1_i_o_socket_stream.html#a550ec85d2755640a73f26b9d358716fe',1,'streams::IOSocketStream']]],
-  ['sendfundamentalimplementation_4',['sendFundamentalImplementation',['../classstreams_1_1_i_o_socket_stream.html#af49aa8f635ef6626439b58368020c38a',1,'streams::IOSocketStream']]],
-  ['sendrawdata_5',['sendRawData',['../classweb_1_1_network.html#a074c9dc5b62947809b30bd0e2a0cf912',1,'web::Network']]],
-  ['size_6',['size',['../classweb_1_1utility_1_1_container_wrapper.html#ae86a48aee9e9749d8c8f0ebf97fa93b0',1,'web::utility::ContainerWrapper']]]
+  ['receivebytes_0',['receiveBytes',['../classweb_1_1_network.html#a5f42be1e52bf35b870488951594d2079',1,'web::Network']]],
+  ['receivebytesimplementation_1',['receiveBytesImplementation',['../classweb_1_1_network.html#ad04dbe2f4d4cdda8c9e9ee3325c7843a',1,'web::Network']]],
+  ['receivedata_2',['receiveData',['../classweb_1_1_network.html#a2599aa11984fe14f6ec37dcb731d3131',1,'web::Network']]],
+  ['receivefundamental_3',['receiveFundamental',['../classstreams_1_1_i_o_socket_stream.html#a0052d02a094bf7d461856f10254220cb',1,'streams::IOSocketStream']]],
+  ['receivefundamentalimplementation_4',['receiveFundamentalImplementation',['../classstreams_1_1_i_o_socket_stream.html#a8677f598583ff2e3d1d92cce8b82201d',1,'streams::IOSocketStream']]],
+  ['receiverawdata_5',['receiveRawData',['../classweb_1_1_network.html#a0240c5aa58ec03d0a7ace640a0ec3f2d',1,'web::Network']]],
+  ['resize_6',['resize',['../classweb_1_1utility_1_1_container_wrapper.html#af307bab2b7711a5c9ba1eb95019567c2',1,'web::utility::ContainerWrapper']]]
 ];
