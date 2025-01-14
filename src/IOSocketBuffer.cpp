@@ -40,7 +40,7 @@ namespace buffers
 				break;
 			}
 
-			std::this_thread::sleep_for(5ms);
+			std::this_thread::sleep_for(1s);
 		}
 
 		if (!availableBytes)
