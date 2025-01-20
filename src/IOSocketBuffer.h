@@ -19,8 +19,12 @@ namespace buffers
 		class BufferArray
 		{
 		private:
-			size_t dataSize;
-			void* data;
+			size_t totalSize;
+			size_t pageSize;
+			void* pageData;
+
+		private:
+			void free();
 
 		public:
 			BufferArray();
@@ -35,7 +39,13 @@ namespace buffers
 
 			size_t size() const;
 
-			char* get(size_t offset = 0);
+			char* data();
+
+			const char* data() const;
+
+			void resize(size_t size);
+
+			char& operator [](size_t index);
 
 			~BufferArray();
 		};

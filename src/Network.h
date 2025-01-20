@@ -69,7 +69,7 @@ namespace web
 
 		/**
 		 * @brief Check if Network contains data
-		 * @return 
+		 * @return
 		 */
 		bool isDataAvailable(int* availableBytes = nullptr) const;
 

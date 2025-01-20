@@ -29,33 +29,16 @@ namespace buffers
 
 	typename IOSocketBuffer::int_type IOSocketBuffer::underflow()
 	{
-		using namespace std::chrono_literals;
+		web::utility::ContainerWrapper container(inputData);
 
-		int availableBytes = 0;
-
-		for (size_t i = 0; i < 5; i++)
-		{
-			if (network->isDataAvailable(&availableBytes))
-			{
-				break;
-			}
-
-			std::this_thread::sleep_for(8ms);
-		}
-
-		if (!availableBytes)
-		{
-			return traits_type::eof();
-		}
-
-		lastPacketSize = network->receiveBytes(inputData.get(), (std::min)(availableBytes, static_cast<int>(inputData.size())), endOfStream);
+		lastPacketSize = network->receiveData(container, endOfStream);
 
 		if (endOfStream)
 		{
 			return traits_type::eof();
 		}
 
-		setg(inputData.get(), inputData.get(), inputData.get(static_cast<size_t>(lastPacketSize) + 1));
+		setg(inputData.data(), inputData.data(), inputData.data() + static_cast<size_t>(lastPacketSize) + 1);
 
 		return *gptr();
 	}
@@ -80,7 +63,7 @@ namespace buffers
 	{
 		if (size_t bufferSize = this->getAvailableInputSize(); bufferSize)
 		{
-			network->addReceiveBuffer(inputData.get(bufferSize));
+			network->addReceiveBuffer(inputData.data() + bufferSize);
 
 			gbump(std::min<int>(bufferSize, size));
 		}
