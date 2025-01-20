@@ -81,7 +81,7 @@ namespace buffers
 		}
 
 		void* newRegion = nullptr;
-		int pages = size / pageSize;
+		size_t pages = size / pageSize;
 
 		if (size % pageSize)
 		{
@@ -96,7 +96,7 @@ namespace buffers
 		newRegion = VirtualAlloc(NULL, newSize, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
 #endif
 
-		std::copy(this->data(), this->data() + totalSize, newRegion);
+		std::copy(this->data(), this->data() + totalSize, static_cast<char*>(newRegion));
 
 		totalSize = newSize;
 
