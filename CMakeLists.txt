@@ -7,7 +7,7 @@ if (UNIX)
 	add_definitions(-D__LINUX__)
 endif ()
 
-project(SocketStreams VERSION 1.6.4)
+project(SocketStreams VERSION 1.6.5)
 
 add_library(
 	${PROJECT_NAME} STATIC

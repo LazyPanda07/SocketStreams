@@ -31,6 +31,13 @@ namespace buffers
 	{
 		web::utility::ContainerWrapper container(inputData);
 
+		if (gptr())
+		{
+			setg(nullptr, nullptr, nullptr);
+
+			return traits_type::eof();
+		}
+
 		lastPacketSize = network->receiveData(container, endOfStream);
 
 		if (endOfStream)
