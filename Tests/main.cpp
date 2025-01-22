@@ -8,7 +8,7 @@ extern void runServer();
 
 TEST(Streams, DefaultNetwork)
 {
-	streams::IOSocketStream stream("127.0.0.1", "8080");
+	streams::IOSocketStream stream = streams::IOSocketStream::createStream<web::Network>("127.0.0.1", "8080");
 	std::string data = "some data";
 
 	{

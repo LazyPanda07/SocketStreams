@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.6.5</span>
+   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.7.0</span>
    </div>
   </td>
  </tr>
@@ -98,6 +98,7 @@ $(function(){initNavTree('classstreams_1_1_i_o_socket_stream.html',''); initResi
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classstreams_1_1_i_o_socket_stream-members.html">List of all members</a>  </div>
@@ -118,25 +119,12 @@ Inheritance diagram for streams::IOSocketStream:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa6166894b1f988564b5b9ddfe41d8d2d" id="r_aa6166894b1f988564b5b9ddfe41d8d2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6166894b1f988564b5b9ddfe41d8d2d">IOSocketStream</a> ()</td></tr>
-<tr class="separator:aa6166894b1f988564b5b9ddfe41d8d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51280e74c129f6d1421913735c458ba3" id="r_a51280e74c129f6d1421913735c458ba3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51280e74c129f6d1421913735c458ba3">IOSocketStream</a> (const <a class="el" href="classstreams_1_1_i_o_socket_stream.html">IOSocketStream</a> &amp;)=delete</td></tr>
 <tr class="memdesc:a51280e74c129f6d1421913735c458ba3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deleted copy constructor.  <br /></td></tr>
 <tr class="separator:a51280e74c129f6d1421913735c458ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f94cb64741c904925ce7939ae444606" id="r_a8f94cb64741c904925ce7939ae444606"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f94cb64741c904925ce7939ae444606">IOSocketStream</a> (<a class="el" href="classstreams_1_1_i_o_socket_stream.html">IOSocketStream</a> &amp;&amp;other) noexcept</td></tr>
 <tr class="memdesc:a8f94cb64741c904925ce7939ae444606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor.  <br /></td></tr>
 <tr class="separator:a8f94cb64741c904925ce7939ae444606"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa261edeb784dfa4cf3706642a303a805" id="r_aa261edeb784dfa4cf3706642a303a805"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa261edeb784dfa4cf3706642a303a805">IOSocketStream</a> (SOCKET clientSocket)</td></tr>
-<tr class="memdesc:aa261edeb784dfa4cf3706642a303a805"><td class="mdescLeft">&#160;</td><td class="mdescRight">Server side contructor.  <br /></td></tr>
-<tr class="separator:aa261edeb784dfa4cf3706642a303a805"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08104814aa388b04ebd5f96aee2e4ad2" id="r_a08104814aa388b04ebd5f96aee2e4ad2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08104814aa388b04ebd5f96aee2e4ad2">IOSocketStream</a> (std::string_view ip, std::string_view port, DWORD timeout=30 '000)</td></tr>
-<tr class="memdesc:a08104814aa388b04ebd5f96aee2e4ad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client side contructor.  <br /></td></tr>
-<tr class="separator:a08104814aa388b04ebd5f96aee2e4ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ce9777bc2bd11696e0eb431c6e8c248" id="r_a9ce9777bc2bd11696e0eb431c6e8c248"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ce9777bc2bd11696e0eb431c6e8c248">IOSocketStream</a> (std::unique_ptr&lt; <a class="el" href="classbuffers_1_1_i_o_socket_buffer.html">buffers::IOSocketBuffer</a> &gt; &amp;&amp;<a class="el" href="#aa3c7cc13522c7537af037f598223ae68">buffer</a>)</td></tr>
-<tr class="separator:a9ce9777bc2bd11696e0eb431c6e8c248"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11f93b3af67254e7862a045c667bd210" id="r_a11f93b3af67254e7862a045c667bd210"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11f93b3af67254e7862a045c667bd210">IOSocketStream</a> (std::unique_ptr&lt; <a class="el" href="classweb_1_1_network.html">web::Network</a> &gt; &amp;&amp;network)</td></tr>
-<tr class="memdesc:a11f93b3af67254e7862a045c667bd210"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with custom network and default buffer.  <br /></td></tr>
-<tr class="separator:a11f93b3af67254e7862a045c667bd210"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af189194483f442e1c63a9117f4fdf316" id="r_af189194483f442e1c63a9117f4fdf316"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classstreams_1_1_i_o_socket_stream.html">IOSocketStream</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af189194483f442e1c63a9117f4fdf316">operator=</a> (const <a class="el" href="classstreams_1_1_i_o_socket_stream.html">IOSocketStream</a> &amp;)=delete</td></tr>
 <tr class="memdesc:af189194483f442e1c63a9117f4fdf316"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deleted copy assignment operator.  <br /></td></tr>
 <tr class="separator:af189194483f442e1c63a9117f4fdf316"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -202,6 +190,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2fa279594c96845a85d51012edc1dd67" id="r_a2fa279594c96845a85d51012edc1dd67"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fa279594c96845a85d51012edc1dd67">~IOSocketStream</a> ()=default</td></tr>
 <tr class="separator:a2fa279594c96845a85d51012edc1dd67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:addb3ebdfd003813677f9082d7eb04764" id="r_addb3ebdfd003813677f9082d7eb04764"><td class="memTemplParams" colspan="2">template&lt;std::derived_from&lt; <a class="el" href="classweb_1_1_network.html">web::Network</a> &gt; T, typename... Args&gt; </td></tr>
+<tr class="memitem:addb3ebdfd003813677f9082d7eb04764"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="classstreams_1_1_i_o_socket_stream.html">IOSocketStream</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#addb3ebdfd003813677f9082d7eb04764">createStream</a> (Args &amp;&amp;... args)</td></tr>
+<tr class="separator:addb3ebdfd003813677f9082d7eb04764"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8990f770fb66f86b4f8c0dd2371f0f12" id="r_a8990f770fb66f86b4f8c0dd2371f0f12"><td class="memTemplParams" colspan="2">template&lt;std::derived_from&lt; <a class="el" href="classbuffers_1_1_i_o_socket_buffer.html">buffers::IOSocketBuffer</a> &gt; T, typename... Args&gt; </td></tr>
+<tr class="memitem:a8990f770fb66f86b4f8c0dd2371f0f12"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="classstreams_1_1_i_o_socket_stream.html">IOSocketStream</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8990f770fb66f86b4f8c0dd2371f0f12">createStream</a> (Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a8990f770fb66f86b4f8c0dd2371f0f12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a550ec85d2755640a73f26b9d358716fe" id="r_a550ec85d2755640a73f26b9d358716fe"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptweb_1_1utility_1_1_fundamental.html">web::utility::Fundamental</a> T&gt; </td></tr>
@@ -223,25 +220,8 @@ Protected Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base input/output socket stream. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa6166894b1f988564b5b9ddfe41d8d2d" name="aa6166894b1f988564b5b9ddfe41d8d2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa6166894b1f988564b5b9ddfe41d8d2d">&#9670;&#160;</a></span>IOSocketStream() <span class="overload">[1/7]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">streams::IOSocketStream::IOSocketStream </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a51280e74c129f6d1421913735c458ba3" name="a51280e74c129f6d1421913735c458ba3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51280e74c129f6d1421913735c458ba3">&#9670;&#160;</a></span>IOSocketStream() <span class="overload">[2/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a51280e74c129f6d1421913735c458ba3">&#9670;&#160;</a></span>IOSocketStream() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -268,7 +248,7 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <a id="a8f94cb64741c904925ce7939ae444606" name="a8f94cb64741c904925ce7939ae444606"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f94cb64741c904925ce7939ae444606">&#9670;&#160;</a></span>IOSocketStream() <span class="overload">[3/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f94cb64741c904925ce7939ae444606">&#9670;&#160;</a></span>IOSocketStream() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -294,112 +274,6 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td><br  />
- </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="aa261edeb784dfa4cf3706642a303a805" name="aa261edeb784dfa4cf3706642a303a805"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa261edeb784dfa4cf3706642a303a805">&#9670;&#160;</a></span>IOSocketStream() <span class="overload">[4/7]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">streams::IOSocketStream::IOSocketStream </td>
-          <td>(</td>
-          <td class="paramtype">SOCKET</td>          <td class="paramname"><span class="paramname"><em>clientSocket</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Server side contructor. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">clientSocket</td><td><br  />
- </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a08104814aa388b04ebd5f96aee2e4ad2" name="a08104814aa388b04ebd5f96aee2e4ad2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a08104814aa388b04ebd5f96aee2e4ad2">&#9670;&#160;</a></span>IOSocketStream() <span class="overload">[5/7]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">streams::IOSocketStream::IOSocketStream </td>
-          <td>(</td>
-          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>ip</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>port</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">DWORD</td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval">30'000</span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Client side contructor. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ip</td><td>Remote address to connect to </td></tr>
-    <tr><td class="paramname">port</td><td>Remote port to connect to </td></tr>
-    <tr><td class="paramname">timeout</td><td>Timeout for receive and send calls in milliseconds </td></tr>
-    <tr><td class="paramname">mode</td><td>Receive mode </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a9ce9777bc2bd11696e0eb431c6e8c248" name="a9ce9777bc2bd11696e0eb431c6e8c248"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ce9777bc2bd11696e0eb431c6e8c248">&#9670;&#160;</a></span>IOSocketStream() <span class="overload">[6/7]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">streams::IOSocketStream::IOSocketStream </td>
-          <td>(</td>
-          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classbuffers_1_1_i_o_socket_buffer.html">buffers::IOSocketBuffer</a> &gt; &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a11f93b3af67254e7862a045c667bd210" name="a11f93b3af67254e7862a045c667bd210"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a11f93b3af67254e7862a045c667bd210">&#9670;&#160;</a></span>IOSocketStream() <span class="overload">[7/7]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">streams::IOSocketStream::IOSocketStream </td>
-          <td>(</td>
-          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classweb_1_1_network.html">web::Network</a> &gt; &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>network</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Constructor with custom network and default buffer. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">network</td><td><br  />
  </td></tr>
   </table>
   </dd>
@@ -433,6 +307,60 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="addb3ebdfd003813677f9082d7eb04764" name="addb3ebdfd003813677f9082d7eb04764"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addb3ebdfd003813677f9082d7eb04764">&#9670;&#160;</a></span>createStream() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::derived_from&lt; <a class="el" href="classbuffers_1_1_i_o_socket_buffer.html">buffers::IOSocketBuffer</a> &gt; T, typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classstreams_1_1_i_o_socket_stream.html">IOSocketStream</a> streams::IOSocketStream::createStream </td>
+          <td>(</td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8990f770fb66f86b4f8c0dd2371f0f12" name="a8990f770fb66f86b4f8c0dd2371f0f12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8990f770fb66f86b4f8c0dd2371f0f12">&#9670;&#160;</a></span>createStream() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::derived_from&lt; <a class="el" href="classbuffers_1_1_i_o_socket_buffer.html">buffers::IOSocketBuffer</a> &gt; T, typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classstreams_1_1_i_o_socket_stream.html">IOSocketStream</a> streams::IOSocketStream::createStream </td>
+          <td>(</td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a4bc34f12b2b0cc561160b2a5581e7b82" name="a4bc34f12b2b0cc561160b2a5581e7b82"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4bc34f12b2b0cc561160b2a5581e7b82">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[1/13]</span></h2>
 

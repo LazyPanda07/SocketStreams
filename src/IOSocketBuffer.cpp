@@ -72,7 +72,7 @@ namespace buffers
 		{
 			network->addReceiveBuffer(inputData.data() + bufferSize);
 
-			gbump(std::min<int>(bufferSize, size));
+			gbump(std::min<int>(static_cast<int>(bufferSize), static_cast<int>(size)));
 		}
 
 		if (size == (std::numeric_limits<std::streamsize>::max)())

@@ -25,32 +25,25 @@ namespace streams
 
 		virtual int receiveFundamentalImplementation(char* value, int valueSize, bool& endOfStream);
 
-	public:
-		IOSocketStream();
+	private:
+		IOSocketStream(std::unique_ptr<buffers::IOSocketBuffer>&& buffer);
 
+		IOSocketStream(std::unique_ptr<web::Network>&& network);
+
+	public:
+		template<std::derived_from<web::Network> T, typename... Args>
+		static IOSocketStream createStream(Args&&... args);
+
+		template<std::derived_from<buffers::IOSocketBuffer> T, typename... Args>
+		static IOSocketStream createStream(Args&&... args);
+
+	public:
 		/// @brief Deleted copy constructor
 		IOSocketStream(const IOSocketStream&) = delete;
 
 		/// @brief Move constructor
 		/// @param other 
 		IOSocketStream(IOSocketStream&& other) noexcept;
-
-		/// @brief Server side contructor
-		/// @param clientSocket 
-		IOSocketStream(SOCKET clientSocket);
-
-		/// @brief Client side contructor
-		/// @param ip Remote address to connect to
-		/// @param port Remote port to connect to
-		/// @param timeout Timeout for receive and send calls in milliseconds
-		/// @param mode Receive mode
-		IOSocketStream(std::string_view ip, std::string_view port, DWORD timeout = 30'000);
-
-		IOSocketStream(std::unique_ptr<buffers::IOSocketBuffer>&& buffer);
-
-		/// @brief Constructor with custom network and default buffer
-		/// @param network 
-		IOSocketStream(std::unique_ptr<web::Network>&& network);
 
 		/// @brief Deleted copy assignment operator
 		/// @param  
@@ -153,6 +146,18 @@ namespace streams
 
 			throw;
 		}
+	}
+
+	template<std::derived_from<web::Network> T, typename... Args>
+	IOSocketStream IOSocketStream::createStream(Args&&... args)
+	{
+		return IOSocketStream(std::make_unique<T>(std::forward<Args>(args)...));
+	}
+
+	template<std::derived_from<buffers::IOSocketBuffer> T, typename... Args>
+	IOSocketStream IOSocketStream::createStream(Args&&... args)
+	{
+		return IOSocketStream(std::make_unique<T>(std::forward<Args>(args)...));
 	}
 
 	template<web::utility::Container T>

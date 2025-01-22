@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.6.5</span>
+   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.7.0</span>
    </div>
   </td>
  </tr>
@@ -227,7 +227,7 @@ $(function(){initNavTree('_network_8h_source.html',''); initResizable(true); });
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <span class="keywordflow">while</span> (<a class="code hl_namespace" href="namespacebuffers.html">buffers</a>.size())</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        {</div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>            std::string_view receiveBuffer = <a class="code hl_namespace" href="namespacebuffers.html">buffers</a>.front();</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>            <span class="keywordtype">size_t</span> fromBufferSize = (std::min)(receiveBuffer.size(), <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(size));</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>            <span class="keywordtype">int</span> fromBufferSize = std::min&lt;int&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(receiveBuffer.size()), size);</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>            std::copy(receiveBuffer.data(), receiveBuffer.data() + fromBufferSize, actualData);</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>

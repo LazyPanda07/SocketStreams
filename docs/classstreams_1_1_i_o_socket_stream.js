@@ -1,12 +1,7 @@
 var classstreams_1_1_i_o_socket_stream =
 [
-    [ "IOSocketStream", "classstreams_1_1_i_o_socket_stream.html#aa6166894b1f988564b5b9ddfe41d8d2d", null ],
     [ "IOSocketStream", "classstreams_1_1_i_o_socket_stream.html#a51280e74c129f6d1421913735c458ba3", null ],
     [ "IOSocketStream", "classstreams_1_1_i_o_socket_stream.html#a8f94cb64741c904925ce7939ae444606", null ],
-    [ "IOSocketStream", "classstreams_1_1_i_o_socket_stream.html#aa261edeb784dfa4cf3706642a303a805", null ],
-    [ "IOSocketStream", "classstreams_1_1_i_o_socket_stream.html#a08104814aa388b04ebd5f96aee2e4ad2", null ],
-    [ "IOSocketStream", "classstreams_1_1_i_o_socket_stream.html#a9ce9777bc2bd11696e0eb431c6e8c248", null ],
-    [ "IOSocketStream", "classstreams_1_1_i_o_socket_stream.html#a11f93b3af67254e7862a045c667bd210", null ],
     [ "~IOSocketStream", "classstreams_1_1_i_o_socket_stream.html#a2fa279594c96845a85d51012edc1dd67", null ],
     [ "operator<<", "classstreams_1_1_i_o_socket_stream.html#a4bc34f12b2b0cc561160b2a5581e7b82", null ],
     [ "operator<<", "classstreams_1_1_i_o_socket_stream.html#ad97d6e5291a74def0763b4b3d28a7991", null ],

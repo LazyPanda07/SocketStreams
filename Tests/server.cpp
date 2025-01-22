@@ -9,7 +9,7 @@ class TestServer : public web::BaseTCPServer
 private:
 	void clientConnection(const std::string& ip, SOCKET clientSocket, sockaddr address, std::function<void()>& cleanup) override
 	{
-		streams::IOSocketStream stream(clientSocket);
+		streams::IOSocketStream stream = streams::IOSocketStream::createStream<web::Network>(clientSocket);
 
 		while (true)
 		{

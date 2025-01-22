@@ -12,26 +12,6 @@ namespace streams
 		return buffer->getNetwork()->receiveBytes(value, valueSize, endOfStream);
 	}
 
-	IOSocketStream::IOSocketStream() :
-		std::iostream(nullptr)
-	{
-
-	}
-
-	IOSocketStream::IOSocketStream(SOCKET clientSocket) :
-		std::iostream(nullptr),
-		buffer(std::make_unique<buffers::IOSocketBuffer>(clientSocket))
-	{
-		std::iostream::rdbuf(buffer.get());
-	}
-
-	IOSocketStream::IOSocketStream(std::string_view ip, std::string_view port, DWORD timeout) :
-		std::iostream(nullptr),
-		buffer(std::make_unique<buffers::IOSocketBuffer>(ip, port, timeout))
-	{
-		std::iostream::rdbuf(buffer.get());
-	}
-
 	IOSocketStream::IOSocketStream(std::unique_ptr<buffers::IOSocketBuffer>&& buffer) :
 		std::iostream(nullptr),
 		buffer(std::move(buffer))
