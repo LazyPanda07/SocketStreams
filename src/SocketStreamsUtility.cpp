@@ -6,7 +6,7 @@ namespace web
 	{
 		std::string getSocketStreamsVersion()
 		{
-			std::string version = "1.7.0";
+			std::string version = "1.8.0";
 
 			return version;
 		}

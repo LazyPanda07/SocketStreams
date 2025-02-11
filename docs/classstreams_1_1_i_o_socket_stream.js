@@ -3,6 +3,8 @@ var classstreams_1_1_i_o_socket_stream =
     [ "IOSocketStream", "classstreams_1_1_i_o_socket_stream.html#a51280e74c129f6d1421913735c458ba3", null ],
     [ "IOSocketStream", "classstreams_1_1_i_o_socket_stream.html#a8f94cb64741c904925ce7939ae444606", null ],
     [ "~IOSocketStream", "classstreams_1_1_i_o_socket_stream.html#a2fa279594c96845a85d51012edc1dd67", null ],
+    [ "getNetwork", "classstreams_1_1_i_o_socket_stream.html#afecf699909afa8ee0fe9757372902356", null ],
+    [ "getNetwork", "classstreams_1_1_i_o_socket_stream.html#a257669c7971ca0e4214d60c22c3c89dd", null ],
     [ "operator<<", "classstreams_1_1_i_o_socket_stream.html#a4bc34f12b2b0cc561160b2a5581e7b82", null ],
     [ "operator<<", "classstreams_1_1_i_o_socket_stream.html#ad97d6e5291a74def0763b4b3d28a7991", null ],
     [ "operator<<", "classstreams_1_1_i_o_socket_stream.html#ab72b3848bf3dd49f47a8a0f14f986cdd", null ],

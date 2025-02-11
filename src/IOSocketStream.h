@@ -55,6 +55,10 @@ namespace streams
 		/// @return 
 		IOSocketStream& operator = (IOSocketStream&& other) noexcept;
 
+		web::Network& getNetwork();
+
+		const web::Network& getNetwork() const;
+
 		std::ostream& operator << (bool value);
 		std::ostream& operator << (short value);
 		std::ostream& operator << (int value);
