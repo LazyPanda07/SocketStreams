@@ -55,9 +55,11 @@ namespace streams
 		/// @return 
 		IOSocketStream& operator = (IOSocketStream&& other) noexcept;
 
-		web::Network& getNetwork();
+		template<std::derived_from<web::Network> T = web::Network>
+		T& getNetwork();
 
-		const web::Network& getNetwork() const;
+		template<std::derived_from<web::Network> T = web::Network>
+		const T& getNetwork() const;
 
 		std::ostream& operator << (bool value);
 		std::ostream& operator << (short value);
@@ -162,6 +164,32 @@ namespace streams
 	IOSocketStream IOSocketStream::createStream(Args&&... args)
 	{
 		return IOSocketStream(std::make_unique<T>(std::forward<Args>(args)...));
+	}
+
+	template<std::derived_from<web::Network> T>
+	T& IOSocketStream::getNetwork()
+	{
+		if (buffer->getNetwork())
+		{
+			return dynamic_cast<T&>(*buffer->getNetwork());
+		}
+
+		throw std::runtime_error("Network is nullptr");
+
+		return *buffer->getNetwork();
+	}
+
+	template<std::derived_from<web::Network> T>
+	const T& IOSocketStream::getNetwork() const
+	{
+		if (buffer->getNetwork())
+		{
+			return dynamic_cast<T&>(*buffer->getNetwork());
+		}
+
+		throw std::runtime_error("Network is nullptr");
+
+		return *buffer->getNetwork();
 	}
 
 	template<web::utility::Container T>

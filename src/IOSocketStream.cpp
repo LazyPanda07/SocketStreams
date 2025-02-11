@@ -46,30 +46,6 @@ namespace streams
 		return *this;
 	}
 
-	web::Network& IOSocketStream::getNetwork()
-	{
-		if (buffer->getNetwork())
-		{
-			return *buffer->getNetwork();
-		}
-		
-		throw std::runtime_error("Network is nullptr");
-
-		return *buffer->getNetwork();
-	}
-
-	const web::Network& IOSocketStream::getNetwork() const
-	{
-		if (buffer->getNetwork())
-		{
-			return *buffer->getNetwork();
-		}
-
-		throw std::runtime_error("Network is nullptr");
-
-		return *buffer->getNetwork();
-	}
-
 	std::ostream& IOSocketStream::operator << (bool value)
 	{
 		this->sendFundamental(value);
