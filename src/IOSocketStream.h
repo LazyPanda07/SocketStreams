@@ -176,7 +176,7 @@ namespace streams
 
 		throw std::runtime_error("Network is nullptr");
 
-		return *buffer->getNetwork();
+		return dynamic_cast<T&>(*buffer->getNetwork());
 	}
 
 	template<std::derived_from<web::Network> T>
@@ -184,12 +184,12 @@ namespace streams
 	{
 		if (buffer->getNetwork())
 		{
-			return dynamic_cast<T&>(*buffer->getNetwork());
+			return dynamic_cast<const T&>(*buffer->getNetwork());
 		}
 
 		throw std::runtime_error("Network is nullptr");
 
-		return *buffer->getNetwork();
+		return dynamic_cast<const T&>(*buffer->getNetwork());
 	}
 
 	template<web::utility::Container T>
