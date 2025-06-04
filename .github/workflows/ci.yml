@@ -6,6 +6,10 @@ on:
     branches: [master, dev]
 
 
+permissions:
+  contents: write
+
+
 jobs:
   windows-build:
     runs-on: windows-latest
@@ -57,6 +61,31 @@ jobs:
         path: build/install-dir
         name: ${{ matrix.configuration }}_Linux
         
+
+  linux-aarch64-build:
+    runs-on: ubuntu-latest
+    container:
+      image: lazypanda07/ubuntu_cxx20:aarch64
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+    steps:
+    - uses: actions/checkout@v4
+  
+    - name: Build
+      run: |
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} ..
+          make install -j $(nproc)
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        path: build/install-dir
+        name: ${{ matrix.configuration }}_LinuxARM
+
 
   windows-tests:
     runs-on: windows-latest
@@ -126,9 +155,39 @@ jobs:
       run: ./Tests
 
 
+  linux-aarch64-tests:
+    runs-on: ubuntu-latest
+    needs: linux-aarch64-build
+    container:
+      image: lazypanda07/ubuntu_cxx20:aarch64
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: ${{ matrix.configuration }}_LinuxARM
+        path: SocketStreams  
+        
+    - name: Build
+      working-directory: Tests
+      run: |
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} .. && make -j $(nproc) install
+
+    - name: Run
+      working-directory: Tests/build/bin
+      run: qemu-aarch64 ./Tests
+
+
   publish:
     runs-on: ubuntu-latest
-    needs: [windows-tests, linux-tests]
+    needs: [windows-tests, linux-tests, linux-aarch64-tests]
 
     steps:
     - uses: actions/checkout@v4
@@ -154,16 +213,12 @@ jobs:
       if: ${{ env.CURRENT_BRANCH == 'master' }}
       run: zip -r linux.zip Release_Linux ReleaseDLL_Linux
 
-    - name: Publish Windows
+    - name: Create Linux ARM zip
       if: ${{ env.CURRENT_BRANCH == 'master' }}
-      uses: svenstaro/upload-release-action@master
-      with:
-        tag: v${{ env.VERSION }}
-        file: windows.zip
+      run: zip -r linux.zip Release_LinuxARM ReleaseDLL_LinuxARM
 
-    - name: Publish Linux
+    - name: Publish
       if: ${{ env.CURRENT_BRANCH == 'master' }}
-      uses: svenstaro/upload-release-action@master
-      with:
-        tag: v${{ env.VERSION }}
-        file: linux.zip
+      run: gh release create v${{ env.VERSION }} *.zip --title v${{ env.VERSION }} --generate-notes
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
