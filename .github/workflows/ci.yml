@@ -27,8 +27,9 @@ jobs:
       run: |
           mkdir build
           cd build
-          cmake -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} -G "NMake Makefiles" ..
-          nmake install
+          cmake -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} -G "Ninja" ..
+          cmake --build . -j
+          cmake --install .
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
@@ -52,8 +53,9 @@ jobs:
       run: |
           mkdir build
           cd build
-          cmake -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} ..
-          make install -j $(nproc)
+          cmake -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} -G "Ninja" ..
+          cmake --build . -j
+          cmake --install .
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
@@ -77,8 +79,9 @@ jobs:
       run: |
           mkdir build
           cd build
-          cmake -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} ..
-          make install -j $(nproc)
+          cmake -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} -G "Ninja" ..
+          cmake --build . -j
+          cmake --install .
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
@@ -104,7 +107,7 @@ jobs:
         path: SocketStreams  
 
     - name: Get Google Test
-      uses: LazyPanda07/get-gtest@v1.1
+      uses: LazyPanda07/get-gtest@master
       with:
         build-type: ${{ matrix.configuration }}
         install-path: Tests/gtest
@@ -117,8 +120,9 @@ jobs:
       run: |
           mkdir build
           cd build
-          cmake -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} -G "NMake Makefiles" ..
-          nmake install
+          cmake -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} -G "Ninja" ..
+          cmake --build . -j
+          cmake --install
 
     - name: Run
       working-directory: Tests/build/bin
@@ -148,7 +152,9 @@ jobs:
       run: |
           mkdir build
           cd build
-          cmake -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} .. && make -j $(nproc) install
+          cmake -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} -G "Ninja" .. 
+          cmake --build . -j
+          cmake --install .
 
     - name: Run
       working-directory: Tests/build/bin
@@ -178,7 +184,9 @@ jobs:
       run: |
           mkdir build
           cd build
-          cmake -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} .. && make -j $(nproc) install
+          cmake -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} -G "Ninja" ..
+          cmake --build . -j
+          cmake --install .
 
     - name: Run
       working-directory: Tests/build/bin

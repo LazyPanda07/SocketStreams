@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.27.0)
 
 set(CMAKE_CXX_STANDARD 20)
 set(DLL ${CMAKE_SOURCE_DIR}/../SocketStreams)
-set(BASE_TCP_SERVER_TAG v1.10.0)
+set(BASE_TCP_SERVER_TAG v1.14.0)
 
 if (UNIX)
 	add_definitions(-D__LINUX__)
