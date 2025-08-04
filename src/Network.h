@@ -5,6 +5,7 @@
 #include <queue>
 #include <string>
 #include <any>
+#include <memory>
 
 #ifdef __LINUX__
 #include <sys/types.h>
@@ -44,7 +45,7 @@ namespace web
 	class Network
 	{
 	protected:
-		SOCKET clientSocket;
+		std::shared_ptr<SOCKET> clientSocket;
 		std::queue<std::string_view> buffers;
 
 	protected:
@@ -142,7 +143,7 @@ namespace web
 		template<typename DataT>
 		int receiveBytes(DataT* data, int size, bool& endOfStream, int flags = 0);
 
-		virtual ~Network();
+		virtual ~Network() = default;
 	};
 
 	template<typename DataT>

@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef __WEB_EXCEPTION__
-#define __WEB_EXCEPTION__
-
 #include <string>
 #include <stdexcept>
 
@@ -46,10 +43,4 @@ namespace web
 	}
 }
 
-#endif // !__WEB_EXCEPTION__
-
-#ifndef THROW_WEB_EXCEPTION
-
 #define THROW_WEB_EXCEPTION { throw web::exceptions::WebException(__LINE__, __FILE__); }
-
-#endif

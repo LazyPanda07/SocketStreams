@@ -2,7 +2,7 @@ var classweb_1_1_network =
 [
     [ "Network", "classweb_1_1_network.html#ad275af6ef458689cb15bf4fc52c09d19", null ],
     [ "Network", "classweb_1_1_network.html#ae8fb19ca81155526f04d4777427b9867", null ],
-    [ "~Network", "classweb_1_1_network.html#a1b91abdc8b7cd04c0491bc7911e390a2", null ],
+    [ "~Network", "classweb_1_1_network.html#a06de6c2cec0f808a06d905a7a8177211", null ],
     [ "addReceiveBuffer", "classweb_1_1_network.html#a015051ca702a7662f731c5062b280991", null ],
     [ "getClientSocket", "classweb_1_1_network.html#af6849ad23ccb0acdeb91232de5a9a24c", null ],
     [ "isDataAvailable", "classweb_1_1_network.html#a21ab4a399d8f7ef6150326cc36dc3365", null ],
@@ -17,5 +17,5 @@ var classweb_1_1_network =
     [ "sendRawData", "classweb_1_1_network.html#a0e7e29aafa7f0f5fe1cd1aea0a920fc3", null ],
     [ "throwException", "classweb_1_1_network.html#a8a041f63753f11c6c16cc11a812329bb", null ],
     [ "buffers", "classweb_1_1_network.html#a5554fc980511c4b5ed2949c385ae4005", null ],
-    [ "clientSocket", "classweb_1_1_network.html#aff2607898ebd587090a42e108ea49dbd", null ]
+    [ "clientSocket", "classweb_1_1_network.html#a5d05c85901cca9c1489a46bf83440adf", null ]
 ];

@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.9.0</span>
+   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.10.0</span>
    </div>
   </td>
  </tr>
@@ -115,7 +115,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad275af6ef458689cb15bf4fc52c09d19" id="r_ad275af6ef458689cb15bf4fc52c09d19"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad275af6ef458689cb15bf4fc52c09d19">Network</a> (std::string_view ip, std::string_view port, DWORD timeout=30 '000)</td></tr>
 <tr class="memdesc:ad275af6ef458689cb15bf4fc52c09d19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client side constructor.  <br /></td></tr>
 <tr class="separator:ad275af6ef458689cb15bf4fc52c09d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8fb19ca81155526f04d4777427b9867" id="r_ae8fb19ca81155526f04d4777427b9867"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8fb19ca81155526f04d4777427b9867">Network</a> (SOCKET <a class="el" href="#aff2607898ebd587090a42e108ea49dbd">clientSocket</a>)</td></tr>
+<tr class="memitem:ae8fb19ca81155526f04d4777427b9867" id="r_ae8fb19ca81155526f04d4777427b9867"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8fb19ca81155526f04d4777427b9867">Network</a> (SOCKET <a class="el" href="#a5d05c85901cca9c1489a46bf83440adf">clientSocket</a>)</td></tr>
 <tr class="memdesc:ae8fb19ca81155526f04d4777427b9867"><td class="mdescLeft">&#160;</td><td class="mdescRight">Server side contructor.  <br /></td></tr>
 <tr class="separator:ae8fb19ca81155526f04d4777427b9867"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21ab4a399d8f7ef6150326cc36dc3365" id="r_a21ab4a399d8f7ef6150326cc36dc3365"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21ab4a399d8f7ef6150326cc36dc3365">isDataAvailable</a> (int *availableBytes=nullptr) const</td></tr>
@@ -149,8 +149,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5f42be1e52bf35b870488951594d2079" id="r_a5f42be1e52bf35b870488951594d2079"><td class="memTemplParams" colspan="2">template&lt;typename DataT &gt; </td></tr>
 <tr class="memitem:a5f42be1e52bf35b870488951594d2079"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a5f42be1e52bf35b870488951594d2079">receiveBytes</a> (DataT *data, int size, bool &amp;endOfStream, int flags=0)</td></tr>
 <tr class="separator:a5f42be1e52bf35b870488951594d2079"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b91abdc8b7cd04c0491bc7911e390a2" id="r_a1b91abdc8b7cd04c0491bc7911e390a2"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b91abdc8b7cd04c0491bc7911e390a2">~Network</a> ()</td></tr>
-<tr class="separator:a1b91abdc8b7cd04c0491bc7911e390a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06de6c2cec0f808a06d905a7a8177211" id="r_a06de6c2cec0f808a06d905a7a8177211"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06de6c2cec0f808a06d905a7a8177211">~Network</a> ()=default</td></tr>
+<tr class="separator:a06de6c2cec0f808a06d905a7a8177211"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -163,8 +163,8 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:aff2607898ebd587090a42e108ea49dbd" id="r_aff2607898ebd587090a42e108ea49dbd"><td class="memItemLeft" align="right" valign="top">SOCKET&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff2607898ebd587090a42e108ea49dbd">clientSocket</a></td></tr>
-<tr class="separator:aff2607898ebd587090a42e108ea49dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d05c85901cca9c1489a46bf83440adf" id="r_a5d05c85901cca9c1489a46bf83440adf"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; SOCKET &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d05c85901cca9c1489a46bf83440adf">clientSocket</a></td></tr>
+<tr class="separator:a5d05c85901cca9c1489a46bf83440adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5554fc980511c4b5ed2949c385ae4005" id="r_a5554fc980511c4b5ed2949c385ae4005"><td class="memItemLeft" align="right" valign="top">std::queue&lt; std::string_view &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5554fc980511c4b5ed2949c385ae4005">buffers</a></td></tr>
 <tr class="separator:a5554fc980511c4b5ed2949c385ae4005"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -241,8 +241,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a1b91abdc8b7cd04c0491bc7911e390a2" name="a1b91abdc8b7cd04c0491bc7911e390a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b91abdc8b7cd04c0491bc7911e390a2">&#9670;&#160;</a></span>~Network()</h2>
+<a id="a06de6c2cec0f808a06d905a7a8177211" name="a06de6c2cec0f808a06d905a7a8177211"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06de6c2cec0f808a06d905a7a8177211">&#9670;&#160;</a></span>~Network()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -251,7 +251,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">web::Network::~Network </td>
+          <td class="memname">virtual web::Network::~Network </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -259,7 +259,7 @@ Protected Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -790,8 +790,8 @@ template&lt;typename DataT &gt; </div>
 
 </div>
 </div>
-<a id="aff2607898ebd587090a42e108ea49dbd" name="aff2607898ebd587090a42e108ea49dbd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff2607898ebd587090a42e108ea49dbd">&#9670;&#160;</a></span>clientSocket</h2>
+<a id="a5d05c85901cca9c1489a46bf83440adf" name="a5d05c85901cca9c1489a46bf83440adf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d05c85901cca9c1489a46bf83440adf">&#9670;&#160;</a></span>clientSocket</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -800,7 +800,7 @@ template&lt;typename DataT &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">SOCKET web::Network::clientSocket</td>
+          <td class="memname">std::shared_ptr&lt;SOCKET&gt; web::Network::clientSocket</td>
         </tr>
       </table>
   </td>

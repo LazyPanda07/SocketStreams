@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['getavailableinputsize_0',['getAvailableInputSize',['../classbuffers_1_1_i_o_socket_buffer.html#a4e608201ba5ddd6f420b322714e23b15',1,'buffers::IOSocketBuffer']]],
-  ['getclientsocket_1',['getClientSocket',['../classweb_1_1_network.html#af6849ad23ccb0acdeb91232de5a9a24c',1,'web::Network']]],
-  ['getendofstream_2',['getEndOfStream',['../classbuffers_1_1_i_o_socket_buffer.html#a1a2fc10cfab13a972cc7eafb9dacfbc4',1,'buffers::IOSocketBuffer']]],
-  ['geterrorcode_3',['getErrorCode',['../classweb_1_1exceptions_1_1_web_exception.html#a681061e84ba823609aefe1cd770a7848',1,'web::exceptions::WebException']]],
-  ['getfile_4',['getFile',['../classweb_1_1exceptions_1_1_web_exception.html#a51d2e537403a9a5fb58457f91d68ec82',1,'web::exceptions::WebException']]],
-  ['getlastpacketsize_5',['getLastPacketSize',['../classbuffers_1_1_i_o_socket_buffer.html#a26d0924c887e65b4db06ad65f4b1dcc4',1,'buffers::IOSocketBuffer']]],
-  ['getline_6',['getLine',['../classweb_1_1exceptions_1_1_web_exception.html#a21a8f0d6b34ee3cfa9a424c9452789e8',1,'web::exceptions::WebException']]],
-  ['getnetwork_7',['getNetwork',['../classbuffers_1_1_i_o_socket_buffer.html#ab8dd7d00c1be28a6fe028a6c09ea7204',1,'buffers::IOSocketBuffer::getNetwork()'],['../classstreams_1_1_i_o_socket_stream.html#a02574c9bf0f0b4ad422ace0c80946d13',1,'streams::IOSocketStream::getNetwork()'],['../classstreams_1_1_i_o_socket_stream.html#ac86b062dffad19db528dd3b0f1bb194b',1,'streams::IOSocketStream::getNetwork() const']]],
-  ['getsocketstreamsversion_8',['getSocketStreamsVersion',['../namespaceweb_1_1utility.html#a6d4f07ca0bdc5379f1b811306df67743',1,'web::utility']]]
+  ['inputdata_0',['inputData',['../classbuffers_1_1_i_o_socket_buffer.html#af1f709a2572b65330e24817be347bce7',1,'buffers::IOSocketBuffer']]],
+  ['iosocketbuffer_1',['IOSocketBuffer',['../classbuffers_1_1_i_o_socket_buffer.html',1,'buffers::IOSocketBuffer'],['../classbuffers_1_1_i_o_socket_buffer.html#ad5a861cb7d920777cd154464f3abdd0c',1,'buffers::IOSocketBuffer::IOSocketBuffer()=default'],['../classbuffers_1_1_i_o_socket_buffer.html#a1b80c887198b90b483d53392f7f42b43',1,'buffers::IOSocketBuffer::IOSocketBuffer(const IOSocketBuffer &amp;)=delete'],['../classbuffers_1_1_i_o_socket_buffer.html#a5850394f072a846d0aa533107600656d',1,'buffers::IOSocketBuffer::IOSocketBuffer(IOSocketBuffer &amp;&amp;other) noexcept=default'],['../classbuffers_1_1_i_o_socket_buffer.html#a366c13a4f8eb58fea8d4e186aa09073f',1,'buffers::IOSocketBuffer::IOSocketBuffer(SOCKET clientSocket)'],['../classbuffers_1_1_i_o_socket_buffer.html#a9cc00a97f90a3e94b19950b7c949dc2b',1,'buffers::IOSocketBuffer::IOSocketBuffer(std::string_view ip, std::string_view port, DWORD timeout=30 &apos;000)'],['../classbuffers_1_1_i_o_socket_buffer.html#af322de07602d90edaab32a7ee1fb7988',1,'buffers::IOSocketBuffer::IOSocketBuffer(std::unique_ptr&lt; web::Network &gt; &amp;&amp;networkSubclass)']]],
+  ['iosocketbuffer_2ecpp_2',['IOSocketBuffer.cpp',['../_i_o_socket_buffer_8cpp.html',1,'']]],
+  ['iosocketbuffer_2eh_3',['IOSocketBuffer.h',['../_i_o_socket_buffer_8h.html',1,'']]],
+  ['iosocketstream_4',['IOSocketStream',['../classstreams_1_1_i_o_socket_stream.html',1,'streams::IOSocketStream'],['../classstreams_1_1_i_o_socket_stream.html#a51280e74c129f6d1421913735c458ba3',1,'streams::IOSocketStream::IOSocketStream(const IOSocketStream &amp;)=delete'],['../classstreams_1_1_i_o_socket_stream.html#a8f94cb64741c904925ce7939ae444606',1,'streams::IOSocketStream::IOSocketStream(IOSocketStream &amp;&amp;other) noexcept']]],
+  ['iosocketstream_2ecpp_5',['IOSocketStream.cpp',['../_i_o_socket_stream_8cpp.html',1,'']]],
+  ['iosocketstream_2eh_6',['IOSocketStream.h',['../_i_o_socket_stream_8h.html',1,'']]],
+  ['isdataavailable_7',['isDataAvailable',['../classweb_1_1_network.html#a21ab4a399d8f7ef6150326cc36dc3365',1,'web::Network']]]
 ];

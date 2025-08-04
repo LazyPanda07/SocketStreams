@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['buffer_0',['buffer',['../classstreams_1_1_i_o_socket_stream.html#aa3c7cc13522c7537af037f598223ae68',1,'streams::IOSocketStream']]],
-  ['bufferarray_2ecpp_1',['BufferArray.cpp',['../_buffer_array_8cpp.html',1,'']]],
-  ['buffers_2',['buffers',['../namespacebuffers.html',1,'buffers'],['../classweb_1_1_network.html#a5554fc980511c4b5ed2949c385ae4005',1,'web::Network::buffers']]]
+  ['clientsocket_0',['clientSocket',['../classweb_1_1_network.html#a5d05c85901cca9c1489a46bf83440adf',1,'web::Network']]],
+  ['constdataimplementation_1',['constDataImplementation',['../classweb_1_1utility_1_1_container_wrapper.html#a9c9b7bacd738a20c26f61de58d39d2d1',1,'web::utility::ContainerWrapper']]],
+  ['containerwrapper_2',['ContainerWrapper',['../classweb_1_1utility_1_1_container_wrapper.html',1,'web::utility::ContainerWrapper'],['../classweb_1_1utility_1_1_container_wrapper.html#a03b07a56c647a44b1f08c3308cc960b8',1,'web::utility::ContainerWrapper::ContainerWrapper(const std::function&lt; char *()&gt; &amp;dataImplementation, const std::function&lt; const char *()&gt; &amp;constDataImplementation, const std::function&lt; size_t()&gt; &amp;sizeImplementation, const std::function&lt; void(size_t)&gt; &amp;resizeImplementation, const std::function&lt; char &amp;(size_t)&gt; &amp;operatorImplementation)'],['../classweb_1_1utility_1_1_container_wrapper.html#a900e8d013f0eb4da038798a481ff8eab',1,'web::utility::ContainerWrapper::ContainerWrapper(T &amp;value)'],['../classweb_1_1utility_1_1_container_wrapper.html#ad2d7b38962c8022e117d7443b710e796',1,'web::utility::ContainerWrapper::ContainerWrapper(const ContainerWrapper &amp;)=delete'],['../classweb_1_1utility_1_1_container_wrapper.html#ae1722bb7bfef98a4ac6e416ffcbd6b3b',1,'web::utility::ContainerWrapper::ContainerWrapper(ContainerWrapper &amp;&amp;) noexcept=default']]],
+  ['containerwrapper_2ecpp_3',['ContainerWrapper.cpp',['../_container_wrapper_8cpp.html',1,'']]],
+  ['containerwrapper_2eh_4',['ContainerWrapper.h',['../_container_wrapper_8h.html',1,'']]],
+  ['createstream_5',['createStream',['../classstreams_1_1_i_o_socket_stream.html#addb3ebdfd003813677f9082d7eb04764',1,'streams::IOSocketStream::createStream(Args &amp;&amp;... args)'],['../classstreams_1_1_i_o_socket_stream.html#a8990f770fb66f86b4f8c0dd2371f0f12',1,'streams::IOSocketStream::createStream(Args &amp;&amp;... args)']]]
 ];

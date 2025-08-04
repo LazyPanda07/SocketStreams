@@ -4,12 +4,12 @@ namespace web
 {
 	int Network::sendBytesImplementation(const char* data, int size, int flags)
 	{
-		return send(clientSocket, data, size, flags);
+		return send(*clientSocket, data, size, flags);
 	}
 
 	int Network::receiveBytesImplementation(char* data, int size, int flags)
 	{
-		return recv(clientSocket, data, size, flags);
+		return recv(*clientSocket, data, size, flags);
 	}
 
 	void Network::throwException(int line, std::string_view file) const
@@ -18,8 +18,10 @@ namespace web
 	}
 
 	Network::Network(std::string_view ip, std::string_view port, DWORD timeout) :
-		clientSocket(INVALID_SOCKET)
+		clientSocket(nullptr)
 	{
+		SOCKET tempSocket = INVALID_SOCKET;
+
 #ifdef __LINUX__
 		timeval timeoutValue;
 
@@ -47,39 +49,41 @@ namespace web
 			THROW_WEB_EXCEPTION;
 		}
 
-		if (clientSocket = socket(info->ai_family, info->ai_socktype, info->ai_protocol); clientSocket == INVALID_SOCKET)
+		if (tempSocket = socket(info->ai_family, info->ai_socktype, info->ai_protocol); tempSocket == INVALID_SOCKET)
 		{
 			freeaddrinfo(info);
 
 			THROW_WEB_EXCEPTION;
 		}
 
-		if (setsockopt(clientSocket, SOL_SOCKET, SO_SNDTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeoutValue)) == SOCKET_ERROR)
+		if (setsockopt(tempSocket, SOL_SOCKET, SO_SNDTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeoutValue)) == SOCKET_ERROR)
 		{
 			freeaddrinfo(info);
 
 			THROW_WEB_EXCEPTION;
 		}
 
-		if (setsockopt(clientSocket, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeoutValue)) == SOCKET_ERROR)
+		if (setsockopt(tempSocket, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeoutValue)) == SOCKET_ERROR)
 		{
 			freeaddrinfo(info);
 
 			THROW_WEB_EXCEPTION;
 		}
 
-		if (connect(clientSocket, info->ai_addr, static_cast<int>(info->ai_addrlen)) == SOCKET_ERROR)
+		if (connect(tempSocket, info->ai_addr, static_cast<int>(info->ai_addrlen)) == SOCKET_ERROR)
 		{
 			freeaddrinfo(info);
 
 			THROW_WEB_EXCEPTION;
 		}
+
+		clientSocket = std::shared_ptr<SOCKET>(new SOCKET(tempSocket), [](SOCKET* ptr) { closesocket(*ptr); delete ptr; });
 
 		freeaddrinfo(info);
 	}
 
 	Network::Network(SOCKET clientSocket) :
-		clientSocket(clientSocket)
+		clientSocket(new SOCKET(clientSocket), [](SOCKET* ptr) { closesocket(*ptr); delete ptr; })
 	{
 
 	}
@@ -89,14 +93,14 @@ namespace web
 #ifdef __LINUX__
 		int result = 0;
 
-		if (ioctl(clientSocket, FIONREAD, &result) < 0)
+		if (ioctl(*clientSocket, FIONREAD, &result) < 0)
 		{
 			THROW_WEB_EXCEPTION;
 		}
 #else
 		u_long result = 0;
 
-		if (ioctlsocket(clientSocket, FIONREAD, &result) == SOCKET_ERROR) 
+		if (ioctlsocket(*clientSocket, FIONREAD, &result) == SOCKET_ERROR) 
 		{
 			THROW_WEB_EXCEPTION;
 		}
@@ -219,11 +223,11 @@ namespace web
 
 	SOCKET Network::getClientSocket() const
 	{
-		return clientSocket;
-	}
+		if (clientSocket)
+		{
+			return *clientSocket;
+		}
 
-	Network::~Network()
-	{
-		closesocket(clientSocket);
+		return INVALID_SOCKET;
 	}
 }
