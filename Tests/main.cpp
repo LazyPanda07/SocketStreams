@@ -1,10 +1,11 @@
 #include <thread>
+#include <chrono>
 
 #include "gtest/gtest.h"
 
 #include "IOSocketStream.h"
 
-extern void runServer();
+extern void runServer(bool& isRunning);
 
 TEST(Streams, DefaultNetwork)
 {
@@ -36,9 +37,18 @@ TEST(Streams, DefaultNetwork)
 
 int main(int argc, char** argv)
 {
-	std::thread(runServer).detach();
+	bool isRunning = false;
+
+	std::thread(runServer, std::ref(isRunning)).detach();
 
 	testing::InitGoogleTest(&argc, argv);
+
+	while (!isRunning)
+	{
+		std::this_thread::sleep_for(std::chrono::seconds(1));
+
+		std::cout << "Wait server..." << std::endl;
+	}
 
 	return RUN_ALL_TESTS();
 }
