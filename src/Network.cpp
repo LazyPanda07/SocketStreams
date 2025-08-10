@@ -4,12 +4,12 @@ namespace web
 {
 	int Network::sendBytesImplementation(const char* data, int size, int flags)
 	{
-		return send(*clientSocket, data, size, flags);
+		return send(this->getClientSocket(), data, size, flags);
 	}
 
 	int Network::receiveBytesImplementation(char* data, int size, int flags)
 	{
-		return recv(*clientSocket, data, size, flags);
+		return recv(this->getClientSocket(), data, size, flags);
 	}
 
 	void Network::throwException(int line, std::string_view file) const
@@ -93,14 +93,14 @@ namespace web
 #ifdef __LINUX__
 		int result = 0;
 
-		if (ioctl(*clientSocket, FIONREAD, &result) < 0)
+		if (ioctl(this->getClientSocket(), FIONREAD, &result) < 0)
 		{
 			THROW_WEB_EXCEPTION;
 		}
 #else
 		u_long result = 0;
 
-		if (ioctlsocket(*clientSocket, FIONREAD, &result) == SOCKET_ERROR) 
+		if (ioctlsocket(this->getClientSocket(), FIONREAD, &result) == SOCKET_ERROR)
 		{
 			THROW_WEB_EXCEPTION;
 		}
