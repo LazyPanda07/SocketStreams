@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.10.1</span>
+   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.11.0</span>
    </div>
   </td>
  </tr>
@@ -126,12 +126,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5850394f072a846d0aa533107600656d" id="r_a5850394f072a846d0aa533107600656d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5850394f072a846d0aa533107600656d">IOSocketBuffer</a> (<a class="el" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a> &amp;&amp;other) noexcept=default</td></tr>
 <tr class="memdesc:a5850394f072a846d0aa533107600656d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor.  <br /></td></tr>
 <tr class="separator:a5850394f072a846d0aa533107600656d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a366c13a4f8eb58fea8d4e186aa09073f" id="r_a366c13a4f8eb58fea8d4e186aa09073f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a366c13a4f8eb58fea8d4e186aa09073f">IOSocketBuffer</a> (SOCKET clientSocket)</td></tr>
-<tr class="memdesc:a366c13a4f8eb58fea8d4e186aa09073f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Server side constructor.  <br /></td></tr>
-<tr class="separator:a366c13a4f8eb58fea8d4e186aa09073f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cc00a97f90a3e94b19950b7c949dc2b" id="r_a9cc00a97f90a3e94b19950b7c949dc2b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9cc00a97f90a3e94b19950b7c949dc2b">IOSocketBuffer</a> (std::string_view ip, std::string_view port, DWORD timeout=30 '000)</td></tr>
-<tr class="memdesc:a9cc00a97f90a3e94b19950b7c949dc2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client side constructor.  <br /></td></tr>
-<tr class="separator:a9cc00a97f90a3e94b19950b7c949dc2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75a3eca2e7a71905d1824a2cf16356f8" id="r_a75a3eca2e7a71905d1824a2cf16356f8"><td class="memTemplParams" colspan="2">template&lt;typename RepT , typename PeriodT &gt; </td></tr>
+<tr class="memitem:a75a3eca2e7a71905d1824a2cf16356f8"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a75a3eca2e7a71905d1824a2cf16356f8">IOSocketBuffer</a> (SOCKET clientSocket, std::chrono::duration&lt; RepT, PeriodT &gt; timeout=30s)</td></tr>
+<tr class="memdesc:a75a3eca2e7a71905d1824a2cf16356f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Server side constructor.  <br /></td></tr>
+<tr class="separator:a75a3eca2e7a71905d1824a2cf16356f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8b57d58e108800a1e1101a7415b4fba" id="r_af8b57d58e108800a1e1101a7415b4fba"><td class="memTemplParams" colspan="2">template&lt;typename RepT , typename PeriodT &gt; </td></tr>
+<tr class="memitem:af8b57d58e108800a1e1101a7415b4fba"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#af8b57d58e108800a1e1101a7415b4fba">IOSocketBuffer</a> (std::string_view ip, std::string_view port, std::chrono::duration&lt; RepT, PeriodT &gt; timeout=30s)</td></tr>
+<tr class="memdesc:af8b57d58e108800a1e1101a7415b4fba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client side constructor.  <br /></td></tr>
+<tr class="separator:af8b57d58e108800a1e1101a7415b4fba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af322de07602d90edaab32a7ee1fb7988" id="r_af322de07602d90edaab32a7ee1fb7988"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af322de07602d90edaab32a7ee1fb7988">IOSocketBuffer</a> (std::unique_ptr&lt; <a class="el" href="classweb_1_1_network.html">web::Network</a> &gt; &amp;&amp;networkSubclass)</td></tr>
 <tr class="separator:af322de07602d90edaab32a7ee1fb7988"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9b9e4c956f73061f8e93428b5f86f89" id="r_ac9b9e4c956f73061f8e93428b5f86f89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac9b9e4c956f73061f8e93428b5f86f89">operator=</a> (const <a class="el" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a> &amp;)=delete</td></tr>
@@ -262,17 +264,23 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a366c13a4f8eb58fea8d4e186aa09073f" name="a366c13a4f8eb58fea8d4e186aa09073f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a366c13a4f8eb58fea8d4e186aa09073f">&#9670;&#160;</a></span>IOSocketBuffer() <span class="overload">[4/6]</span></h2>
+<a id="a75a3eca2e7a71905d1824a2cf16356f8" name="a75a3eca2e7a71905d1824a2cf16356f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75a3eca2e7a71905d1824a2cf16356f8">&#9670;&#160;</a></span>IOSocketBuffer() <span class="overload">[4/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename RepT , typename PeriodT &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">buffers::IOSocketBuffer::IOSocketBuffer </td>
           <td>(</td>
-          <td class="paramtype">SOCKET</td>          <td class="paramname"><span class="paramname"><em>clientSocket</em></span></td><td>)</td>
+          <td class="paramtype">SOCKET</td>          <td class="paramname"><span class="paramname"><em>clientSocket</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::chrono::duration&lt; RepT, PeriodT &gt;</td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval">30s</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -280,19 +288,21 @@ Protected Attributes</h2></td></tr>
 <p>Server side constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">clientSocket</td><td><br  />
- </td></tr>
+    <tr><td class="paramname">clientSocket</td><td></td></tr>
+    <tr><td class="paramname">timeout</td><td>Timeout for receive and send calls </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a9cc00a97f90a3e94b19950b7c949dc2b" name="a9cc00a97f90a3e94b19950b7c949dc2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9cc00a97f90a3e94b19950b7c949dc2b">&#9670;&#160;</a></span>IOSocketBuffer() <span class="overload">[5/6]</span></h2>
+<a id="af8b57d58e108800a1e1101a7415b4fba" name="af8b57d58e108800a1e1101a7415b4fba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8b57d58e108800a1e1101a7415b4fba">&#9670;&#160;</a></span>IOSocketBuffer() <span class="overload">[5/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename RepT , typename PeriodT &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">buffers::IOSocketBuffer::IOSocketBuffer </td>
@@ -307,7 +317,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">DWORD</td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval">30'000</span>&#160;)</td>
+          <td class="paramtype">std::chrono::duration&lt; RepT, PeriodT &gt;</td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval">30s</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -317,7 +327,7 @@ Protected Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">ip</td><td>Remote address to connect to </td></tr>
     <tr><td class="paramname">port</td><td>Remote port to connect to </td></tr>
-    <tr><td class="paramname">timeout</td><td>Timeout for receive and send calls in milliseconds </td></tr>
+    <tr><td class="paramname">timeout</td><td>Timeout for receive and send calls </td></tr>
     <tr><td class="paramname">mode</td><td>Receive mode </td></tr>
   </table>
   </dd>

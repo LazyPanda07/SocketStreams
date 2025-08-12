@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.10.1</span>
+   <div id="projectname">SocketStreams<span id="projectnumber">&#160;v1.11.0</span>
    </div>
   </td>
  </tr>
@@ -108,113 +108,143 @@ $(function(){initNavTree('_i_o_socket_buffer_8h_source.html',''); initResizable(
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacebuffers.html">buffers</a></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
-<div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html">   11</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a> : <span class="keyword">public</span> std::streambuf</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        <span class="keyword">using </span>typename std::streambuf::int_type;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <span class="keyword">using </span>typename std::streambuf::char_type;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keyword">using </span>typename std::streambuf::traits_type;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keyword">class </span>BufferArray</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            <span class="keywordtype">size_t</span> totalSize;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>            <span class="keywordtype">size_t</span> pageSize;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            <span class="keywordtype">void</span>* pageData;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            <span class="keywordtype">void</span> free();</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            BufferArray();</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            BufferArray(<span class="keyword">const</span> BufferArray&amp; other) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keyword">using namespace </span>std::chrono_literals;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html">   13</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a> : <span class="keyword">public</span> std::streambuf</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keyword">using </span>typename std::streambuf::int_type;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="keyword">using </span>typename std::streambuf::char_type;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keyword">using </span>typename std::streambuf::traits_type;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keyword">class </span>BufferArray</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            <span class="keywordtype">size_t</span> totalSize;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            <span class="keywordtype">size_t</span> pageSize;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            <span class="keywordtype">void</span>* pageData;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <span class="keywordtype">void</span> free();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            BufferArray();</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            BufferArray(BufferArray&amp;&amp; other) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            BufferArray(<span class="keyword">const</span> BufferArray&amp; other) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            BufferArray&amp; operator =(<span class="keyword">const</span> BufferArray&amp; other) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            BufferArray(BufferArray&amp;&amp; other) <span class="keyword">noexcept</span>;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            BufferArray&amp; operator =(BufferArray&amp;&amp; other) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            BufferArray&amp; operator =(<span class="keyword">const</span> BufferArray&amp; other) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            <span class="keywordtype">size_t</span> size() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            BufferArray&amp; operator =(BufferArray&amp;&amp; other) <span class="keyword">noexcept</span>;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <span class="keywordtype">char</span>* data();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <span class="keywordtype">size_t</span> size() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="keyword">const</span> <span class="keywordtype">char</span>* data() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="keywordtype">char</span>* data();</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <span class="keywordtype">void</span> resize(<span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <span class="keyword">const</span> <span class="keywordtype">char</span>* data() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keywordtype">char</span>&amp; operator [](<span class="keywordtype">size_t</span> index);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keywordtype">void</span> resize(<span class="keywordtype">size_t</span> size);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            ~BufferArray();</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        };</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordtype">size_t</span> <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#a4e608201ba5ddd6f420b322714e23b15">getAvailableInputSize</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#a7665d8d75bf32b26f4cd454354f67289">   57</a></span>        std::unique_ptr&lt;web::Network&gt; <a class="code hl_variable" href="classbuffers_1_1_i_o_socket_buffer.html#a7665d8d75bf32b26f4cd454354f67289">network</a>;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#a28cb0e4fb10f8fc00adbd8a966672c8c">   58</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="classbuffers_1_1_i_o_socket_buffer.html#a28cb0e4fb10f8fc00adbd8a966672c8c">lastPacketSize</a>;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#af1f709a2572b65330e24817be347bce7">   59</a></span>        BufferArray <a class="code hl_variable" href="classbuffers_1_1_i_o_socket_buffer.html#af1f709a2572b65330e24817be347bce7">inputData</a>;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#a51315518d8ae46fcc788f88aa53c12d7">   60</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classbuffers_1_1_i_o_socket_buffer.html#a51315518d8ae46fcc788f88aa53c12d7">endOfStream</a>;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        int_type <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#a201fcf789fb0feb99a6aa4a0c0d4fed5">overflow</a>(int_type ch) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        int_type <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#af6c13832b7ee0073e2519632207b096f">underflow</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            <span class="keywordtype">char</span>&amp; operator [](<span class="keywordtype">size_t</span> index);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            ~BufferArray();</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        };</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordtype">size_t</span> <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#a4e608201ba5ddd6f420b322714e23b15">getAvailableInputSize</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#a7665d8d75bf32b26f4cd454354f67289">   59</a></span>        std::unique_ptr&lt;web::Network&gt; <a class="code hl_variable" href="classbuffers_1_1_i_o_socket_buffer.html#a7665d8d75bf32b26f4cd454354f67289">network</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#a28cb0e4fb10f8fc00adbd8a966672c8c">   60</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="classbuffers_1_1_i_o_socket_buffer.html#a28cb0e4fb10f8fc00adbd8a966672c8c">lastPacketSize</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#af1f709a2572b65330e24817be347bce7">   61</a></span>        BufferArray <a class="code hl_variable" href="classbuffers_1_1_i_o_socket_buffer.html#af1f709a2572b65330e24817be347bce7">inputData</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#a51315518d8ae46fcc788f88aa53c12d7">   62</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classbuffers_1_1_i_o_socket_buffer.html#a51315518d8ae46fcc788f88aa53c12d7">endOfStream</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        int_type <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#a201fcf789fb0feb99a6aa4a0c0d4fed5">overflow</a>(int_type ch) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        std::streamsize <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#acf0329e06bcc32e9d8a383fc6854c36b">xsputn</a>(<span class="keyword">const</span> char_type* s, std::streamsize size) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        int_type <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#af6c13832b7ee0073e2519632207b096f">underflow</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        std::streamsize <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#a7a7d36d46c5ee1c5876618b67aced456">xsgetn</a>(char_type* s, std::streamsize size) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        std::streamsize <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#acf0329e06bcc32e9d8a383fc6854c36b">xsputn</a>(<span class="keyword">const</span> char_type* s, std::streamsize size) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#ad5a861cb7d920777cd154464f3abdd0c">   72</a></span>        <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#ad5a861cb7d920777cd154464f3abdd0c">IOSocketBuffer</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#a1b80c887198b90b483d53392f7f42b43">   75</a></span>        <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#a1b80c887198b90b483d53392f7f42b43">IOSocketBuffer</a>(<span class="keyword">const</span> <a class="code hl_class" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#a5850394f072a846d0aa533107600656d">   79</a></span>        <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#a5850394f072a846d0aa533107600656d">IOSocketBuffer</a>(<a class="code hl_class" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a>&amp;&amp; other) <span class="keyword">noexcept</span> = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#ad5a861cb7d920777cd154464f3abdd0c">IOSocketBuffer</a>(SOCKET clientSocket);</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#ad5a861cb7d920777cd154464f3abdd0c">IOSocketBuffer</a>(std::string_view ip, std::string_view port, DWORD timeout = 30&#39;000);</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#ad5a861cb7d920777cd154464f3abdd0c">IOSocketBuffer</a>(std::unique_ptr&lt;web::Network&gt;&amp;&amp; networkSubclass);</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#ac9b9e4c956f73061f8e93428b5f86f89">   97</a></span>        <a class="code hl_class" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a>&amp; <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#ac9b9e4c956f73061f8e93428b5f86f89">operator = </a>(<span class="keyword">const</span> <a class="code hl_class" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        std::streamsize <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#a7a7d36d46c5ee1c5876618b67aced456">xsgetn</a>(char_type* s, std::streamsize size) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#ad5a861cb7d920777cd154464f3abdd0c">   74</a></span>        <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#ad5a861cb7d920777cd154464f3abdd0c">IOSocketBuffer</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#a1b80c887198b90b483d53392f7f42b43">   77</a></span>        <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#a1b80c887198b90b483d53392f7f42b43">IOSocketBuffer</a>(<span class="keyword">const</span> <a class="code hl_class" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#a5850394f072a846d0aa533107600656d">   81</a></span>        <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#a5850394f072a846d0aa533107600656d">IOSocketBuffer</a>(<a class="code hl_class" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a>&amp;&amp; other) <span class="keyword">noexcept</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> RepT, <span class="keyword">typename</span> PeriodT&gt;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#ad5a861cb7d920777cd154464f3abdd0c">IOSocketBuffer</a>(SOCKET clientSocket, std::chrono::duration&lt;RepT, PeriodT&gt; timeout = 30s);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> RepT, <span class="keyword">typename</span> PeriodT&gt;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#ad5a861cb7d920777cd154464f3abdd0c">IOSocketBuffer</a>(std::string_view ip, std::string_view port, std::chrono::duration&lt;RepT, PeriodT&gt; timeout = 30s);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#ad5a861cb7d920777cd154464f3abdd0c">IOSocketBuffer</a>(std::unique_ptr&lt;web::Network&gt;&amp;&amp; networkSubclass);</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#ad2f31b5e1bbd5bbfcd79c8808202de5b">  102</a></span>        <a class="code hl_class" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a>&amp; <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#ac9b9e4c956f73061f8e93428b5f86f89">operator = </a>(<a class="code hl_class" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a>&amp;&amp; other) <span class="keyword">noexcept</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#ac9b9e4c956f73061f8e93428b5f86f89">  102</a></span>        <a class="code hl_class" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a>&amp; <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#ac9b9e4c956f73061f8e93428b5f86f89">operator = </a>(<span class="keyword">const</span> <a class="code hl_class" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a>&amp;) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keyword">const</span> std::unique_ptr&lt;web::Network&gt;&amp; <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#ab8dd7d00c1be28a6fe028a6c09ea7204">getNetwork</a>() const noexcept;</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#a26d0924c887e65b4db06ad65f4b1dcc4">getLastPacketSize</a>() const noexcept;</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#a1a2fc10cfab13a972cc7eafb9dacfbc4">getEndOfStream</a>() const noexcept;</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#a0fa0f5b37c5e0b6b7eb896d36cc5114e">  110</a></span>        ~<a class="code hl_class" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a>() = default;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    };</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#ad2f31b5e1bbd5bbfcd79c8808202de5b">  107</a></span>        <a class="code hl_class" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a>&amp; <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#ac9b9e4c956f73061f8e93428b5f86f89">operator = </a>(<a class="code hl_class" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a>&amp;&amp; other) <span class="keyword">noexcept</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="keyword">const</span> std::unique_ptr&lt;web::Network&gt;&amp; <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#ab8dd7d00c1be28a6fe028a6c09ea7204">getNetwork</a>() const noexcept;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#a26d0924c887e65b4db06ad65f4b1dcc4">getLastPacketSize</a>() const noexcept;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#a1a2fc10cfab13a972cc7eafb9dacfbc4">getEndOfStream</a>() const noexcept;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#a0fa0f5b37c5e0b6b7eb896d36cc5114e">  115</a></span>        ~<a class="code hl_class" href="classbuffers_1_1_i_o_socket_buffer.html">IOSocketBuffer</a>() = default;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    };</div>
 </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>}</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>}</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>namespace <a class="code hl_namespace" href="namespacebuffers.html">buffers</a></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>{</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> RepT, <span class="keyword">typename</span> PeriodT&gt;</div>
+<div class="foldopen" id="foldopen00122" data-start="{" data-end="}">
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#a75a3eca2e7a71905d1824a2cf16356f8">  122</a></span>    <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#ad5a861cb7d920777cd154464f3abdd0c">IOSocketBuffer::IOSocketBuffer</a>(SOCKET clientSocket, std::chrono::duration&lt;RepT, PeriodT&gt; timeout) :</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <a class="code hl_variable" href="classbuffers_1_1_i_o_socket_buffer.html#a7665d8d75bf32b26f4cd454354f67289">network</a>(std::make_unique&lt;<a class="code hl_namespace" href="namespaceweb.html">web</a>::Network&gt;(clientSocket, timeout)),</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <a class="code hl_variable" href="classbuffers_1_1_i_o_socket_buffer.html#a28cb0e4fb10f8fc00adbd8a966672c8c">lastPacketSize</a>(0),</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <a class="code hl_variable" href="classbuffers_1_1_i_o_socket_buffer.html#a51315518d8ae46fcc788f88aa53c12d7">endOfStream</a>(false)</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    }</div>
+</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> RepT, <span class="keyword">typename</span> PeriodT&gt;</div>
+<div class="foldopen" id="foldopen00131" data-start="{" data-end="}">
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classbuffers_1_1_i_o_socket_buffer.html#af8b57d58e108800a1e1101a7415b4fba">  131</a></span>    <a class="code hl_function" href="classbuffers_1_1_i_o_socket_buffer.html#ad5a861cb7d920777cd154464f3abdd0c">IOSocketBuffer::IOSocketBuffer</a>(std::string_view ip, std::string_view port, std::chrono::duration&lt;RepT, PeriodT&gt; timeout) :</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        network(std::make_unique&lt;<a class="code hl_namespace" href="namespaceweb.html">web</a>::Network&gt;(ip, port, timeout)),</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        lastPacketSize(0),</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        endOfStream(false)</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    {</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    }</div>
+</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>}</div>
 <div class="ttc" id="a_network_8h_html"><div class="ttname"><a href="_network_8h.html">Network.h</a></div></div>
-<div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html">buffers::IOSocketBuffer</a></div><div class="ttdoc">Base input/output socket buffer.</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.h:12</div></div>
-<div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_a1a2fc10cfab13a972cc7eafb9dacfbc4"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#a1a2fc10cfab13a972cc7eafb9dacfbc4">buffers::IOSocketBuffer::getEndOfStream</a></div><div class="ttdeci">bool getEndOfStream() const noexcept</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.cpp:126</div></div>
+<div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html">buffers::IOSocketBuffer</a></div><div class="ttdoc">Base input/output socket buffer.</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.h:14</div></div>
+<div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_a1a2fc10cfab13a972cc7eafb9dacfbc4"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#a1a2fc10cfab13a972cc7eafb9dacfbc4">buffers::IOSocketBuffer::getEndOfStream</a></div><div class="ttdeci">bool getEndOfStream() const noexcept</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.cpp:110</div></div>
 <div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_a1b80c887198b90b483d53392f7f42b43"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#a1b80c887198b90b483d53392f7f42b43">buffers::IOSocketBuffer::IOSocketBuffer</a></div><div class="ttdeci">IOSocketBuffer(const IOSocketBuffer &amp;)=delete</div><div class="ttdoc">Deleted copy contructor.</div></div>
 <div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_a201fcf789fb0feb99a6aa4a0c0d4fed5"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#a201fcf789fb0feb99a6aa4a0c0d4fed5">buffers::IOSocketBuffer::overflow</a></div><div class="ttdeci">int_type overflow(int_type ch) override</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.cpp:16</div></div>
-<div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_a26d0924c887e65b4db06ad65f4b1dcc4"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#a26d0924c887e65b4db06ad65f4b1dcc4">buffers::IOSocketBuffer::getLastPacketSize</a></div><div class="ttdeci">int getLastPacketSize() const noexcept</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.cpp:121</div></div>
-<div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_a28cb0e4fb10f8fc00adbd8a966672c8c"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#a28cb0e4fb10f8fc00adbd8a966672c8c">buffers::IOSocketBuffer::lastPacketSize</a></div><div class="ttdeci">int lastPacketSize</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.h:58</div></div>
+<div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_a26d0924c887e65b4db06ad65f4b1dcc4"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#a26d0924c887e65b4db06ad65f4b1dcc4">buffers::IOSocketBuffer::getLastPacketSize</a></div><div class="ttdeci">int getLastPacketSize() const noexcept</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.cpp:105</div></div>
+<div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_a28cb0e4fb10f8fc00adbd8a966672c8c"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#a28cb0e4fb10f8fc00adbd8a966672c8c">buffers::IOSocketBuffer::lastPacketSize</a></div><div class="ttdeci">int lastPacketSize</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.h:60</div></div>
 <div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_a4e608201ba5ddd6f420b322714e23b15"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#a4e608201ba5ddd6f420b322714e23b15">buffers::IOSocketBuffer::getAvailableInputSize</a></div><div class="ttdeci">size_t getAvailableInputSize() const</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.cpp:11</div></div>
-<div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_a51315518d8ae46fcc788f88aa53c12d7"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#a51315518d8ae46fcc788f88aa53c12d7">buffers::IOSocketBuffer::endOfStream</a></div><div class="ttdeci">bool endOfStream</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.h:60</div></div>
+<div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_a51315518d8ae46fcc788f88aa53c12d7"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#a51315518d8ae46fcc788f88aa53c12d7">buffers::IOSocketBuffer::endOfStream</a></div><div class="ttdeci">bool endOfStream</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.h:62</div></div>
 <div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_a5850394f072a846d0aa533107600656d"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#a5850394f072a846d0aa533107600656d">buffers::IOSocketBuffer::IOSocketBuffer</a></div><div class="ttdeci">IOSocketBuffer(IOSocketBuffer &amp;&amp;other) noexcept=default</div><div class="ttdoc">Move constructor.</div></div>
-<div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_a7665d8d75bf32b26f4cd454354f67289"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#a7665d8d75bf32b26f4cd454354f67289">buffers::IOSocketBuffer::network</a></div><div class="ttdeci">std::unique_ptr&lt; web::Network &gt; network</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.h:57</div></div>
+<div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_a7665d8d75bf32b26f4cd454354f67289"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#a7665d8d75bf32b26f4cd454354f67289">buffers::IOSocketBuffer::network</a></div><div class="ttdeci">std::unique_ptr&lt; web::Network &gt; network</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.h:59</div></div>
 <div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_a7a7d36d46c5ee1c5876618b67aced456"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#a7a7d36d46c5ee1c5876618b67aced456">buffers::IOSocketBuffer::xsgetn</a></div><div class="ttdeci">std::streamsize xsgetn(char_type *s, std::streamsize size) override</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.cpp:69</div></div>
-<div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_ab8dd7d00c1be28a6fe028a6c09ea7204"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#ab8dd7d00c1be28a6fe028a6c09ea7204">buffers::IOSocketBuffer::getNetwork</a></div><div class="ttdeci">const std::unique_ptr&lt; web::Network &gt; &amp; getNetwork() const noexcept</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.cpp:116</div></div>
+<div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_ab8dd7d00c1be28a6fe028a6c09ea7204"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#ab8dd7d00c1be28a6fe028a6c09ea7204">buffers::IOSocketBuffer::getNetwork</a></div><div class="ttdeci">const std::unique_ptr&lt; web::Network &gt; &amp; getNetwork() const noexcept</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.cpp:100</div></div>
 <div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_ac9b9e4c956f73061f8e93428b5f86f89"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#ac9b9e4c956f73061f8e93428b5f86f89">buffers::IOSocketBuffer::operator=</a></div><div class="ttdeci">IOSocketBuffer &amp; operator=(const IOSocketBuffer &amp;)=delete</div><div class="ttdoc">Deleted copy assignment operator.</div></div>
 <div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_acf0329e06bcc32e9d8a383fc6854c36b"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#acf0329e06bcc32e9d8a383fc6854c36b">buffers::IOSocketBuffer::xsputn</a></div><div class="ttdeci">std::streamsize xsputn(const char_type *s, std::streamsize size) override</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.cpp:53</div></div>
 <div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_ad5a861cb7d920777cd154464f3abdd0c"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#ad5a861cb7d920777cd154464f3abdd0c">buffers::IOSocketBuffer::IOSocketBuffer</a></div><div class="ttdeci">IOSocketBuffer()=default</div></div>
-<div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_af1f709a2572b65330e24817be347bce7"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#af1f709a2572b65330e24817be347bce7">buffers::IOSocketBuffer::inputData</a></div><div class="ttdeci">BufferArray inputData</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.h:59</div></div>
+<div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_af1f709a2572b65330e24817be347bce7"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#af1f709a2572b65330e24817be347bce7">buffers::IOSocketBuffer::inputData</a></div><div class="ttdeci">BufferArray inputData</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.h:61</div></div>
 <div class="ttc" id="aclassbuffers_1_1_i_o_socket_buffer_html_af6c13832b7ee0073e2519632207b096f"><div class="ttname"><a href="classbuffers_1_1_i_o_socket_buffer.html#af6c13832b7ee0073e2519632207b096f">buffers::IOSocketBuffer::underflow</a></div><div class="ttdeci">int_type underflow() override</div><div class="ttdef"><b>Definition</b> IOSocketBuffer.cpp:30</div></div>
 <div class="ttc" id="anamespacebuffers_html"><div class="ttname"><a href="namespacebuffers.html">buffers</a></div><div class="ttdef"><b>Definition</b> BufferArray.cpp:11</div></div>
+<div class="ttc" id="anamespaceweb_html"><div class="ttname"><a href="namespaceweb.html">web</a></div><div class="ttdef"><b>Definition</b> ContainerWrapper.cpp:4</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

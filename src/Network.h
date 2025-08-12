@@ -6,6 +6,7 @@
 #include <string>
 #include <any>
 #include <memory>
+#include <chrono>
 
 #ifdef __LINUX__
 #include <sys/types.h>
@@ -41,11 +42,13 @@
 
 namespace web
 {
+	using namespace std::chrono_literals;
+
 	/// @brief Base network class
 	class Network
 	{
 	protected:
-		std::shared_ptr<SOCKET> clientSocket;
+		std::shared_ptr<SOCKET> handle;
 		std::queue<std::string_view> buffers;
 
 	protected:
@@ -55,18 +58,25 @@ namespace web
 
 		virtual void throwException(int line, std::string_view file) const;
 
+	protected:
+		void setTimeout(uint32_t timeout);
+
+	protected:
+		Network(std::string_view ip, std::string_view port, uint32_t timeout);
+
 	public:
 		/// @brief Client side constructor
 		/// @param ip Remote address to connect to
 		/// @param port Remote port to connect to
-		/// @param timeout Timeout for receive and send calls in milliseconds
-		/// @param mode Receive mode
+		/// @param timeout Timeout for receive and send calls
 		/// @exception WebException 
-		Network(std::string_view ip, std::string_view port, DWORD timeout = 30'000);
+		template<typename RepT, typename PeriodT>
+		Network(std::string_view ip, std::string_view port, std::chrono::duration<RepT, PeriodT> timeout = 30s);
 
 		/// @brief Server side contructor
 		/// @param clientSocket 
-		Network(SOCKET clientSocket);
+		template<typename RepT, typename PeriodT>
+		Network(SOCKET clientSocket, std::chrono::duration<RepT, PeriodT> timeout = 30s);
 
 		/**
 		 * @brief Check if Network contains data
@@ -145,6 +155,30 @@ namespace web
 
 		virtual ~Network() = default;
 	};
+
+	template<typename RepT, typename PeriodT>
+	Network::Network(std::string_view ip, std::string_view port, std::chrono::duration<RepT, PeriodT> timeout) :
+		Network(ip, port, std::chrono::duration_cast<std::chrono::milliseconds>(timeout).count())
+	{
+
+	}
+
+	template<typename RepT, typename PeriodT>
+	Network::Network(SOCKET clientSocket, std::chrono::duration<RepT, PeriodT> timeout)
+	{
+#ifndef __LINUX__
+		WSADATA wsaData;
+
+		if (WSAStartup(MAKEWORD(2, 2), &wsaData))
+		{
+			THROW_WEB_EXCEPTION;
+		}
+#endif // !__LINUX__
+
+		handle = new SOCKET(clientSocket), [](SOCKET* ptr) { closesocket(*ptr); delete ptr; };
+
+		this->setTimeout(std::chrono::duration_cast<std::chrono::milliseconds>(timeout).count());
+	}
 
 	template<typename DataT>
 	int Network::sendBytes(const DataT* data, int size, bool& endOfStream, int flags)

@@ -89,22 +89,6 @@ namespace buffers
 		return endOfStream ? traits_type::eof() : lastPacketSize;
 	}
 
-	IOSocketBuffer::IOSocketBuffer(SOCKET clientSocket) :
-		network(std::make_unique<web::Network>(clientSocket)),
-		lastPacketSize(0),
-		endOfStream(false)
-	{
-
-	}
-
-	IOSocketBuffer::IOSocketBuffer(std::string_view ip, std::string_view port, DWORD timeout) :
-		network(std::make_unique<web::Network>(ip, port, timeout)),
-		lastPacketSize(0),
-		endOfStream(false)
-	{
-
-	}
-
 	IOSocketBuffer::IOSocketBuffer(std::unique_ptr<web::Network>&& networkSubclass) :
 		network(std::move(networkSubclass)),
 		lastPacketSize(0),

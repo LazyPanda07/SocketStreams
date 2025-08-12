@@ -17,25 +17,40 @@ namespace web
 		throw exceptions::WebException(line, file);
 	}
 
-	Network::Network(std::string_view ip, std::string_view port, DWORD timeout) :
-		clientSocket(nullptr)
+	void Network::setTimeout(uint32_t timeout)
 	{
-		SOCKET tempSocket = INVALID_SOCKET;
-
 #ifdef __LINUX__
 		timeval timeoutValue;
 
 		timeoutValue.tv_sec = timeout / 1000;
 		timeoutValue.tv_usec = (timeout - timeoutValue.tv_sec * 1000) * 1000;
 #else
-		WSADATA wsaData;
 		DWORD timeoutValue = timeout;
+#endif
+
+		if (setsockopt(this->getClientSocket(), SOL_SOCKET, SO_SNDTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeoutValue)) == SOCKET_ERROR)
+		{
+			THROW_WEB_EXCEPTION;
+		}
+
+		if (setsockopt(this->getClientSocket(), SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeoutValue)) == SOCKET_ERROR)
+		{
+			THROW_WEB_EXCEPTION;
+		}
+	}
+
+	Network::Network(std::string_view ip, std::string_view port, uint32_t timeout)
+	{
+		SOCKET tempSocket = INVALID_SOCKET;
+
+#ifndef __LINUX__
+		WSADATA wsaData;
 
 		if (WSAStartup(MAKEWORD(2, 2), &wsaData))
 		{
 			THROW_WEB_EXCEPTION;
 		}
-#endif // __LINUX__
+#endif // !__LINUX__
 
 		addrinfo* info = nullptr;
 		addrinfo hints = {};
@@ -56,20 +71,6 @@ namespace web
 			THROW_WEB_EXCEPTION;
 		}
 
-		if (setsockopt(tempSocket, SOL_SOCKET, SO_SNDTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeoutValue)) == SOCKET_ERROR)
-		{
-			freeaddrinfo(info);
-
-			THROW_WEB_EXCEPTION;
-		}
-
-		if (setsockopt(tempSocket, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeoutValue)) == SOCKET_ERROR)
-		{
-			freeaddrinfo(info);
-
-			THROW_WEB_EXCEPTION;
-		}
-
 		if (connect(tempSocket, info->ai_addr, static_cast<int>(info->ai_addrlen)) == SOCKET_ERROR)
 		{
 			freeaddrinfo(info);
@@ -77,15 +78,11 @@ namespace web
 			THROW_WEB_EXCEPTION;
 		}
 
-		clientSocket = std::shared_ptr<SOCKET>(new SOCKET(tempSocket), [](SOCKET* ptr) { closesocket(*ptr); delete ptr; });
+		handle = std::shared_ptr<SOCKET>(new SOCKET(tempSocket), [](SOCKET* ptr) { closesocket(*ptr); delete ptr; });
 
 		freeaddrinfo(info);
-	}
 
-	Network::Network(SOCKET clientSocket) :
-		clientSocket(new SOCKET(clientSocket), [](SOCKET* ptr) { closesocket(*ptr); delete ptr; })
-	{
-
+		this->setTimeout(timeout);
 	}
 
 	bool Network::isDataAvailable(int* availableBytes) const
@@ -223,9 +220,9 @@ namespace web
 
 	SOCKET Network::getClientSocket() const
 	{
-		if (clientSocket)
+		if (handle)
 		{
-			return *clientSocket;
+			return *handle;
 		}
 
 		return INVALID_SOCKET;

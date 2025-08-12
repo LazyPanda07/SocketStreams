@@ -7,6 +7,8 @@
 
 namespace buffers
 {
+	using namespace std::chrono_literals;
+
 	/// @brief Base input/output socket buffer
 	class IOSocketBuffer : public std::streambuf
 	{
@@ -80,14 +82,17 @@ namespace buffers
 
 		/// @brief Server side constructor
 		/// @param clientSocket 
-		IOSocketBuffer(SOCKET clientSocket);
+		/// @param timeout Timeout for receive and send calls
+		template<typename RepT, typename PeriodT>
+		IOSocketBuffer(SOCKET clientSocket, std::chrono::duration<RepT, PeriodT> timeout = 30s);
 
 		/// @brief Client side constructor
 		/// @param ip Remote address to connect to
 		/// @param port Remote port to connect to
-		/// @param timeout Timeout for receive and send calls in milliseconds
+		/// @param timeout Timeout for receive and send calls
 		/// @param mode Receive mode
-		IOSocketBuffer(std::string_view ip, std::string_view port, DWORD timeout = 30'000);
+		template<typename RepT, typename PeriodT>
+		IOSocketBuffer(std::string_view ip, std::string_view port, std::chrono::duration<RepT, PeriodT> timeout = 30s);
 
 		IOSocketBuffer(std::unique_ptr<web::Network>&& networkSubclass);
 
@@ -109,4 +114,25 @@ namespace buffers
 
 		~IOSocketBuffer() = default;
 	};
+}
+
+namespace buffers
+{
+	template<typename RepT, typename PeriodT>
+	IOSocketBuffer::IOSocketBuffer(SOCKET clientSocket, std::chrono::duration<RepT, PeriodT> timeout) :
+		network(std::make_unique<web::Network>(clientSocket, timeout)),
+		lastPacketSize(0),
+		endOfStream(false)
+	{
+
+	}
+
+	template<typename RepT, typename PeriodT>
+	IOSocketBuffer::IOSocketBuffer(std::string_view ip, std::string_view port, std::chrono::duration<RepT, PeriodT> timeout) :
+		network(std::make_unique<web::Network>(ip, port, timeout)),
+		lastPacketSize(0),
+		endOfStream(false)
+	{
+
+	}
 }
