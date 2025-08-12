@@ -112,14 +112,14 @@ $(function(){initNavTree('classweb_1_1_network.html',''); initResizable(true); }
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aadb2fd4990fac96b09a078b62291aaf0" id="r_aadb2fd4990fac96b09a078b62291aaf0"><td class="memTemplParams" colspan="2">template&lt;typename RepT , typename PeriodT &gt; </td></tr>
-<tr class="memitem:aadb2fd4990fac96b09a078b62291aaf0"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aadb2fd4990fac96b09a078b62291aaf0">Network</a> (std::string_view ip, std::string_view port, std::chrono::duration&lt; RepT, PeriodT &gt; timeout=30s)</td></tr>
-<tr class="memdesc:aadb2fd4990fac96b09a078b62291aaf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client side constructor.  <br /></td></tr>
-<tr class="separator:aadb2fd4990fac96b09a078b62291aaf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab79beb802f019f64c474b8bb16d55030" id="r_ab79beb802f019f64c474b8bb16d55030"><td class="memTemplParams" colspan="2">template&lt;typename RepT , typename PeriodT &gt; </td></tr>
-<tr class="memitem:ab79beb802f019f64c474b8bb16d55030"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ab79beb802f019f64c474b8bb16d55030">Network</a> (SOCKET clientSocket, std::chrono::duration&lt; RepT, PeriodT &gt; timeout=30s)</td></tr>
-<tr class="memdesc:ab79beb802f019f64c474b8bb16d55030"><td class="mdescLeft">&#160;</td><td class="mdescRight">Server side contructor.  <br /></td></tr>
-<tr class="separator:ab79beb802f019f64c474b8bb16d55030"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7b4a3a016d12b5a9904e80757e71e24" id="r_ad7b4a3a016d12b5a9904e80757e71e24"><td class="memTemplParams" colspan="2">template&lt;Timeout T = std::chrono::seconds&gt; </td></tr>
+<tr class="memitem:ad7b4a3a016d12b5a9904e80757e71e24"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ad7b4a3a016d12b5a9904e80757e71e24">Network</a> (std::string_view ip, std::string_view port, T timeout=30s)</td></tr>
+<tr class="memdesc:ad7b4a3a016d12b5a9904e80757e71e24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client side constructor.  <br /></td></tr>
+<tr class="separator:ad7b4a3a016d12b5a9904e80757e71e24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4af3bc249753eae5be394f4abad8a56d" id="r_a4af3bc249753eae5be394f4abad8a56d"><td class="memTemplParams" colspan="2">template&lt;Timeout T = std::chrono::seconds&gt; </td></tr>
+<tr class="memitem:a4af3bc249753eae5be394f4abad8a56d"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a4af3bc249753eae5be394f4abad8a56d">Network</a> (SOCKET clientSocket, T timeout=30s)</td></tr>
+<tr class="memdesc:a4af3bc249753eae5be394f4abad8a56d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Server side contructor.  <br /></td></tr>
+<tr class="separator:a4af3bc249753eae5be394f4abad8a56d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21ab4a399d8f7ef6150326cc36dc3365" id="r_a21ab4a399d8f7ef6150326cc36dc3365"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21ab4a399d8f7ef6150326cc36dc3365">isDataAvailable</a> (int *availableBytes=nullptr) const</td></tr>
 <tr class="memdesc:a21ab4a399d8f7ef6150326cc36dc3365"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <a class="el" href="classweb_1_1_network.html" title="Base network class.">Network</a> contains data.  <br /></td></tr>
 <tr class="separator:a21ab4a399d8f7ef6150326cc36dc3365"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -211,13 +211,13 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aadb2fd4990fac96b09a078b62291aaf0" name="aadb2fd4990fac96b09a078b62291aaf0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aadb2fd4990fac96b09a078b62291aaf0">&#9670;&#160;</a></span>Network() <span class="overload">[2/3]</span></h2>
+<a id="ad7b4a3a016d12b5a9904e80757e71e24" name="ad7b4a3a016d12b5a9904e80757e71e24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7b4a3a016d12b5a9904e80757e71e24">&#9670;&#160;</a></span>Network() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename RepT , typename PeriodT &gt; </div>
+template&lt;Timeout T&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">web::Network::Network </td>
@@ -232,7 +232,7 @@ template&lt;typename RepT , typename PeriodT &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::chrono::duration&lt; RepT, PeriodT &gt;</td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval">30s</span>&#160;)</td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval">30s</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -242,7 +242,7 @@ template&lt;typename RepT , typename PeriodT &gt; </div>
   <table class="params">
     <tr><td class="paramname">ip</td><td>Remote address to connect to </td></tr>
     <tr><td class="paramname">port</td><td>Remote port to connect to </td></tr>
-    <tr><td class="paramname">timeout</td><td>Timeout for receive and send calls </td></tr>
+    <tr><td class="paramname">timeout</td><td><a class="el" href="conceptweb_1_1_timeout.html">Timeout</a> for receive and send calls </td></tr>
   </table>
   </dd>
 </dl>
@@ -256,13 +256,13 @@ template&lt;typename RepT , typename PeriodT &gt; </div>
 
 </div>
 </div>
-<a id="ab79beb802f019f64c474b8bb16d55030" name="ab79beb802f019f64c474b8bb16d55030"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab79beb802f019f64c474b8bb16d55030">&#9670;&#160;</a></span>Network() <span class="overload">[3/3]</span></h2>
+<a id="a4af3bc249753eae5be394f4abad8a56d" name="a4af3bc249753eae5be394f4abad8a56d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4af3bc249753eae5be394f4abad8a56d">&#9670;&#160;</a></span>Network() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename RepT , typename PeriodT &gt; </div>
+template&lt;Timeout T&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">web::Network::Network </td>
@@ -272,7 +272,7 @@ template&lt;typename RepT , typename PeriodT &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::chrono::duration&lt; RepT, PeriodT &gt;</td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval">30s</span>&#160;)</td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval">30s</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">

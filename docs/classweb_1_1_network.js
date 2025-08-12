@@ -1,8 +1,8 @@
 var classweb_1_1_network =
 [
     [ "Network", "classweb_1_1_network.html#aa0e2e3de75d8488096a7ba872eead132", null ],
-    [ "Network", "classweb_1_1_network.html#aadb2fd4990fac96b09a078b62291aaf0", null ],
-    [ "Network", "classweb_1_1_network.html#ab79beb802f019f64c474b8bb16d55030", null ],
+    [ "Network", "classweb_1_1_network.html#ad7b4a3a016d12b5a9904e80757e71e24", null ],
+    [ "Network", "classweb_1_1_network.html#a4af3bc249753eae5be394f4abad8a56d", null ],
     [ "~Network", "classweb_1_1_network.html#a06de6c2cec0f808a06d905a7a8177211", null ],
     [ "addReceiveBuffer", "classweb_1_1_network.html#a015051ca702a7662f731c5062b280991", null ],
     [ "getClientSocket", "classweb_1_1_network.html#af6849ad23ccb0acdeb91232de5a9a24c", null ],
