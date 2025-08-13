@@ -17,7 +17,7 @@ namespace web
 		throw exceptions::WebException(line, file);
 	}
 
-	void Network::setTimeout(uint32_t timeout)
+	void Network::setTimeout(int64_t timeout)
 	{
 #ifdef __LINUX__
 		timeval timeoutValue;
@@ -25,7 +25,7 @@ namespace web
 		timeoutValue.tv_sec = timeout / 1000;
 		timeoutValue.tv_usec = (timeout - timeoutValue.tv_sec * 1000) * 1000;
 #else
-		DWORD timeoutValue = timeout;
+		DWORD timeoutValue = static_cast<DWORD>(timeout);
 #endif
 
 		if (setsockopt(this->getClientSocket(), SOL_SOCKET, SO_SNDTIMEO, reinterpret_cast<const char*>(&timeoutValue), sizeof(timeoutValue)) == SOCKET_ERROR)
@@ -39,7 +39,7 @@ namespace web
 		}
 	}
 
-	Network::Network(std::string_view ip, std::string_view port, uint32_t timeout)
+	Network::Network(std::string_view ip, std::string_view port, int64_t timeout)
 	{
 		SOCKET tempSocket = INVALID_SOCKET;
 

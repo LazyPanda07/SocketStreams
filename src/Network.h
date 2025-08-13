@@ -65,10 +65,10 @@ namespace web
 		virtual void throwException(int line, std::string_view file) const;
 
 	protected:
-		void setTimeout(uint32_t timeout);
+		void setTimeout(int64_t timeout);
 
 	protected:
-		Network(std::string_view ip, std::string_view port, uint32_t timeout);
+		Network(std::string_view ip, std::string_view port, int64_t timeout);
 
 	public:
 		/// @brief Client side constructor

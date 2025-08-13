@@ -6,6 +6,6 @@ var searchData=
   ['sendfundamental_3',['sendFundamental',['../classstreams_1_1_i_o_socket_stream.html#a550ec85d2755640a73f26b9d358716fe',1,'streams::IOSocketStream']]],
   ['sendfundamentalimplementation_4',['sendFundamentalImplementation',['../classstreams_1_1_i_o_socket_stream.html#af49aa8f635ef6626439b58368020c38a',1,'streams::IOSocketStream']]],
   ['sendrawdata_5',['sendRawData',['../classweb_1_1_network.html#a0e7e29aafa7f0f5fe1cd1aea0a920fc3',1,'web::Network']]],
-  ['settimeout_6',['setTimeout',['../classweb_1_1_network.html#ad57b29f4392706a7d1d2878d29aefb6e',1,'web::Network']]],
+  ['settimeout_6',['setTimeout',['../classweb_1_1_network.html#ace39d12f7e8335765c4d4cd5fe5c42df',1,'web::Network']]],
   ['size_7',['size',['../classweb_1_1utility_1_1_container_wrapper.html#ae86a48aee9e9749d8c8f0ebf97fa93b0',1,'web::utility::ContainerWrapper']]]
 ];
