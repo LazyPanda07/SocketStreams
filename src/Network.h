@@ -223,7 +223,7 @@ namespace web
 
 		while (buffers.size())
 		{
-			std::string_view receiveBuffer = buffers.front();
+			std::string_view& receiveBuffer = buffers.front();
 			int fromBufferSize = std::min<int>(static_cast<int>(receiveBuffer.size()), size);
 
 			std::copy(receiveBuffer.data(), receiveBuffer.data() + fromBufferSize, actualData);
