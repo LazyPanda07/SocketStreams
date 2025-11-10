@@ -177,7 +177,7 @@ namespace web
 
 		if (flags == -1)
 		{
-			THROW_WEB_EXCEPTION();
+			THROW_WEB_EXCEPTION;
 		}
 
 		int isBlocking = !(flags & O_NONBLOCK);
