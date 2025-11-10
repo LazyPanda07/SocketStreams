@@ -105,13 +105,7 @@ jobs:
       with:
         name: ${{ matrix.configuration }}_Windows
         path: SocketStreams  
-
-    - name: Get Google Test
-      uses: LazyPanda07/get-gtest@master
-      with:
-        build-type: ${{ matrix.configuration }}
-        install-path: Tests/gtest
-
+        
     - name: Enable NMake
       uses: ilammy/msvc-dev-cmd@v1.13.0
 

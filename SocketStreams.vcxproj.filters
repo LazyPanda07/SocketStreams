@@ -15,22 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\WebException.h">
+    <ClInclude Include="include\WebException.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\Network.h">
+    <ClInclude Include="include\Network.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\IOSocketBuffer.h">
+    <ClInclude Include="include\IOSocketBuffer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\IOSocketStream.h">
+    <ClInclude Include="include\IOSocketStream.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\SocketStreamsUtility.h">
+    <ClInclude Include="include\SocketStreamsUtility.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\ContainerWrapper.h">
+    <ClInclude Include="include\ContainerWrapper.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

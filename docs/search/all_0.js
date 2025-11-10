@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['addreceivebuffer_0',['addReceiveBuffer',['../classweb_1_1_network.html#a015051ca702a7662f731c5062b280991',1,'web::Network']]]
+  ['bufferarray_2ecpp_0',['BufferArray.cpp',['../_buffer_array_8cpp.html',1,'']]],
+  ['buffers_1',['buffers',['../namespacebuffers.html',1,'']]]
 ];

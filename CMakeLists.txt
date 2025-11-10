@@ -1,13 +1,12 @@
 cmake_minimum_required(VERSION 3.27.0)
 
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install-dir CACHE STRING "")
 
 if (UNIX)
 	add_definitions(-D__LINUX__)
 endif ()
 
-project(SocketStreams VERSION 1.11.2)
+project(SocketStreams VERSION 1.12.0)
 
 add_library(
 	${PROJECT_NAME} STATIC
@@ -20,10 +19,14 @@ add_library(
 	src/BufferArray.cpp
 )
 
+target_include_directories(
+	${PROJECT_NAME} PUBLIC
+	include
+)
+
 if (DEFINED ENV{MARCH} AND NOT "$ENV{MARCH}" STREQUAL "")
 	target_compile_options(${PROJECT_NAME} PRIVATE -march=$ENV{MARCH})
 endif()	
 
-install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
-
-install(DIRECTORY src/ DESTINATION ${CMAKE_INSTALL_PREFIX}/include FILES_MATCHING PATTERN "*.h")
+install(TARGETS ${PROJECT_NAME} DESTINATION lib)
+install(DIRECTORY include DESTINATION .)

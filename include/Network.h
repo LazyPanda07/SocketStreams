@@ -67,6 +67,9 @@ namespace web
 	protected:
 		void setTimeout(int64_t timeout);
 
+		template<typename FunctionT, typename... Args>
+		auto callInNonBlockingMode(const FunctionT& functor, Args&&... args) const -> decltype(std::declval<FunctionT>()(std::forward<Args>(args)...));
+
 	protected:
 		Network(std::string_view ip, std::string_view port, int64_t timeout);
 
@@ -86,9 +89,11 @@ namespace web
 
 		/**
 		 * @brief Check if Network contains data
+		 * @param availableBytes Get number of available bytes(optional)
+		 * @param hasConnection Check if client still connected(optional)
 		 * @return
 		 */
-		bool isDataAvailable(int* availableBytes = nullptr) const;
+		bool isDataAvailable(int* availableBytes = nullptr, bool* hasConnection = nullptr) const;
 
 		/**
 		* @brief Send data through network
@@ -121,11 +126,6 @@ namespace web
 		* @return Total number of bytes receive
 		*/
 		virtual int receiveRawData(char* data, int size, bool& endOfStream, int flags = 0);
-
-		/// @brief Errors logging, default implementation uses clog
-		/// @param message Log message
-		/// @param data Additional data
-		virtual void log(const std::string& message, std::any&& data = "");
 
 		/**
 		 * @brief Add additional data that uses before getting bytes from network
@@ -161,6 +161,51 @@ namespace web
 
 		virtual ~Network() = default;
 	};
+
+}
+
+namespace web
+{
+	template<typename FunctionT, typename... Args>
+	auto Network::callInNonBlockingMode(const FunctionT& functor, Args&&... args) const -> decltype(std::declval<FunctionT>()(std::forward<Args>(args)...))
+	{
+		SOCKET socket = this->getClientSocket();
+
+#ifdef __LINUX__
+		int flags = fcntl(socket, F_GETFL, 0);
+
+		if (flags == -1)
+		{
+			THROW_WEB_EXCEPTION();
+		}
+
+		int isBlocking = !(flags & O_NONBLOCK);
+
+		if (isBlocking)
+		{
+			fcntl(socket, F_SETFL, flags | O_NONBLOCK);
+		}
+#else
+		u_long originalMode = 0;
+		u_long nonblock = 1;
+
+		ioctlsocket(socket, FIONBIO, &originalMode);
+		ioctlsocket(socket, FIONBIO, &nonblock);
+#endif
+
+		auto result = functor(std::forward<Args>(args)...);
+
+#ifdef __LINUX__
+		if (isBlocking)
+		{
+			fcntl(socket, F_SETFL, flags);
+		}
+#else
+		ioctlsocket(socket, FIONBIO, &originalMode);
+#endif
+
+		return result;
+	}
 
 	template<Timeout T>
 	Network::Network(std::string_view ip, std::string_view port, T timeout) :

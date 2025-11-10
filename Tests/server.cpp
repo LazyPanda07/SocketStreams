@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "IOSocketStream.h"
+#include <BaseTCPServer.h>
 
-#include "BaseTCPServer.h"
+#include "IOSocketStream.h"
 
 class TestServer : public web::BaseTCPServer
 {
@@ -35,7 +35,7 @@ public:
 	TestServer() :
 		BaseTCPServer("8080", "127.0.0.1")
 	{
-		
+
 	}
 };
 

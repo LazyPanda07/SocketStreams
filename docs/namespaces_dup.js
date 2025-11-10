@@ -1,6 +1,6 @@
 var namespaces_dup =
 [
-    [ "buffers", "namespacebuffers.html", "namespacebuffers" ],
-    [ "streams", "namespacestreams.html", "namespacestreams" ],
+    [ "buffers", "namespacebuffers.html", null ],
+    [ "streams", "namespacestreams.html", null ],
     [ "web", "namespaceweb.html", "namespaceweb" ]
 ];

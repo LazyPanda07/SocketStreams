@@ -38,6 +38,4 @@
 bin/
 out/
 build/
-
-# GTest
-gtest/
+SocketStreams/
