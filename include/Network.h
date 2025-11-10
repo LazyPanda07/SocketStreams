@@ -15,6 +15,7 @@
 #include <netdb.h>
 #include <unistd.h>
 #include <netinet/in.h>
+#include <fcntl.h>
 #else
 #include <WinSock2.h>
 #include <WS2tcpip.h>
