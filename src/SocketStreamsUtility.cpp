@@ -1,14 +1,11 @@
 #include "SocketStreamsUtility.h"
 
-namespace web
+namespace web::utility
 {
-	namespace utility
+	std::string getSocketStreamsVersion()
 	{
-		std::string getSocketStreamsVersion()
-		{
-			std::string version = "1.12.1";
+		std::string version = "1.12.2";
 
-			return version;
-		}
+		return version;
 	}
 }
