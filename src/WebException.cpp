@@ -294,7 +294,7 @@ namespace web::exceptions
 		this->file = file;
 		this->line = line;
 
-		data = format("Error code '{}' with description '{}' in file '{}' on line '{}'", errorCode, data, file, line);
+		data = std::format("Error code '{}' with description '{}' in file '{}' on line '{}'", errorCode, data, file, line);
 	}
 
 	const char* WebException::what() const noexcept

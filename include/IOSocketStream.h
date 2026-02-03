@@ -169,9 +169,9 @@ namespace streams
 	template<std::derived_from<web::Network> T>
 	T& IOSocketStream::getNetwork()
 	{
-		if (buffer->getNetwork())
+		if (const std::unique_ptr<web::Network>& network = buffer->getNetwork(); network)
 		{
-			return dynamic_cast<T&>(*buffer->getNetwork());
+			return dynamic_cast<T&>(*network);
 		}
 
 		throw std::runtime_error("Network is nullptr");
@@ -182,9 +182,9 @@ namespace streams
 	template<std::derived_from<web::Network> T>
 	const T& IOSocketStream::getNetwork() const
 	{
-		if (buffer->getNetwork())
+		if (const std::unique_ptr<web::Network>& network = buffer->getNetwork(); network)
 		{
-			return dynamic_cast<const T&>(*buffer->getNetwork());
+			return dynamic_cast<const T&>(*network);
 		}
 
 		throw std::runtime_error("Network is nullptr");
