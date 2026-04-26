@@ -74,6 +74,8 @@ namespace web
 	protected:
 		Network(std::string_view ip, std::string_view port, int64_t timeout);
 
+		Network(std::shared_ptr<SOCKET>&& handle) noexcept;
+
 	public:
 		/// @brief Client side constructor
 		/// @param ip Remote address to connect to

@@ -4,7 +4,7 @@ namespace web::utility
 {
 	std::string getSocketStreamsVersion()
 	{
-		std::string version = "1.12.3";
+		std::string version = "1.13.0";
 
 		return version;
 	}

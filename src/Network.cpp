@@ -85,6 +85,12 @@ namespace web
 		this->setTimeout(timeout);
 	}
 
+	Network::Network(std::shared_ptr<SOCKET>&& handle) noexcept :
+		handle(std::move(handle))
+	{
+
+	}
+
 	bool Network::isDataAvailable(int* availableBytes, bool* hasConnection) const
 	{
 		SOCKET socket = this->getClientSocket();
