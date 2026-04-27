@@ -55,7 +55,7 @@ namespace web
 	class Network
 	{
 	protected:
-		std::shared_ptr<SOCKET> handle;
+		SOCKET clientSocket;
 		std::queue<std::string_view> buffers;
 
 	protected:
@@ -74,7 +74,7 @@ namespace web
 	protected:
 		Network(std::string_view ip, std::string_view port, int64_t timeout);
 
-		Network(std::shared_ptr<SOCKET>&& handle) noexcept;
+		Network();
 
 	public:
 		/// @brief Client side constructor
@@ -89,6 +89,14 @@ namespace web
 		/// @param clientSocket 
 		template<Timeout T = std::chrono::seconds>
 		Network(SOCKET clientSocket, T timeout = 30s);
+
+		Network(const Network&) = delete;
+
+		Network(Network&& other) noexcept;
+
+		Network& operator =(const Network&) = delete;
+
+		Network& operator =(Network&& other) noexcept;
 
 		/**
 		 * @brief Check if Network contains data
@@ -162,7 +170,7 @@ namespace web
 		template<typename DataT>
 		int receiveBytes(DataT* data, int size, bool& endOfStream, int flags = 0);
 
-		virtual ~Network() = default;
+		virtual ~Network();
 	};
 
 }
@@ -218,7 +226,8 @@ namespace web
 	}
 
 	template<Timeout T>
-	Network::Network(SOCKET clientSocket, T timeout)
+	Network::Network(SOCKET clientSocket, T timeout) :
+		clientSocket(clientSocket)
 	{
 #ifndef __LINUX__
 		WSADATA wsaData;
@@ -228,8 +237,6 @@ namespace web
 			THROW_WEB_EXCEPTION;
 		}
 #endif // !__LINUX__
-
-		handle = std::shared_ptr<SOCKET>(new SOCKET(clientSocket), [](SOCKET* ptr) { closesocket(*ptr); delete ptr; });
 
 		this->setTimeout(std::chrono::duration_cast<std::chrono::milliseconds>(timeout).count());
 	}

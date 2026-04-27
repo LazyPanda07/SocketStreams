@@ -41,8 +41,6 @@ namespace web
 
 	Network::Network(std::string_view ip, std::string_view port, int64_t timeout)
 	{
-		SOCKET tempSocket = INVALID_SOCKET;
-
 #ifndef __LINUX__
 		WSADATA wsaData;
 
@@ -64,31 +62,44 @@ namespace web
 			THROW_WEB_EXCEPTION;
 		}
 
-		if (tempSocket = socket(info->ai_family, info->ai_socktype, info->ai_protocol); tempSocket == INVALID_SOCKET)
+		if (clientSocket = socket(info->ai_family, info->ai_socktype, info->ai_protocol); clientSocket == INVALID_SOCKET)
 		{
 			freeaddrinfo(info);
 
 			THROW_WEB_EXCEPTION;
 		}
 
-		if (connect(tempSocket, info->ai_addr, static_cast<int>(info->ai_addrlen)) == SOCKET_ERROR)
+		if (connect(clientSocket, info->ai_addr, static_cast<int>(info->ai_addrlen)) == SOCKET_ERROR)
 		{
 			freeaddrinfo(info);
 
 			THROW_WEB_EXCEPTION;
 		}
-
-		handle = std::shared_ptr<SOCKET>(new SOCKET(tempSocket), [](SOCKET* ptr) { closesocket(*ptr); delete ptr; });
 
 		freeaddrinfo(info);
 
 		this->setTimeout(timeout);
 	}
 
-	Network::Network(std::shared_ptr<SOCKET>&& handle) noexcept :
-		handle(std::move(handle))
+	Network::Network() :
+		clientSocket(INVALID_SOCKET)
 	{
+		
+	}
 
+	Network::Network(Network&& other) noexcept
+	{
+		(*this) = std::move(other);
+	}
+
+	Network& Network::operator =(Network&& other) noexcept
+	{
+		clientSocket = other.clientSocket;
+		buffers = std::move(other.buffers);
+
+		other.clientSocket = INVALID_SOCKET;
+
+		return *this;
 	}
 
 	bool Network::isDataAvailable(int* availableBytes, bool* hasConnection) const
@@ -248,11 +259,14 @@ namespace web
 
 	SOCKET Network::getClientSocket() const
 	{
-		if (handle)
-		{
-			return *handle;
-		}
+		return clientSocket;
+	}
 
-		return INVALID_SOCKET;
+	Network::~Network()
+	{
+		if (clientSocket != INVALID_SOCKET)
+		{
+			closesocket(clientSocket);
+		}
 	}
 }
