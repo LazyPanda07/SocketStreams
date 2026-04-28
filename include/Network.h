@@ -148,25 +148,27 @@ namespace web
 		/// @return clientSocket
 		SOCKET getClientSocket() const;
 
-		/// @brief Send raw bytes through network
-		/// @tparam DataT 
-		/// @param data 
-		/// @param size 
-		/// @param endOfStream 
-		/// @param flags 
-		/// @return Total number of sended bytes 
-		/// @exception WebException  
+		/**
+		 * @brief Send all raw bytes through network.
+		 * @tparam DataT 
+		 * @param data 
+		 * @param size 
+		 * @param endOfStream 
+		 * @param flags 
+		 * @return Number of sended bytes
+		 */
 		template<typename DataT>
 		int sendBytes(const DataT* data, int size, bool& endOfStream, int flags = 0);
 
-		/// @brief 
-		/// @tparam DataT 
-		/// @param data 
-		/// @param size 
-		/// @param endOfStream 
-		/// @param flags
-		/// @return Total number of received bytes 
-		/// @exception WebException  
+		/**
+		 * @brief Receive bytes from network. if size != return value then not all bytes received
+		 * @tparam DataT 
+		 * @param data 
+		 * @param size 
+		 * @param endOfStream 
+		 * @param flags 
+		 * @return Number of received bytes
+		 */
 		template<typename DataT>
 		int receiveBytes(DataT* data, int size, bool& endOfStream, int flags = 0);
 
