@@ -1,0 +1,12 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="DebugDLL" />
+    <BuildType Name="ProductionRelease" />
+    <BuildType Name="ProductionReleaseDLL" />
+    <BuildType Name="Release" />
+    <BuildType Name="ReleaseDLL" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="SocketStreams.vcxproj" Id="8bb9f3bd-68f4-403a-acc6-f85c75f5d14f" />
+</Solution>

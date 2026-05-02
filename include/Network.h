@@ -172,6 +172,18 @@ namespace web
 		template<typename DataT>
 		int receiveBytes(DataT* data, int size, bool& endOfStream, int flags = 0);
 
+		/**
+		 * @brief Receive all bytes from network. if size != return value then connection is closed
+		 * @tparam DataT 
+		 * @param data 
+		 * @param size Receive bytes
+		 * @param endOfStream 
+		 * @param flags 
+		 * @return 
+		 */
+		template<typename DataT>
+		int receiveFullBytes(DataT* data, int size, bool& endOfStream, int flags = 0);
+
 		virtual ~Network();
 	};
 
@@ -310,5 +322,24 @@ namespace web
 		}
 
 		return receive;
+	}
+
+	template<typename DataT>
+	int Network::receiveFullBytes(DataT* data, int size, bool& endOfStream, int flags)
+	{
+		int totalReceive = 0;
+
+		do
+		{
+			totalReceive += this->receiveBytes(data + totalReceive, size - totalReceive, endOfStream, flags);
+
+			if (endOfStream)
+			{
+				return totalReceive;
+			}
+		}
+		while (totalReceive != size);
+
+		return totalReceive;
 	}
 }
